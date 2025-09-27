@@ -53,7 +53,11 @@ const ContactPage = () => {
     }
 
     // Simulate form submission
-    toast.success('Thank you! We\'ll contact you within 24 hours to schedule your consultation.');
+    const successMessage = formData.projectType === 'klaviyo-shopify' 
+      ? 'Thank you! We\'ll contact you within 24 hours to schedule your Klaviyo automation audit for your Shopify store.'
+      : 'Thank you! We\'ll contact you within 24 hours to schedule your consultation.';
+    
+    toast.success(successMessage);
     
     // Reset form
     setFormData({
