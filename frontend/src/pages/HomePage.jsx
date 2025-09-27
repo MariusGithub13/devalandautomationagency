@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle, Users, Award, TrendingUp } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
-import TrustpilotWidget from '../components/TrustpilotWidget';
+// TrustpilotWidget removed - using consistent footer-style widget
 import { companyData, heroImages, services, caseStudies } from '../data/mock';
 
 const HomePage = () => {
