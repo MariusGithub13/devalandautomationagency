@@ -203,6 +203,49 @@ const ContactPage = () => {
                       </div>
                     </div>
 
+                    {/* Shopify-specific fields - shown when Klaviyo Shopify service is selected */}
+                    {formData.projectType === 'klaviyo-shopify' && (
+                      <div className="grid md:grid-cols-2 gap-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                        <div>
+                          <Label htmlFor="shopifyStore" className="text-sm font-medium text-gray-700">
+                            Shopify Store Website *
+                          </Label>
+                          <Input
+                            id="shopifyStore"
+                            name="shopifyStore"
+                            type="url"
+                            value={formData.shopifyStore}
+                            onChange={handleInputChange}
+                            placeholder="https://yourstore.myshopify.com"
+                            className="mt-1"
+                            required={formData.projectType === 'klaviyo-shopify'}
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor="emailListSize" className="text-sm font-medium text-gray-700">
+                            Current Email List Size
+                          </Label>
+                          <Select 
+                            value={formData.emailListSize}
+                            onValueChange={(value) => handleSelectChange('emailListSize', value)}
+                          >
+                            <SelectTrigger className="mt-1">
+                              <SelectValue placeholder="Select list size" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="0-1k">0 - 1,000 subscribers</SelectItem>
+                              <SelectItem value="1k-5k">1,000 - 5,000 subscribers</SelectItem>
+                              <SelectItem value="5k-10k">5,000 - 10,000 subscribers</SelectItem>
+                              <SelectItem value="10k-25k">10,000 - 25,000 subscribers</SelectItem>
+                              <SelectItem value="25k-50k">25,000 - 50,000 subscribers</SelectItem>
+                              <SelectItem value="50k+">50,000+ subscribers</SelectItem>
+                              <SelectItem value="no-list">No email list yet</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
+                      </div>
+                    )}
+
                     <div>
                       <Label htmlFor="message" className="text-sm font-medium text-gray-700">
                         Project Details *
