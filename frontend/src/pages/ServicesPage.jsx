@@ -32,7 +32,11 @@ const ServicesPage = () => {
 
       {/* Services by Category */}
       {categories.map((category, categoryIndex) => (
-        <section key={category} className={`section-padding ${categoryIndex % 2 === 0 ? 'bg-white' : 'bg-gray-50'}`}>
+        <section 
+          key={category} 
+          id={category.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}
+          className={`section-padding ${categoryIndex % 2 === 0 ? 'bg-white' : 'bg-gray-50'}`}
+        >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="mb-12">
               <Badge className="mb-4 bg-blue-100 text-blue-800">{category}</Badge>
