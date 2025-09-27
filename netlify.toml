@@ -62,6 +62,7 @@
 # Environment-specific settings
 [context.production.environment]
   NODE_ENV = "production"
+  NPM_CONFIG_PRODUCTION = "false"
 
 [context.deploy-preview.environment]
   NODE_ENV = "development"
