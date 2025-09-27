@@ -46,6 +46,12 @@ const ContactPage = () => {
       return;
     }
 
+    // Additional validation for Klaviyo Shopify service
+    if (formData.projectType === 'klaviyo-shopify' && !formData.shopifyStore) {
+      toast.error('Please provide your Shopify store website address');
+      return;
+    }
+
     // Simulate form submission
     toast.success('Thank you! We\'ll contact you within 24 hours to schedule your consultation.');
     
