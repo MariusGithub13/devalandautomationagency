@@ -180,7 +180,7 @@ const Footer = () => {
             </div>
             
             {/* Centered Legal Links */}
-            <div className="flex flex-wrap justify-center items-center space-x-6 text-sm">
+            <div className="flex flex-wrap justify-center items-center space-x-6 text-sm mb-8">
               <Link to="/privacy" className="text-gray-500 hover:text-gray-900 transition-colors duration-200">
                 Privacy Policy
               </Link>
@@ -193,6 +193,82 @@ const Footer = () => {
               <Link to="/gdpr" className="text-gray-500 hover:text-gray-900 transition-colors duration-200">
                 GDPR
               </Link>
+            </div>
+
+            {/* Centered Trustpilot Widget */}
+            <div className="text-center mb-6">
+              {/* TrustBox widget - Review Collector */}
+              <div 
+                className="trustpilot-widget mx-auto" 
+                data-locale="en-US" 
+                data-template-id="56278e9abfbbba0bdcd568bc" 
+                data-businessunit-id="68d4dd4d6b90a6eb23a0d4f2" 
+                data-style-height="52px" 
+                data-style-width="300px" 
+                data-token="5f80adc7-1101-44a7-9566-608788cd2550"
+                style={{maxWidth: '300px', margin: '0 auto'}}
+              >
+                <a href="https://www.trustpilot.com/review/devaland.com" target="_blank" rel="noopener">
+                  ⭐ Review us on Trustpilot
+                </a>
+              </div>
+              {/* End TrustBox widget */}
+            </div>
+
+            {/* Centered Social Media Links */}
+            <div className="text-center">
+              {/* Social Media Icons */}
+              <div className="flex items-center justify-center space-x-4 mb-4">
+                <a 
+                  href="https://www.linkedin.com/in/marius-andronie/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors duration-200"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin size={20} />
+                </a>
+                <a 
+                  href="https://www.facebook.com/dreamvillage13"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors duration-200"
+                  aria-label="Facebook"
+                >
+                  <Facebook size={20} />
+                </a>
+                <a 
+                  href="https://www.instagram.com/mariusandronie/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-gradient-to-br from-purple-600 to-pink-600 text-white rounded-full flex items-center justify-center hover:from-purple-700 hover:to-pink-700 transition-all duration-200"
+                  aria-label="Instagram"
+                >
+                  <Instagram size={20} />
+                </a>
+                <a 
+                  href="https://www.youtube.com/@devaland13"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-red-600 text-white rounded-full flex items-center justify-center hover:bg-red-700 transition-colors duration-200"
+                  aria-label="YouTube"
+                >
+                  <Youtube size={20} />
+                </a>
+              </div>
+
+              {/* Social Media Text Links */}
+              <div className="text-sm text-gray-500 space-y-1">
+                <div>Follow us: 
+                  <a href="https://www.linkedin.com/in/marius-andronie/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 ml-1">LinkedIn</a> • 
+                  <a href="https://www.facebook.com/dreamvillage13" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 ml-1">Facebook</a> • 
+                  <a href="https://www.instagram.com/mariusandronie/" target="_blank" rel="noopener noreferrer" className="text-purple-600 hover:text-purple-800 ml-1">Instagram</a> • 
+                  <a href="https://www.youtube.com/@devaland13" target="_blank" rel="noopener noreferrer" className="text-red-600 hover:text-red-800 ml-1">YouTube</a>
+                </div>
+                <div>Company: 
+                  <a href={companyData.social.linkedin} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 ml-1">Devaland LinkedIn</a>
+                </div>
+              </div>
             </div>
           </div>
 
