@@ -7,6 +7,42 @@ import { companyData } from '../data/mock';
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
+  useEffect(() => {
+    // Handle Trustpilot widget loading
+    const loadTrustpilotWidget = () => {
+      // Check if Trustpilot script is already loaded
+      if (window.Trustpilot) {
+        try {
+          window.Trustpilot.loadFromElement(document.querySelector('.trustpilot-widget'));
+          // Hide fallback link and show widget if successful
+          const fallbackLink = document.querySelector('a[href*="trustpilot.com/review/devaland.com"]');
+          const widget = document.querySelector('.trustpilot-widget');
+          if (fallbackLink && widget) {
+            setTimeout(() => {
+              if (widget.querySelector('iframe')) {
+                fallbackLink.style.display = 'none';
+                widget.classList.remove('hidden');
+              }
+            }, 2000);
+          }
+        } catch (error) {
+          console.log('Trustpilot widget loading failed, using fallback link');
+        }
+      }
+    };
+
+    // Load Trustpilot script if not already loaded
+    if (!document.querySelector('script[src*="trustpilot"]')) {
+      const script = document.createElement('script');
+      script.src = '//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js';
+      script.async = true;
+      script.onload = loadTrustpilotWidget;
+      document.head.appendChild(script);
+    } else {
+      loadTrustpilotWidget();
+    }
+  }, []);
+
   return (
     <>
       {/* Horizontal separator */}
