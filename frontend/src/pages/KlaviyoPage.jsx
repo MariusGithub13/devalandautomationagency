@@ -4,7 +4,7 @@ import { Button } from '../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { Link } from 'react-router-dom';
-import { companyData, klaviyoServices, serviceImages, awards } from '../data/mock';
+import { companyData, klaviyoServices, serviceImages, awards, klaviyoSuccessStories, klaviyoStats } from '../data/mock';
 
 const KlaviyoPage = () => {
   return (
