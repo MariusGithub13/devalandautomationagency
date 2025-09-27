@@ -12,30 +12,53 @@ module.exports = {
       '@': path.resolve(__dirname, 'src'),
     },
     configure: (webpackConfig) => {
-      // Disable source maps completely for problematic modules
-      webpackConfig.devtool = process.env.NODE_ENV === 'production' ? false : 'eval-source-map';
+      // Completely disable source maps
+      webpackConfig.devtool = false;
       
-      // Ignore source map warnings for missing files
-      webpackConfig.ignoreWarnings = [
-        {
-          module: /set-cookie-parser/,
-        },
-        {
-          module: /react-router-dom/,
-        },
-        /Failed to parse source map/,
-        /ENOENT: no such file or directory/,
-        /Module Warning/,
-      ];
-
-      // Completely remove or disable source-map-loader to prevent issues
+      // Remove source-map-loader entirely from webpack rules
       webpackConfig.module.rules = webpackConfig.module.rules.filter(rule => {
-        if (rule.use && rule.use.some && 
-            rule.use.some(use => use.loader && use.loader.includes('source-map-loader'))) {
-          return false; // Remove source-map-loader completely
+        // Remove any rule that uses source-map-loader
+        if (rule.use) {
+          if (Array.isArray(rule.use)) {
+            return !rule.use.some(use => 
+              typeof use === 'object' && 
+              use.loader && 
+              use.loader.includes('source-map-loader')
+            );
+          } else if (typeof rule.use === 'object' && rule.use.loader) {
+            return !rule.use.loader.includes('source-map-loader');
+          }
+        }
+        if (rule.loader && rule.loader.includes('source-map-loader')) {
+          return false;
         }
         return true;
       });
+
+      // Also remove any enforce: 'pre' rules that might be source-map-loader
+      webpackConfig.module.rules = webpackConfig.module.rules.filter(rule => {
+        if (rule.enforce === 'pre') {
+          if (rule.use && Array.isArray(rule.use)) {
+            return !rule.use.some(use => 
+              use.loader && use.loader.includes('source-map-loader')
+            );
+          }
+          if (rule.loader && rule.loader.includes('source-map-loader')) {
+            return false;
+          }
+        }
+        return true;
+      });
+
+      // Ignore all source map related warnings
+      webpackConfig.ignoreWarnings = [
+        /Failed to parse source map/,
+        /ENOENT.*\.map/,
+        /Can't resolve.*\.map/,
+        { module: /react-router/ },
+        { module: /set-cookie-parser/ },
+        /Module Warning/,
+      ];
       
       // Disable hot reload completely if environment variable is set
       if (config.disableHotReload) {
