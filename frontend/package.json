@@ -65,7 +65,8 @@
     "predeploy": "npm run build",
     "deploy": "npm run build",
     "postinstall": "npm run fix-missing-files",
-    "fix-missing-files": "cp node_modules/react-router-dom/dist/index.js node_modules/react-router-dom/dist/index.mjs 2>/dev/null || true"
+    "fix-missing-files": "cp node_modules/react-router-dom/dist/index.js node_modules/react-router-dom/dist/index.mjs 2>/dev/null || true",
+    "build:backup": "react-scripts build"
   },
   "browserslist": {
     "production": [
