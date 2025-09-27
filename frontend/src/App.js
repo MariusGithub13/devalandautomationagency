@@ -3,7 +3,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Toaster } from "./components/ui/sonner";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import CookieConsent from "./components/CookieConsent";
 import HomePage from "./pages/HomePage"; 
+import KlaviyoPage from "./pages/KlaviyoPage";
 import ServicesPage from "./pages/ServicesPage";
 import CaseStudiesPage from "./pages/CaseStudiesPage";
 import AboutPage from "./pages/AboutPage";
@@ -19,6 +21,7 @@ function App() {
         <main className="min-h-screen">
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/klaviyo" element={<KlaviyoPage />} />
             <Route path="/services" element={<ServicesPage />} />
             <Route path="/case-studies" element={<CaseStudiesPage />} />
             <Route path="/about" element={<AboutPage />} />
@@ -27,6 +30,7 @@ function App() {
           </Routes>
         </main>
         <Footer />
+        <CookieConsent />
         <Toaster position="bottom-right" />
       </BrowserRouter>
     </div>

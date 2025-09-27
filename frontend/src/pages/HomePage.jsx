@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle, Users, Award, TrendingUp } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
-import { companyData, heroImages, services, caseStudies, clientLogos } from '../data/mock';
+import TrustpilotWidget from '../components/TrustpilotWidget';
+import { companyData, heroImages, services, caseStudies } from '../data/mock';
 
 const HomePage = () => {
   return (
@@ -37,10 +38,10 @@ const HomePage = () => {
                   size="lg"
                   className="btn-accent text-white font-semibold px-8 py-4 text-lg rounded-lg hover-lift animate-pulse-glow"
                 >
-                  <Link to="/contact" className="inline-flex items-center space-x-2">
+                  <a href={companyData.calendly} target="_blank" rel="noopener noreferrer" className="inline-flex items-center space-x-2">
                     <span>Book Free Automation Audit</span>
                     <ArrowRight size={20} />
-                  </Link>
+                  </a>
                 </Button>
                 <Button 
                   asChild
@@ -95,17 +96,13 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Client Logos */}
+      {/* Trustpilot Section */}
       <section className="section-padding-sm bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-lg font-medium text-gray-600 mb-8">Trusted by Leading Enterprises</h2>
-            <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12 opacity-60">
-              {clientLogos.map((logo, index) => (
-                <div key={index} className="grayscale hover:grayscale-0 transition-all duration-300">
-                  <img src={logo} alt={`Client ${index + 1}`} className="h-8 md:h-10 object-contain" />
-                </div>
-              ))}
+          <div className="text-center">
+            <h2 className="text-lg font-medium text-gray-600 mb-8">Trusted by Growing Businesses</h2>
+            <div className="flex justify-center">
+              <TrustpilotWidget variant="full" />
             </div>
           </div>
         </div>
@@ -152,8 +149,11 @@ const HomePage = () => {
           </div>
 
           <div className="text-center mt-12">
-            <Button asChild size="lg" className="btn-primary text-white px-8 py-4 rounded-lg">
-              <Link to="/services">Explore All Services</Link>
+            <Button asChild size="lg" className="btn-primary text-white px-8 py-4 rounded-lg mr-4">
+              <Link to="/services">Explore Automation Services</Link>
+            </Button>
+            <Button asChild size="lg" variant="outline" className="px-8 py-4 rounded-lg">
+              <Link to="/klaviyo">Klaviyo for Shopify</Link>
             </Button>
           </div>
         </div>
@@ -228,10 +228,10 @@ const HomePage = () => {
               size="lg"
               className="btn-accent text-white font-semibold px-8 py-4 text-lg rounded-lg hover-lift"
             >
-              <Link to="/contact" className="inline-flex items-center space-x-2">
+              <a href={companyData.calendly} target="_blank" rel="noopener noreferrer" className="inline-flex items-center space-x-2">
                 <span>Start Your Free Consultation</span>
                 <ArrowRight size={20} />
-              </Link>
+              </a>
             </Button>
             <Button 
               asChild
