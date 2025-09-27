@@ -17,7 +17,11 @@ module.exports = {
         {
           module: /set-cookie-parser/,
         },
+        {
+          module: /react-router-dom/,
+        },
         /Failed to parse source map/,
+        /ENOENT: no such file or directory/,
       ];
 
       // Find source-map-loader rule and modify it
@@ -30,9 +34,27 @@ module.exports = {
         // Exclude problematic modules from source-map-loader
         sourceMapRule.exclude = [
           /node_modules\/set-cookie-parser/,
+          /node_modules\/react-router-dom/,
+          /node_modules\/@remix-run/,
+          /\.mjs$/,
           ...(sourceMapRule.exclude ? [sourceMapRule.exclude] : [])
         ];
       }
+
+      // Alternative: completely disable source-map-loader for node_modules
+      webpackConfig.module.rules = webpackConfig.module.rules.map(rule => {
+        if (rule.use && rule.use.some && 
+            rule.use.some(use => use.loader && use.loader.includes('source-map-loader'))) {
+          return {
+            ...rule,
+            exclude: [
+              /node_modules/,
+              ...(rule.exclude ? [rule.exclude] : [])
+            ]
+          };
+        }
+        return rule;
+      });
       
       // Disable hot reload completely if environment variable is set
       if (config.disableHotReload) {
