@@ -17,9 +17,17 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    // Close mobile menu when route changes
+    setIsMenuOpen(false);
+    // Scroll to top when route changes
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   const navigation = [
     { name: 'Home', href: '/' },
-    { name: 'Services', href: '/services' },
+    { name: 'Klaviyo Services', href: '/klaviyo' },
+    { name: 'Automation Services', href: '/services' },
     { name: 'Case Studies', href: '/case-studies' },
     { name: 'About', href: '/about' },
     { name: 'Blog', href: '/blog' },
@@ -30,20 +38,22 @@ const Header = () => {
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-200/20' : 'bg-transparent'
+      isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-200/20' : 'bg-white'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 lg:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3 hover-scale">
-            <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">D</span>
-            </div>
+            <img 
+              src={companyData.logo} 
+              alt={companyData.name}
+              className="h-8 lg:h-10 w-auto object-contain"
+            />
             <span className="text-xl font-display text-gray-900">{companyData.name}</span>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden lg:flex items-center space-x-6">
             {navigation.map((item) => (
               <Link
                 key={item.name}
@@ -63,19 +73,21 @@ const Header = () => {
           </nav>
 
           {/* CTA Button */}
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden lg:flex items-center space-x-4">
             <Button 
               asChild
               className="btn-primary text-white font-medium px-6 py-2.5 rounded-lg hover:shadow-lg transition-all duration-300"
             >
-              <Link to="/contact">Book Free Audit</Link>
+              <a href={companyData.calendly} target="_blank" rel="noopener noreferrer">
+                Book Free Audit
+              </a>
             </Button>
           </div>
 
           {/* Mobile menu button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors duration-200"
+            className="lg:hidden p-2 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors duration-200"
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -83,7 +95,7 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 right-0 bg-white border-b border-gray-200 shadow-lg">
+          <div className="lg:hidden absolute top-full left-0 right-0 bg-white border-b border-gray-200 shadow-lg">
             <nav className="px-4 py-6 space-y-4">
               {navigation.map((item) => (
                 <Link
@@ -104,7 +116,9 @@ const Header = () => {
                   asChild
                   className="w-full btn-primary text-white font-medium py-3 rounded-lg"
                 >
-                  <Link to="/contact">Book Free Audit</Link>
+                  <a href={companyData.calendly} target="_blank" rel="noopener noreferrer">
+                    Book Free Audit
+                  </a>
                 </Button>
               </div>
             </nav>

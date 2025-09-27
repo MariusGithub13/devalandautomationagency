@@ -1,14 +1,30 @@
-// Mock data for Devaland Automation Agency
+// Updated Devaland company data with real information
 export const companyData = {
   name: "Devaland",
   tagline: "Automate Your Operations. Accelerate Your Growth.",
   description: "We don't just build bots; we architect intelligent automation systems that unlock exponential growth, eliminate operational friction, and provide a competitive edge.",
-  logo: "https://devaland.com/assets/klaviyo-partner-badge-BynIJnns.png", // Using existing logo
+  logo: "https://customer-assets.emergentagent.com/job_process-genius-5/artifacts/kau0y3tw_Devaland-Logo.jpg",
   contact: {
-    email: "hello@devaland.com",
-    phone: "+1 (555) 123-4567",
-    address: "123 Innovation Drive, Tech City, TC 12345"
+    email: "office@devaland.com",
+    phone: "+40 (721) 269 312",
+    whatsapp: "+40 (721) 269 312",
+    address: "Sântandrei 13, Simeria 335903, Hunedoara County, Transylvania, Romania",
+    addressNote: "(Near Dracula's Castle :)",
+    businessHours: "9:00am – 5:00pm, Monday to Friday"
   },
+  legal: {
+    companyName: "DEVALAND MARKETING SRL",
+    vatNumber: "RO50841395",
+    tradeRegistry: "ROONRC.J2024039063003",
+    dateOfIncorporation: "November 07, 2024",
+    vatRegistered: "February 01, 2025",
+    caenCode: "7311 – Advertising Agencies"
+  },
+  social: {
+    linkedin: "https://www.linkedin.com/company/devaland/",
+    trustpilot: "https://www.trustpilot.com/review/devaland.com"
+  },
+  calendly: "https://calendly.com/devaland/30min",
   stats: {
     hoursAutomated: "50,000+",
     clientsSaved: "$5M+",
@@ -27,7 +43,8 @@ export const serviceImages = {
   rpa: "https://images.unsplash.com/photo-1647427060118-4911c9821b82",
   workflow: "https://images.unsplash.com/photo-1666148670142-2f01b117e6e0",
   ai: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01",
-  automation: "https://images.unsplash.com/photo-1716436329475-4c55d05383bb"
+  automation: "https://images.unsplash.com/photo-1716436329475-4c55d05383bb",
+  klaviyo: "https://images.unsplash.com/photo-1563013544-824ae1b704d3"
 };
 
 export const services = [
@@ -69,6 +86,37 @@ export const services = [
   }
 ];
 
+export const klaviyoServices = [
+  {
+    id: 1,
+    title: "Email Campaign Management",
+    description: "Create targeted, high-converting email campaigns that drive revenue and engage your Shopify customers.",
+    features: ["Campaign Strategy & Planning", "A/B Testing & Optimization", "Performance Analytics", "Revenue Attribution"],
+    results: "Average 45% increase in email revenue"
+  },
+  {
+    id: 2,
+    title: "Automation Flows Setup",
+    description: "Set up welcome series, abandoned cart recovery, and personalized customer journeys that work 24/7.",
+    features: ["Welcome Series", "Abandoned Cart Recovery", "Browse Abandonment", "Post-Purchase Flows"],
+    results: "Up to 30% cart recovery rate"
+  },
+  {
+    id: 3,
+    title: "Advanced Segmentation",
+    description: "Segment your audience for maximum relevance and higher conversion rates using behavioral data.",
+    features: ["Behavioral Segmentation", "Purchase History Analysis", "Engagement Scoring", "Lifecycle Stages"],
+    results: "180% improvement in email ROI"
+  },
+  {
+    id: 4,
+    title: "SMS Marketing Integration",
+    description: "Expand your reach with strategic SMS campaigns that complement your email marketing perfectly.",
+    features: ["SMS Automation", "Cart Recovery SMS", "Order Updates", "Promotional Campaigns"],
+    results: "25% higher customer lifetime value"
+  }
+];
+
 export const caseStudies = [
   {
     id: 1,
@@ -82,7 +130,7 @@ export const caseStudies = [
       costSavings: "$180,000/year",
       accuracy: "99.7%"
     },
-    testimonial: "Their expertise in Klaviyo automation is unmatched. We saw immediate improvements in our customer engagement metrics.",
+    testimonial: "Their expertise in automation is unmatched. We saw immediate improvements in our operational efficiency.",
     clientName: "Michael Chen",
     clientTitle: "CTO"
   },
@@ -126,24 +174,26 @@ export const team = [
     name: "Marius Andronie",
     role: "Founder & CEO", 
     bio: "Automation strategist with 8+ years experience in enterprise process optimization and RPA implementation.",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop",
-    expertise: ["Strategic Planning", "RPA Architecture", "Business Process Analysis"]
+    image: "https://customer-assets.emergentagent.com/job_process-genius-5/artifacts/oe2wb7ir_Marius%20picture%20high-quality.jpeg",
+    expertise: ["Strategic Planning", "RPA Architecture", "Business Process Analysis"],
+    linkedin: "https://www.linkedin.com/in/marius-andronie/"
   },
   {
     id: 2,
+    name: "Sera Andronie",
+    role: "Co-Founder & CEO",
+    bio: "Business development expert specializing in strategic partnerships and enterprise client relationships.", 
+    image: "https://customer-assets.emergentagent.com/job_process-genius-5/artifacts/swtrsx9w_Sera.jpeg",
+    expertise: ["Business Development", "Strategic Partnerships", "Client Relations"],
+    linkedin: "https://www.linkedin.com/in/andronie-serafim-184186211/"
+  },
+  {
+    id: 3,
     name: "Sarah Mitchell",
     role: "Head of Technical Implementation",
     bio: "Senior automation engineer specializing in UiPath, Python, and enterprise system integrations.", 
     image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop",
     expertise: ["UiPath Development", "Python Automation", "API Integration"]
-  },
-  {
-    id: 3,
-    name: "David Chen",
-    role: "AI Solutions Architect",
-    bio: "Machine learning expert focused on intelligent automation and custom AI implementations for enterprise clients.",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop", 
-    expertise: ["Machine Learning", "Natural Language Processing", "AI Integration"]
   }
 ];
 
@@ -175,16 +225,25 @@ export const blogPosts = [
     category: "AI Innovation",
     readTime: "6 min read",
     date: "2024-01-05",
-    author: "David Chen", 
+    author: "Sera Andronie", 
     image: serviceImages.ai
   }
 ];
 
-export const clientLogos = [
-  "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=120&h=60&fit=crop",
-  "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=120&h=60&fit=crop", 
-  "https://images.unsplash.com/photo-1560472355-536de3962603?w=120&h=60&fit=crop",
-  "https://images.unsplash.com/photo-1560472354-a4b1d3d1b5b9?w=120&h=60&fit=crop",
-  "https://images.unsplash.com/photo-1560472355-a4a1b3d1b5b9?w=120&h=60&fit=crop",
-  "https://images.unsplash.com/photo-1560472355-b6b1d3d1b5b9?w=120&h=60&fit=crop"
+export const awards = [
+  {
+    title: "Stellar Business Award",
+    description: "Best Marketing & Automation Agency",
+    url: "https://stellarbusiness.com/devaland-marketing-srl/"
+  },
+  {
+    title: "Featured in New York Weekly",
+    description: "High-Tech Automation Marketing",
+    url: "https://nyweekly.com/tech/marius-andronie-founder-of-devaland-marketing-agency-driving-growth-in-high-tech-automation-marketing/"
+  },
+  {
+    title: "Klaviyo Agency Partner",
+    description: "Certified automation platform partner",
+    url: "https://www.klaviyo.com/partner/signup?utm_source=001Nu00000HqbJVIAZ&utm_medium=partner"
+  }
 ];

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, ArrowRight } from 'lucide-react';
+import { Mail, Phone, MapPin, ArrowRight, Linkedin } from 'lucide-react';
 import { Button } from './ui/button';
 import { companyData } from '../data/mock';
 
@@ -16,9 +16,11 @@ const Footer = () => {
             {/* Company Info */}
             <div className="lg:col-span-2">
               <div className="flex items-center space-x-3 mb-6">
-                <div className="w-10 h-10 bg-gradient-primary rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold">D</span>
-                </div>
+                <img 
+                  src={companyData.logo} 
+                  alt={companyData.name}
+                  className="h-10 w-auto object-contain bg-white p-2 rounded"
+                />
                 <span className="text-2xl font-display">{companyData.name}</span>
               </div>
               <p className="text-gray-300 text-lg leading-relaxed mb-6 max-w-md">
@@ -28,10 +30,10 @@ const Footer = () => {
                 asChild
                 className="btn-accent text-white font-medium px-6 py-3 rounded-lg hover-lift"
               >
-                <Link to="/contact" className="inline-flex items-center space-x-2">
+                <a href={companyData.calendly} target="_blank" rel="noopener noreferrer" className="inline-flex items-center space-x-2">
                   <span>Start Your Automation Journey</span>
                   <ArrowRight size={16} />
-                </Link>
+                </a>
               </Button>
             </div>
 
@@ -39,8 +41,11 @@ const Footer = () => {
             <div>
               <h3 className="text-lg font-semibold mb-6">Quick Links</h3>
               <nav className="space-y-4">
+                <Link to="/klaviyo" className="block text-gray-300 hover:text-white transition-colors duration-200">
+                  Klaviyo Services
+                </Link>
                 <Link to="/services" className="block text-gray-300 hover:text-white transition-colors duration-200">
-                  Our Services
+                  Automation Services
                 </Link>
                 <Link to="/case-studies" className="block text-gray-300 hover:text-white transition-colors duration-200">
                   Case Studies
@@ -82,8 +87,20 @@ const Footer = () => {
                 <div className="flex items-start space-x-3">
                   <MapPin size={18} className="text-blue-400 flex-shrink-0 mt-0.5" />
                   <address className="text-gray-300 not-italic">
-                    {companyData.contact.address}
+                    {companyData.contact.address}<br />
+                    <span className="text-sm text-gray-400">{companyData.contact.addressNote}</span>
                   </address>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <Linkedin size={18} className="text-blue-400 flex-shrink-0" />
+                  <a 
+                    href={companyData.social.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-300 hover:text-white transition-colors duration-200"
+                  >
+                    Follow us on LinkedIn
+                  </a>
                 </div>
               </div>
             </div>
@@ -92,19 +109,29 @@ const Footer = () => {
 
         {/* Bottom Footer */}
         <div className="border-t border-gray-800 py-8">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="text-gray-400 text-sm">
-              © {currentYear} {companyData.name}. All rights reserved.
+          <div className="flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0">
+            <div className="text-gray-400 text-sm text-center lg:text-left">
+              <div className="mb-2">
+                Copyright © {currentYear} · {companyData.legal.companyName} · All Rights Reserved.
+              </div>
+              <div>
+                C.I.F./VAT Number: {companyData.legal.vatNumber}. Trade Registry: {companyData.legal.tradeRegistry}.
+              </div>
             </div>
-            <div className="flex items-center space-x-6 text-sm">
-              <Link to="#" className="text-gray-400 hover:text-white transition-colors duration-200">
+            
+            {/* Legal Links - Positioned to avoid overlap with Emergent logo */}
+            <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-6 text-sm mb-16 sm:mb-0">
+              <Link to="/privacy" className="text-gray-400 hover:text-white transition-colors duration-200">
                 Privacy Policy
               </Link>
-              <Link to="#" className="text-gray-400 hover:text-white transition-colors duration-200">
-                Terms of Service
+              <Link to="/terms" className="text-gray-400 hover:text-white transition-colors duration-200">
+                Terms & Conditions
               </Link>
-              <Link to="#" className="text-gray-400 hover:text-white transition-colors duration-200">
+              <Link to="/cookies" className="text-gray-400 hover:text-white transition-colors duration-200">
                 Cookie Policy
+              </Link>
+              <Link to="/gdpr" className="text-gray-400 hover:text-white transition-colors duration-200">
+                GDPR
               </Link>
             </div>
           </div>
