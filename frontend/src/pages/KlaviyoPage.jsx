@@ -420,7 +420,7 @@ const KlaviyoPage = () => {
               size="lg"
               className="glass text-white border-white/30 font-semibold px-8 py-4 text-lg rounded-lg hover:bg-white/10"
             >
-              <Link to="/case-studies">View All Case Studies</Link>
+              <Link to="/case-studies">View Automation Case Studies</Link>
             </Button>
           </div>
         </div>
