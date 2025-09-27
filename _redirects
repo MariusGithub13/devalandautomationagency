@@ -1,0 +1,9 @@
+# Netlify redirects for React Router SPA
+/*    /index.html   200
+
+# Redirect www to non-www
+https://www.devaland.com/* https://devaland.com/:splat 301!
+
+# Redirect old URLs (if any)
+/klaviyo-services /klaviyo 301
+/automation-services /services 301
