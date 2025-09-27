@@ -11,54 +11,51 @@ module.exports = {
     alias: {
       '@': path.resolve(__dirname, 'src'),
     },
-    configure: (webpackConfig) => {
+    configure: (webpackConfig, { env }) => {
       // Completely disable source maps
       webpackConfig.devtool = false;
       
-      // Remove source-map-loader entirely from webpack rules
-      webpackConfig.module.rules = webpackConfig.module.rules.filter(rule => {
-        // Remove any rule that uses source-map-loader
+      // More aggressive approach - completely rebuild module rules without source-map-loader
+      const newRules = [];
+      
+      webpackConfig.module.rules.forEach(rule => {
+        // Skip any rule that mentions source-map-loader
         if (rule.use) {
           if (Array.isArray(rule.use)) {
-            return !rule.use.some(use => 
-              typeof use === 'object' && 
-              use.loader && 
-              use.loader.includes('source-map-loader')
+            const hasSourceMapLoader = rule.use.some(use => 
+              (typeof use === 'string' && use.includes('source-map-loader')) ||
+              (typeof use === 'object' && use.loader && use.loader.includes('source-map-loader'))
             );
-          } else if (typeof rule.use === 'object' && rule.use.loader) {
-            return !rule.use.loader.includes('source-map-loader');
+            if (!hasSourceMapLoader) {
+              newRules.push(rule);
+            }
+          } else if (typeof rule.use === 'object') {
+            if (!rule.use.loader || !rule.use.loader.includes('source-map-loader')) {
+              newRules.push(rule);
+            }
+          } else {
+            newRules.push(rule);
           }
+        } else if (rule.loader) {
+          if (!rule.loader.includes('source-map-loader')) {
+            newRules.push(rule);
+          }
+        } else {
+          newRules.push(rule);
         }
-        if (rule.loader && rule.loader.includes('source-map-loader')) {
-          return false;
-        }
-        return true;
       });
+      
+      webpackConfig.module.rules = newRules;
 
-      // Also remove any enforce: 'pre' rules that might be source-map-loader
-      webpackConfig.module.rules = webpackConfig.module.rules.filter(rule => {
-        if (rule.enforce === 'pre') {
-          if (rule.use && Array.isArray(rule.use)) {
-            return !rule.use.some(use => 
-              use.loader && use.loader.includes('source-map-loader')
-            );
-          }
-          if (rule.loader && rule.loader.includes('source-map-loader')) {
-            return false;
-          }
-        }
-        return true;
-      });
-
-      // Ignore all source map related warnings
+      // Ignore all warnings
       webpackConfig.ignoreWarnings = [
-        /Failed to parse source map/,
-        /ENOENT.*\.map/,
-        /Can't resolve.*\.map/,
-        { module: /react-router/ },
-        { module: /set-cookie-parser/ },
-        /Module Warning/,
+        () => true, // Ignore all warnings
       ];
+
+      // Disable performance hints
+      webpackConfig.performance = {
+        hints: false,
+      };
       
       // Disable hot reload completely if environment variable is set
       if (config.disableHotReload) {
