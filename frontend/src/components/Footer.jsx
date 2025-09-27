@@ -84,7 +84,7 @@ const Footer = () => {
                 <div className="text-sm text-gray-500 space-y-1">
                   <div>Follow us: 
                     <a href="https://www.linkedin.com/in/marius-andronie/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 ml-1">LinkedIn</a> • 
-                    <a href="https://www.facebook.com/marius.andronie/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 ml-1">Facebook</a> • 
+                    <a href="https://www.facebook.com/dreamvillage13" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 ml-1">Facebook</a> • 
                     <a href="https://www.instagram.com/mariusandronie/" target="_blank" rel="noopener noreferrer" className="text-purple-600 hover:text-purple-800 ml-1">Instagram</a> • 
                     <a href="https://www.youtube.com/@devaland13" target="_blank" rel="noopener noreferrer" className="text-red-600 hover:text-red-800 ml-1">YouTube</a>
                   </div>
