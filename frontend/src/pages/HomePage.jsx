@@ -96,32 +96,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Trustpilot Section */}
-      <section className="section-padding-sm bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h2 className="text-lg font-medium text-gray-600 mb-8">Trusted by Growing Businesses</h2>
-            <div className="flex justify-center">
-              {/* TrustBox widget - Review Collector */}
-              <div 
-                className="trustpilot-widget" 
-                data-locale="en-US" 
-                data-template-id="56278e9abfbbba0bdcd568bc" 
-                data-businessunit-id="68d4dd4d6b90a6eb23a0d4f2" 
-                data-style-height="52px" 
-                data-style-width="300px" 
-                data-token="5f80adc7-1101-44a7-9566-608788cd2550"
-                style={{maxWidth: '300px'}}
-              >
-                <a href="https://www.trustpilot.com/review/devaland.com" target="_blank" rel="noopener">
-                  ⭐ Review us on Trustpilot
-                </a>
-              </div>
-              {/* End TrustBox widget */}
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Social Proof - Trustpilot widget moved to footer only */}
 
       {/* Services Overview */}
       <section className="section-padding bg-white">
