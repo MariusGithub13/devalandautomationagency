@@ -11,6 +11,10 @@ import CaseStudiesPage from "./pages/CaseStudiesPage";
 import AboutPage from "./pages/AboutPage";
 import BlogPage from "./pages/BlogPage";
 import ContactPage from "./pages/ContactPage";
+import PrivacyPage from "./pages/PrivacyPage";
+import TermsPage from "./pages/TermsPage";
+import CookiesPage from "./pages/CookiesPage";
+import GDPRPage from "./pages/GDPRPage";
 import "./App.css";
 
 function App() {
@@ -27,6 +31,10 @@ function App() {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/privacy" element={<PrivacyPage />} />
+            <Route path="/terms" element={<TermsPage />} />
+            <Route path="/cookies" element={<CookiesPage />} />
+            <Route path="/gdpr" element={<GDPRPage />} />
           </Routes>
         </main>
         <Footer />
