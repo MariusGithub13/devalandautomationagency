@@ -180,34 +180,23 @@ const Footer = () => {
               </Link>
             </div>
 
-            {/* Centered Trustpilot Widget */}
+            {/* Centered Trustpilot Widget - Simple Static Implementation */}
             <div className="text-center mb-6">
-              {/* Fallback link with Trustpilot styling */}
               <a 
                 href="https://www.trustpilot.com/review/devaland.com" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="inline-flex items-center px-6 py-3 bg-green-100 border-2 border-green-300 rounded-lg text-green-800 hover:bg-green-200 transition-colors duration-200 font-medium"
+                className="inline-flex items-center px-6 py-3 bg-green-100 border-2 border-green-300 rounded-lg text-green-800 hover:bg-green-200 transition-colors duration-200 font-medium shadow-sm"
               >
-                ⭐ Review us on Trustpilot
+                <svg 
+                  className="w-5 h-5 mr-2 text-green-600" 
+                  fill="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+                Review us on Trustpilot
               </a>
-              
-              {/* TrustBox widget - Review Collector (Hidden by default, shown when script loads) */}
-              <div 
-                className="trustpilot-widget mx-auto mt-4 hidden" 
-                data-locale="en-US" 
-                data-template-id="56278e9abfbbba0bdcd568bc" 
-                data-businessunit-id="68d4dd4d6b90a6eb23a0d4f2" 
-                data-style-height="52px" 
-                data-style-width="300px" 
-                data-token="5f80adc7-1101-44a7-9566-608788cd2550"
-                style={{maxWidth: '300px', margin: '0 auto'}}
-              >
-                <a href="https://www.trustpilot.com/review/devaland.com" target="_blank" rel="noopener">
-                  Trustpilot
-                </a>
-              </div>
-              {/* End TrustBox widget */}
             </div>
 
             {/* Centered Social Media Links */}
