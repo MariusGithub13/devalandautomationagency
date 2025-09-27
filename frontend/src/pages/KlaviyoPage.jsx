@@ -269,14 +269,139 @@ const KlaviyoPage = () => {
         </div>
       </section>
 
+      {/* Klaviyo Success Stories */}
+      <section className="section-padding bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-display text-gray-900 mb-6">
+              Klaviyo Success Stories
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Detailed case studies showcasing our strategic approach and measurable results with Klaviyo email marketing implementations.
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-8 mb-16">
+            {klaviyoSuccessStories.map((story, index) => (
+              <Card key={story.id} className={`hover-lift animate-fade-in-up delay-${index * 100}`}>
+                <CardHeader className="pb-4">
+                  <div className="flex items-center space-x-4 mb-4">
+                    <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-blue-600 rounded-lg flex items-center justify-center">
+                      <span className="text-white font-bold text-lg">{story.initials}</span>
+                    </div>
+                    <div>
+                      <CardTitle className="text-xl font-bold text-gray-900">{story.client}</CardTitle>
+                      <Badge className="bg-purple-100 text-purple-800 mt-1">{story.industry}</Badge>
+                    </div>
+                  </div>
+                  <div className="bg-gray-50 p-4 rounded-lg">
+                    <div className="text-sm text-gray-600 mb-2">
+                      <strong>Timeline:</strong> {story.timeline}
+                    </div>
+                    <p className="text-gray-700">{story.overview}</p>
+                  </div>
+                </CardHeader>
+                
+                <CardContent>
+                  <div className="space-y-6">
+                    {/* Challenges */}
+                    <div>
+                      <h4 className="font-semibold text-gray-900 mb-3 flex items-center">
+                        <div className="w-2 h-2 bg-red-500 rounded-full mr-2"></div>
+                        Challenges
+                      </h4>
+                      <ul className="space-y-1">
+                        {story.challenges.map((challenge, i) => (
+                          <li key={i} className="text-gray-600 text-sm">&bull; {challenge}</li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Solutions */}
+                    <div>
+                      <h4 className="font-semibold text-gray-900 mb-3 flex items-center">
+                        <div className="w-2 h-2 bg-blue-500 rounded-full mr-2"></div>
+                        Solutions
+                      </h4>
+                      <ul className="space-y-1">
+                        {story.solutions.map((solution, i) => (
+                          <li key={i} className="text-gray-600 text-sm">&bull; {solution}</li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Results */}
+                    <div className="bg-gradient-to-r from-purple-50 to-blue-50 p-4 rounded-lg">
+                      <h4 className="font-semibold text-gray-900 mb-3">Results</h4>
+                      <div className="grid grid-cols-2 gap-4">
+                        <div className="text-center">
+                          <div className="text-2xl font-bold text-purple-600">{story.results.revenueIncrease}</div>
+                          <div className="text-xs text-gray-600">Revenue Increase</div>
+                        </div>
+                        <div className="text-center">
+                          <div className="text-2xl font-bold text-green-600">{story.results.openRate}</div>
+                          <div className="text-xs text-gray-600">Open Rate</div>
+                        </div>
+                        <div className="text-center">
+                          <div className="text-2xl font-bold text-blue-600">{story.results.clickRate}</div>
+                          <div className="text-xs text-gray-600">Click Rate</div>
+                        </div>
+                        <div className="text-center">
+                          <div className="text-2xl font-bold text-orange-600">{story.results.conversionRate}</div>
+                          <div className="text-xs text-gray-600">Conversion Rate</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Testimonial */}
+                    <blockquote className="border-l-4 border-purple-600 pl-4 italic text-gray-700">
+                      "{story.testimonial}"
+                      <footer className="mt-2 font-medium text-gray-900 not-italic">
+                        — {story.clientName}, {story.clientTitle}
+                      </footer>
+                    </blockquote>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          {/* Overall Stats */}
+          <div className="bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl p-8 text-white text-center">
+            <h3 className="text-2xl font-bold mb-6">Real Results, Real Success</h3>
+            <p className="text-purple-100 mb-8 max-w-2xl mx-auto">
+              Discover how we've helped businesses across industries achieve remarkable growth through strategic Klaviyo email marketing implementations.
+            </p>
+            <div className="grid md:grid-cols-4 gap-6">
+              <div>
+                <div className="text-4xl font-bold mb-2">{klaviyoStats.averageRevenueIncrease}</div>
+                <div className="text-purple-200 text-sm">Average Revenue Increase<br />Across all case studies</div>
+              </div>
+              <div>
+                <div className="text-4xl font-bold mb-2">{klaviyoStats.averageOpenRate}</div>
+                <div className="text-purple-200 text-sm">Average Open Rate<br />Industry-leading performance</div>
+              </div>
+              <div>
+                <div className="text-4xl font-bold mb-2">{klaviyoStats.averageClickRate}</div>
+                <div className="text-purple-200 text-sm">Average Click Rate<br />Well above industry average</div>
+              </div>
+              <div>
+                <div className="text-4xl font-bold mb-2">{klaviyoStats.clientsServed}</div>
+                <div className="text-purple-200 text-sm">Clients Served<br />Successful implementations</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="section-padding bg-gray-900 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl md:text-5xl font-display mb-6">
-            Ready to Grow Your Shopify Revenue?
+            Ready to Become Our Next Success Story?
           </h2>
           <p className="text-xl text-gray-300 mb-8">
-            Let's discuss how our Klaviyo expertise can transform your email marketing into a revenue-generating machine.
+            Join the businesses that have transformed their email marketing with our expert Klaviyo services.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
@@ -295,7 +420,7 @@ const KlaviyoPage = () => {
               size="lg"
               className="glass text-white border-white/30 font-semibold px-8 py-4 text-lg rounded-lg hover:bg-white/10"
             >
-              <Link to="/case-studies">View Case Studies</Link>
+              <Link to="/case-studies">View All Case Studies</Link>
             </Button>
           </div>
         </div>
