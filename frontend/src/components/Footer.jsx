@@ -32,7 +32,7 @@ const Footer = () => {
                 </p>
                 <Button 
                   asChild
-                  className="btn-accent text-white font-medium px-6 py-3 rounded-lg hover-lift mb-6"
+                  className="btn-primary text-white font-medium px-6 py-3 rounded-lg hover-lift mb-6"
                 >
                   <a href={companyData.calendly} target="_blank" rel="noopener noreferrer" className="inline-flex items-center space-x-2">
                     <span>Start Your Automation Journey</span>
