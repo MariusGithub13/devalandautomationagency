@@ -12,6 +12,27 @@ module.exports = {
       '@': path.resolve(__dirname, 'src'),
     },
     configure: (webpackConfig) => {
+      // Ignore source map warnings for missing files
+      webpackConfig.ignoreWarnings = [
+        {
+          module: /set-cookie-parser/,
+        },
+        /Failed to parse source map/,
+      ];
+
+      // Find source-map-loader rule and modify it
+      const sourceMapRule = webpackConfig.module.rules.find(rule => 
+        rule.use && rule.use.some && 
+        rule.use.some(use => use.loader && use.loader.includes('source-map-loader'))
+      );
+
+      if (sourceMapRule) {
+        // Exclude problematic modules from source-map-loader
+        sourceMapRule.exclude = [
+          /node_modules\/set-cookie-parser/,
+          ...(sourceMapRule.exclude ? [sourceMapRule.exclude] : [])
+        ];
+      }
       
       // Disable hot reload completely if environment variable is set
       if (config.disableHotReload) {
