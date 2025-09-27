@@ -190,31 +190,30 @@ const Footer = () => {
 
           {/* Bottom Footer */}
           <div className="py-8">
-            <div className="flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0">
-              <div className="text-gray-500 text-sm text-center lg:text-left">
-                <div className="mb-2">
-                  Copyright © {currentYear} · {companyData.legal.companyName} · All Rights Reserved.
-                </div>
-                <div>
-                  C.I.F./VAT Number: {companyData.legal.vatNumber}. Trade Registry: {companyData.legal.tradeRegistry}.
-                </div>
+            {/* Centered Copyright Information */}
+            <div className="text-center mb-4">
+              <div className="text-gray-500 text-sm mb-2">
+                Copyright © 2025 · DEVALAND MARKETING SRL · All Rights Reserved.
               </div>
-              
-              {/* Legal Links - Positioned to avoid overlap */}
-              <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-6 text-sm">
-                <Link to="/privacy" className="text-gray-500 hover:text-gray-900 transition-colors duration-200">
-                  Privacy Policy
-                </Link>
-                <Link to="/terms" className="text-gray-500 hover:text-gray-900 transition-colors duration-200">
-                  Terms & Conditions
-                </Link>
-                <Link to="/cookies" className="text-gray-500 hover:text-gray-900 transition-colors duration-200">
-                  Cookie Policy
-                </Link>
-                <Link to="/gdpr" className="text-gray-500 hover:text-gray-900 transition-colors duration-200">
-                  GDPR
-                </Link>
+              <div className="text-gray-500 text-sm">
+                C.I.F./VAT Number: RO50841395. Trade Registry: ROONRC.J2024039063003.
               </div>
+            </div>
+            
+            {/* Centered Legal Links */}
+            <div className="flex flex-wrap justify-center items-center space-x-6 text-sm">
+              <Link to="/privacy" className="text-gray-500 hover:text-gray-900 transition-colors duration-200">
+                Privacy Policy
+              </Link>
+              <Link to="/terms" className="text-gray-500 hover:text-gray-900 transition-colors duration-200">
+                Terms & Conditions
+              </Link>
+              <Link to="/cookies" className="text-gray-500 hover:text-gray-900 transition-colors duration-200">
+                Cookie Policy
+              </Link>
+              <Link to="/gdpr" className="text-gray-500 hover:text-gray-900 transition-colors duration-200">
+                GDPR
+              </Link>
             </div>
           </div>
 
