@@ -57,7 +57,9 @@ const ContactPage = () => {
       phone: '',
       projectType: '',
       message: '',
-      budget: ''
+      budget: '',
+      shopifyStore: '',
+      emailListSize: ''
     });
   };
 
