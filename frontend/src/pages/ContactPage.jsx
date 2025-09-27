@@ -259,7 +259,7 @@ const ContactPage = () => {
                       <Phone size={24} className="text-green-600" />
                     </div>
                     <div>
-                      <div className="font-medium text-gray-900">Phone</div>
+                      <div className="font-medium text-gray-900">Phone / WhatsApp</div>
                       <a 
                         href={`tel:${companyData.contact.phone}`}
                         className="text-blue-600 hover:text-blue-800"
@@ -276,7 +276,8 @@ const ContactPage = () => {
                     <div>
                       <div className="font-medium text-gray-900">Office</div>
                       <address className="text-gray-600 not-italic">
-                        {companyData.contact.address}
+                        {companyData.contact.address}<br />
+                        <span className="text-sm italic">{companyData.contact.addressNote}</span>
                       </address>
                     </div>
                   </div>
