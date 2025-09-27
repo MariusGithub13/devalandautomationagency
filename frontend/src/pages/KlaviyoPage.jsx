@@ -52,7 +52,7 @@ const KlaviyoPage = () => {
                   size="lg"
                   className="font-semibold px-8 py-4 text-lg rounded-lg border-purple-300 text-purple-700 hover:bg-purple-50"
                 >
-                  <Link to="/case-studies">View Success Stories</Link>
+                  <a href="#klaviyo-success-stories">View Success Stories</a>
                 </Button>
               </div>
             </div>
