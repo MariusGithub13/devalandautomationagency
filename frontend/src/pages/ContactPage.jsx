@@ -288,7 +288,7 @@ const ContactPage = () => {
                     </div>
                     <div>
                       <div className="font-medium text-gray-900">Business Hours</div>
-                      <div className="text-gray-600">Mon - Fri: 9:00 AM - 6:00 PM EST</div>
+                      <div className="text-gray-600">{companyData.contact.businessHours}</div>
                     </div>
                   </div>
                 </CardContent>
