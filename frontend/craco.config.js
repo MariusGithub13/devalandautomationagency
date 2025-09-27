@@ -12,6 +12,9 @@ module.exports = {
       '@': path.resolve(__dirname, 'src'),
     },
     configure: (webpackConfig) => {
+      // Disable source maps completely for problematic modules
+      webpackConfig.devtool = process.env.NODE_ENV === 'production' ? false : 'eval-source-map';
+      
       // Ignore source map warnings for missing files
       webpackConfig.ignoreWarnings = [
         {
@@ -22,38 +25,16 @@ module.exports = {
         },
         /Failed to parse source map/,
         /ENOENT: no such file or directory/,
+        /Module Warning/,
       ];
 
-      // Find source-map-loader rule and modify it
-      const sourceMapRule = webpackConfig.module.rules.find(rule => 
-        rule.use && rule.use.some && 
-        rule.use.some(use => use.loader && use.loader.includes('source-map-loader'))
-      );
-
-      if (sourceMapRule) {
-        // Exclude problematic modules from source-map-loader
-        sourceMapRule.exclude = [
-          /node_modules\/set-cookie-parser/,
-          /node_modules\/react-router-dom/,
-          /node_modules\/@remix-run/,
-          /\.mjs$/,
-          ...(sourceMapRule.exclude ? [sourceMapRule.exclude] : [])
-        ];
-      }
-
-      // Alternative: completely disable source-map-loader for node_modules
-      webpackConfig.module.rules = webpackConfig.module.rules.map(rule => {
+      // Completely remove or disable source-map-loader to prevent issues
+      webpackConfig.module.rules = webpackConfig.module.rules.filter(rule => {
         if (rule.use && rule.use.some && 
             rule.use.some(use => use.loader && use.loader.includes('source-map-loader'))) {
-          return {
-            ...rule,
-            exclude: [
-              /node_modules/,
-              ...(rule.exclude ? [rule.exclude] : [])
-            ]
-          };
+          return false; // Remove source-map-loader completely
         }
-        return rule;
+        return true;
       });
       
       // Disable hot reload completely if environment variable is set
