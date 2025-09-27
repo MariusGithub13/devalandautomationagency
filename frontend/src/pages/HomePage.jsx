@@ -102,14 +102,22 @@ const HomePage = () => {
           <div className="text-center">
             <h2 className="text-lg font-medium text-gray-600 mb-8">Trusted by Growing Businesses</h2>
             <div className="flex justify-center">
-              <a 
-                href="https://www.trustpilot.com/review/devaland.com" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-flex items-center px-6 py-3 bg-green-100 border-2 border-green-300 rounded-lg text-green-800 hover:bg-green-200 transition-colors duration-200 font-medium text-lg"
+              {/* TrustBox widget - Review Collector */}
+              <div 
+                className="trustpilot-widget" 
+                data-locale="en-US" 
+                data-template-id="56278e9abfbbba0bdcd568bc" 
+                data-businessunit-id="68d4dd4d6b90a6eb23a0d4f2" 
+                data-style-height="52px" 
+                data-style-width="300px" 
+                data-token="5f80adc7-1101-44a7-9566-608788cd2550"
+                style={{maxWidth: '300px'}}
               >
-                ⭐ Review us on Trustpilot
-              </a>
+                <a href="https://www.trustpilot.com/review/devaland.com" target="_blank" rel="noopener">
+                  ⭐ Review us on Trustpilot
+                </a>
+              </div>
+              {/* End TrustBox widget */}
             </div>
           </div>
         </div>
