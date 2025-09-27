@@ -52,7 +52,7 @@ const Footer = () => {
                     <Linkedin size={20} />
                   </a>
                   <a 
-                    href="https://www.facebook.com/marius.andronie/"
+                    href="https://www.facebook.com/dreamvillage13"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors duration-200"
