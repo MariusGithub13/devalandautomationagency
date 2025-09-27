@@ -54,7 +54,11 @@ const ServicesPage = () => {
 
             <div className="grid md:grid-cols-2 gap-8">
               {services.filter(service => service.category === category).map((service, index) => (
-                <Card key={service.id} className={`hover-lift animate-fade-in-up delay-${index * 200}`}>
+                <Card 
+                  key={service.id} 
+                  id={service.title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}
+                  className={`hover-lift animate-fade-in-up delay-${index * 200}`}
+                >
                   <CardHeader className="pb-4">
                     <div className="relative overflow-hidden rounded-lg mb-4">
                       <img 
