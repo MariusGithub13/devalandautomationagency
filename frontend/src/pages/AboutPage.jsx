@@ -1,9 +1,9 @@
 import React from 'react';
-import { ArrowRight, Users, Award, Target, Lightbulb } from 'lucide-react';
+import { ArrowRight, Users, Award, Target, Lightbulb, ExternalLink, Linkedin } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import { Link } from 'react-router-dom';
-import { companyData, team, heroImages } from '../data/mock';
+import { companyData, team, heroImages, awards } from '../data/mock';
 
 const AboutPage = () => {
   return (
@@ -18,14 +18,14 @@ const AboutPage = () => {
               </h1>
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">
                 Founded with the vision to transform how enterprises operate, {companyData.name} has grown 
-                from a boutique consultancy to a leading automation agency trusted by Fortune 500 companies worldwide.
+                from a boutique consultancy to a leading automation agency trusted by businesses worldwide.
               </p>
               <p className="text-lg text-gray-600 mb-8">
                 We believe that intelligent automation isn't just about replacing manual processes—it's about 
                 unlocking human potential and creating competitive advantages that drive sustainable growth.
               </p>
               <Button asChild size="lg" className="btn-primary text-white px-8 py-4 rounded-lg">
-                <Link to="/contact">Partner With Us</Link>
+                <a href={companyData.calendly} target="_blank" rel="noopener noreferrer">Partner With Us</a>
               </Button>
             </div>
             <div className="animate-fade-in-up delay-300">
@@ -110,7 +110,7 @@ const AboutPage = () => {
                   },
                   {
                     title: "Technology-Agnostic Approach", 
-                    description: "We recommend and implement the best tool for each specific challenge, whether it's UiPath, custom development, or cloud-native solutions."
+                    description: "We recommend and implement the best tool for each specific challenge, whether it's UiPath, Klaviyo, custom development, or cloud-native solutions."
                   },
                   {
                     title: "Enterprise-Scale Expertise",
@@ -183,18 +183,32 @@ const AboutPage = () => {
                   <p className="text-blue-600 font-medium mb-4">{member.role}</p>
                   <p className="text-gray-600 mb-6 leading-relaxed">{member.bio}</p>
                   
-                  <div className="space-y-2">
-                    <div className="text-sm font-medium text-gray-900 mb-2">Expertise:</div>
-                    <div className="flex flex-wrap gap-2 justify-center">
-                      {member.expertise.map((skill, skillIndex) => (
-                        <span 
-                          key={skillIndex}
-                          className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-medium"
-                        >
-                          {skill}
-                        </span>
-                      ))}
+                  <div className="space-y-4">
+                    <div>
+                      <div className="text-sm font-medium text-gray-900 mb-2">Expertise:</div>
+                      <div className="flex flex-wrap gap-2 justify-center">
+                        {member.expertise.map((skill, skillIndex) => (
+                          <span 
+                            key={skillIndex}
+                            className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-medium"
+                          >
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
                     </div>
+                    
+                    {member.linkedin && (
+                      <a 
+                        href={member.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center space-x-2 text-blue-600 hover:text-blue-800 transition-colors duration-200"
+                      >
+                        <Linkedin size={16} />
+                        <span className="text-sm font-medium">Connect on LinkedIn</span>
+                      </a>
+                    )}
                   </div>
                 </CardContent>
               </Card>
@@ -214,29 +228,72 @@ const AboutPage = () => {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <Card className="glass border-white/20">
-              <CardContent className="p-6 text-center">
-                <Award size={48} className="text-yellow-400 mx-auto mb-4" />
-                <h3 className="text-xl font-bold text-white mb-2">Stellar Business Award</h3>
-                <p className="text-white/80">Best Marketing & Automation Agency</p>
-              </CardContent>
-            </Card>
+            {awards.map((award, index) => (
+              <Card key={index} className="glass border-white/20 group hover-lift">
+                <CardContent className="p-6 text-center">
+                  <Award size={48} className="text-yellow-400 mx-auto mb-4" />
+                  <h3 className="text-xl font-bold text-white mb-2">{award.title}</h3>
+                  <p className="text-white/80 mb-4">{award.description}</p>
+                  <a 
+                    href={award.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center space-x-2 text-yellow-400 hover:text-yellow-300 transition-colors duration-200"
+                  >
+                    <span className="text-sm font-medium">View Recognition</span>
+                    <ExternalLink size={14} />
+                  </a>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
 
-            <Card className="glass border-white/20">
-              <CardContent className="p-6 text-center">
-                <Users size={48} className="text-blue-400 mx-auto mb-4" />
-                <h3 className="text-xl font-bold text-white mb-2">Klaviyo Agency Partner</h3>
-                <p className="text-white/80">Certified automation platform partner</p>
-              </CardContent>
-            </Card>
-
-            <Card className="glass border-white/20">
-              <CardContent className="p-6 text-center">
-                <Lightbulb size={48} className="text-green-400 mx-auto mb-4" />
-                <h3 className="text-xl font-bold text-white mb-2">Featured in New York Weekly</h3>
-                <p className="text-white/80">High-Tech Automation Marketing</p>
-              </CardContent>
-            </Card>
+      {/* Company Details */}
+      <section className="section-padding bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12">
+            <div>
+              <h2 className="text-3xl font-display text-gray-900 mb-6">Company Information</h2>
+              <div className="space-y-4 text-gray-600">
+                <div>
+                  <span className="font-semibold text-gray-900">Legal Name:</span> {companyData.legal.companyName}
+                </div>
+                <div>
+                  <span className="font-semibold text-gray-900">VAT Number:</span> {companyData.legal.vatNumber}
+                </div>
+                <div>
+                  <span className="font-semibold text-gray-900">Trade Registry:</span> {companyData.legal.tradeRegistry}
+                </div>
+                <div>
+                  <span className="font-semibold text-gray-900">Date of Incorporation:</span> {companyData.legal.dateOfIncorporation}
+                </div>
+                <div>
+                  <span className="font-semibold text-gray-900">CAEN Code:</span> {companyData.legal.caenCode}
+                </div>
+              </div>
+            </div>
+            
+            <div>
+              <h2 className="text-3xl font-display text-gray-900 mb-6">Contact Details</h2>
+              <div className="space-y-4 text-gray-600">
+                <div>
+                  <span className="font-semibold text-gray-900">Address:</span><br />
+                  {companyData.contact.address}<br />
+                  <span className="text-sm italic">{companyData.contact.addressNote}</span>
+                </div>
+                <div>
+                  <span className="font-semibold text-gray-900">Business Hours:</span> {companyData.contact.businessHours}
+                </div>
+                <div>
+                  <span className="font-semibold text-gray-900">Phone:</span> {companyData.contact.phone}
+                </div>
+                <div>
+                  <span className="font-semibold text-gray-900">Email:</span> {companyData.contact.email}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -256,10 +313,10 @@ const AboutPage = () => {
               size="lg"
               className="btn-accent text-white font-semibold px-8 py-4 text-lg rounded-lg hover-lift"
             >
-              <Link to="/contact" className="inline-flex items-center space-x-2">
+              <a href={companyData.calendly} target="_blank" rel="noopener noreferrer" className="inline-flex items-center space-x-2">
                 <span>Schedule Discovery Call</span>
                 <ArrowRight size={20} />
-              </Link>
+              </a>
             </Button>
             <Button 
               asChild
