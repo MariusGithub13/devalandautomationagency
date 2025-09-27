@@ -14,6 +14,7 @@
     <meta name="robots" content="index, follow" />
     <meta name="language" content="English" />
     <meta name="author" content="Devaland Marketing SRL" />
+    <link rel="canonical" href="https://devaland.com" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -21,6 +22,7 @@
     <meta property="og:title" content="Devaland - Enterprise Automation & Klaviyo Email Marketing Agency" />
     <meta property="og:description" content="Leading automation agency specializing in RPA, workflow automation, and Klaviyo email marketing for Shopify brands. Transform your operations with intelligent automation solutions." />
     <meta property="og:image" content="https://customer-assets.emergentagent.com/job_process-genius-5/artifacts/kau0y3tw_Devaland-Logo.jpg" />
+    <meta property="og:site_name" content="Devaland" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
@@ -47,7 +49,7 @@
         "@type": "ContactPoint",
         "telephone": "+40-721-269-312",
         "contactType": "customer service",
-        "availableLanguage": "English"
+        "availableLanguage": ["English", "Romanian"]
       },
       "address": {
         "@type": "PostalAddress",
@@ -59,6 +61,10 @@
       },
       "sameAs": [
         "https://www.linkedin.com/company/devaland/",
+        "https://www.linkedin.com/in/marius-andronie/",
+        "https://www.facebook.com/marius.andronie/",
+        "https://www.instagram.com/mariusandronie/",
+        "https://www.youtube.com/@devaland13",
         "https://www.trustpilot.com/review/devaland.com"
       ],
       "description": "Leading automation agency specializing in RPA, workflow automation, and Klaviyo email marketing for Shopify brands."
@@ -68,9 +74,15 @@
     <link rel="apple-touch-icon" href="https://customer-assets.emergentagent.com/job_process-genius-5/artifacts/kau0y3tw_Devaland-Logo.jpg" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     
-    <!-- Preconnect to external domains -->
+    <!-- Preconnect to external domains for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://images.unsplash.com">
+    <link rel="preconnect" href="https://customer-assets.emergentagent.com">
+    
+    <!-- DNS Prefetch for external domains -->
+    <link rel="dns-prefetch" href="//calendly.com">
+    <link rel="dns-prefetch" href="//widget.trustpilot.com">
     
     <!-- Critical CSS would go here for performance -->
     <style>
@@ -79,6 +91,7 @@
         margin: 0; 
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; 
         -webkit-font-smoothing: antialiased;
+        background-color: #f8fafc;
       }
       .loading { 
         display: flex; 
@@ -86,14 +99,31 @@
         justify-content: center; 
         height: 100vh; 
         background: #f8fafc; 
+        flex-direction: column;
+      }
+      .loading img {
+        width: 80px;
+        height: auto;
+        margin-bottom: 16px;
+      }
+      .loading-text {
+        color: #6b7280;
+        font-size: 14px;
       }
     </style>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <noscript>
+      <div style="text-align: center; padding: 50px; font-family: Arial, sans-serif;">
+        <h2>JavaScript Required</h2>
+        <p>You need to enable JavaScript to run this application.</p>
+        <p>Please enable JavaScript in your browser settings and reload the page.</p>
+      </div>
+    </noscript>
     <div id="root">
       <div class="loading">
-        <img src="https://customer-assets.emergentagent.com/job_process-genius-5/artifacts/kau0y3tw_Devaland-Logo.jpg" alt="Devaland" style="width: 100px; height: auto;" />
+        <img src="https://customer-assets.emergentagent.com/job_process-genius-5/artifacts/kau0y3tw_Devaland-Logo.jpg" alt="Devaland" />
+        <div class="loading-text">Loading Devaland...</div>
       </div>
     </div>
   </body>
