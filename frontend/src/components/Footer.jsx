@@ -146,9 +146,19 @@ const Footer = () => {
 
             {/* Centered Trustpilot Widget */}
             <div className="text-center mb-6">
-              {/* TrustBox widget - Review Collector */}
+              {/* Fallback link with Trustpilot styling */}
+              <a 
+                href="https://www.trustpilot.com/review/devaland.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-6 py-3 bg-green-100 border-2 border-green-300 rounded-lg text-green-800 hover:bg-green-200 transition-colors duration-200 font-medium"
+              >
+                ⭐ Review us on Trustpilot
+              </a>
+              
+              {/* TrustBox widget - Review Collector (Hidden by default, shown when script loads) */}
               <div 
-                className="trustpilot-widget mx-auto" 
+                className="trustpilot-widget mx-auto mt-4 hidden" 
                 data-locale="en-US" 
                 data-template-id="56278e9abfbbba0bdcd568bc" 
                 data-businessunit-id="68d4dd4d6b90a6eb23a0d4f2" 
@@ -158,7 +168,7 @@ const Footer = () => {
                 style={{maxWidth: '300px', margin: '0 auto'}}
               >
                 <a href="https://www.trustpilot.com/review/devaland.com" target="_blank" rel="noopener">
-                  ⭐ Review us on Trustpilot
+                  Trustpilot
                 </a>
               </div>
               {/* End TrustBox widget */}
