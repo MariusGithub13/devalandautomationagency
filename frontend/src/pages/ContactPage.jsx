@@ -90,6 +90,29 @@ const ContactPage = () => {
         </div>
       </section>
 
+      {/* Quick Calendly CTA */}
+      <section className="py-12 bg-blue-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl font-display text-gray-900 mb-4">
+            Need to Talk Right Away?
+          </h2>
+          <p className="text-lg text-gray-600 mb-6">
+            Skip the form and schedule your free consultation directly
+          </p>
+          <Button 
+            as="a"
+            href={companyData.calendly}
+            target="_blank"
+            rel="noopener noreferrer"
+            size="lg"
+            className="btn-primary text-white font-semibold py-4 px-8 text-lg rounded-lg group inline-flex items-center"
+          >
+            <span>Schedule Call Now</span>
+            <ArrowRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform duration-200" />
+          </Button>
+        </div>
+      </section>
+
       {/* Contact Form & Info */}
       <section className="section-padding bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
