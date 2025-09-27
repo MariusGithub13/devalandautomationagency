@@ -5,8 +5,8 @@
   # Directory that contains the deploy-ready HTML files and assets
   publish = "frontend/build"
   
-  # Build command
-  command = "npm run build"
+  # Build command with fix for react-router-dom
+  command = "chmod +x fix-react-router.sh && ./fix-react-router.sh && npm run build"
 
 [build.environment]
   # Node version - Using 18 with compatible react-router-dom version
