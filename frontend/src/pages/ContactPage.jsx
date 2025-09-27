@@ -357,7 +357,8 @@ const ContactPage = () => {
                     <div>
                       <div className="font-medium text-gray-900">Office</div>
                       <address className="text-gray-600 not-italic">
-                        {companyData.contact.address}<br />
+                        Sântandrei 13, Simeria 335903,<br />
+                        Hunedoara County, Transylvania, Romania<br />
                         <span className="text-sm italic">{companyData.contact.addressNote}</span>
                       </address>
                     </div>
