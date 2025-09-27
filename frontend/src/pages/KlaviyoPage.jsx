@@ -220,7 +220,7 @@ const KlaviyoPage = () => {
       </section>
 
       {/* Why Choose Us */}
-      <section className="section-padding bg-blue-600 text-white">
+      <section className="section-padding bg-black text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-display mb-6">
