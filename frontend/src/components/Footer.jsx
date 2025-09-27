@@ -144,23 +144,26 @@ const Footer = () => {
               </Link>
             </div>
 
-            {/* Centered Trustpilot Widget - Simple Static Implementation */}
+            {/* Centered Trustpilot Widget - Reliable Static Implementation */}
             <div className="text-center mb-6">
               <a 
                 href="https://www.trustpilot.com/review/devaland.com" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="inline-flex items-center px-6 py-3 bg-green-100 border-2 border-green-300 rounded-lg text-green-800 hover:bg-green-200 transition-colors duration-200 font-medium shadow-sm"
+                className="inline-flex items-center px-6 py-3 bg-green-50 border-2 border-green-300 rounded-lg text-green-800 hover:bg-green-100 hover:border-green-400 transition-all duration-200 font-semibold shadow-sm hover:shadow-md"
+                title="Leave us a review on Trustpilot"
               >
                 <svg 
                   className="w-5 h-5 mr-2 text-green-600" 
                   fill="currentColor" 
                   viewBox="0 0 24 24"
+                  aria-hidden="true"
                 >
                   <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                 </svg>
                 Review us on Trustpilot
               </a>
+              <p className="text-xs text-gray-500 mt-2">Share your experience with our services</p>
             </div>
 
             {/* Centered Social Media Links */}
