@@ -102,7 +102,14 @@ const HomePage = () => {
           <div className="text-center">
             <h2 className="text-lg font-medium text-gray-600 mb-8">Trusted by Growing Businesses</h2>
             <div className="flex justify-center">
-              <TrustpilotWidget variant="full" />
+              <a 
+                href="https://www.trustpilot.com/review/devaland.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-6 py-3 bg-green-100 border-2 border-green-300 rounded-lg text-green-800 hover:bg-green-200 transition-colors duration-200 font-medium text-lg"
+              >
+                ⭐ Review us on Trustpilot
+              </a>
             </div>
           </div>
         </div>
