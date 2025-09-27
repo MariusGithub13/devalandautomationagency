@@ -99,17 +99,15 @@ const ContactPage = () => {
           <p className="text-lg text-gray-600 mb-6">
             Skip the form and schedule your free consultation directly
           </p>
-          <Button 
-            as="a"
+          <a
             href={companyData.calendly}
             target="_blank"
             rel="noopener noreferrer"
-            size="lg"
-            className="btn-primary text-white font-semibold py-4 px-8 text-lg rounded-lg group inline-flex items-center"
+            className="inline-flex items-center btn-primary text-white font-semibold py-4 px-8 text-lg rounded-lg group hover-lift transition-all duration-200"
           >
             <span>Schedule Call Now</span>
             <ArrowRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform duration-200" />
-          </Button>
+          </a>
         </div>
       </section>
 
