@@ -40,31 +40,6 @@ const Footer = () => {
                   </a>
                 </Button>
 
-                {/* Trustpilot Widget */}
-                <div className="mb-6">
-                  <a 
-                    href="https://www.trustpilot.com/review/devaland.com" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center px-4 py-2 bg-green-100 border-2 border-green-300 rounded-lg text-green-800 hover:bg-green-200 transition-colors duration-200 font-medium"
-                  >
-                    ⭐ Review us on Trustpilot
-                  </a>
-                  
-                  {/* Hidden Trustpilot widget div for official widget loading */}
-                  <div 
-                    className="trustpilot-widget mt-2" 
-                    data-locale="en-US" 
-                    data-template-id="56278e9abfbbba0bdcd568bc" 
-                    data-businessunit-id="68d4dd4d6b90a6eb23a0d4f2" 
-                    data-style-height="52px" 
-                    data-style-width="100%"
-                    style={{display: 'none'}}
-                  >
-                    <a href="https://www.trustpilot.com/review/devaland.com" target="_blank" rel="noopener">Review us on Trustpilot</a>
-                  </div>
-                </div>
-
                 {/* Social Media Icons */}
                 <div className="flex items-center space-x-4 mb-4">
                   <a 
