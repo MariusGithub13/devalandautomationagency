@@ -113,28 +113,34 @@ const HomePage = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {services.map((service, index) => (
-              <Card key={service.id} className={`hover-lift cursor-pointer group animate-fade-in-up delay-${index * 100}`}>
-                <CardContent className="p-6">
-                  <div className="relative overflow-hidden rounded-lg mb-4">
-                    <img 
-                      src={service.image} 
-                      alt={service.title}
-                      className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-200">
-                    {service.title}
-                  </h3>
-                  <p className="text-gray-600 mb-4 line-clamp-3">
-                    {service.description}
-                  </p>
-                  <div className="flex items-center text-blue-600 font-medium group-hover:text-blue-800 transition-colors duration-200">
-                    <span>Learn More</span>
-                    <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform duration-200" />
-                  </div>
-                </CardContent>
-              </Card>
+              <Link 
+                key={service.id}
+                to={`/services#${service.title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}`}
+                className="block"
+              >
+                <Card className={`hover-lift cursor-pointer group animate-fade-in-up delay-${index * 100} h-full`}>
+                  <CardContent className="p-6 h-full flex flex-col">
+                    <div className="relative overflow-hidden rounded-lg mb-4">
+                      <img 
+                        src={service.image} 
+                        alt={service.title}
+                        className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-200">
+                      {service.title}
+                    </h3>
+                    <p className="text-gray-600 mb-4 line-clamp-3 flex-grow">
+                      {service.description}
+                    </p>
+                    <div className="flex items-center text-blue-600 font-medium group-hover:text-blue-800 transition-colors duration-200 mt-auto">
+                      <span>Learn More</span>
+                      <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform duration-200" />
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
             ))}
           </div>
 
