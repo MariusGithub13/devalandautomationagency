@@ -40,58 +40,7 @@ const Footer = () => {
                   </a>
                 </Button>
 
-                {/* Social Media Icons */}
-                <div className="flex items-center space-x-4 mb-4">
-                  <a 
-                    href="https://www.linkedin.com/in/marius-andronie/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors duration-200"
-                    aria-label="LinkedIn"
-                  >
-                    <Linkedin size={20} />
-                  </a>
-                  <a 
-                    href="https://www.facebook.com/dreamvillage13"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors duration-200"
-                    aria-label="Facebook"
-                  >
-                    <Facebook size={20} />
-                  </a>
-                  <a 
-                    href="https://www.instagram.com/mariusandronie/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 bg-gradient-to-br from-purple-600 to-pink-600 text-white rounded-full flex items-center justify-center hover:from-purple-700 hover:to-pink-700 transition-all duration-200"
-                    aria-label="Instagram"
-                  >
-                    <Instagram size={20} />
-                  </a>
-                  <a 
-                    href="https://www.youtube.com/@devaland13"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 bg-red-600 text-white rounded-full flex items-center justify-center hover:bg-red-700 transition-colors duration-200"
-                    aria-label="YouTube"
-                  >
-                    <Youtube size={20} />
-                  </a>
-                </div>
-
-                {/* Social Media Text Links */}
-                <div className="text-sm text-gray-500 space-y-1">
-                  <div>Follow us: 
-                    <a href="https://www.linkedin.com/in/marius-andronie/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 ml-1">LinkedIn</a> • 
-                    <a href="https://www.facebook.com/dreamvillage13" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 ml-1">Facebook</a> • 
-                    <a href="https://www.instagram.com/mariusandronie/" target="_blank" rel="noopener noreferrer" className="text-purple-600 hover:text-purple-800 ml-1">Instagram</a> • 
-                    <a href="https://www.youtube.com/@devaland13" target="_blank" rel="noopener noreferrer" className="text-red-600 hover:text-red-800 ml-1">YouTube</a>
-                  </div>
-                  <div>Company: 
-                    <a href={companyData.social.linkedin} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 ml-1">Devaland LinkedIn</a>
-                  </div>
-                </div>
+                {/* Social media moved to bottom section */}
               </div>
 
               {/* Quick Links */}
