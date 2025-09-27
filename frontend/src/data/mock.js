@@ -280,3 +280,187 @@ export const awards = [
     url: "https://www.klaviyo.com/partner/signup?utm_source=001Nu00000HqbJVIAZ&utm_medium=partner"
   }
 ];
+
+export const klaviyoSuccessStories = [
+  {
+    id: 1,
+    client: "Fashion Forward Co.",
+    industry: "Fashion E-commerce",
+    initials: "FF",
+    overview: "Complete Klaviyo setup and optimization for a growing fashion retailer with 50,000+ subscribers",
+    timeline: "6 months",
+    challenges: [
+      "Low email engagement rates (12% open rate)",
+      "No automation workflows in place", 
+      "Poor list segmentation strategy",
+      "Inconsistent email design and messaging"
+    ],
+    solutions: [
+      "Implemented advanced segmentation based on purchase behavior",
+      "Created 8 automated email flows including welcome series and abandoned cart",
+      "Redesigned email templates with mobile-first approach",
+      "A/B tested subject lines and send times"
+    ],
+    results: {
+      revenueIncrease: "+45%",
+      openRate: "28%",
+      clickRate: "6.2%",
+      conversionRate: "3.8%"
+    },
+    testimonial: "Devaland transformed our email marketing strategy. The results speak for themselves - 45% revenue increase in just 6 months!",
+    clientName: "Sarah Johnson",
+    clientTitle: "Marketing Director"
+  },
+  {
+    id: 2,
+    client: "Health & Wellness Plus",
+    industry: "Health & Wellness", 
+    initials: "HW",
+    overview: "Advanced automation flows and segmentation strategy for a health supplement company",
+    timeline: "4 months",
+    challenges: [
+      "Complex product catalog with varying customer needs",
+      "Difficulty nurturing leads through long sales cycles",
+      "Low customer lifetime value",
+      "Manual email sending processes"
+    ],
+    solutions: [
+      "Created behavior-based product recommendation flows",
+      "Implemented educational email sequences for different health goals",
+      "Set up post-purchase upsell and cross-sell automations",
+      "Developed customer health journey mapping"
+    ],
+    results: {
+      revenueIncrease: "+80%",
+      openRate: "35%",
+      clickRate: "8.1%",
+      conversionRate: "5.2%"
+    },
+    testimonial: "The automation flows have revolutionized how we communicate with our customers. Our ROI improved by 180%!",
+    clientName: "Dr. Michael Chen",
+    clientTitle: "Founder"
+  },
+  {
+    id: 3,
+    client: "TechFlow Solutions",
+    industry: "B2B Technology",
+    initials: "TS", 
+    overview: "Multi-channel marketing automation implementation for a B2B software company",
+    timeline: "8 months",
+    challenges: [
+      "Long B2B sales cycles requiring nurturing",
+      "Multiple decision-makers in buying process",
+      "Low trial-to-paid conversion rates",
+      "Lack of lead scoring and qualification"
+    ],
+    solutions: [
+      "Developed multi-touch nurturing sequences",
+      "Created role-based email content for different stakeholders", 
+      "Implemented lead scoring and progressive profiling",
+      "Integrated email with sales CRM for better alignment"
+    ],
+    results: {
+      revenueIncrease: "+65%",
+      openRate: "42%",
+      clickRate: "12.3%",
+      conversionRate: "8.7%"
+    },
+    testimonial: "Professional, knowledgeable, and results-driven. Devaland delivered beyond our expectations for our B2B campaigns.",
+    clientName: "Emma Rodriguez",
+    clientTitle: "VP Marketing"
+  },
+  {
+    id: 4,
+    client: "Artisan Crafts Co.",
+    industry: "Handmade Crafts",
+    initials: "AC",
+    overview: "Seasonal campaign optimization and customer retention strategy for artisan marketplace",
+    timeline: "5 months", 
+    challenges: [
+      "Highly seasonal business with revenue fluctuations",
+      "Low repeat purchase rates",
+      "Difficulty showcasing artisan stories effectively",
+      "Competition from larger craft platforms"
+    ],
+    solutions: [
+      "Created seasonal campaign calendar with advance planning",
+      "Developed artisan spotlight email series",
+      "Implemented loyalty program with email integration", 
+      "Built customer win-back campaigns"
+    ],
+    results: {
+      revenueIncrease: "+55%",
+      openRate: "31%",
+      clickRate: "7.8%",
+      conversionRate: "4.1%"
+    },
+    testimonial: "Our seasonal campaigns now generate consistent revenue year-round. The artisan spotlights have been particularly effective.",
+    clientName: "Lisa Thompson",
+    clientTitle: "E-commerce Manager"
+  },
+  {
+    id: 5,
+    client: "Pet Paradise Store",
+    industry: "Pet Products",
+    initials: "PP",
+    overview: "Subscription box marketing automation and customer lifecycle management", 
+    timeline: "6 months",
+    challenges: [
+      "High subscription churn rates",
+      "Difficulty personalizing for different pet types",
+      "Low customer engagement between shipments",
+      "Complex inventory management for subscriptions"
+    ],
+    solutions: [
+      "Created pet-specific content and product recommendations",
+      "Developed subscription lifecycle email series",
+      "Implemented pet birthday and milestone campaigns",
+      "Built churn prediction and retention flows"
+    ],
+    results: {
+      revenueIncrease: "+70%",
+      openRate: "38%", 
+      clickRate: "9.4%",
+      conversionRate: "6.1%"
+    },
+    testimonial: "The personalized pet content has made all the difference. Our subscription retention improved dramatically.",
+    clientName: "Mark Davis",
+    clientTitle: "Founder"
+  },
+  {
+    id: 6,
+    client: "Gourmet Kitchen Hub", 
+    industry: "Kitchen & Cooking",
+    initials: "GK",
+    overview: "Recipe-driven email marketing with product integration for cooking enthusiasts",
+    timeline: "7 months",
+    challenges: [
+      "Connecting recipes with product sales",
+      "Seasonal cooking trend alignment", 
+      "Building community around cooking content",
+      "Managing large recipe and product databases"
+    ],
+    solutions: [
+      "Created recipe-based product recommendation engine",
+      "Developed seasonal cooking campaign series",
+      "Built user-generated content integration",
+      "Implemented cooking skill-based segmentation"
+    ],
+    results: {
+      revenueIncrease: "+85%",
+      openRate: "44%",
+      clickRate: "11.2%",
+      conversionRate: "7.3%"
+    },
+    testimonial: "The recipe integration with product recommendations has been genius. Our customers love the personalized cooking content.",
+    clientName: "Chef Amanda White",
+    clientTitle: "Brand Manager"
+  }
+];
+
+export const klaviyoStats = {
+  averageRevenueIncrease: "65%",
+  averageOpenRate: "36%", 
+  averageClickRate: "9.2%",
+  clientsServed: "50+"
+};
