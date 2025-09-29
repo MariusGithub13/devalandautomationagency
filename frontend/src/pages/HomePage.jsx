@@ -112,36 +112,87 @@ const HomePage = () => {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {services.map((service, index) => (
-              <Link 
-                key={service.id}
-                to={`/services#${service.title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}`}
-                className="block"
-              >
-                <Card className={`hover-lift cursor-pointer group animate-fade-in-up delay-${index * 100} h-full`}>
+            {services.map((service, index) => {
+              // Define related services for each service
+              const getRelatedServices = (serviceId) => {
+                switch(serviceId) {
+                  case 1: // Sales & Marketing Automation
+                    return [
+                      { name: 'Klaviyo Services', link: '/klaviyo' },
+                      { name: 'RPA Development', link: '/services#rpa-development' }
+                    ];
+                  case 2: // Operations & HR Automation  
+                    return [
+                      { name: 'RPA Development', link: '/services#rpa-development' },
+                      { name: 'AI Solutions', link: '/services#ai--chatbot-solutions' }
+                    ];
+                  case 3: // RPA Development
+                    return [
+                      { name: 'Sales Automation', link: '/services#sales--marketing-automation' },
+                      { name: 'Operations Automation', link: '/services#operations--hr-automation' }
+                    ];
+                  case 4: // AI & Chatbot Solutions
+                    return [
+                      { name: 'Sales Automation', link: '/services#sales--marketing-automation' },
+                      { name: 'Operations Automation', link: '/services#operations--hr-automation' }
+                    ];
+                  default:
+                    return [];
+                }
+              };
+
+              const relatedServices = getRelatedServices(service.id);
+
+              return (
+                <Card key={service.id} className={`hover-lift group animate-fade-in-up delay-${index * 100} h-full`}>
                   <CardContent className="p-6 h-full flex flex-col">
-                    <div className="relative overflow-hidden rounded-lg mb-4">
-                      <img 
-                        src={service.image} 
-                        alt={service.title}
-                        className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    <Link 
+                      to={`/services#${service.title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}`}
+                      className="block"
+                    >
+                      <div className="relative overflow-hidden rounded-lg mb-4">
+                        <img 
+                          src={service.image} 
+                          alt={service.title}
+                          className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                      </div>
+                      <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-200">
+                        {service.title}
+                      </h3>
+                      <p className="text-gray-600 mb-4 line-clamp-3">
+                        {service.description}
+                      </p>
+                    </Link>
+                    
+                    {/* Related Services Links */}
+                    <div className="mb-4 flex-grow">
+                      <h4 className="text-sm font-semibold text-gray-700 mb-2">Related Services:</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {relatedServices.map((relatedService, idx) => (
+                          <Link
+                            key={idx}
+                            to={relatedService.link}
+                            className="inline-flex items-center px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded-md hover:bg-blue-100 transition-colors duration-200"
+                          >
+                            #{relatedService.name}
+                          </Link>
+                        ))}
+                      </div>
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-200">
-                      {service.title}
-                    </h3>
-                    <p className="text-gray-600 mb-4 line-clamp-3 flex-grow">
-                      {service.description}
-                    </p>
-                    <div className="flex items-center text-blue-600 font-medium group-hover:text-blue-800 transition-colors duration-200 mt-auto">
+
+                    <Link 
+                      to={`/services#${service.title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}`}
+                      className="flex items-center text-blue-600 font-medium hover:text-blue-800 transition-colors duration-200 mt-auto"
+                    >
                       <span>Learn More</span>
                       <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform duration-200" />
-                    </div>
+                    </Link>
                   </CardContent>
                 </Card>
-              </Link>
-            ))}
+              );
+            })}
           </div>
 
           <div className="text-center mt-12">
