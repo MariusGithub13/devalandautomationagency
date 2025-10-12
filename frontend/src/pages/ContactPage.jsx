@@ -214,7 +214,7 @@ const ContactPage = () => {
                       </div>
                       <div>
                         <Label htmlFor="budget" className="text-sm font-medium text-gray-700">
-                          Budget Range
+                          Monthly Revenue from Shopify
                         </Label>
                         <Select 
                           value={formData.budget}
