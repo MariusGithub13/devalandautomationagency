@@ -221,7 +221,7 @@ const ContactPage = () => {
                           onValueChange={(value) => handleSelectChange('budget', value)}
                         >
                           <SelectTrigger className="mt-1">
-                            <SelectValue placeholder="Select budget range" />
+                            <SelectValue placeholder="Select your monthly revenue range" />
                           </SelectTrigger>
                           <SelectContent>
                             <SelectItem value="10k-25k">$10k - $25k</SelectItem>
