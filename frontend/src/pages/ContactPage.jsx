@@ -214,14 +214,20 @@ const ContactPage = () => {
                       </div>
                       <div>
                         <Label htmlFor="budget" className="text-sm font-medium text-gray-700">
-                          Monthly Revenue from Shopify
+                          {formData.projectType === 'klaviyo-shopify' 
+                            ? 'Monthly Revenue from Shopify' 
+                            : 'Budget Range'}
                         </Label>
                         <Select 
                           value={formData.budget}
                           onValueChange={(value) => handleSelectChange('budget', value)}
                         >
                           <SelectTrigger className="mt-1">
-                            <SelectValue placeholder="Select your monthly revenue range" />
+                            <SelectValue placeholder={
+                              formData.projectType === 'klaviyo-shopify' 
+                                ? 'Select your monthly revenue range' 
+                                : 'Select budget range'
+                            } />
                           </SelectTrigger>
                           <SelectContent>
                             <SelectItem value="10k-25k">$10k - $25k</SelectItem>
