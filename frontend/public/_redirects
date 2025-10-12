@@ -8,9 +8,4 @@ https://www.devaland.com/* https://devaland.com/:splat 301!
 /klaviyo-services /klaviyo 301
 /automation-services /services 301
 
-# Security headers
-/*
-  X-Frame-Options: DENY
-  X-XSS-Protection: 1; mode=block
-  X-Content-Type-Options: nosniff
-  Referrer-Policy: strict-origin-when-cross-origin
+# Security headers moved to _headers file
