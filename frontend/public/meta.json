@@ -1,0 +1,153 @@
+{
+  "website": {
+    "name": "Devaland Marketing SRL",
+    "url": "https://devaland.com",
+    "description": "Marketing automation specialists focusing on Klaviyo email marketing and Shopify integrations. Expert RPA development and AI solutions for e-commerce businesses.",
+    "industry": "Marketing Automation & Technology",
+    "founded": "2020",
+    "location": {
+      "address": "Sântandrei 13, Simeria 335903",
+      "city": "Simeria", 
+      "county": "Hunedoara",
+      "region": "Transylvania",
+      "country": "Romania",
+      "coordinates": {
+        "latitude": 45.8523,
+        "longitude": 22.9745
+      }
+    },
+    "contact": {
+      "email": "hello@devaland.com",
+      "website": "https://devaland.com",
+      "calendly": "https://calendly.com/mariusandronie/30min",
+      "social": {
+        "linkedin_personal": "https://www.linkedin.com/in/marius-andronie/",
+        "linkedin_company": "https://www.linkedin.com/company/devaland/",
+        "facebook": "https://www.facebook.com/dreamvillage13",
+        "instagram": "https://www.instagram.com/digitalvampire13/",
+        "youtube": "https://www.youtube.com/@devaland13"
+      }
+    },
+    "legal": {
+      "company_name": "DEVALAND MARKETING SRL",
+      "vat_number": "RO50841395",
+      "trade_registry": "ROONRC.J2024039063003",
+      "incorporation_date": "2024-03-15",
+      "vat_registration_date": "2024-03-20"
+    }
+  },
+  "services": {
+    "primary": [
+      {
+        "name": "Klaviyo Email Marketing",
+        "description": "Expert Klaviyo implementation, automation flows, and optimization for Shopify stores",
+        "specialization": "E-commerce email marketing automation",
+        "platforms": ["Klaviyo", "Shopify"]
+      },
+      {
+        "name": "Marketing Automation",
+        "description": "Comprehensive marketing automation solutions including email, SMS, and multi-channel campaigns",
+        "technologies": ["Klaviyo", "SMS platforms", "CRM integration"]
+      },
+      {
+        "name": "RPA Development", 
+        "description": "Robotic Process Automation for business workflow optimization",
+        "technologies": ["UiPath", "Automation Anywhere", "Blue Prism"]
+      },
+      {
+        "name": "AI & Chatbot Solutions",
+        "description": "Custom AI implementations and intelligent chatbot development",
+        "technologies": ["OpenAI", "Custom ML models", "Chatbot platforms"]
+      }
+    ],
+    "specializations": [
+      "Shopify + Klaviyo integration",
+      "E-commerce automation workflows", 
+      "Customer lifecycle automation",
+      "Email segmentation strategies",
+      "SMS marketing integration",
+      "GDPR compliant marketing",
+      "Conversion optimization",
+      "Customer retention programs"
+    ]
+  },
+  "content": {
+    "blog_topics": [
+      "Klaviyo automation flows",
+      "Email segmentation strategies", 
+      "Black Friday marketing optimization",
+      "SMS and email marketing integration",
+      "Advanced marketing analytics",
+      "Customer loyalty and personalization",
+      "E-commerce conversion strategies",
+      "GDPR compliance in marketing",
+      "Shopify marketing automation",
+      "Customer lifecycle management"
+    ],
+    "expertise_areas": [
+      "Email marketing automation",
+      "Customer segmentation",
+      "E-commerce optimization", 
+      "Multi-channel marketing",
+      "Marketing analytics",
+      "Compliance and privacy",
+      "Conversion rate optimization",
+      "Customer retention strategies"
+    ],
+    "case_studies": [
+      {
+        "industry": "Fashion E-commerce",
+        "challenge": "Low email engagement and conversion rates",
+        "solution": "Advanced segmentation and personalized automation flows",
+        "results": "300% increase in email revenue, 65% improvement in engagement"
+      },
+      {
+        "industry": "Health & Wellness",
+        "challenge": "Complex customer journey mapping",
+        "solution": "Comprehensive lifecycle automation and SMS integration", 
+        "results": "250% increase in customer lifetime value, 40% reduction in churn"
+      },
+      {
+        "industry": "B2B Technology",
+        "challenge": "Lead nurturing and conversion optimization",
+        "solution": "Multi-stage automation flows and behavioral triggers",
+        "results": "180% improvement in lead conversion, 50% reduction in sales cycle"
+      }
+    ]
+  },
+  "team": [
+    {
+      "name": "Marius Andronie",
+      "role": "Founder & CEO",
+      "expertise": ["Klaviyo Specialist", "Marketing Automation", "E-commerce Strategy"],
+      "linkedin": "https://www.linkedin.com/in/marius-andronie/"
+    },
+    {
+      "name": "Sera Andronie", 
+      "role": "Co-Founder & CEO",
+      "expertise": ["Business Strategy", "Client Relations", "Process Optimization"]
+    }
+  ],
+  "certifications": [
+    "Klaviyo Certified Expert",
+    "Shopify Partner",
+    "Email Marketing Specialist",
+    "GDPR Compliance Certified"
+  ],
+  "target_audience": [
+    "E-commerce businesses using Shopify",
+    "Companies seeking email marketing automation",
+    "Businesses needing Klaviyo expertise", 
+    "Organizations requiring RPA solutions",
+    "Companies wanting AI integration"
+  ],
+  "technologies": {
+    "email_marketing": ["Klaviyo", "Mailchimp", "Constant Contact"],
+    "e_commerce": ["Shopify", "WooCommerce", "Magento"],
+    "automation": ["Zapier", "UiPath", "Microsoft Power Automate"],
+    "analytics": ["Google Analytics", "Klaviyo Analytics", "Custom dashboards"],
+    "ai_ml": ["OpenAI", "Custom models", "Machine learning platforms"]
+  },
+  "last_updated": "2025-10-12",
+  "schema_version": "1.0"
+}
