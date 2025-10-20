@@ -1,0 +1,164 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://devaland.com/#organization",
+      "name": "DEVALAND MARKETING SRL",
+      "legalName": "DEVALAND MARKETING SRL", 
+      "url": "https://devaland.com",
+      "logo": "https://devaland.com/logo.png",
+      "description": "Marketing automation specialists focusing on Klaviyo email marketing, Shopify integrations, RPA development, and AI solutions for e-commerce businesses.",
+      "foundingDate": "2020",
+      "vatID": "RO50841395",
+      "taxID": "ROONRC.J2024039063003",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Sântandrei 13",
+        "addressLocality": "Simeria",
+        "addressRegion": "Hunedoara County",
+        "postalCode": "335903",
+        "addressCountry": "Romania"
+      },
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "telephone": "+40-XXX-XXX-XXX",
+          "contactType": "customer service",
+          "availableLanguage": ["English", "Romanian"],
+          "areaServed": "Worldwide"
+        }
+      ],
+      "sameAs": [
+        "https://www.linkedin.com/company/devaland/",
+        "https://www.facebook.com/dreamvillage13",
+        "https://www.instagram.com/digitalvampire13/", 
+        "https://www.youtube.com/@devaland13"
+      ],
+      "founder": {
+        "@type": "Person",
+        "name": "Marius Andronie",
+        "jobTitle": "Founder & CEO",
+        "sameAs": "https://www.linkedin.com/in/marius-andronie/"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://devaland.com/#website",
+      "url": "https://devaland.com",
+      "name": "Devaland - Marketing Automation Experts",
+      "description": "Expert Klaviyo email marketing, Shopify automation, RPA development, and AI solutions for growing e-commerce businesses.",
+      "publisher": {
+        "@id": "https://devaland.com/#organization"
+      },
+      "inLanguage": "en-US",
+      "potentialAction": [
+        {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint", 
+            "urlTemplate": "https://devaland.com/blog?search={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://devaland.com/#klaviyo-service",
+      "name": "Klaviyo Email Marketing Services",
+      "description": "Expert Klaviyo implementation, automation flows, segmentation, and optimization for Shopify e-commerce stores.",
+      "provider": {
+        "@id": "https://devaland.com/#organization"
+      },
+      "serviceType": "Email Marketing Automation",
+      "audience": {
+        "@type": "Audience",
+        "name": "E-commerce Businesses",
+        "description": "Shopify store owners and e-commerce businesses seeking advanced email marketing automation"
+      },
+      "offers": {
+        "@type": "Offer",
+        "description": "Free consultation and audit for Klaviyo automation services",
+        "url": "https://devaland.com/contact"
+      }
+    },
+    {
+      "@type": "Service", 
+      "@id": "https://devaland.com/#rpa-service",
+      "name": "RPA Development Services",
+      "description": "Robotic Process Automation development using enterprise-grade platforms like UiPath, Automation Anywhere, and Blue Prism.",
+      "provider": {
+        "@id": "https://devaland.com/#organization"
+      },
+      "serviceType": "Process Automation"
+    },
+    {
+      "@type": "Article",
+      "@id": "https://devaland.com/blog/klaviyo-automation-flows-ecommerce",
+      "headline": "10 Klaviyo Automation Flows Every E-commerce Store Needs",
+      "description": "Discover the essential automation flows that can transform your email marketing strategy and boost revenue.",
+      "author": {
+        "@type": "Person",
+        "name": "Marius Andronie"
+      },
+      "publisher": {
+        "@id": "https://devaland.com/#organization"
+      },
+      "datePublished": "2024-07-24",
+      "dateModified": "2024-07-24",
+      "mainEntityOfPage": "https://devaland.com/blog/klaviyo-automation-flows-ecommerce",
+      "articleSection": "Klaviyo Tips",
+      "wordCount": 2500,
+      "keywords": ["Klaviyo", "email automation", "e-commerce", "automation flows", "email marketing"]
+    },
+    {
+      "@type": "Article",
+      "@id": "https://devaland.com/blog/email-segmentation-strategies", 
+      "headline": "Email Segmentation Strategies That Actually Work",
+      "description": "Learn advanced segmentation techniques to improve your email relevance and conversion rates.",
+      "author": {
+        "@type": "Organization",
+        "name": "Devaland Team"
+      },
+      "publisher": {
+        "@id": "https://devaland.com/#organization"
+      },
+      "datePublished": "2024-07-24",
+      "dateModified": "2024-07-24",
+      "mainEntityOfPage": "https://devaland.com/blog/email-segmentation-strategies",
+      "articleSection": "Email Marketing",
+      "keywords": ["email segmentation", "email marketing", "personalization", "targeting"]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://devaland.com/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Klaviyo and why is it important for e-commerce?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Klaviyo is a powerful email marketing automation platform specifically designed for e-commerce businesses. It integrates seamlessly with platforms like Shopify to provide advanced segmentation, personalization, and automation capabilities that can significantly increase revenue and customer lifetime value."
+          }
+        },
+        {
+          "@type": "Question", 
+          "name": "How much does Klaviyo automation setup cost?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The cost varies depending on your specific needs, current email list size, and complexity of automation flows required. We offer free consultations to assess your needs and provide custom pricing. Contact us for a personalized quote."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you work with businesses outside of Romania?",
+          "acceptedAnswer": {
+            "@type": "Answer", 
+            "text": "Yes, we work with clients worldwide. Our services are delivered remotely, and we have experience working with e-commerce businesses across Europe, North America, and other regions."
+          }
+        }
+      ]
+    }
+  ]
+}
