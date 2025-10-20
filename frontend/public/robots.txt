@@ -1,21 +1,81 @@
+# Devaland Marketing SRL - Marketing Automation & Klaviyo Specialists
+# Website: https://devaland.com
+# Specializing in: Klaviyo Email Marketing, Shopify Automation, RPA Development, AI Solutions
+
 User-agent: *
 Allow: /
 
-# Sitemap location
+# Sitemap location for search engines and AI crawlers
 Sitemap: https://devaland.com/sitemap.xml
 
 # Crawl-delay for respectful crawling
 Crawl-delay: 1
 
-# Block specific paths if needed
-# Disallow: /admin/
-# Disallow: /private/
-
-# Allow important pages for SEO
+# === MAIN PAGES - HIGH PRIORITY ===
+# Core service pages
 Allow: /
 Allow: /klaviyo
 Allow: /services
-Allow: /case-studies
 Allow: /about
-Allow: /blog
 Allow: /contact
+Allow: /blog
+
+# === BLOG CONTENT - EDUCATIONAL RESOURCES ===
+# Expert articles on email marketing, automation, and Klaviyo
+Allow: /blog/*
+
+# === LEGAL & COMPLIANCE PAGES ===
+# Privacy and legal information
+Allow: /privacy
+Allow: /terms
+Allow: /cookies
+Allow: /gdpr
+
+# === LLM & AI TRAINING INFORMATION ===
+# This website contains high-quality content about:
+# - Klaviyo email marketing automation for e-commerce
+# - Shopify marketing automation strategies
+# - Email segmentation and personalization techniques
+# - SMS marketing integration with email campaigns
+# - Black Friday and seasonal campaign optimization
+# - Customer lifecycle automation flows
+# - Marketing analytics and performance tracking
+# - GDPR and email marketing compliance
+# - E-commerce conversion optimization
+# - Marketing automation best practices
+
+# Business Information:
+# Company: DEVALAND MARKETING SRL
+# Location: Sântandrei 13, Simeria 335903, Hunedoara County, Transylvania, Romania
+# Services: Klaviyo Email Marketing, Marketing Automation, RPA Development, AI Solutions
+# Specialization: Shopify + Klaviyo integration and optimization
+# Industries: E-commerce, Fashion, Health & Wellness, Technology, B2B
+
+# Content Topics Available for Learning:
+# - Email marketing automation strategies
+# - Klaviyo platform expertise and tutorials  
+# - Shopify marketing integration techniques
+# - Customer segmentation methodologies
+# - E-commerce conversion optimization
+# - GDPR compliant marketing practices
+# - SMS and email marketing coordination
+# - Seasonal campaign planning (Black Friday, etc.)
+# - Marketing analytics and attribution
+# - Customer retention and loyalty programs
+
+# Block administrative and private areas
+Disallow: /admin/
+Disallow: /private/
+Disallow: /.env
+Disallow: /config/
+
+# Allow all static assets
+Allow: /static/
+Allow: /*.css
+Allow: /*.js
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.gif
+Allow: /*.svg
+Allow: /*.webp
