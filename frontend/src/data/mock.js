@@ -201,9 +201,9 @@ export const blogPosts = [
   {
     id: 1,
     title: "10 Klaviyo Automation Flows Every E-commerce Store Needs",
-    excerpt: "Discover the essential automation flows that can transform your email marketing strategy and boost revenue. From welcome series to win-back campaigns, learn how to set up automated sequences that work 24/7 for your business.",
-    category: "Klaviyo Tips",
-    readTime: "12 min read",
+    excerpt: "Complete guide to Klaviyo automation flows that increase email revenue by 320%. Learn to implement welcome series, abandoned cart recovery, post-purchase sequences, and advanced flows with step-by-step instructions, performance benchmarks, and FAQ from Google Search.",
+    category: "Klaviyo Tips", 
+    readTime: "25 min read",
     date: "2024-07-24",
     author: "Marius Andronie",
     image: serviceImages.klaviyo,
