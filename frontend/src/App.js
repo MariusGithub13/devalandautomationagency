@@ -10,6 +10,7 @@ import ServicesPage from "./pages/ServicesPage";
 import CaseStudiesPage from "./pages/CaseStudiesPage";
 import AboutPage from "./pages/AboutPage";
 import BlogPage from "./pages/BlogPage";
+import BlogPostPage from "./pages/BlogPostPage";
 import ContactPage from "./pages/ContactPage";
 import PrivacyPage from "./pages/PrivacyPage";
 import TermsPage from "./pages/TermsPage";
