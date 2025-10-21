@@ -220,6 +220,7 @@ const BlogPage = () => {
                       </div>
                     </CardContent>
                   </Card>
+                  </Link>
                 ))}
               </div>
             </>
