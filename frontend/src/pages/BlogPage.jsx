@@ -209,14 +209,10 @@ const BlogPage = () => {
                       
                       <div className="flex items-center justify-between">
                         <span className="text-sm text-gray-600">{post.author}</span>
-                        <Link 
-                          to={`/blog/${post.title.toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, '-')}`}
-                        >
-                          <Button variant="ghost" size="sm" className="group text-blue-600 hover:text-blue-800">
-                            <span>Read More</span>
-                            <ArrowRight size={14} className="ml-1 group-hover:translate-x-1 transition-transform duration-200" />
-                          </Button>
-                        </Link>
+                        <div className="text-blue-600 group-hover:text-blue-800 flex items-center">
+                          <span className="text-sm font-medium">Read More</span>
+                          <ArrowRight size={14} className="ml-1 group-hover:translate-x-1 transition-transform duration-200" />
+                        </div>
                       </div>
                     </CardContent>
                   </Card>
