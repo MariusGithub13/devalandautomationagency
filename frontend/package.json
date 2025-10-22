@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://devaland.com",
   "dependencies": {
+    "@craco/craco": "^7.1.0",
     "@hookform/resolvers": "^5.0.1",
     "@radix-ui/react-accordion": "^1.2.8",
     "@radix-ui/react-alert-dialog": "^1.1.11",
@@ -54,12 +55,11 @@
     "tailwind-merge": "^3.2.0",
     "tailwindcss-animate": "^1.0.7",
     "vaul": "^1.1.2",
-    "zod": "^3.24.4",
-    "@craco/craco": "^7.1.0"
+    "zod": "^3.24.4"
   },
   "scripts": {
     "start": "npx craco start",
-    "build": "npx craco build", 
+    "build": "npx craco build",
     "test": "npx craco test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
@@ -94,5 +94,11 @@
   "engines": {
     "node": ">=18.0.0",
     "npm": ">=8.0.0"
+  },
+  "overrides": {
+    "ajv": "6.12.6",
+    "ajv-keywords": "3.5.2",
+    "schema-utils": "3.3.0",
+    "date-fns": "3.6.0"
   }
 }
