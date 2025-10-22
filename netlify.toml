@@ -1,7 +1,7 @@
 [build]
   base    = "frontend"
   publish = "frontend/build"
-  command = "npm ci || npm install && npm run build"
+  command = "npm ci || npm install --legacy-peer-deps && npm run build"
 
 [build.environment]
   NODE_VERSION = "18"
@@ -12,7 +12,7 @@
   to   = "/index.html"
   status = 200
 
-# Redirect www -> apex with Host condition (valid Netlify syntax)
+# Redirect www -> apex with Host condition
 [[redirects]]
   from = "/*"
   to   = "https://devaland.com/:splat"
@@ -20,7 +20,7 @@
   force  = true
   conditions = { Host = "www.devaland.com" }
 
-# Minimal security headers + CSP that allows the consent banner + chat widget
+# Security headers + CSP (allows consent script + LeadConnector/Trustpilot/GT)
 [[headers]]
   for = "/*"
   [headers.values]
@@ -30,7 +30,7 @@
     X-XSS-Protection = "1; mode=block"
     Content-Security-Policy = "default-src 'self'; img-src 'self' data: https:; script-src 'self' 'unsafe-inline' https://widgets.leadconnectorhq.com https://widget.trustpilot.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https: wss:;"
 
-# Cache static assets aggressively
+# Cache static assets
 [[headers]]
   for = "/static/*"
   [headers.values]
