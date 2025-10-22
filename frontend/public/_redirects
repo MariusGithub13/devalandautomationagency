@@ -1,3 +1,0 @@
-# Additional URL redirects (main redirects handled by netlify.toml)
-/klaviyo-services /klaviyo 301
-/automation-services /services 301
