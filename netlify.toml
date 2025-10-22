@@ -1,9 +1,37 @@
 [build]
-  command = "npm run build"
-  publish = "build"
+  base    = "frontend"
+  publish = "frontend/build"
+  command = "npm ci || npm install && npm run build"
 
-# SPA fallback for React Router
+[build.environment]
+  NODE_VERSION = "18"
+
+# React Router SPA fallback
 [[redirects]]
   from = "/*"
-  to = "/index.html"
+  to   = "/index.html"
   status = 200
+
+# Redirect www -> apex with Host condition (valid Netlify syntax)
+[[redirects]]
+  from = "/*"
+  to   = "https://devaland.com/:splat"
+  status = 301
+  force  = true
+  conditions = { Host = "www.devaland.com" }
+
+# Minimal security headers + CSP that allows the consent banner + chat widget
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    Content-Security-Policy = "default-src 'self'; img-src 'self' data: https:; script-src 'self' 'unsafe-inline' https://widgets.leadconnectorhq.com https://widget.trustpilot.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https: wss:;"
+
+# Cache static assets aggressively
+[[headers]]
+  for = "/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
