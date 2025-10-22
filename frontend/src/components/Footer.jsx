@@ -39,8 +39,6 @@ const Footer = () => {
                     <ArrowRight size={16} />
                   </a>
                 </Button>
-
-                {/* Social media moved to bottom section */}
               </div>
 
               {/* Quick Links */}
@@ -118,10 +116,10 @@ const Footer = () => {
 
           {/* Bottom Footer */}
           <div className="py-8">
-            {/* Centered Copyright Information */}
+            {/* Centered Copyright */}
             <div className="text-center mb-4">
               <div className="text-gray-500 text-sm mb-2">
-                Copyright © 2025 · DEVALAND MARKETING SRL · All Rights Reserved.
+                Copyright © {currentYear} · DEVALAND MARKETING SRL · All Rights Reserved.
               </div>
               <div className="text-gray-500 text-sm">
                 C.I.F./VAT Number: RO50841395. Trade Registry: ROONRC.J2024039063003.
@@ -144,7 +142,7 @@ const Footer = () => {
               </Link>
             </div>
 
-            {/* Centered Trustpilot Widget - Reliable Static Implementation */}
+            {/* Trustpilot */}
             <div className="text-center mb-6">
               <a 
                 href="https://www.trustpilot.com/review/devaland.com" 
@@ -168,7 +166,7 @@ const Footer = () => {
 
             {/* Centered Social Media Links */}
             <div className="text-center">
-              {/* Social Media Icons */}
+              {/* Icons */}
               <div className="flex items-center justify-center space-x-4 mb-4">
                 <a 
                   href="https://www.linkedin.com/in/marius-andronie/"
@@ -206,15 +204,28 @@ const Footer = () => {
                 >
                   <Youtube size={20} />
                 </a>
+                {/* 👇 New Medium Icon */}
+                <a 
+                  href="https://devaland.medium.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-gray-900 text-white rounded-full flex items-center justify-center hover:bg-gray-800 transition-colors duration-200"
+                  aria-label="Medium"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-5 h-5">
+                    <path d="M2 3.5A1.5 1.5 0 0 1 3.5 2h17A1.5 1.5 0 0 1 22 3.5v17a1.5 1.5 0 0 1-1.5 1.5h-17A1.5 1.5 0 0 1 2 20.5v-17Zm3.72 3.4v9.72l5.7-4.86-5.7-4.86Zm6.84 4.86-5.1 4.35h9.42l-4.32-4.35Zm1.08-.93 5.7 4.86V6.9l-5.7 4.93Z" />
+                  </svg>
+                </a>
               </div>
 
-              {/* Social Media Text Links */}
+              {/* Text Links */}
               <div className="text-sm text-gray-500 space-y-1">
                 <div>Follow us: 
                   <a href="https://www.linkedin.com/in/marius-andronie/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 ml-1">LinkedIn</a> • 
                   <a href="https://www.facebook.com/dreamvillage13" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 ml-1">Facebook</a> • 
                   <a href="https://www.instagram.com/digitalvampire13/" target="_blank" rel="noopener noreferrer" className="text-purple-600 hover:text-purple-800 ml-1">Instagram</a> • 
-                  <a href="https://www.youtube.com/@devaland13" target="_blank" rel="noopener noreferrer" className="text-red-600 hover:text-red-800 ml-1">YouTube</a>
+                  <a href="https://www.youtube.com/@devaland13" target="_blank" rel="noopener noreferrer" className="text-red-600 hover:text-red-800 ml-1">YouTube</a> • 
+                  <a href="https://devaland.medium.com/" target="_blank" rel="noopener noreferrer" className="text-gray-900 hover:text-gray-700 ml-1">Medium</a>
                 </div>
                 <div>Company: 
                   <a href={companyData.social.linkedin} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 ml-1">Devaland LinkedIn</a>
