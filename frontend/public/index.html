@@ -5,7 +5,7 @@
     <link rel="icon" href="https://customer-assets.emergentagent.com/job_process-genius-5/artifacts/kau0y3tw_Devaland-Logo.jpg" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#1e40af" />
-    
+
     <!-- Primary Meta Tags -->
     <title>Devaland - Enterprise Automation & Klaviyo Email Marketing Agency</title>
     <meta name="title" content="Devaland - Enterprise Automation & Klaviyo Email Marketing Agency" />
@@ -31,12 +31,7 @@
     <meta property="twitter:description" content="Leading automation agency specializing in RPA, workflow automation, and Klaviyo email marketing for Shopify brands. Transform your operations with intelligent automation solutions." />
     <meta property="twitter:image" content="https://customer-assets.emergentagent.com/job_process-genius-5/artifacts/kau0y3tw_Devaland-Logo.jpg" />
 
-    <!-- Schema.org markup for Google+ -->
-    <meta itemprop="name" content="Devaland - Enterprise Automation & Klaviyo Email Marketing Agency" />
-    <meta itemprop="description" content="Leading automation agency specializing in RPA, workflow automation, and Klaviyo email marketing for Shopify brands. Transform your operations with intelligent automation solutions." />
-    <meta itemprop="image" content="https://customer-assets.emergentagent.com/job_process-genius-5/artifacts/kau0y3tw_Devaland-Logo.jpg" />
-
-    <!-- Structured Data -->
+    <!-- Schema.org markup -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -73,20 +68,17 @@
 
     <link rel="apple-touch-icon" href="https://customer-assets.emergentagent.com/job_process-genius-5/artifacts/kau0y3tw_Devaland-Logo.jpg" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    
-    <!-- Preconnect to external domains for performance -->
+
+    <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://images.unsplash.com">
     <link rel="preconnect" href="https://customer-assets.emergentagent.com">
-    
-    <!-- DNS Prefetch for external domains -->
+
     <link rel="dns-prefetch" href="//calendly.com">
     <link rel="dns-prefetch" href="//widget.trustpilot.com">
-    
-    <!-- Critical CSS would go here for performance -->
+
     <style>
-      /* Critical above-the-fold CSS */
       body { 
         margin: 0; 
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; 
@@ -120,13 +112,50 @@
         <p>Please enable JavaScript in your browser settings and reload the page.</p>
       </div>
     </noscript>
+
     <div id="root">
       <div class="loading">
         <img src="https://customer-assets.emergentagent.com/job_process-genius-5/artifacts/kau0y3tw_Devaland-Logo.jpg" alt="Devaland" />
         <div class="loading-text">Loading Devaland...</div>
       </div>
     </div>
-    
-    <!-- Trustpilot script now loaded dynamically in Footer component -->
+
+    <!-- GDPR + LeadConnector Chat Loader -->
+    <script>
+    (function () {
+      const CHAT_WIDGET_ID = "68f8738a008ff3634bd246ee";
+
+      function loadChatWidget() {
+        if (window.__chatWidgetLoaded) return;
+        window.__chatWidgetLoaded = true;
+
+        const s = document.createElement("script");
+        s.src = "https://widgets.leadconnectorhq.com/loader.js";
+        s.setAttribute("data-resources-url", "https://widgets.leadconnectorhq.com/chat-widget/loader.js");
+        s.setAttribute("data-widget-id", CHAT_WIDGET_ID);
+        document.body.appendChild(s);
+      }
+
+      // If accepted before, auto-load chat
+      if (localStorage.getItem("marketingConsent") === "true") {
+        loadChatWidget();
+      }
+
+      window.addEventListener("DOMContentLoaded", () => {
+        const buttons = [...document.querySelectorAll("button")]
+          .filter(btn => /accept/i.test(btn.textContent));
+
+        buttons.forEach(btn => {
+          btn.addEventListener("click", () => {
+            localStorage.setItem("marketingConsent", "true");
+            loadChatWidget();
+
+            const banners = document.querySelectorAll(".cookie-banner, .gdpr-banner, .cookie-consent, [data-cookie-banner]");
+            banners.forEach(b => b.style.display = "none");
+          }, { once: true });
+        });
+      });
+    })();
+    </script>
   </body>
 </html>
