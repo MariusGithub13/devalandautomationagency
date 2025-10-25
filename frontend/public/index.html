@@ -5,7 +5,7 @@
     <link rel="icon" href="https://customer-assets.emergentagent.com/job_process-genius-5/artifacts/kau0y3tw_Devaland-Logo.jpg" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#1e40af" />
-    
+
     <!-- Primary Meta Tags -->
     <title>Devaland - Enterprise Automation & Klaviyo Email Marketing Agency</title>
     <meta name="title" content="Devaland - Enterprise Automation & Klaviyo Email Marketing Agency" />
@@ -31,12 +31,7 @@
     <meta property="twitter:description" content="Leading automation agency specializing in RPA, workflow automation, and Klaviyo email marketing for Shopify brands. Transform your operations with intelligent automation solutions." />
     <meta property="twitter:image" content="https://customer-assets.emergentagent.com/job_process-genius-5/artifacts/kau0y3tw_Devaland-Logo.jpg" />
 
-    <!-- Schema.org markup for Google+ -->
-    <meta itemprop="name" content="Devaland - Enterprise Automation & Klaviyo Email Marketing Agency" />
-    <meta itemprop="description" content="Leading automation agency specializing in RPA, workflow automation, and Klaviyo email marketing for Shopify brands. Transform your operations with intelligent automation solutions." />
-    <meta itemprop="image" content="https://customer-assets.emergentagent.com/job_process-genius-5/artifacts/kau0y3tw_Devaland-Logo.jpg" />
-
-    <!-- Structured Data -->
+    <!-- Schema.org markup -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -73,18 +68,16 @@
 
     <link rel="apple-touch-icon" href="https://customer-assets.emergentagent.com/job_process-genius-5/artifacts/kau0y3tw_Devaland-Logo.jpg" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    
-    <!-- Preconnect to external domains for performance -->
+
+    <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://images.unsplash.com">
     <link rel="preconnect" href="https://customer-assets.emergentagent.com">
-    
-    <!-- DNS Prefetch for external domains -->
+
     <link rel="dns-prefetch" href="//calendly.com">
     <link rel="dns-prefetch" href="//widget.trustpilot.com">
-    
-    <!-- Critical CSS -->
+
     <style>
       body { 
         margin: 0; 
@@ -100,22 +93,15 @@
         background: #f8fafc; 
         flex-direction: column;
       }
-      .loading img { width: 80px; height: auto; margin-bottom: 16px; }
-      .loading-text { color: #6b7280; font-size: 14px; }
-      /* GDPR banner styles */
-      .cmp-banner {
-        position: fixed; inset: auto 0 0 0; z-index: 9999;
-        background: #0f172a; color: #e5e7eb; padding: 14px 16px;
-        box-shadow: 0 -6px 16px rgba(0,0,0,.2); display: none;
+      .loading img {
+        width: 80px;
+        height: auto;
+        margin-bottom: 16px;
       }
-      .cmp-banner__content { max-width: 1120px; margin: 0 auto; display: flex; gap: 12px; align-items: center; }
-      .cmp-banner p { margin: 0; font-size: 14px; line-height: 1.4; }
-      .cmp-actions { margin-left: auto; display: flex; gap: 8px; }
-      .cmp-btn { cursor: pointer; border: 1px solid transparent; padding: 8px 12px; border-radius: 8px; font-size: 14px; }
-      .cmp-btn--primary { background: #1e40af; color: #fff; }
-      .cmp-btn--ghost { background: transparent; color: #e5e7eb; border-color: #334155; }
-      .cmp-toggle { display: inline-flex; align-items: center; gap: 6px; margin-left: 8px; font-size: 13px; opacity: .9; }
-      .cmp-link { color: #93c5fd; text-decoration: underline; }
+      .loading-text {
+        color: #6b7280;
+        font-size: 14px;
+      }
     </style>
   </head>
   <body>
@@ -133,89 +119,43 @@
         <div class="loading-text">Loading Devaland...</div>
       </div>
     </div>
-    
-    <!-- Trustpilot script now loaded dynamically in Footer component -->
 
-    <!-- ===== GDPR Consent Banner + LeadConnector Chat Loader ===== -->
-    <div id="cmp-banner" class="cmp-banner" role="dialog" aria-live="polite" aria-label="Cookie consent">
-      <div class="cmp-banner__content">
-        <p>
-          We use cookies and similar tech for essential functionality and marketing (e.g., our chat widget).
-          See our <a href="/privacy-policy" class="cmp-link">Privacy Policy</a>.
-          <label class="cmp-toggle">
-            <input id="cmp-marketing" type="checkbox" checked>
-            Allow marketing (chat widget)
-          </label>
-        </p>
-        <div class="cmp-actions">
-          <button id="cmp-reject" class="cmp-btn cmp-btn--ghost" type="button">Reject all</button>
-          <button id="cmp-accept" class="cmp-btn cmp-btn--primary" type="button">Accept selected</button>
-        </div>
-      </div>
-    </div>
-
+    <!-- GDPR + LeadConnector Chat Loader -->
     <script>
-      (function () {
-        const STORAGE_KEY = "devaland.consent.v1";
-        const banner = document.getElementById('cmp-banner');
-        const marketingToggle = document.getElementById('cmp-marketing');
-        const acceptBtn = document.getElementById('cmp-accept');
-        const rejectBtn = document.getElementById('cmp-reject');
+    (function () {
+      const CHAT_WIDGET_ID = "68f8738a008ff3634bd246ee";
 
-        function getConsent() {
-          try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || null; }
-          catch(e) { return null; }
-        }
+      function loadChatWidget() {
+        if (window.__chatWidgetLoaded) return;
+        window.__chatWidgetLoaded = true;
 
-        function saveConsent(consent) {
-          localStorage.setItem(STORAGE_KEY, JSON.stringify({
-            ts: Date.now(),
-            essential: true,
-            marketing: !!consent.marketing
-          }));
-          return consent;
-        }
+        const s = document.createElement("script");
+        s.src = "https://widgets.leadconnectorhq.com/loader.js";
+        s.setAttribute("data-resources-url", "https://widgets.leadconnectorhq.com/chat-widget/loader.js");
+        s.setAttribute("data-widget-id", CHAT_WIDGET_ID);
+        document.body.appendChild(s);
+      }
 
-        function loadLeadConnector() {
-          if (document.getElementById('leadconnector-chat-loader')) return;
-          const s = document.createElement('script');
-          s.id = 'leadconnector-chat-loader';
-          s.src = 'https://widgets.leadconnectorhq.com/loader.js';
-          s.defer = true;
-          s.setAttribute('data-resources-url', 'https://widgets.leadconnectorhq.com/chat-widget/loader.js');
-          s.setAttribute('data-widget-id', '68f8738a008ff3634bd246ee');
-          document.body.appendChild(s);
-        }
+      // If accepted before, auto-load chat
+      if (localStorage.getItem("marketingConsent") === "true") {
+        loadChatWidget();
+      }
 
-        function maybeLoad() {
-          const c = getConsent();
-          if (c && c.marketing) loadLeadConnector();
-        }
+      window.addEventListener("DOMContentLoaded", () => {
+        const buttons = [...document.querySelectorAll("button")]
+          .filter(btn => /accept/i.test(btn.textContent));
 
-        // First paint
-        const state = getConsent();
-        if (!state) {
-          banner.style.display = 'block';
-        } else {
-          maybeLoad();
-        }
+        buttons.forEach(btn => {
+          btn.addEventListener("click", () => {
+            localStorage.setItem("marketingConsent", "true");
+            loadChatWidget();
 
-        acceptBtn && acceptBtn.addEventListener('click', function () {
-          const consent = saveConsent({ marketing: !!marketingToggle?.checked });
-          banner.style.display = 'none';
-          if (consent.marketing) loadLeadConnector();
+            const banners = document.querySelectorAll(".cookie-banner, .gdpr-banner, .cookie-consent, [data-cookie-banner]");
+            banners.forEach(b => b.style.display = "none");
+          }, { once: true });
         });
-
-        rejectBtn && rejectBtn.addEventListener('click', function () {
-          saveConsent({ marketing: false });
-          banner.style.display = 'none';
-        });
-
-        // Optional: re-check on SPA navigations
-        window.addEventListener('popstate', maybeLoad);
-        window.addEventListener('hashchange', maybeLoad);
-      })();
+      });
+    })();
     </script>
-    <!-- ===== End GDPR Consent Banner + LeadConnector Chat Loader ===== -->
   </body>
 </html>
