@@ -3,7 +3,34 @@
   publish = "frontend/build"
   command = "npm install && npm run build"
 
+# CRA-style SPA routing
 [[redirects]]
   from = "/*"
-  to = "/index.html"
+  to   = "/index.html"
   status = 200
+
+# Security headers + CSP that allows the chat widget domains
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+
+    # Updated CSP:
+    # - default-src: only ourselves
+    # - script-src: our site + LeadConnector widget loader
+    # - connect-src: add services.leadconnectorhq.com so widget can fetch config
+    # - style-src: allow fonts.googleapis.com AND the injected widget css hosted on vercel
+    #             (and still allow 'unsafe-inline' because we inject styles from JS)
+    # - font-src: allow fonts.gstatic.com and inline data: fonts
+    # - img-src: allow https/images + data: for inline svgs in the widget
+    Content-Security-Policy = """
+      default-src 'self';
+      script-src 'self' 'unsafe-inline' https://widgets.leadconnectorhq.com;
+      connect-src 'self' https://widgets.leadconnectorhq.com https://services.leadconnectorhq.com;
+      style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://gs-extension-embeds-final.vercel.app;
+      font-src 'self' https://fonts.gstatic.com data:;
+      img-src 'self' data: https:;
+    """
