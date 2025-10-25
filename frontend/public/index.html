@@ -2,160 +2,152 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="https://customer-assets.emergentagent.com/job_process-genius-5/artifacts/kau0y3tw_Devaland-Logo.jpg" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#1e40af" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Devaland Automation Agency" />
+    <title>Devaland Automation Agency</title>
 
-    <!-- Primary Meta Tags -->
-    <title>Devaland - Enterprise Automation & Klaviyo Email Marketing Agency</title>
-    <meta name="title" content="Devaland - Enterprise Automation & Klaviyo Email Marketing Agency" />
-    <meta name="description" content="Leading automation agency specializing in RPA, workflow automation, and Klaviyo email marketing for Shopify brands. Transform your operations with intelligent automation solutions." />
-    <meta name="keywords" content="automation agency, RPA development, Klaviyo email marketing, Shopify email automation, enterprise automation, workflow automation, business process automation" />
-    <meta name="robots" content="index, follow" />
-    <meta name="language" content="English" />
-    <meta name="author" content="Devaland Marketing SRL" />
-    <link rel="canonical" href="https://devaland.com" />
+    <!-- Favicon -->
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://devaland.com/" />
-    <meta property="og:title" content="Devaland - Enterprise Automation & Klaviyo Email Marketing Agency" />
-    <meta property="og:description" content="Leading automation agency specializing in RPA, workflow automation, and Klaviyo email marketing for Shopify brands. Transform your operations with intelligent automation solutions." />
-    <meta property="og:image" content="https://customer-assets.emergentagent.com/job_process-genius-5/artifacts/kau0y3tw_Devaland-Logo.jpg" />
-    <meta property="og:site_name" content="Devaland" />
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://devaland.com/" />
-    <meta property="twitter:title" content="Devaland - Enterprise Automation & Klaviyo Email Marketing Agency" />
-    <meta property="twitter:description" content="Leading automation agency specializing in RPA, workflow automation, and Klaviyo email marketing for Shopify brands. Transform your operations with intelligent automation solutions." />
-    <meta property="twitter:image" content="https://customer-assets.emergentagent.com/job_process-genius-5/artifacts/kau0y3tw_Devaland-Logo.jpg" />
-
-    <!-- Schema.org markup -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Devaland Marketing SRL",
-      "alternateName": "Devaland",
-      "url": "https://devaland.com",
-      "logo": "https://customer-assets.emergentagent.com/job_process-genius-5/artifacts/kau0y3tw_Devaland-Logo.jpg",
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+40-721-269-312",
-        "contactType": "customer service",
-        "availableLanguage": ["English", "Romanian"]
-      },
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Sântandrei 13",
-        "addressLocality": "Simeria",
-        "postalCode": "335903",
-        "addressRegion": "Hunedoara County",
-        "addressCountry": "Romania"
-      },
-      "sameAs": [
-        "https://www.linkedin.com/company/devaland/",
-        "https://www.linkedin.com/in/marius-andronie/",
-        "https://www.facebook.com/marius.andronie/",
-        "https://www.instagram.com/mariusandronie/",
-        "https://www.youtube.com/@devaland13",
-        "https://www.trustpilot.com/review/devaland.com"
-      ],
-      "description": "Leading automation agency specializing in RPA, workflow automation, and Klaviyo email marketing for Shopify brands."
-    }
-    </script>
-
-    <link rel="apple-touch-icon" href="https://customer-assets.emergentagent.com/job_process-genius-5/artifacts/kau0y3tw_Devaland-Logo.jpg" />
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-
-    <!-- Preconnect for performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://images.unsplash.com">
-    <link rel="preconnect" href="https://customer-assets.emergentagent.com">
-
-    <link rel="dns-prefetch" href="//calendly.com">
-    <link rel="dns-prefetch" href="//widget.trustpilot.com">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
 
     <style>
-      body { 
-        margin: 0; 
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; 
-        -webkit-font-smoothing: antialiased;
-        background-color: #f8fafc;
+      body {
+        font-family: "Inter", sans-serif;
+        margin: 0;
+        background-color: #fff;
       }
-      .loading { 
-        display: flex; 
-        align-items: center; 
-        justify-content: center; 
-        height: 100vh; 
-        background: #f8fafc; 
-        flex-direction: column;
-      }
-      .loading img {
-        width: 80px;
-        height: auto;
-        margin-bottom: 16px;
-      }
-      .loading-text {
-        color: #6b7280;
+
+      /* GDPR Banner */
+      #gdpr-banner {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #1a1a1a;
+        color: #fff;
+        padding: 20px;
         font-size: 14px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        z-index: 9999;
+      }
+
+      #gdpr-banner button {
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        padding: 10px 16px;
+        cursor: pointer;
+        border-radius: 4px;
+        font-weight: 500;
+        transition: background-color 0.2s ease;
+      }
+
+      #gdpr-banner button:hover {
+        background-color: #43a047;
+      }
+
+      #gdpr-banner .gdpr-actions {
+        display: flex;
+        gap: 8px;
+      }
+
+      #gdpr-banner label {
+        font-size: 13px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      #gdpr-banner a {
+        color: #4caf50;
+        text-decoration: none;
+      }
+
+      #gdpr-banner a:hover {
+        text-decoration: underline;
       }
     </style>
   </head>
-  <body>
-    <noscript>
-      <div style="text-align: center; padding: 50px; font-family: Arial, sans-serif;">
-        <h2>JavaScript Required</h2>
-        <p>You need to enable JavaScript to run this application.</p>
-        <p>Please enable JavaScript in your browser settings and reload the page.</p>
-      </div>
-    </noscript>
 
-    <div id="root">
-      <div class="loading">
-        <img src="https://customer-assets.emergentagent.com/job_process-genius-5/artifacts/kau0y3tw_Devaland-Logo.jpg" alt="Devaland" />
-        <div class="loading-text">Loading Devaland...</div>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+
+    <!-- GDPR Banner -->
+    <div id="gdpr-banner">
+      <div>
+        We use cookies and similar technologies for essential site functionality
+        and marketing (e.g., our chat widget). See our
+        <a href="/privacy-policy" target="_blank">Privacy Policy</a>.
+      </div>
+
+      <label>
+        <input type="checkbox" id="allow-marketing" />
+        Allow marketing (chat widget)
+      </label>
+
+      <div class="gdpr-actions">
+        <button id="reject-all">Reject all</button>
+        <button id="accept-selected">Accept selected</button>
       </div>
     </div>
 
-    <!-- GDPR + LeadConnector Chat Loader -->
     <script>
-    (function () {
-      const CHAT_WIDGET_ID = "68f8738a008ff3634bd246ee";
+      // Handle GDPR Consent
+      document.addEventListener("DOMContentLoaded", function () {
+        const banner = document.getElementById("gdpr-banner");
+        const allowMarketing = document.getElementById("allow-marketing");
+        const rejectBtn = document.getElementById("reject-all");
+        const acceptBtn = document.getElementById("accept-selected");
 
-      function loadChatWidget() {
-        if (window.__chatWidgetLoaded) return;
-        window.__chatWidgetLoaded = true;
+        const consent = localStorage.getItem("gdpr-consent");
+        const marketing = localStorage.getItem("gdpr-marketing");
 
-        const s = document.createElement("script");
-        s.src = "https://widgets.leadconnectorhq.com/loader.js";
-        s.setAttribute("data-resources-url", "https://widgets.leadconnectorhq.com/chat-widget/loader.js");
-        s.setAttribute("data-widget-id", CHAT_WIDGET_ID);
-        document.body.appendChild(s);
-      }
+        if (consent === "true") {
+          banner.style.display = "none";
+          if (marketing === "true") loadChatWidget();
+        }
 
-      // If accepted before, auto-load chat
-      if (localStorage.getItem("marketingConsent") === "true") {
-        loadChatWidget();
-      }
-
-      window.addEventListener("DOMContentLoaded", () => {
-        const buttons = [...document.querySelectorAll("button")]
-          .filter(btn => /accept/i.test(btn.textContent));
-
-        buttons.forEach(btn => {
-          btn.addEventListener("click", () => {
-            localStorage.setItem("marketingConsent", "true");
-            loadChatWidget();
-
-            const banners = document.querySelectorAll(".cookie-banner, .gdpr-banner, .cookie-consent, [data-cookie-banner]");
-            banners.forEach(b => b.style.display = "none");
-          }, { once: true });
+        rejectBtn.addEventListener("click", () => {
+          localStorage.setItem("gdpr-consent", "true");
+          localStorage.setItem("gdpr-marketing", "false");
+          banner.style.display = "none";
         });
+
+        acceptBtn.addEventListener("click", () => {
+          const marketingAllowed = allowMarketing.checked;
+          localStorage.setItem("gdpr-consent", "true");
+          localStorage.setItem("gdpr-marketing", marketingAllowed);
+          banner.style.display = "none";
+          if (marketingAllowed) loadChatWidget();
+        });
+
+        function loadChatWidget() {
+          if (window.chatWidgetLoaded) return;
+          window.chatWidgetLoaded = true;
+
+          const script = document.createElement("script");
+          script.src = "https://widgets.leadconnectorhq.com/loader.js";
+          script.setAttribute(
+            "data-resources-url",
+            "https://widgets.leadconnectorhq.com/chat-widget/loader.js"
+          );
+          script.setAttribute("data-widget-id", "68f8738a008ff3634bd246ee");
+          script.async = true;
+          document.body.appendChild(script);
+        }
       });
-    })();
     </script>
   </body>
 </html>
