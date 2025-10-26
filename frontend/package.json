@@ -1,6 +1,10 @@
 {
   "name": "devaland-automation-agency",
   "version": "1.0.0",
+  "engines": {
+  "node": "18.x",
+  "npm": "10.x"
+},
   "private": true,
   "homepage": "https://devaland.com",
   "dependencies": {
