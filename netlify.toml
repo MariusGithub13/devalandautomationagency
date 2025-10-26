@@ -3,13 +3,13 @@
   publish = "frontend/build"
   command = "npm install && npm run build"
 
-# CRA-style SPA routing for React Router
+# CRA-style SPA routing for React
 [[redirects]]
   from = "/*"
   to   = "/index.html"
   status = 200
 
-# Security headers + CSP that allows LeadConnector chat widget
+# Security headers + CSP that allows the chat widget
 [[headers]]
   for = "/*"
   [headers.values]
@@ -18,27 +18,18 @@
     X-Frame-Options = "DENY"
     X-XSS-Protection = "1; mode=block"
 
-    # CONTENT SECURITY POLICY
-    #
-    # default-src
-    #   - lock almost everything to our own origin by default
-    #
-    # script-src
-    #   - allow the LeadConnector loader.js to run
-    #   - keep 'unsafe-inline' because we inject the consent banner inline
-    #
-    # connect-src
-    #   - widgets.leadconnectorhq.com (widget runtime)
-    #   - services.leadconnectorhq.com (widget config bootstrap)
-    #   - gs-extension-embeds-final.vercel.app (some widgets phone home there)
-    #
-    # style-src
-    #   - allow inline styles and Google Fonts
-    #   - allow gs-extension-embeds-final.vercel.app because the widget injects CSS from there
-    #
-    # font-src
-    #   - allow fonts.gstatic.com and data: so inline base64 fonts won't be blocked
-    #
-    # img-src
-    #   - allow https and data URIs for badges / icons in the chat bubble
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://widgets.leadconnectorhq.com; connect-src 'self' https://widgets.leadconnectorhq.com https://services.leadconnectorhq.com https://gs-extension-embeds-final.vercel.app; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://gs-extension-embeds-final.vercel.app; font-src 'self' https://fonts.gstatic.com data: https://gs-extension-embeds-final.vercel.app; img-src 'self' data: https:;"
+    # IMPORTANT:
+    # - script-src: allow the widget loader
+    # - connect-src: allow BOTH widgets.leadconnectorhq.com AND services.leadconnectorhq.com
+    #   (the error you just sent is because services.leadconnectorhq.com was not allowed)
+    # - style-src: allow inline styles, Google Fonts, and their injected CSS (vercel)
+    # - font-src: allow Google Fonts + data: (the widget injects base64 fonts)
+    # - img-src: allow https and data URLs for SVGs/icons
+    Content-Security-Policy = """
+      default-src 'self';
+      script-src 'self' 'unsafe-inline' https://widgets.leadconnectorhq.com;
+      connect-src 'self' https://widgets.leadconnectorhq.com https://services.leadconnectorhq.com;
+      style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://gs-extension-embeds-final.vercel.app;
+      font-src 'self' https://fonts.gstatic.com data:;
+      img-src 'self' data: https:;
+    """
