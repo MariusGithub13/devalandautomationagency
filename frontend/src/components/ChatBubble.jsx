@@ -3,12 +3,11 @@ import React, { useEffect, useState } from "react";
 /**
  * ChatBubble.jsx
  * 
- * Adds the LeadConnector / HighLevel chat widget safely.
- * Prevents duplicate banners, handles client-only mount,
- * and allows lazy loading for performance.
+ * Safe lazy-loaded LeadConnector chat widget.
+ * Removes extra white banners injected by the widget itself (Firefox/Safari fix).
  */
 
-const WIDGET_ID = "68f8738a008ff3634bd246ee"; // <-- replace with your LeadConnector widget ID
+const WIDGET_ID = "YOUR_WIDGET_ID_HERE"; // Replace with your widget ID
 
 export default function ChatBubble() {
   const [ready, setReady] = useState(false);
@@ -17,40 +16,53 @@ export default function ChatBubble() {
     setReady(true);
 
     const SCRIPT_ID = "leadconnector-webchat-script";
-
-    // Prevent double injection
-    if (document.getElementById(SCRIPT_ID)) return;
-
-    const script = document.createElement("script");
-    script.id = SCRIPT_ID;
-    script.type = "text/javascript";
-    script.async = true;
-    script.src = "https://widgets.leadconnectorhq.com/loader.js";
-    script.dataset.widgetId = WIDGET_ID;
-    script.dataset.resizer = "true";
-    document.body.appendChild(script);
-
-    // Keep the script loaded (avoid ghost banners)
-  }, []);
-
-  // Hide unwanted duplicate banners
-  const hideDefaultWidgetCSS = `
-    .lc-banner,
-    .hl_webchat__bubble__container + div[style*="z-index"],
-    [data-testid="AnnouncementBanner"],
-    .hl-powered-by-bubble {
-      display: none !important;
-      visibility: hidden !important;
-      opacity: 0 !important;
+    if (!document.getElementById(SCRIPT_ID)) {
+      const script = document.createElement("script");
+      script.id = SCRIPT_ID;
+      script.type = "text/javascript";
+      script.async = true;
+      script.src = "https://widgets.leadconnectorhq.com/loader.js";
+      script.dataset.widgetId = WIDGET_ID;
+      script.dataset.resizer = "true";
+      document.body.appendChild(script);
     }
-  `;
+
+    // 🔧 Remove & suppress default white banner injected by the widget
+    const removeDefaultBanner = () => {
+      const badBanners = document.querySelectorAll(
+        '.hl_webchat__banner__container, .lc-banner, [data-testid="AnnouncementBanner"]'
+      );
+      badBanners.forEach(el => {
+        el.style.display = "none";
+        el.style.visibility = "hidden";
+        el.style.opacity = "0";
+      });
+    };
+
+    // Run immediately and re-run if widget reinjects banners
+    const observer = new MutationObserver(removeDefaultBanner);
+    observer.observe(document.body, { childList: true, subtree: true });
+    removeDefaultBanner();
+
+    return () => observer.disconnect();
+  }, []);
 
   if (!ready) return null;
 
   return (
     <>
-      {/* Hide duplicated banners */}
-      <style dangerouslySetInnerHTML={{ __html: hideDefaultWidgetCSS }} />
+      {/* Defensive CSS — block LeadConnector banner styles */}
+      <style>{`
+        .hl_webchat__banner__container,
+        .lc-banner,
+        [data-testid="AnnouncementBanner"],
+        .hl-powered-by-bubble {
+          display: none !important;
+          visibility: hidden !important;
+          opacity: 0 !important;
+          z-index: -9999 !important;
+        }
+      `}</style>
 
       {/* Custom launcher button */}
       <button
@@ -58,16 +70,7 @@ export default function ChatBubble() {
         aria-label="Open chat"
         onClick={() => {
           try {
-            if (window.HLWidget?.open) {
-              window.HLWidget.open();
-            } else if (window.LC_API?.open_chat_window) {
-              window.LC_API.open_chat_window();
-            } else {
-              const iframe = document.querySelector(
-                'iframe[src*="leadconnectorhq"]'
-              );
-              if (iframe) iframe.scrollIntoView({ behavior: "smooth" });
-            }
+            window.HLWidget?.open?.() || window.LC_API?.open_chat_window?.();
           } catch (err) {
             console.warn("Chat open failed:", err);
           }
