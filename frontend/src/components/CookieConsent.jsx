@@ -37,7 +37,7 @@ const CookieConsent = () => {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-[100] p-4">
+    <div className="fixed bottom-0 left-0 right-0 z-[100] p-4 pr-24 sm:pr-4">
       <Card className="max-w-4xl mx-auto bg-white shadow-2xl border-2 border-gray-200">
         <div className="p-6">
           {!showDetails ? (
