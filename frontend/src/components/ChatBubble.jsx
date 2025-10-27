@@ -7,7 +7,7 @@ import React, { useEffect, useState } from "react";
  * Removes extra white banners injected by the widget itself (Firefox/Safari fix).
  */
 
-const WIDGET_ID = "YOUR_WIDGET_ID_HERE"; // Replace with your widget ID
+const WIDGET_ID = "68f8738a008ff3634bd246ee"; // Replace with your widget ID
 
 export default function ChatBubble() {
   const [ready, setReady] = useState(false);

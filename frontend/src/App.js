@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Toaster } from "./components/ui/sonner";
 import Header from "./components/Header";
@@ -17,6 +17,9 @@ import TermsPage from "./pages/TermsPage";
 import CookiesPage from "./pages/CookiesPage";
 import GDPRPage from "./pages/GDPRPage";
 import "./App.css";
+
+// ✅ Lazy load the ChatBubble component for better performance
+const ChatBubble = lazy(() => import("./components/ChatBubble"));
 
 function App() {
   return (
@@ -42,6 +45,11 @@ function App() {
         <Footer />
         <CookieConsent />
         <Toaster position="bottom-right" />
+
+        {/* ✅ Lazy-loaded chat bubble */}
+        <Suspense fallback={null}>
+          <ChatBubble />
+        </Suspense>
       </BrowserRouter>
     </div>
   );
