@@ -1,88 +1,130 @@
 import React, { useEffect, useState } from "react";
 
-/**
- * LeadConnector chat widget embed
- *
- * Behavior:
- * - Injects the LeadConnector script once (guards against double-load)
- * - Assumes teaser / proactive welcome popup is disabled in LeadConnector settings
- * - Keeps bubble in the bottom-right above everything else
- * - Hides any leftover banner containers so we don't get the big white bar
- *
- * IMPORTANT:
- * This component should ONLY be rendered after marketing consent.
- * App.js is already responsible for that logic.
- */
 const ChatBubble = () => {
-  const [loaded, setLoaded] = useState(false);
+  const [allowed, setAllowed] = useState(false);
+
+  // Read user's marketing consent from localStorage
+  useEffect(() => {
+    try {
+      const prefRaw = localStorage.getItem("cookiePreferences");
+      if (!prefRaw) return;
+
+      const pref = JSON.parse(prefRaw);
+      if (pref && pref.marketing === true) {
+        setAllowed(true);
+      }
+    } catch (err) {
+      console.warn("Cookie prefs parse error:", err);
+    }
+  }, []);
 
   useEffect(() => {
-    // Prevent duplicate script injection across re-renders / route changes
-    if (window.__leadConnectorInjected) {
-      setLoaded(true);
-      return;
-    }
+    // 1. Inject global CSS overrides to kill vendor's extra consent banner
+    //    and keep only our custom CookieConsent component.
+    const styleEl = document.createElement("style");
+    styleEl.setAttribute("data-chatbubble-style", "true");
+    styleEl.innerHTML = `
+      /* Hide any LeadConnector / GHL auto-cookie banners and popups */
+      /* common classnames / attributes observed in preview */
+      div[id*="ghl-cookie-banner"],
+      div[class*="ghl-cookie-banner"],
+      div[class*="cookie-consent"],
+      div[class*="CookieBanner"],
+      div[class*="cookieBanner"],
+      div[class*="cookie-banner"],
+      div[class*="CookieConsent"],
+      div[class*="leadconnector-cookie"],
+      div[class*="hl_cookie"] {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+      }
 
-    window.__leadConnectorInjected = true;
+      /* Also hide any "We use cookies" floating card inside their chat frame */
+      [class*="StyledCookieCard"],
+      [data-testid*="cookie"][role="dialog"],
+      [data-testid*="cookie"][class*="card"],
+      [class*="cookieCardOuter"] {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+      }
 
+      /*
+        Make sure our own banner still floats above site content
+        but below the chat bubble hotspot.
+      */
+      .devaland-cookie-banner-wrapper {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 99998; /* just under chat bubble */
+      }
+
+      /* Force chat bubble container above everything else */
+      .devaland-chatbubble-wrapper,
+      #leadconnector-chat-widget,
+      .LeadConnectorChatBubble,
+      [data-testid="chat-widget-launcher"],
+      [data-testid="launcher-button"],
+      .GHLLauncherButton,
+      .ghl-launcher,
+      .hl_launcher {
+        z-index: 99999 !important;
+      }
+    `;
+    document.head.appendChild(styleEl);
+
+    return () => {
+      document.head.removeChild(styleEl);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!allowed) return;
+
+    // 2. Dynamically load the LeadConnector widget script only after consent
     const script = document.createElement("script");
     script.src = "https://widgets.leadconnectorhq.com/loader.js";
     script.async = true;
+    script.defer = true;
+
+    // Your LeadConnector widget config
     script.onload = () => {
-      setLoaded(true);
-    };
-    script.onerror = () => {
-      console.warn("LeadConnector widget failed to load");
+      // You may already have global config from your working version,
+      // but if not, uncomment and fill this in:
+      //
+      // window.leadConnector = window.leadConnector || {};
+      // window.leadConnector.appointmentWidget = {
+      //   // config here if needed
+      // };
     };
 
     document.body.appendChild(script);
-  }, []);
 
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, [allowed]);
+
+  // Don't render anything visible ourselves.
+  // The chat bubble is injected by the script once allowed === true.
   return (
-    <>
-      <style>{`
-        /* Force chat bubble to live bottom-right, above cookie card and footer */
-        .hl_webchat--bubble-launcher,
-        .hl_iframe-container,
-        .hl_webchat,
-        .LeadConnector__Bubble {
-          position: fixed !important;
-          right: 16px !important;
-          bottom: 16px !important;
-          z-index: 999999 !important;
-        }
-
-        /* Hide any "banner"/"launcher bar" UI that LeadConnector sometimes injects
-           (the wide white strip or welcome box). You've disabled teaser in settings,
-           but this keeps us safe across browsers like Firefox. */
-        .hl_webchat--bubble-launcher-banner,
-        .LeadConnector__Banner,
-        .LeadConnector__Wrapper,
-        .LeadConnector__Teaser,
-        .hl_webchat--popout-wrapper,
-        .hl_webchat--teaser-container,
-        .hl_webchat--teaser,
-        .hl_webchat--banner-container {
-          display: none !important;
-          visibility: hidden !important;
-          opacity: 0 !important;
-          height: 0 !important;
-          max-height: 0 !important;
-          min-height: 0 !important;
-          padding: 0 !important;
-          margin: 0 !important;
-          border: 0 !important;
-          box-shadow: none !important;
-          background: transparent !important;
-        }
-      `}</style>
-
-      {/* We don't render visible UI ourselves.
-         The script injects the floating bubble.
-         `loaded` is just here if you ever want to debug or show a fallback.
-      */}
-      {loaded ? null : null}
-    </>
+    <div
+      className="devaland-chatbubble-wrapper"
+      style={{
+        position: "fixed",
+        right: "1rem",
+        bottom: "1rem",
+        width: 0,
+        height: 0,
+        zIndex: 99999,
+        pointerEvents: "none",
+      }}
+    />
   );
 };
 
