@@ -1,144 +1,143 @@
-import React, { useState, useEffect } from 'react';
-import { Button } from './ui/button';
-import { Card } from './ui/card';
-import { Cookie, X, Settings } from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import { Button } from "./ui/button";
+import { Card } from "./ui/card";
+import { Cookie, Settings } from "lucide-react";
 
 const CookieConsent = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [showDetails, setShowDetails] = useState(false);
+  const [marketingAllowed, setMarketingAllowed] = useState(false);
 
+  // on mount: check if user already acted
   useEffect(() => {
-    const consent = localStorage.getItem('cookieConsent');
+    const consent = localStorage.getItem("cookieConsent");
+    const prefsRaw = localStorage.getItem("cookiePreferences");
+
     if (!consent) {
+      // first visit -> show banner
       setIsVisible(true);
+      return;
+    }
+
+    // returning visitor: don't show
+    setIsVisible(false);
+
+    // hydrate checkbox state in case we ever want to re-open prefs UI later
+    try {
+      if (prefsRaw) {
+        const prefs = JSON.parse(prefsRaw);
+        setMarketingAllowed(!!prefs.marketing);
+      }
+    } catch {
+      /* ignore */
     }
   }, []);
 
-  const acceptAll = () => {
-    localStorage.setItem('cookieConsent', 'accepted');
-    localStorage.setItem('cookiePreferences', JSON.stringify({
-      necessary: true,
-      analytics: true,
-      marketing: true
-    }));
+  // utility: persist + hide + (optionally) reload page to allow chat bubble
+  const persistAndClose = (prefs) => {
+    localStorage.setItem("cookieConsent", "set");
+    localStorage.setItem("cookiePreferences", JSON.stringify(prefs));
     setIsVisible(false);
+
+    // If marketing just got enabled, we want ChatBubble to load now.
+    // Easiest reliable way (esp. in preview) is to reload.
+    if (prefs.marketing === true) {
+      window.location.reload();
+    }
   };
 
-  const acceptNecessary = () => {
-    localStorage.setItem('cookieConsent', 'necessary');
-    localStorage.setItem('cookiePreferences', JSON.stringify({
+  const acceptSelected = () => {
+    persistAndClose({
       necessary: true,
       analytics: false,
-      marketing: false
-    }));
-    setIsVisible(false);
+      marketing: marketingAllowed,
+    });
   };
 
   if (!isVisible) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-[100] p-4">
-      <Card className="max-w-4xl mx-auto bg-white shadow-2xl border-2 border-gray-200">
-        <div className="p-6">
-          {!showDetails ? (
-            <div className="flex flex-col md:flex-row items-start md:items-center gap-4">
-              <div className="flex items-start gap-3 flex-1">
-                <Cookie size={24} className="text-orange-500 flex-shrink-0 mt-1" />
-                <div>
-                  <h3 className="font-semibold text-gray-900 mb-2">We use cookies</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    We use cookies to enhance your browsing experience, analyze our traffic, and provide personalized content. 
-                    By clicking "Accept All", you consent to our use of cookies in accordance with our Privacy Policy and GDPR compliance.
-                  </p>
-                </div>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-2 flex-shrink-0">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setShowDetails(true)}
-                  className="text-gray-600 border-gray-300"
-                >
-                  <Settings size={16} className="mr-2" />
-                  Preferences
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={acceptNecessary}
-                  className="text-gray-600 border-gray-300"
-                >
-                  Necessary Only
-                </Button>
-                <Button
-                  size="sm"
-                  onClick={acceptAll}
-                  className="bg-blue-600 text-white hover:bg-blue-700"
-                >
-                  Accept All
-                </Button>
-              </div>
-            </div>
-          ) : (
+    <div
+      className="devaland-cookie-banner-wrapper flex justify-center p-4"
+      style={{
+        // fallback positioning in case global CSS hasn't injected yet
+        position: "fixed",
+        left: 0,
+        right: 0,
+        bottom: 0,
+        zIndex: 99998,
+      }}
+    >
+      <Card className="w-full max-w-[1280px] bg-[#0b0f1a] text-white border border-gray-700 shadow-2xl rounded-xl overflow-hidden">
+        {/* Top row: title bar */}
+        <div className="flex flex-wrap items-start justify-between gap-4 p-4 border-b border-gray-700 bg-gradient-to-r from-gray-900/80 to-gray-800/40">
+          <div className="flex items-start gap-2">
+            <Cookie className="text-yellow-400 flex-shrink-0 mt-[2px]" size={20} />
             <div>
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="font-semibold text-gray-900 flex items-center gap-2">
-                  <Cookie size={20} className="text-orange-500" />
-                  Cookie Preferences
-                </h3>
-                <button
-                  onClick={() => setShowDetails(false)}
-                  className="text-gray-500 hover:text-gray-700"
-                >
-                  <X size={20} />
-                </button>
+              <div className="font-semibold text-white leading-tight">
+                We use cookies
               </div>
-              
-              <div className="space-y-4 mb-6">
-                <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                  <div>
-                    <div className="font-medium text-gray-900">Necessary Cookies</div>
-                    <div className="text-sm text-gray-600">Required for website functionality</div>
-                  </div>
-                  <input type="checkbox" checked disabled className="rounded" />
-                </div>
-                
-                <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                  <div>
-                    <div className="font-medium text-gray-900">Analytics Cookies</div>
-                    <div className="text-sm text-gray-600">Help us understand website usage</div>
-                  </div>
-                  <input type="checkbox" className="rounded" />
-                </div>
-                
-                <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                  <div>
-                    <div className="font-medium text-gray-900">Marketing Cookies</div>
-                    <div className="text-sm text-gray-600">Used for personalized advertising</div>
-                  </div>
-                  <input type="checkbox" className="rounded" />
-                </div>
-              </div>
-              
-              <div className="flex flex-col sm:flex-row gap-2">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={acceptNecessary}
-                  className="flex-1"
+              <div className="text-sm text-gray-300 leading-snug max-w-[700px]">
+                We use cookies and similar technologies for essential site
+                functionality and marketing (e.g., our chat widget). See our{" "}
+                <a
+                  href="/privacy"
+                  className="text-green-400 underline hover:text-green-300"
                 >
-                  Save Preferences
-                </Button>
-                <Button
-                  size="sm"
-                  onClick={acceptAll}
-                  className="flex-1 bg-blue-600 text-white hover:bg-blue-700"
-                >
-                  Accept All
-                </Button>
+                  Privacy Policy
+                </a>
+                .
               </div>
             </div>
-          )}
+          </div>
+        </div>
+
+        {/* Main controls row */}
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 p-4">
+          {/* Left: marketing toggle */}
+          <label className="flex items-start gap-3 text-sm text-gray-200 cursor-pointer select-none">
+            <input
+              type="checkbox"
+              checked={marketingAllowed}
+              onChange={(e) => setMarketingAllowed(e.target.checked)}
+              className="mt-[3px] h-4 w-4 rounded border-gray-500 text-blue-500 focus:ring-blue-400"
+            />
+            <span>
+              <span className="font-medium text-white">
+                Allow marketing (chat widget)
+              </span>
+              <span className="block text-gray-400 text-xs leading-snug">
+                Enables our live chat bubble so you can message us.
+              </span>
+            </span>
+          </label>
+
+          {/* Right: action buttons */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
+            <Button
+              variant="outline"
+              size="sm"
+              className="bg-gray-800 text-gray-200 border border-gray-600 hover:bg-gray-700 hover:text-white flex items-center"
+              onClick={() => {
+                // "Necessary only" -> marketing off
+                persistAndClose({
+                  necessary: true,
+                  analytics: false,
+                  marketing: false,
+                });
+              }}
+            >
+              <Settings className="mr-2 h-4 w-4 text-gray-300" />
+              Necessary only
+            </Button>
+
+            <Button
+              size="sm"
+              className="bg-green-600 hover:bg-green-500 text-white font-semibold px-4 py-2 rounded-md shadow"
+              onClick={acceptSelected}
+            >
+              Accept selected
+            </Button>
+          </div>
         </div>
       </Card>
     </div>
