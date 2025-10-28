@@ -1,67 +1,63 @@
 import React, { useEffect } from "react";
 
+const CHAT_WIDGET_URL =
+  "https://widgets.leadconnectorhq.com/loader.js"; // (example path – keep your real URL)
+
+const COOKIE_PREF_KEY = "cookiePreferences";
+
+function getMarketingAllowed() {
+  try {
+    const raw = localStorage.getItem(COOKIE_PREF_KEY);
+    if (!raw) return false; // default OFF
+    const parsed = JSON.parse(raw);
+    return !!parsed.marketing;
+  } catch {
+    return false;
+  }
+}
+
 const ChatBubble = () => {
   useEffect(() => {
-    const loadChatWidget = () => {
-      if (document.getElementById("leadconnector-chat-script")) {
-        console.info("[ChatBubble] Chat script already loaded.");
-        return;
-      }
+    // 1. Check permission first (GDPR opt-in)
+    const marketingOkay = getMarketingAllowed();
+    if (!marketingOkay) {
+      // user hasn't opted in -> do NOT load widget
+      return;
+    }
 
-      const script = document.createElement("script");
-      script.id = "leadconnector-chat-script";
-      script.async = true;
-      script.src = "https://widgets.leadconnectorhq.com/loader.js";
-      script.onload = () => console.info("[ChatBubble] LeadConnector loaded ✅");
-      script.onerror = () => console.warn("[ChatBubble] Failed to load widget ❌");
+    // 2. Inject widget <script> only if allowed
+    const script = document.createElement("script");
+    script.src = CHAT_WIDGET_URL;
+    script.async = true;
+    script.type = "text/javascript";
 
-      document.body.appendChild(script);
+    document.body.appendChild(script);
+
+    // 3. Safety: remove vendor’s built-in cookie popup if they sneak it in
+    const removeVendorBanner = () => {
+      // try a few selectors that we’ve seen in screenshots
+      const possibleBanners = document.querySelectorAll(
+        '[data-testid="cookie-banner"], .cookiesBannerWrapper, .cookieBannerContainer, .leadconnector-cookie-banner'
+      );
+      possibleBanners.forEach((el) => {
+        el.style.display = "none";
+        el.remove();
+      });
     };
 
-    const removeChatWidget = () => {
-      const script = document.getElementById("leadconnector-chat-script");
-      if (script) script.remove();
+    // run after widget loads and also repeat a couple times
+    const interval = setInterval(removeVendorBanner, 500);
+    setTimeout(() => clearInterval(interval), 5000);
 
-      // Also remove the actual widget iframe if it's present
-      const widgetFrame = document.querySelector("iframe[src*='leadconnectorhq']");
-      if (widgetFrame) widgetFrame.remove();
-
-      console.info("[ChatBubble] Chat widget removed 🧹");
-    };
-
-    const checkConsent = () => {
-      try {
-        const prefs = JSON.parse(localStorage.getItem("cookiePreferences"));
-        const consentGiven =
-          prefs && prefs.marketing === true && localStorage.getItem("cookieConsent");
-
-        if (consentGiven) {
-          loadChatWidget();
-        } else {
-          removeChatWidget();
-        }
-      } catch (err) {
-        console.warn("[ChatBubble] Consent check failed:", err);
-      }
-    };
-
-    // Check on mount
-    checkConsent();
-
-    // Watch for changes in cookie preferences dynamically
-    const onStorageChange = (e) => {
-      if (e.key === "cookiePreferences" || e.key === "cookieConsent") {
-        checkConsent();
-      }
-    };
-    window.addEventListener("storage", onStorageChange);
-
-    // Cleanup
+    // Cleanup on unmount
     return () => {
-      window.removeEventListener("storage", onStorageChange);
+      clearInterval(interval);
+      script.remove();
     };
   }, []);
 
+  // We don’t render any visible UI ourselves.
+  // The floating chat button is injected by the script (only if allowed).
   return null;
 };
 
