@@ -16,8 +16,7 @@ code {
         monospace;
 }
 
-
-
+/* ---------- CSS VARIABLES (already in your file) ---------- */
 @layer base {
   :root {
         --background: 0 0% 100%;
@@ -74,13 +73,47 @@ code {
     }
 }
 
-
-
+/* ---------- BASE TYPOGRAPHY / BG (already in your file) ---------- */
 @layer base {
   * {
     @apply border-border;
-    }
+  }
   body {
     @apply bg-background text-foreground;
-    }
+  }
 }
+
+/* ---------- NEW: re-usable animation utilities ---------- */
+@layer utilities {
+  @keyframes consent-fade-up {
+    0% {
+      opacity: 0;
+      transform: translateY(8px) scale(0.98);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .animate-consent-fade-up {
+    animation: consent-fade-up 0.22s ease-out both;
+  }
+}
+/* --- LeadConnector cookie banner: ensure visible & above content --- */
+.cookiesBannerWrapper,
+.cookieBannerContainer,
+[data-testid="cookie-banner"],
+.leadconnector-cookie-banner {
+  display: block !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  z-index: 2147483000 !important; /* above chat & footer */
+}
+
+/* If you previously added rules that hid vendor banners, delete them. Example you should remove:
+   [data-testid="cookie-banner"],
+   .cookiesBannerWrapper,
+   .cookieBannerContainer,
+   .leadconnector-cookie-banner { display: none !important; ... }
+*/

@@ -1,63 +1,28 @@
+// frontend/src/components/ChatBubble.jsx
+// Loads LeadConnector chat widget. Vendor's white cookie banner
+// will handle consent and activate marketing/chat accordingly.
+
 import React, { useEffect } from "react";
 
-const CHAT_WIDGET_URL =
-  "https://widgets.leadconnectorhq.com/loader.js"; // (example path – keep your real URL)
-
-const COOKIE_PREF_KEY = "cookiePreferences";
-
-function getMarketingAllowed() {
-  try {
-    const raw = localStorage.getItem(COOKIE_PREF_KEY);
-    if (!raw) return false; // default OFF
-    const parsed = JSON.parse(raw);
-    return !!parsed.marketing;
-  } catch {
-    return false;
-  }
-}
+const CHAT_WIDGET_URL = "https://widgets.leadconnectorhq.com/loader.js";
+const SCRIPT_ID = "leadconnector-loader";
 
 const ChatBubble = () => {
   useEffect(() => {
-    // 1. Check permission first (GDPR opt-in)
-    const marketingOkay = getMarketingAllowed();
-    if (!marketingOkay) {
-      // user hasn't opted in -> do NOT load widget
-      return;
-    }
+    // Avoid duplicate loads
+    if (document.getElementById(SCRIPT_ID)) return;
 
-    // 2. Inject widget <script> only if allowed
-    const script = document.createElement("script");
-    script.src = CHAT_WIDGET_URL;
-    script.async = true;
-    script.type = "text/javascript";
+    const s = document.createElement("script");
+    s.id = SCRIPT_ID;
+    s.src = CHAT_WIDGET_URL;
+    s.async = true;
+    s.type = "text/javascript";
+    document.body.appendChild(s);
 
-    document.body.appendChild(script);
-
-    // 3. Safety: remove vendor’s built-in cookie popup if they sneak it in
-    const removeVendorBanner = () => {
-      // try a few selectors that we’ve seen in screenshots
-      const possibleBanners = document.querySelectorAll(
-        '[data-testid="cookie-banner"], .cookiesBannerWrapper, .cookieBannerContainer, .leadconnector-cookie-banner'
-      );
-      possibleBanners.forEach((el) => {
-        el.style.display = "none";
-        el.remove();
-      });
-    };
-
-    // run after widget loads and also repeat a couple times
-    const interval = setInterval(removeVendorBanner, 500);
-    setTimeout(() => clearInterval(interval), 5000);
-
-    // Cleanup on unmount
-    return () => {
-      clearInterval(interval);
-      script.remove();
-    };
+    // keep the script across route changes; no cleanup
+    // return () => s.remove();
   }, []);
 
-  // We don’t render any visible UI ourselves.
-  // The floating chat button is injected by the script (only if allowed).
   return null;
 };
 
