@@ -1,100 +1,89 @@
 import React, { useEffect, useState } from "react";
 
 /**
- * ChatBubble.jsx
- * 
- * Safe lazy-loaded LeadConnector chat widget.
- * Removes extra white banners injected by the widget itself (Firefox/Safari fix).
+ * LeadConnector chat widget embed
+ *
+ * Behavior:
+ * - Injects the LeadConnector script once (guards against double-load)
+ * - Assumes teaser / proactive welcome popup is disabled in LeadConnector settings
+ * - Keeps bubble in the bottom-right above everything else
+ * - Hides any leftover banner containers so we don't get the big white bar
+ *
+ * IMPORTANT:
+ * This component should ONLY be rendered after marketing consent.
+ * App.js is already responsible for that logic.
  */
-
-const WIDGET_ID = "68f8738a008ff3634bd246ee"; // Replace with your widget ID
-
-export default function ChatBubble() {
-  const [ready, setReady] = useState(false);
+const ChatBubble = () => {
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    setReady(true);
-
-    const SCRIPT_ID = "leadconnector-webchat-script";
-    if (!document.getElementById(SCRIPT_ID)) {
-      const script = document.createElement("script");
-      script.id = SCRIPT_ID;
-      script.type = "text/javascript";
-      script.async = true;
-      script.src = "https://widgets.leadconnectorhq.com/loader.js";
-      script.dataset.widgetId = WIDGET_ID;
-      script.dataset.resizer = "true";
-      document.body.appendChild(script);
+    // Prevent duplicate script injection across re-renders / route changes
+    if (window.__leadConnectorInjected) {
+      setLoaded(true);
+      return;
     }
 
-    // 🔧 Remove & suppress default white banner injected by the widget
-    const removeDefaultBanner = () => {
-      const badBanners = document.querySelectorAll(
-        '.hl_webchat__banner__container, .lc-banner, [data-testid="AnnouncementBanner"]'
-      );
-      badBanners.forEach(el => {
-        el.style.display = "none";
-        el.style.visibility = "hidden";
-        el.style.opacity = "0";
-      });
+    window.__leadConnectorInjected = true;
+
+    const script = document.createElement("script");
+    script.src = "https://widgets.leadconnectorhq.com/loader.js";
+    script.async = true;
+    script.onload = () => {
+      setLoaded(true);
+    };
+    script.onerror = () => {
+      console.warn("LeadConnector widget failed to load");
     };
 
-    // Run immediately and re-run if widget reinjects banners
-    const observer = new MutationObserver(removeDefaultBanner);
-    observer.observe(document.body, { childList: true, subtree: true });
-    removeDefaultBanner();
-
-    return () => observer.disconnect();
+    document.body.appendChild(script);
   }, []);
-
-  if (!ready) return null;
 
   return (
     <>
-      {/* Defensive CSS — block LeadConnector banner styles */}
       <style>{`
-        .hl_webchat__banner__container,
-        .lc-banner,
-        [data-testid="AnnouncementBanner"],
-        .hl-powered-by-bubble {
+        /* Force chat bubble to live bottom-right, above cookie card and footer */
+        .hl_webchat--bubble-launcher,
+        .hl_iframe-container,
+        .hl_webchat,
+        .LeadConnector__Bubble {
+          position: fixed !important;
+          right: 16px !important;
+          bottom: 16px !important;
+          z-index: 999999 !important;
+        }
+
+        /* Hide any "banner"/"launcher bar" UI that LeadConnector sometimes injects
+           (the wide white strip or welcome box). You've disabled teaser in settings,
+           but this keeps us safe across browsers like Firefox. */
+        .hl_webchat--bubble-launcher-banner,
+        .LeadConnector__Banner,
+        .LeadConnector__Wrapper,
+        .LeadConnector__Teaser,
+        .hl_webchat--popout-wrapper,
+        .hl_webchat--teaser-container,
+        .hl_webchat--teaser,
+        .hl_webchat--banner-container {
           display: none !important;
           visibility: hidden !important;
           opacity: 0 !important;
-          z-index: -9999 !important;
+          height: 0 !important;
+          max-height: 0 !important;
+          min-height: 0 !important;
+          padding: 0 !important;
+          margin: 0 !important;
+          border: 0 !important;
+          box-shadow: none !important;
+          background: transparent !important;
         }
       `}</style>
 
-      {/* Custom launcher button */}
-      <button
-        type="button"
-        aria-label="Open chat"
-        onClick={() => {
-          try {
-            window.HLWidget?.open?.() || window.LC_API?.open_chat_window?.();
-          } catch (err) {
-            console.warn("Chat open failed:", err);
-          }
-        }}
-        className="
-          fixed bottom-4 right-4 z-[9999]
-          flex items-center gap-2
-          rounded-full bg-gradient-to-r from-indigo-600 to-purple-600
-          text-white shadow-lg shadow-purple-400/30
-          px-4 py-3 text-sm font-semibold
-          hover:scale-[1.03] active:scale-[0.98]
-          transition-transform
-        "
-      >
-        <span
-          className="inline-block h-2 w-2 rounded-full bg-green-400 animate-pulse shadow-[0_0_8px_rgba(74,222,128,0.8)]"
-        />
-        <span className="leading-none text-left">
-          Chat with us <br />
-          <span className="text-[10px] font-normal opacity-80">
-            typically replies in &lt;5m
-          </span>
-        </span>
-      </button>
+      {/* We don't render visible UI ourselves.
+         The script injects the floating bubble.
+         `loaded` is just here if you ever want to debug or show a fallback.
+      */}
+      {loaded ? null : null}
     </>
   );
-}
+};
+
+export default ChatBubble;
