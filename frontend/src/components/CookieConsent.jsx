@@ -6,19 +6,25 @@ import { Cookie, X, Settings } from "lucide-react";
 const COOKIE_CONSENT_KEY = "cookieConsent";
 const COOKIE_PREF_KEY = "cookiePreferences";
 
-// Default preferences if user has never chosen
+// ✅ Default prefs if user has never chosen
 const DEFAULT_PREFS = {
   necessary: true,
   analytics: false,
-  marketing: false, // ✅ marketing/chat OFF by default
+  marketing: false, // <-- HARD OFF by default
 };
 
 const CookieConsent = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
+
+  // controls the marketing toggle UI inside the detailed panel
   const [marketingAllowed, setMarketingAllowed] = useState(false);
 
-  // read saved prefs safely
+  // did we detect an existing consent in localStorage?
+  // if false, we know this is first visit
+  const [hasStoredConsent, setHasStoredConsent] = useState(false);
+
+  // ---- helpers ----
   const loadPrefs = useCallback(() => {
     try {
       const raw = localStorage.getItem(COOKIE_PREF_KEY);
@@ -30,62 +36,100 @@ const CookieConsent = () => {
     }
   }, []);
 
-  // Save prefs + final consent state
   const savePrefs = useCallback((prefs, consentType) => {
     localStorage.setItem(COOKIE_PREF_KEY, JSON.stringify(prefs));
     localStorage.setItem(COOKIE_CONSENT_KEY, consentType);
   }, []);
 
-  // ===== 1. On mount: decide if banner should show or not
+  // ---- on mount ----
   useEffect(() => {
     const consent = localStorage.getItem(COOKIE_CONSENT_KEY);
-    const prefs = loadPrefs();
 
+    if (!consent) {
+      // first visit:
+      // - show banner
+      // - force marketing OFF in UI
+      setIsVisible(true);
+      setHasStoredConsent(false);
+      setMarketingAllowed(false);
+      return;
+    }
+
+    // returning visitor that already made a choice
+    setHasStoredConsent(true);
+
+    const prefs = loadPrefs();
     setMarketingAllowed(!!prefs.marketing);
-    if (!consent) setIsVisible(true);
-    else setIsVisible(false);
+
+    // they've already answered, so banner stays hidden
+    setIsVisible(false);
   }, [loadPrefs]);
 
-  // ===== 2. Handle the custom "openCookieSettings" event from footer
+  // ---- handle "openCookieSettings" custom event from footer link ----
   useEffect(() => {
     function handleOpenSettings() {
       const prefs = loadPrefs();
+
+      // when reopening settings later, reflect what we saved
       setMarketingAllowed(!!prefs.marketing);
+
       setShowDetails(true);
       setIsVisible(true);
     }
+
     window.addEventListener("openCookieSettings", handleOpenSettings);
-    return () =>
+    return () => {
       window.removeEventListener("openCookieSettings", handleOpenSettings);
+    };
   }, [loadPrefs]);
 
-  // ===== 3. ACTIONS =====
+  // ---- actions ----
+
+  // 1. user clicks "Accept all"
   const acceptAll = () => {
-    const prefs = { necessary: true, analytics: true, marketing: true };
+    const prefs = {
+      necessary: true,
+      analytics: true,
+      marketing: true,
+    };
+
     savePrefs(prefs, "accepted");
     setMarketingAllowed(true);
     setIsVisible(false);
+    setHasStoredConsent(true);
   };
 
+  // 2. user clicks "Only necessary"/"Reject all marketing"
   const acceptNecessary = () => {
-    const prefs = { necessary: true, analytics: false, marketing: false };
-    savePrefs(prefs, "necessary");
-    setMarketingAllowed(false);
-    setIsVisible(false);
-  };
-
-  const saveCustomPreferences = () => {
     const prefs = {
       necessary: true,
       analytics: false,
-      marketing: marketingAllowed,
+      marketing: false,
     };
-    const consentType = marketingAllowed ? "accepted" : "necessary";
-    savePrefs(prefs, consentType);
+
+    savePrefs(prefs, "necessary");
+    setMarketingAllowed(false);
     setIsVisible(false);
+    setHasStoredConsent(true);
   };
 
-  // ===== 4. RENDER =====
+  // 3. user clicks "Save preferences" in the detailed panel
+  const saveCustomPreferences = () => {
+    const prefs = {
+      necessary: true,
+      analytics: false, // you can add analytics toggle later if needed
+      marketing: marketingAllowed,
+    };
+
+    const consentType = marketingAllowed ? "accepted" : "necessary";
+
+    savePrefs(prefs, consentType);
+    setIsVisible(false);
+    setHasStoredConsent(true);
+  };
+
+  // ---- render ----
+
   if (!isVisible) return null;
 
   return (
@@ -93,8 +137,9 @@ const CookieConsent = () => {
       className={`
         fixed left-0 right-0 bottom-0 z-[100] p-4
         flex justify-center
-        opacity-0 translate-y-4
-        animate-consent-fade-up
+        transition-all duration-300 ease-out
+        opacity-100 translate-y-0
+        animate-[fadeSlideUp_0.25s_ease-out]
       `}
     >
       <Card
@@ -106,8 +151,9 @@ const CookieConsent = () => {
       >
         <div className="p-4">
           {!showDetails ? (
-            // ======== COMPACT MODE ========
+            // -------- COMPACT MODE --------
             <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-6">
+              {/* left: icon + message */}
               <div className="flex items-start gap-3 flex-1">
                 <Cookie
                   size={22}
@@ -118,10 +164,11 @@ const CookieConsent = () => {
                     We use cookies
                   </p>
                   <p className="text-gray-600">
-                    We use essential cookies to make this site work. We’d also
-                    like to use marketing cookies (like chat) to offer support
-                    and tailored services — only if you allow it.
+                    We use essential cookies to make this site work.
+                    We’d also like to enable marketing features (like live chat)
+                    to offer support and tailored services — only if you allow it.
                   </p>
+
                   <button
                     onClick={() => setShowDetails(true)}
                     className="mt-2 flex items-center text-xs text-gray-500 underline hover:text-blue-600"
@@ -132,6 +179,7 @@ const CookieConsent = () => {
                 </div>
               </div>
 
+              {/* right: buttons */}
               <div className="flex flex-col gap-2 min-w-[160px]">
                 <Button
                   variant="outline"
@@ -141,6 +189,7 @@ const CookieConsent = () => {
                 >
                   Only necessary
                 </Button>
+
                 <Button
                   size="sm"
                   onClick={acceptAll}
@@ -151,8 +200,9 @@ const CookieConsent = () => {
               </div>
             </div>
           ) : (
-            // ======== DETAILED MODE ========
+            // -------- DETAILED MODE --------
             <div className="space-y-4 text-sm text-gray-700">
+              {/* header row with close */}
               <div className="flex items-start justify-between">
                 <div className="flex items-center gap-2">
                   <Cookie size={18} className="text-orange-500" />
@@ -169,14 +219,14 @@ const CookieConsent = () => {
                 </button>
               </div>
 
+              {/* necessary cookies (locked on) */}
               <div className="flex items-start justify-between bg-gray-50 rounded-lg p-3">
                 <div className="pr-3">
                   <div className="font-medium text-gray-900 text-sm">
                     Necessary Cookies
                   </div>
                   <div className="text-xs text-gray-600">
-                    Required for site security, basic features, and proper
-                    function.
+                    Required for site security, basic features, and proper function.
                   </div>
                 </div>
                 <input
@@ -187,17 +237,19 @@ const CookieConsent = () => {
                 />
               </div>
 
+              {/* marketing / chat toggle */}
               <div className="flex items-start justify-between bg-gray-50 rounded-lg p-3">
                 <div className="pr-3">
                   <div className="font-medium text-gray-900 text-sm">
                     Marketing & Live Support
                   </div>
                   <div className="text-xs text-gray-600">
-                    Allow chat support and personalized outreach. If off, chat
-                    will stay disabled.
+                    Enable chat support and personalized outreach.
+                    If off, the chat widget will stay disabled.
                   </div>
                 </div>
 
+                {/* toggle control */}
                 <button
                   onClick={() => setMarketingAllowed((prev) => !prev)}
                   className={`relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer items-center rounded-full border transition-colors ${
@@ -216,6 +268,7 @@ const CookieConsent = () => {
                 </button>
               </div>
 
+              {/* action buttons */}
               <div className="flex flex-col sm:flex-row gap-2 pt-2">
                 <Button
                   variant="outline"
@@ -225,6 +278,7 @@ const CookieConsent = () => {
                 >
                   Only necessary
                 </Button>
+
                 <Button
                   size="sm"
                   onClick={saveCustomPreferences}
@@ -243,6 +297,7 @@ const CookieConsent = () => {
         </div>
       </Card>
 
+      {/* spacer so we don't cover the chat bubble in bottom-right on desktop */}
       <div className="w-[80px] flex-shrink-0 hidden sm:block" />
     </div>
   );
