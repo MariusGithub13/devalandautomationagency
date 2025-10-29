@@ -1,3 +1,4 @@
+// frontend/src/components/Footer.jsx
 import React from "react";
 import CookieResetLink from "./CookieResetLink";
 import {
@@ -5,7 +6,6 @@ import {
   Facebook,
   Instagram,
   Youtube,
-  Pinterest,
   Github,
   Twitch,
   Reddit,
@@ -25,18 +25,15 @@ import {
 
 const year = new Date().getFullYear();
 
-/**
- * All social/profile links (icons shown where available).
- * We also render a crawlable SEO text list below.
- */
+/** All social/profile links (icons shown where available). */
 const SOCIAL_LINKS = [
-  // Core profiles (existing)
+  // Core profiles
   { label: "LinkedIn", href: "https://www.linkedin.com/in/marius-andronie/", Icon: Linkedin },
   { label: "Facebook (Devaland13)", href: "https://www.facebook.com/Devaland13", Icon: Facebook },
   { label: "Facebook (DreamVillage13)", href: "https://www.facebook.com/dreamvillage13", Icon: Facebook },
   { label: "Instagram", href: "https://www.instagram.com/digitalvampire13/", Icon: Instagram },
   { label: "YouTube", href: "https://www.youtube.com/@devaland13", Icon: Youtube },
-  { label: "Pinterest", href: "https://uk.pinterest.com/freedomstar1313/", Icon: Pinterest },
+  { label: "Pinterest", href: "https://uk.pinterest.com/freedomstar1313/", Icon: Globe }, // <— use Globe
   { label: "Medium", href: "https://devaland.medium.com/", Icon: PenSquare },
 
   // New additions
@@ -49,7 +46,7 @@ const SOCIAL_LINKS = [
   { label: "Goodreads (Author)", href: "https://www.goodreads.com/author/show/54880532.Marius_Andronie", Icon: BookMarked },
   { label: "Phone", href: "tel:+40721269312", Icon: PhoneCall },
 
-  // Already present (kept)
+  // Other networks/hubs
   { label: "TikTok", href: "https://www.tiktok.com/@devaland13", Icon: Globe },
   { label: "Threads", href: "https://www.threads.com/@digitalvampire13", Icon: Globe },
   { label: "GitHub", href: "https://github.com/MariusGithub13", Icon: Github },
@@ -78,32 +75,10 @@ export default function Footer() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6 py-10">
         {/* Policy links + cookie settings */}
         <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-gray-600">
-          <a
-            href="/privacy"
-            className="hover:text-blue-600 underline-offset-4 hover:underline"
-          >
-            Privacy Policy
-          </a>
-          <a
-            href="/terms"
-            className="hover:text-blue-600 underline-offset-4 hover:underline"
-          >
-            Terms &amp; Conditions
-          </a>
-          <a
-            href="/cookies"
-            className="hover:text-blue-600 underline-offset-4 hover:underline"
-          >
-            Cookie Policy
-          </a>
-          <a
-            href="/gdpr"
-            className="hover:text-blue-600 underline-offset-4 hover:underline"
-          >
-            GDPR
-          </a>
-
-          {/* Reopen vendor cookie banner */}
+          <a href="/privacy" className="hover:text-blue-600 underline-offset-4 hover:underline">Privacy Policy</a>
+          <a href="/terms" className="hover:text-blue-600 underline-offset-4 hover:underline">Terms &amp; Conditions</a>
+          <a href="/cookies" className="hover:text-blue-600 underline-offset-4 hover:underline">Cookie Policy</a>
+          <a href="/gdpr" className="hover:text-blue-600 underline-offset-4 hover:underline">GDPR</a>
           <CookieResetLink className="ml-1" />
         </div>
 
@@ -129,7 +104,7 @@ export default function Footer() {
           </a>
         </div>
 
-        {/* Icon row (wraps on small screens) */}
+        {/* Icon row */}
         <div className="mt-6 flex flex-wrap justify-center gap-3">
           {SOCIAL_LINKS.map(({ label, href, Icon, rel }) => (
             <a
@@ -148,18 +123,11 @@ export default function Footer() {
 
         {/* SEO text list */}
         <div className="mt-6 text-center text-xs text-gray-500 leading-relaxed">
-          <span className="block mb-1 font-medium text-gray-600">
-            Follow Devaland on:
-          </span>
+          <span className="block mb-1 font-medium text-gray-600">Follow Devaland on:</span>
           <p className="mx-auto max-w-4xl">
             {SOCIAL_LINKS.map(({ label, href }, i) => (
               <span key={label}>
-                <a
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline underline-offset-2 hover:text-blue-600"
-                >
+                <a href={href} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-blue-600">
                   {label}
                 </a>
                 {i < SOCIAL_LINKS.length - 1 ? ", " : "."}
