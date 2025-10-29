@@ -1,78 +1,12 @@
-# Devaland Marketing SRL - Marketing Automation & Klaviyo Specialists
-# Website: https://devaland.com
-# Specializing in: Klaviyo Email Marketing, Shopify Automation, RPA Development, AI Solutions
-
 # robots.txt for https://devaland.com
 User-agent: *
 Allow: /
-
-# Crawl-delay for respectful crawling
-# Alternative subdomains (if live and serving same site)
-# If marketing.devaland.com or go.devaland.com are separate apps, keep their own robots.txt there.
-# Otherwise, prefer redirecting them to the canonical host in Netlify.
-
-# Crawl-delay: not set (let major crawlers choose)
-# Alternative subdomains (if live and serving same site)
-# If marketing.devaland.com or go.devaland.com are separate apps, keep their own robots.txt there.
-# Otherwise, prefer redirecting them to the canonical host in Netlify.
-
-# Core service pages
-Allow: /
-Allow: /klaviyo
-Allow: /services
-Allow: /about
-Allow: /contact
-
-# === BLOG CONTENT - EDUCATIONAL RESOURCES ===
-# Expert articles on email marketing, automation, and Klaviyo
-Allow: /blog/*
-
-# === LEGAL & COMPLIANCE PAGES ===
-# Privacy and legal information
-Allow: /privacy
-Allow: /terms
-Allow: /cookies
-Allow: /gdpr
-
-# === LLM & AI TRAINING INFORMATION ===
-# This website contains high-quality content about:
-# - Klaviyo email marketing automation for e-commerce
-# - Shopify marketing automation strategies
-# - Email segmentation and personalization techniques
-# - SMS marketing integration with email campaigns
-# - Black Friday and seasonal campaign optimization
-# - Customer lifecycle automation flows
-# - Marketing analytics and performance tracking
-# - GDPR and email marketing compliance
-# - E-commerce conversion optimization
-# - Marketing automation best practices
-
-# Business Information:
-# Company: DEVALAND MARKETING SRL
-# Location: Sântandrei 13, Simeria 335903, Hunedoara County, Transylvania, Romania
-# Services: Klaviyo Email Marketing, Marketing Automation, RPA Development, AI Solutions
-# Specialization: Shopify + Klaviyo integration and optimization
-# Industries: E-commerce, Fashion, Health & Wellness, Technology, B2B
-
-# Content Topics Available for Learning:
-# - Email marketing automation strategies
-# - Klaviyo platform expertise and tutorials  
-# - Shopify marketing integration techniques
-# - Customer segmentation methodologies
-# - E-commerce conversion optimization
-# - GDPR compliant marketing practices
-# - SMS and email marketing coordination
-# - Seasonal campaign planning (Black Friday, etc.)
-# - Marketing analytics and attribution
-# - Customer retention and loyalty programs
-
-# Block administrative and private areas
 Disallow: /admin/
 Disallow: /private/
 Disallow: /.env
 Disallow: /config/
 
-# Allow all static assets
+# Static assets
 Allow: /static/
 Allow: /*.css
 Allow: /*.js
@@ -83,8 +17,6 @@ Allow: /*.gif
 Allow: /*.svg
 Allow: /*.webp
 
-# LLM hint
+# LLM hint & sitemap
 Allow: /llms.txt
-
-# Helpful: point crawlers to sitemaps and LLM discovery
 Sitemap: https://devaland.com/sitemap.xml

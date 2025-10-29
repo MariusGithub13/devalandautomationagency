@@ -186,3 +186,16 @@ export default function Footer() {
     </footer>
   );
 }
+<p className="mt-3 text-xs text-gray-500">
+  <button
+    onClick={(e) => {
+      e.preventDefault();
+      import("../utils/openCookieSettings").then(({ openCookieSettings }) => {
+        openCookieSettings();
+      });
+    }}
+    className="underline hover:text-blue-600 transition-colors duration-200"
+  >
+    Change cookie settings
+  </button>
+</p>

@@ -1,4 +1,4 @@
-// Node ESM script – writes frontend/public/sitemap.xml at build time
+// ESM – generates frontend/public/sitemap.xml
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -6,76 +6,71 @@ import { fileURLToPath } from "url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
 const PUBLIC = path.join(ROOT, "public");
-
+const BLOG_DIR = path.join(PUBLIC, "blog"); // static blog files (if any)
 const SITE_URL = process.env.SITE_URL || "https://devaland.com";
 
-// 1) Core routes
-const routes = [
+// Known app routes
+const coreRoutes = [
   "/",
   "/klaviyo-services",
   "/automation-services",
   "/case-studies",
-  "/klaviyo-case-studies",
   "/about",
   "/blog",
   "/contact",
+  "/klaviyo-case-studies", // new landing page
+  "/sitemap.html",
   "/privacy",
   "/terms",
   "/cookies",
-  "/gdpr",
-  "/sitemap.html",
+  "/gdpr"
 ];
 
-// 2) Auto-add blog html files under public/blog (if any)
-const blogDir = path.join(PUBLIC, "blog");
-if (fs.existsSync(blogDir)) {
-  const stack = [blogDir];
-  while (stack.length) {
-    const dir = stack.pop();
-    for (const ent of fs.readdirSync(dir, { withFileTypes: true })) {
-      const full = path.join(dir, ent.name);
-      if (ent.isDirectory()) stack.push(full);
-      else if (ent.isFile() && ent.name.endsWith(".html")) {
-        const rel = full.replace(PUBLIC, "").replace(/index\.html$/, "");
-        const pretty = rel.replace(/\.html$/, "");
-        routes.push(pretty);
-      }
-    }
-  }
+// Collect blog URLs if they exist in /public/blog/*.html
+function collectBlogUrls() {
+  const urls = [];
+  if (!fs.existsSync(BLOG_DIR)) return urls;
+
+  const files = fs.readdirSync(BLOG_DIR).filter((f) => f.endsWith(".html"));
+  files.forEach((f) => {
+    const slug = f.replace(/index\.html$/i, "").replace(/\.html$/i, "");
+    const route = slug && slug !== "index" ? `/blog/${slug}` : "/blog";
+    urls.push(route);
+  });
+  return Array.from(new Set(urls));
 }
 
-// 3) Build url entries (valid changefreq values only)
-const now = new Date().toISOString();
-const entries = routes
-  .map((route) => route.replace(/\/{2,}/g, "/"))
-  .filter((v, i, arr) => arr.indexOf(v) === i) // unique
-  .map((route) => {
-    const changefreq = route.startsWith("/blog") ? "monthly" : "weekly";
-    const priority =
-      route === "/" ? "1.0" : route.startsWith("/blog") ? "0.6" : "0.8";
-    return {
-      loc: `${SITE_URL}${route}`,
-      lastmod: now,
-      changefreq,
-      priority,
-    };
-  });
+const blogRoutes = collectBlogUrls();
+// merge + uniq
+const allRoutes = Array.from(new Set([...coreRoutes, ...blogRoutes]));
 
-// 4) Write XML
-const xml =
-  `<?xml version="1.0" encoding="UTF-8"?>\n` +
-  `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
-  entries
-    .map(
-      (e) => `  <url>
+// Build entries with valid changefreq
+const now = new Date().toISOString();
+const entries = allRoutes.map((route) => {
+  const isBlog = route.startsWith("/blog/") || route === "/blog";
+  return {
+    loc: new URL(route, SITE_URL).toString(),
+    lastmod: now,
+    changefreq: isBlog ? "monthly" : "weekly",
+    priority: route === "/" ? "1.0" : isBlog ? "0.6" : "0.8"
+  };
+});
+
+const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${entries
+  .map(
+    (e) => `  <url>
     <loc>${e.loc}</loc>
     <lastmod>${e.lastmod}</lastmod>
     <changefreq>${e.changefreq}</changefreq>
     <priority>${e.priority}</priority>
-  </url>\n`
-    )
-    .join("") +
-  `</urlset>\n`;
+  </url>`
+  )
+  .join("\n")}
+</urlset>
+`;
 
+if (!fs.existsSync(PUBLIC)) fs.mkdirSync(PUBLIC, { recursive: true });
 fs.writeFileSync(path.join(PUBLIC, "sitemap.xml"), xml, "utf8");
-console.log(`[sitemap] wrote ${entries.length} urls to public/sitemap.xml`);
+console.log(`[sitemap] wrote ${entries.length} URLs to public/sitemap.xml`);

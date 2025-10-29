@@ -1,12 +1,12 @@
 {
   "name": "devaland-automation-agency",
   "version": "1.0.0",
-  "engines": {
-  "node": "18.x",
-  "npm": "10.x"
-},
   "private": true,
   "homepage": "https://devaland.com",
+  "engines": {
+    "node": "18.x",
+    "npm": "10.x"
+  },
   "dependencies": {
     "@craco/craco": "^7.1.0",
     "@hookform/resolvers": "^5.0.1",
@@ -63,29 +63,6 @@
     "vaul": "^1.1.2",
     "zod": "^3.24.4"
   },
-  "scripts": {
-    "start": "npx craco start",
-    "build": "npx craco build",
-    "test": "npx craco test",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "npm run build",
-    "postinstall": "npm run fix-missing-files",
-    "fix-missing-files": "cp node_modules/react-router-dom/dist/index.js node_modules/react-router-dom/dist/index.mjs 2>/dev/null || true",
-    "build:backup": "react-scripts build"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
   "devDependencies": {
     "@eslint/js": "9.23.0",
     "autoprefixer": "^10.4.20",
@@ -97,16 +74,20 @@
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.17"
   },
-  "engines": {
-    "node": ">=18.0.0",
-    "npm": ">=8.0.0"
-  }
-}
-
-{
   "scripts": {
     "prebuild": "node scripts/generate-sitemap.mjs",
     "build": "npx craco build",
-    "start": "npx craco start"
+    "start": "npx craco start",
+    "test": "npx craco test",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "npm run build",
+    "postinstall": "npm run fix-missing-files",
+    "fix-missing-files": "cp node_modules/react-router-dom/dist/index.js node_modules/react-router-dom/dist/index.mjs 2>/dev/null || true",
+    "build:backup": "react-scripts build"
+  },
+  "browserslist": {
+    "production": [">0.2%", "not dead", "not op_mini all"],
+    "development": ["last 1 chrome version", "last 1 firefox version", "last 1 safari version"]
   }
 }
