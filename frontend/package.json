@@ -102,3 +102,11 @@
     "npm": ">=8.0.0"
   }
 }
+
+{
+  "scripts": {
+    "prebuild": "node scripts/generate-sitemap.mjs",
+    "build": "npx craco build",
+    "start": "npx craco start"
+  }
+}

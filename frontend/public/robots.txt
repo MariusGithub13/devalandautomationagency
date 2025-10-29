@@ -2,23 +2,26 @@
 # Website: https://devaland.com
 # Specializing in: Klaviyo Email Marketing, Shopify Automation, RPA Development, AI Solutions
 
+# robots.txt for https://devaland.com
 User-agent: *
 Allow: /
 
-# Sitemap location for search engines and AI crawlers
-Sitemap: https://devaland.com/sitemap.xml
-
 # Crawl-delay for respectful crawling
-Crawl-delay: 1
+# Alternative subdomains (if live and serving same site)
+# If marketing.devaland.com or go.devaland.com are separate apps, keep their own robots.txt there.
+# Otherwise, prefer redirecting them to the canonical host in Netlify.
 
-# === MAIN PAGES - HIGH PRIORITY ===
+# Crawl-delay: not set (let major crawlers choose)
+# Alternative subdomains (if live and serving same site)
+# If marketing.devaland.com or go.devaland.com are separate apps, keep their own robots.txt there.
+# Otherwise, prefer redirecting them to the canonical host in Netlify.
+
 # Core service pages
 Allow: /
 Allow: /klaviyo
 Allow: /services
 Allow: /about
 Allow: /contact
-Allow: /blog
 
 # === BLOG CONTENT - EDUCATIONAL RESOURCES ===
 # Expert articles on email marketing, automation, and Klaviyo
@@ -79,3 +82,9 @@ Allow: /*.jpeg
 Allow: /*.gif
 Allow: /*.svg
 Allow: /*.webp
+
+# LLM hint
+Allow: /llms.txt
+
+# Helpful: point crawlers to sitemaps and LLM discovery
+Sitemap: https://devaland.com/sitemap.xml

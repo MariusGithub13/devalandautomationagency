@@ -16,6 +16,12 @@ import PrivacyPage from "./pages/PrivacyPage";
 import TermsPage from "./pages/TermsPage";
 import CookiesPage from "./pages/CookiesPage";
 import GDPRPage from "./pages/GDPRPage";
+// add near other page imports
+import KlaviyoCaseStudies from "./pages/KlaviyoCaseStudies";
+
+// inside <Routes> … </Routes> add:
+<Route path="/klaviyo-case-studies" element={<KlaviyoCaseStudies />} />
+
 import "./App.css";
 
 // ✅ Lazy load the ChatBubble component for better performance
@@ -40,6 +46,7 @@ function App() {
             <Route path="/terms" element={<TermsPage />} />
             <Route path="/cookies" element={<CookiesPage />} />
             <Route path="/gdpr" element={<GDPRPage />} />
+            <Route path="/klaviyo-case-studies" element={<KlaviyoCaseStudies />} />
           </Routes>
         </main>
         <Footer />
