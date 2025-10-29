@@ -1,201 +1,220 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { openCookieSettings } from "../utils/openCookieSettings";
 import {
-  Linkedin, Facebook, Instagram, Youtube, Github,
-  Phone, Mail, Globe, MessageSquare, MessageCircle,
-  Send, // telegram-ish
-  Twitch, Twitter, Book, BookOpen, Rss,
-  // generic icon fallback
-  CircleDot
+  Linkedin, Facebook, Instagram, Youtube, Github, Twitch,
+  Globe, Phone, Mail, MapPin, MessageCircle, MessageSquare, Megaphone, Link
 } from "lucide-react";
-import CookieResetLink from "./CookieResetLink";
 
-const SocialIcon = ({ href, label, children }) => (
-  <a
-    href={href}
-    aria-label={label}
-    title={label}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 hover:border-blue-500 hover:text-blue-600 transition-colors"
-  >
-    {children || <CircleDot size={18} />}
-  </a>
-);
+const brand = {
+  name: "Devaland",
+  tagline: "Marketing Automation & Klaviyo Specialists",
+};
+
+const LEGAL = {
+  company: "DEVALAND MARKETING SRL",
+  vat: "RO50841395",
+  trade: "ROONRCJ2024039063003",
+  // Source of truth for contacts (from /contact):
+  phoneDisplay: "+40 (721) 269 312",
+  phoneHref: "tel:+40721269312",
+  emailHref: "/contact", // keep canonical (form). If you want mailto, replace with mailto:you@domain
+  address: "Sântandrei 13, Simeria 335903, Hunedoara, Romania",
+};
+
+const links = {
+  explore: [
+    { to: "/", label: "Home" },
+    { to: "/klaviyo-services", label: "Klaviyo Services" },
+    { to: "/automation-services", label: "Automation Services" },
+    { to: "/case-studies", label: "Case Studies" },
+    { to: "/about", label: "About" },
+    { to: "/blog", label: "Blog" },
+    { to: "/contact", label: "Contact" },
+    { to: "/sitemap.html", label: "Sitemap (HTML)" },
+  ],
+  socialIcons: [
+    { href: "https://www.linkedin.com/in/marius-andronie/", Icon: Linkedin, label: "LinkedIn" },
+    { href: "https://www.facebook.com/Devaland13", Icon: Facebook, label: "Facebook" },
+    { href: "https://www.instagram.com/digitalvampire13/", Icon: Instagram, label: "Instagram" },
+    { href: "https://www.youtube.com/@devaland13", Icon: Youtube, label: "YouTube" },
+    { href: "https://github.com/MariusGithub13", Icon: Github, label: "GitHub" },
+    { href: "https://www.twitch.tv/devaland13", Icon: Twitch, label: "Twitch" },
+    { href: "https://x.com/Carlosman1313", Icon: Megaphone, label: "X (Twitter)" },
+    { href: "https://www.threads.com/@digitalvampire13", Icon: MessageSquare, label: "Threads" },
+    { href: "https://www.reddit.com/user/Devaland13/", Icon: MessageCircle, label: "Reddit" },
+    { href: "https://devaland.net/", Icon: Globe, label: "devaland.net" },
+    { href: "https://bx.community/@GrayWolf", Icon: Globe, label: "bx.community" },
+    { href: "https://renewableenergy-directory.com/", Icon: Globe, label: "Renewable Directory" },
+    { href: "https://awesomegang.com/marius-andronie/", Icon: Globe, label: "AwesomeGang" },
+    { href: "https://www.goodreads.com/author/show/54880532.Marius_Andronie", Icon: Globe, label: "Goodreads" },
+    { href: "https://leanpub.com/u/marius-andronie", Icon: Globe, label: "Leanpub" },
+    { href: "https://mariusandronie.netlify.app/", Icon: Globe, label: "mariusandronie.netlify.app" },
+    { href: "https://devaland.medium.com/", Icon: Globe, label: "Medium" },
+    { href: "https://uk.pinterest.com/freedomstar1313/", Icon: Globe, label: "Pinterest" },
+    { href: "https://www.tiktok.com/@devaland13", Icon: Globe, label: "TikTok" },
+    { href: "https://devaland.start.page/", Icon: Link, label: "Start Page" },
+    { href: "https://linktr.ee/devaland", Icon: Link, label: "Linktree" },
+    { href: "https://smart.bio/devaland13/", Icon: Link, label: "Smart.bio" },
+    { href: "https://devaland.netlify.app/", Icon: Globe, label: "devaland.netlify.app" },
+    { href: "https://devaland.vercel.app/", Icon: Globe, label: "devaland.vercel.app" },
+    { href: "https://www.redbubble.com/people/devaland13/shop?asc=u", Icon: Globe, label: "Redbubble" },
+    { href: "https://www.teepublic.com/user/devaland?utm_source=designer&utm_medium=social&utm_campaign=fqfQzbMd8rw", Icon: Globe, label: "TeePublic" },
+    { href: "https://mariusandronie.com/", Icon: Globe, label: "mariusandronie.com" },
+    { href: "https://www.amazon.com/author/devaland_marius-andronie", Icon: Globe, label: "Amazon Author" },
+    { href: "https://t.me/Devaland13", Icon: Globe, label: "Telegram" },
+    { href: "https://api.whatsapp.com/send?phone=40721269312", Icon: Phone, label: "WhatsApp" },
+    { href: "https://mariusandronie.substack.com/", Icon: Globe, label: "Substack" },
+    { href: "https://mastodon.social/@GreyWolf13", Icon: Globe, label: "Mastodon (social)" },
+    { href: "https://me.dm/@devaland", Icon: Globe, label: "Mastodon (me.dm)" },
+    { href: "https://www.ctan.org/home/Devaland", Icon: Globe, label: "CTAN" }
+  ],
+  seoTextLinks: [
+    ["LinkedIn", "https://www.linkedin.com/in/marius-andronie/"],
+    ["Facebook (Devaland13)", "https://www.facebook.com/Devaland13"],
+    ["Instagram", "https://www.instagram.com/digitalvampire13/"],
+    ["YouTube", "https://www.youtube.com/@devaland13"],
+    ["Pinterest", "https://uk.pinterest.com/freedomstar1313/"],
+    ["Medium", "https://devaland.medium.com/"],
+    ["Telegram", "https://t.me/Devaland13"],
+    ["WhatsApp", "https://api.whatsapp.com/send?phone=40721269312"],
+    ["Substack", "https://mariusandronie.substack.com/"],
+    ["Threads", "https://www.threads.com/@digitalvampire13"],
+    ["X (Twitter)", "https://x.com/Carlosman1313"],
+    ["Goodreads (Author)", "https://www.goodreads.com/author/show/54880532.Marius_Andronie"],
+    ["TikTok", "https://www.tiktok.com/@devaland13"],
+    ["GitHub", "https://github.com/MariusGithub13"],
+    ["Twitch", "https://www.twitch.tv/devaland13"],
+    ["Reddit", "https://www.reddit.com/user/Devaland13/"],
+    ["Tumblr", "https://www.tumblr.com/devaland"],
+    ["Mastodon", "https://mastodon.social/@GreyWolf13"],
+    ["Mastodon (me.dm)", "https://me.dm/@devaland"],
+    ["CTAN", "https://www.ctan.org/home/Devaland"],
+    ["Linktree", "https://linktr.ee/devaland"],
+    ["Smart.bio", "https://smart.bio/devaland13/"],
+    ["Start Page", "https://devaland.start.page/"],
+    ["devaland.netlify.app", "https://devaland.netlify.app/"],
+    ["devaland.vercel.app", "https://devaland.vercel.app/"],
+    ["Redbubble Shop", "https://www.redbubble.com/people/devaland13/shop?asc=u"],
+    ["TeePublic Shop", "https://www.teepublic.com/user/devaland?utm_source=designer&utm_medium=social&utm_campaign=fqfQzbMd8rw"],
+    ["devaland.net", "https://devaland.net/"],
+    ["bx.community", "https://bx.community/@GrayWolf"],
+    ["Renewable Energy Directory", "https://renewableenergy-directory.com/"],
+    ["AwesomeGang (Author)", "https://awesomegang.com/marius-andronie/"],
+    ["Leanpub", "https://leanpub.com/u/marius-andronie"],
+    ["mariusandronie.com", "https://mariusandronie.com/"],
+    ["mariusandronie.netlify.app", "https://mariusandronie.netlify.app/"]
+  ]
+};
+
+function InlineLogo() {
+  // Simple inline SVG – shows immediately and can’t break due to missing file
+  return (
+    <svg width="28" height="28" viewBox="0 0 24 24" className="text-blue-600">
+      <circle cx="12" cy="12" r="10" fill="currentColor" opacity="0.12" />
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" strokeWidth="2" fill="none" />
+      <path d="M3 12c3-4 6-6 9-6s6 2 9 6c-3 4-6 6-9 6s-6-2-9-6z" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+    </svg>
+  );
+}
 
 export default function Footer() {
-  const year = new Date().getFullYear();
-
   return (
-    <footer className="mt-24 border-t bg-white">
-      {/* top strip */}
-      <div className="mx-auto w-full max-w-7xl px-4 py-10">
-        <div className="grid gap-10 md:grid-cols-4">
-          {/* Brand / mission */}
-          <div className="space-y-3">
-            <div className="flex items-center gap-2">
-              <img
-                src="/logo192.png"
-                alt="Devaland logo"
-                className="h-7 w-7 rounded"
-              />
-              <span className="text-lg font-semibold tracking-tight">
-                Devaland
-              </span>
+    <footer className="mt-16 border-t border-gray-200/70 bg-white">
+      <div className="mx-auto w-full max-w-7xl px-4 py-10 md:px-6">
+        {/* Top: brand + explore + contact */}
+        <div className="grid gap-8 md:grid-cols-3">
+          {/* Brand */}
+          <div>
+            <div className="flex items-center gap-3">
+              <InlineLogo />
+              <div>
+                <div className="font-semibold text-gray-900">{brand.name}</div>
+                <div className="text-sm text-gray-600">{brand.tagline}</div>
+              </div>
             </div>
-            <p className="text-sm text-gray-600">
-              We automate operations and build revenue-driving customer journeys.
-              <br/>Klaviyo, workflows, and AI—done right.
-            </p>
-
-            <div className="flex gap-3 pt-2">
-              <a href="tel:+40721269312" className="inline-flex items-center gap-1 text-sm text-gray-700 hover:text-blue-600">
-                <Phone size={16}/> +40 (721) 269 312
-              </a>
-              <a href="mailto:hi@devaland.com" className="inline-flex items-center gap-1 text-sm text-gray-700 hover:text-blue-600">
-                <Mail size={16}/> hi@devaland.com
-              </a>
-            </div>
+            <button
+              type="button"
+              onClick={openCookieSettings}
+              className="mt-4 inline-flex items-center gap-1 text-sm underline underline-offset-4 text-gray-600 hover:text-blue-700"
+            >
+              Change cookie settings
+            </button>
           </div>
 
-          {/* Navigation */}
+          {/* Explore */}
           <div>
-            <h4 className="mb-3 text-sm font-semibold uppercase tracking-wide text-gray-700">
-              Explore
-            </h4>
-            <ul className="space-y-2 text-sm">
-              <li><Link className="hover:text-blue-600" to="/">Home</Link></li>
-              <li><Link className="hover:text-blue-600" to="/klaviyo-services">Klaviyo Services</Link></li>
-              <li><Link className="hover:text-blue-600" to="/automation-services">Automation Services</Link></li>
-              <li><Link className="hover:text-blue-600" to="/case-studies">Case Studies</Link></li>
-              <li><Link className="hover:text-blue-600" to="/klaviyo-case-studies">Klaviyo Case Studies</Link></li>
-              <li><Link className="hover:text-blue-600" to="/about">About</Link></li>
-              <li><Link className="hover:text-blue-600" to="/blog">Blog</Link></li>
-              <li><Link className="hover:text-blue-600" to="/contact">Contact</Link></li>
-              <li><a className="hover:text-blue-600" href="/sitemap.html">Sitemap (HTML)</a></li>
-            </ul>
+            <div className="text-sm font-semibold text-gray-900 mb-3">Explore</div>
+            <nav className="grid grid-cols-1 gap-2 text-sm">
+              {links.explore.map((l) => (
+                <a key={l.to} href={l.to} className="text-gray-600 hover:text-blue-700 underline-offset-4 hover:underline">
+                  {l.label}
+                </a>
+              ))}
+            </nav>
           </div>
 
-          {/* Policies */}
+          {/* Contact */}
           <div>
-            <h4 className="mb-3 text-sm font-semibold uppercase tracking-wide text-gray-700">
-              Policies
-            </h4>
-            <ul className="space-y-2 text-sm">
-              <li><a className="hover:text-blue-600" href="/privacy">Privacy Policy</a></li>
-              <li><a className="hover:text-blue-600" href="/terms">Terms &amp; Conditions</a></li>
-              <li><a className="hover:text-blue-600" href="/cookies">Cookie Policy</a></li>
-              <li><a className="hover:text-blue-600" href="/gdpr">GDPR</a></li>
-              <li className="pt-1">
-                <CookieResetLink className="text-gray-700" />
+            <div className="text-sm font-semibold text-gray-900 mb-3">Contact</div>
+            <ul className="space-y-2 text-sm text-gray-700">
+              <li className="flex items-center gap-2">
+                <MapPin size={16} className="text-gray-500" />
+                <span>{LEGAL.address}</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <Phone size={16} className="text-gray-500" />
+                <a href={LEGAL.phoneHref} className="hover:text-blue-700 underline-offset-4 hover:underline">
+                  {LEGAL.phoneDisplay}
+                </a>
+              </li>
+              <li className="flex items-center gap-2">
+                <Mail size={16} className="text-gray-500" />
+                <a href={LEGAL.emailHref} className="hover:text-blue-700 underline-offset-4 hover:underline">
+                  Email us (form)
+                </a>
               </li>
             </ul>
           </div>
+        </div>
 
-          {/* Review / Socials (icons) */}
-          <div className="space-y-3">
-            <a
-              href="https://www.trustpilot.com/review/devaland.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-lg border px-3 py-2 text-sm hover:border-blue-500 hover:text-blue-600"
-            >
-              <span className="inline-block h-2 w-2 rounded-full bg-emerald-500" />
-              Review us on Trustpilot
+        {/* Legal row */}
+        <div className="mt-8 text-sm text-gray-600">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+            <a href="/privacy" className="hover:text-blue-700 underline-offset-4 hover:underline">Privacy Policy</a>
+            <a href="/terms" className="hover:text-blue-700 underline-offset-4 hover:underline">Terms & Conditions</a>
+            <a href="/cookies" className="hover:text-blue-700 underline-offset-4 hover:underline">Cookie Policy</a>
+            <a href="/gdpr" className="hover:text-blue-700 underline-offset-4 hover:underline">GDPR</a>
+            <span className="text-gray-400">|</span>
+            <span className="text-gray-500">
+              Copyright © {new Date().getFullYear()} {LEGAL.company}.
+              &nbsp;C.I.F./VAT: {LEGAL.vat}. Trade Registry: {LEGAL.trade}.
+            </span>
+          </div>
+        </div>
+
+        {/* Icons */}
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+          {links.socialIcons.map(({ href, Icon, label }) => (
+            <a key={href} href={href} aria-label={label} target="_blank" rel="noopener noreferrer"
+               className="rounded-full border border-gray-200 p-2 hover:border-blue-600 hover:text-blue-700">
+              <Icon size={18} />
             </a>
-
-            <div className="flex flex-wrap gap-3 pt-1">
-              <SocialIcon href="https://www.linkedin.com/in/marius-andronie/" label="LinkedIn"><Linkedin size={18}/></SocialIcon>
-              <SocialIcon href="https://www.facebook.com/Devaland13" label="Facebook"><Facebook size={18}/></SocialIcon>
-              <SocialIcon href="https://www.facebook.com/dreamvillage13" label="Facebook (DreamVillage)"><Facebook size={18}/></SocialIcon>
-              <SocialIcon href="https://www.instagram.com/digitalvampire13/" label="Instagram"><Instagram size={18}/></SocialIcon>
-              <SocialIcon href="https://www.youtube.com/@devaland13" label="YouTube"><Youtube size={18}/></SocialIcon>
-              <SocialIcon href="https://github.com/MariusGithub13" label="GitHub"><Github size={18}/></SocialIcon>
-              <SocialIcon href="https://t.me/Devaland13" label="Telegram"><Send size={18}/></SocialIcon>
-              <SocialIcon href="https://api.whatsapp.com/send?phone=40721269312" label="WhatsApp"><MessageSquare size={18}/></SocialIcon>
-              <SocialIcon href="https://www.tiktok.com/@devaland13" label="TikTok"><MessageCircle size={18}/></SocialIcon>
-              <SocialIcon href="https://x.com/Carlosman1313" label="X (Twitter)"><Twitter size={18}/></SocialIcon>
-              <SocialIcon href="https://mariusandronie.com/" label="Website"><Globe size={18}/></SocialIcon>
-              <SocialIcon href="https://mariusandronie.substack.com/" label="Substack"><Rss size={18}/></SocialIcon>
-              <SocialIcon href="https://www.goodreads.com/author/show/54880532.Marius_Andronie" label="Goodreads"><BookOpen size={18}/></SocialIcon>
-              <SocialIcon href="https://www.twitch.tv/devaland13" label="Twitch"><Twitch size={18}/></SocialIcon>
-              <SocialIcon href="https://devaland.medium.com/" label="Medium"><Book size={18}/></SocialIcon>
-              <SocialIcon href="https://mastodon.social/@GreyWolf13" label="Mastodon"><Globe size={18}/></SocialIcon>
-              <SocialIcon href="https://me.dm/@devaland" label="Mastodon (me.dm)"><Globe size={18}/></SocialIcon>
-              <SocialIcon href="https://devaland.netlify.app/" label="Netlify Site"><Globe size={18}/></SocialIcon>
-              <SocialIcon href="https://devaland.vercel.app/" label="Vercel Site"><Globe size={18}/></SocialIcon>
-              <SocialIcon href="https://linktr.ee/devaland" label="Linktree"><Globe size={18}/></SocialIcon>
-              <SocialIcon href="https://smart.bio/devaland13/" label="Smart.bio"><Globe size={18}/></SocialIcon>
-              <SocialIcon href="https://devaland.start.page/" label="Start.page"><Globe size={18}/></SocialIcon>
-              <SocialIcon href="https://www.redbubble.com/people/devaland13/shop?asc=u" label="Redbubble"><Globe size={18}/></SocialIcon>
-              <SocialIcon href="https://www.teepublic.com/user/devaland?utm_source=designer&utm_medium=social&utm_campaign=fqfQzbMd8rw" label="TeePublic"><Globe size={18}/></SocialIcon>
-              <SocialIcon href="https://www.threads.com/@digitalvampire13" label="Threads"><MessageCircle size={18}/></SocialIcon>
-              <SocialIcon href="https://www.quora.com/profile/Devaland-1" label="Quora"><Globe size={18}/></SocialIcon>
-              <SocialIcon href="https://www.tumblr.com/devaland" label="Tumblr"><Globe size={18}/></SocialIcon>
-              <SocialIcon href="https://www.ctan.org/home/Devaland" label="CTAN"><Globe size={18}/></SocialIcon>
-            </div>
-          </div>
+          ))}
         </div>
 
-        {/* SEO text list */}
-        <div className="mt-6 text-center text-sm text-gray-600">
-          <div className="space-x-2">
-            <a className="hover:text-blue-600" href="https://www.linkedin.com/in/marius-andronie/">LinkedIn</a>,
-            <a className="hover:text-blue-600" href="https://www.facebook.com/Devaland13">Facebook (Devaland13)</a>,
-            <a className="hover:text-blue-600" href="https://www.facebook.com/dreamvillage13">Facebook (DreamVillage13)</a>,
-            <a className="hover:text-blue-600" href="https://www.instagram.com/digitalvampire13/">Instagram</a>,
-            <a className="hover:text-blue-600" href="https://www.youtube.com/@devaland13">YouTube</a>,
-            <a className="hover:text-blue-600" href="https://mariusandronie.com/">Personal Website</a>,
-            <a className="hover:text-blue-600" href="https://mariusandronie.substack.com/">Substack</a>,
-            <a className="hover:text-blue-600" href="https://x.com/Carlosman1313">X (Twitter)</a>,
-            <a className="hover:text-blue-600" href="https://www.goodreads.com/author/show/54880532.Marius_Andronie">Goodreads</a>,
-            <a className="hover:text-blue-600" href="https://github.com/MariusGithub13">GitHub</a>,
-            <a className="hover:text-blue-600" href="https://devaland.medium.com/">Medium</a>,
-            <a className="hover:text-blue-600" href="https://mastodon.social/@GreyWolf13">Mastodon</a>,
-            <a className="hover:text-blue-600" href="https://me.dm/@devaland">Mastodon (me.dm)</a>,
-            <a className="hover:text-blue-600" href="https://linktr.ee/devaland">Linktree</a>,
-            <a className="hover:text-blue-600" href="https://smart.bio/devaland13/">Smart.bio</a>,
-            <a className="hover:text-blue-600" href="https://devaland.start.page/">Start Page</a>,
-            <a className="hover:text-blue-600" href="https://devaland.netlify.app/">Netlify</a>,
-            <a className="hover:text-blue-600" href="https://devaland.vercel.app/">Vercel</a>,
-            <a className="hover:text-blue-600" href="https://www.redbubble.com/people/devaland13/shop?asc=u">Redbubble</a>,
-            <a className="hover:text-blue-600" href="https://www.teepublic.com/user/devaland?utm_source=designer&utm_medium=social&utm_campaign=fqfQzbMd8rw">TeePublic</a>,
-            <a className="hover:text-blue-600" href="https://www.quora.com/profile/Devaland-1">Quora</a>,
-            <a className="hover:text-blue-600" href="https://www.tumblr.com/devaland">Tumblr</a>,
-            <a className="hover:text-blue-600" href="https://www.tiktok.com/@devaland13">TikTok</a>
-          </div>
-        </div>
-      </div>
-
-      {/* legal strip */}
-      <div className="border-t">
-        <div className="mx-auto flex max-w-7xl flex-col items-center gap-2 px-4 py-6 text-xs text-gray-500 md:flex-row md:justify-between">
-          <div>
-            © {year} DEVALAND MARKETING SRL · All Rights Reserved. &nbsp;
-            C.I.F./VAT: RO50841395 · Trade Registry: ROONRC.J2024039063003
-          </div>
-          <div className="flex items-center gap-4">
-            <a href="/robots.txt" className="hover:text-blue-600">robots.txt</a>
-<a href="/sitemap.html" className="hover:text-blue-600 underline-offset-4 hover:underline">
-  HTML Sitemap
-</a>
-            <a href="/llms.txt" className="hover:text-blue-600">llms.txt</a>
+        {/* SEO text links */}
+        <div className="mt-6 text-center text-sm">
+          <div className="text-gray-700 font-medium mb-1">Follow Devaland on:</div>
+          <div className="flex flex-wrap justify-center gap-x-3 gap-y-1 text-gray-600">
+            {links.seoTextLinks.map(([label, href]) => (
+              <a key={href} href={href} target="_blank" rel="noopener noreferrer"
+                 className="underline underline-offset-4 hover:text-blue-700">
+                {label}
+              </a>
+            ))}
           </div>
         </div>
       </div>
     </footer>
   );
 }
-<p className="mt-3 text-xs text-gray-500">
-  <button
-    onClick={(e) => {
-      e.preventDefault();
-      import("../utils/openCookieSettings").then(({ openCookieSettings }) => {
-        openCookieSettings();
-      });
-    }}
-    className="underline hover:text-blue-600 transition-colors duration-200"
-  >
-    Change cookie settings
-  </button>
-</p>
