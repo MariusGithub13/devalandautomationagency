@@ -8,7 +8,6 @@ import {
   Youtube,
   Github,
   Twitch,
-  Reddit,
   Twitter,
   Globe,
   Link as LinkIcon,
@@ -16,7 +15,6 @@ import {
   PenSquare,
   Newspaper,
   BookOpen,
-  BookMarked,
   MessageCircle,
   Send,
   PhoneCall,
@@ -25,7 +23,6 @@ import {
 
 const year = new Date().getFullYear();
 
-/** All social/profile links (icons shown where available). */
 const SOCIAL_LINKS = [
   // Core profiles
   { label: "LinkedIn", href: "https://www.linkedin.com/in/marius-andronie/", Icon: Linkedin },
@@ -33,7 +30,7 @@ const SOCIAL_LINKS = [
   { label: "Facebook (DreamVillage13)", href: "https://www.facebook.com/dreamvillage13", Icon: Facebook },
   { label: "Instagram", href: "https://www.instagram.com/digitalvampire13/", Icon: Instagram },
   { label: "YouTube", href: "https://www.youtube.com/@devaland13", Icon: Youtube },
-  { label: "Pinterest", href: "https://uk.pinterest.com/freedomstar1313/", Icon: Globe }, // <— use Globe
+  { label: "Pinterest", href: "https://uk.pinterest.com/freedomstar1313/", Icon: Globe },
   { label: "Medium", href: "https://devaland.medium.com/", Icon: PenSquare },
 
   // New additions
@@ -43,7 +40,7 @@ const SOCIAL_LINKS = [
   { label: "WhatsApp", href: "https://api.whatsapp.com/send?phone=40721269312", Icon: MessageCircle },
   { label: "Substack", href: "https://mariusandronie.substack.com/", Icon: Newspaper },
   { label: "X (Twitter)", href: "https://x.com/Carlosman1313", Icon: Twitter },
-  { label: "Goodreads (Author)", href: "https://www.goodreads.com/author/show/54880532.Marius_Andronie", Icon: BookMarked },
+  { label: "Goodreads (Author)", href: "https://www.goodreads.com/author/show/54880532.Marius_Andronie", Icon: BookOpen },
   { label: "Phone", href: "tel:+40721269312", Icon: PhoneCall },
 
   // Other networks/hubs
@@ -51,7 +48,7 @@ const SOCIAL_LINKS = [
   { label: "Threads", href: "https://www.threads.com/@digitalvampire13", Icon: Globe },
   { label: "GitHub", href: "https://github.com/MariusGithub13", Icon: Github },
   { label: "Twitch", href: "https://www.twitch.tv/devaland13", Icon: Twitch },
-  { label: "Reddit", href: "https://www.reddit.com/user/Devaland13/", Icon: Reddit },
+  { label: "Reddit", href: "https://www.reddit.com/user/Devaland13/", Icon: Globe },
   { label: "Quora", href: "https://www.quora.com/profile/Devaland-1", Icon: Globe },
   { label: "Tumblr", href: "https://www.tumblr.com/devaland", Icon: Globe },
   { label: "Mastodon", href: "https://mastodon.social/@GreyWolf13", Icon: Globe, rel: "me" },
@@ -127,7 +124,12 @@ export default function Footer() {
           <p className="mx-auto max-w-4xl">
             {SOCIAL_LINKS.map(({ label, href }, i) => (
               <span key={label}>
-                <a href={href} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-blue-600">
+                <a
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline underline-offset-2 hover:text-blue-600"
+                >
                   {label}
                 </a>
                 {i < SOCIAL_LINKS.length - 1 ? ", " : "."}
