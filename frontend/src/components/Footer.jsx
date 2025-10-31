@@ -24,8 +24,8 @@ const LEGAL = {
 const links = {
   explore: [
     { to: "/", label: "Home" },
-    { to: "/klaviyo-services", label: "Klaviyo Services" },
-    { to: "/automation-services", label: "Automation Services" },
+    { to: "/klaviyo", label: "Klaviyo Services" },
+    { to: "/services", label: "Automation Services" },
     { to: "/case-studies", label: "Case Studies" },
     { to: "/about", label: "About" },
     { to: "/blog", label: "Blog" },
