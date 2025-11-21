@@ -184,6 +184,7 @@ export default function Footer() {
             <a href="/terms" className="hover:text-blue-700 underline-offset-4 hover:underline">Terms & Conditions</a>
             <a href="/cookies" className="hover:text-blue-700 underline-offset-4 hover:underline">Cookie Policy</a>
             <a href="/gdpr" className="hover:text-blue-700 underline-offset-4 hover:underline">GDPR</a>
+            <a href="http://www.anpc.gov.ro/" class="hover:text-blue-700 underline-offset-4 hover:underline" target="_blank" rel="noopener noreferrer">ANPC</a>
             <span className="text-gray-400">|</span>
             <span className="text-gray-500">
               Copyright © {new Date().getFullYear()} {LEGAL.company}.
