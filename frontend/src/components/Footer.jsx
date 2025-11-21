@@ -169,7 +169,7 @@ export default function Footer() {
     <footer className="mt-16 border-t border-gray-200/70 bg-white">
       <div className="mx-auto w-full max-w-7xl px-4 py-10 md:px-6">
         {/* Top: brand + explore + contact */}
-        <div className="grid gap-8 md:grid-cols-3">
+        <div className="grid gap-12 md:grid-cols-3 md:gap-16">
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3">
@@ -231,8 +231,8 @@ export default function Footer() {
                 </a>
               </li>
             </ul>
-              {/* ANPC/SOL/SAL logos */}
-              <div className="mt-6 flex flex-col sm:flex-row items-center sm:space-x-6 space-y-2 sm:space-y-0">
+              {/* ANPC/SOL/SAL logos - stack SAL below SOL for clearer visual order */}
+              <div className="mt-6 flex flex-col items-start space-y-3">
                 <a
                   href="https://ec.europa.eu/consumers/odr/main/index.cfm?event=main.home2.show&lng=RO"
                   target="_blank"
@@ -240,7 +240,7 @@ export default function Footer() {
                   aria-label="Open ODR (SOL) in new tab"
                   className="inline-block"
                 >
-                  <img src="/images/sol.png" alt="SOL" className="h-10 sm:h-12 object-contain rounded-sm shadow border border-gray-200 bg-white p-1" />
+                  <img src="/images/sol.png" alt="SOL" className="h-12 object-contain rounded-sm shadow border border-gray-200 bg-white p-1" />
                   <span className="sr-only">European Online Dispute Resolution (ODR) — opens in a new tab</span>
                 </a>
                 <a
@@ -250,7 +250,7 @@ export default function Footer() {
                   aria-label="Open ANPC reclamations (SAL) in new tab"
                   className="inline-block"
                 >
-                  <img src="/images/sal.png" alt="SAL" className="h-10 sm:h-12 object-contain rounded-sm shadow border border-gray-200 bg-white p-1" />
+                  <img src="/images/sal.png" alt="SAL" className="h-12 object-contain rounded-sm shadow border border-gray-200 bg-white p-1" />
                   <span className="sr-only">ANPC reclamations portal — opens in a new tab</span>
                 </a>
               </div>
