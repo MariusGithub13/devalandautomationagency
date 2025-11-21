@@ -1,0 +1,7 @@
+/*
+  Content-Security-Policy: default-src 'self' https:; script-src 'self' 'unsafe-inline' https://widgets.leadconnectorhq.com https://widget.trustpilot.com https://stcdn.trustpilot.com https://stcdn.leadconnectorhq.com https://services.leadconnectorhq.com; style-src 'self' 'unsafe-inline' https://widget.trustpilot.com https://stcdn.trustpilot.com https://stcdn.leadconnectorhq.com; img-src 'self' data: https:; connect-src 'self' https://services.leadconnectorhq.com https://api.trustpilot.com https://widget.trustpilot.com https://*.trustpilot.com; frame-src https://*.trustpilot.com https://stcdn.trustpilot.com https://services.leadconnectorhq.com; object-src 'none';
+
+  # Allow the script/style resources to be loaded by browser
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
