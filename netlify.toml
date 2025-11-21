@@ -43,7 +43,7 @@
     # - google fonts and your extension styles for inline CSS
     # - data: for inline img + fonts the widget injects
     # - frame-ancestors 'none' to prevent clickjacking
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://widgets.leadconnectorhq.com; connect-src 'self' https://widgets.leadconnectorhq.com https://services.leadconnectorhq.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://gs-extension-embeds-final.vercel.app; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; frame-ancestors 'none';"
+    Content-Security-Policy = "default-src 'self' https:; script-src 'self' 'unsafe-inline' https://widgets.leadconnectorhq.com https://widget.trustpilot.com https://stcdn.trustpilot.com https://stcdn.leadconnectorhq.com https://services.leadconnectorhq.com; connect-src 'self' https://widgets.leadconnectorhq.com https://services.leadconnectorhq.com https://api.trustpilot.com https://widget.trustpilot.com https://*.trustpilot.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://gs-extension-embeds-final.vercel.app https://widget.trustpilot.com https://stcdn.trustpilot.com https://stcdn.leadconnectorhq.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: https://stcdn.trustpilot.com; frame-src https://*.trustpilot.com https://stcdn.trustpilot.com https://stcdn.leadconnectorhq.com; frame-ancestors 'none';"
 
     # Extra hardening
     Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=()"
