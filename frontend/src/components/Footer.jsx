@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { openCookieSettings } from "../utils/openCookieSettings";
 import {
   Linkedin, Facebook, Instagram, Youtube, Github, Twitch,
@@ -118,6 +118,17 @@ function InlineLogo() {
 }
 
 export default function Footer() {
+  useEffect(() => {
+    const selector = 'script[src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js"]';
+    if (!document.querySelector(selector)) {
+      const s = document.createElement("script");
+      s.type = "text/javascript";
+      s.src = "//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js";
+      s.async = true;
+      document.head.appendChild(s);
+    }
+  }, []);
+
   return (
     <footer className="mt-16 border-t border-gray-200/70 bg-white">
       <div className="mx-auto w-full max-w-7xl px-4 py-10 md:px-6">
@@ -139,6 +150,20 @@ export default function Footer() {
             >
               Change cookie settings
             </button>
+            {/* Trustpilot Review Collector widget (TrustBox) */}
+            <div className="mt-4">
+              <div
+                className="trustpilot-widget"
+                data-locale="en-US"
+                data-template-id="56278e9abfbbba0bdcd568bc"
+                data-businessunit-id="68d4dd4d6b90a6eb23a0d4f2"
+                data-style-height="52px"
+                data-style-width="100%"
+                data-token="a130c89b-6620-42ad-99b5-9162b70c1229"
+              >
+                <a href="https://www.trustpilot.com/review/devaland.com" target="_blank" rel="noopener noreferrer">Trustpilot</a>
+              </div>
+            </div>
           </div>
 
           {/* Explore */}
