@@ -45,9 +45,9 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3 hover-scale">
             <img 
-              src={companyData.logo} 
+              src="/images/Devaland-Logo.jpg" 
               alt={companyData.name}
-              className="h-8 lg:h-10 w-auto object-contain"
+              className="h-16 lg:h-20 w-auto object-contain"
             />
             <span className="text-xl font-display text-gray-900">{companyData.name}</span>
           </Link>

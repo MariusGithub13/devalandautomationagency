@@ -215,7 +215,7 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3">
-              <img src="/logo192.png" alt="Devaland logo" className="h-14 w-14 rounded-full border border-gray-200 bg-white shadow" />
+              <img src="/images/Devaland-Logo.jpg" alt="Devaland logo" className="h-20 w-20 md:h-24 md:w-24 rounded-full border border-gray-200 bg-white shadow object-contain" />
               <div>
                 <div className="font-semibold text-gray-900">{brand.name}</div>
                 <div className="text-sm text-gray-600">{brand.tagline}</div>
