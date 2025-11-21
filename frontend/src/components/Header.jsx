@@ -44,11 +44,8 @@ const Header = () => {
         <div className="flex justify-between items-center h-16 lg:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3 hover-scale">
-            <img 
-              src="/images/Devaland-Logo.jpg" 
-              alt={companyData.name}
-              className="h-16 lg:h-20 w-auto object-contain"
-            />
+            {/** header image with fallback to inline SVG if loading fails */}
+            <HeaderLogo />
             <span className="text-xl font-display text-gray-900">{companyData.name}</span>
           </Link>
 
@@ -130,3 +127,27 @@ const Header = () => {
 };
 
 export default Header;
+
+function HeaderLogo() {
+  const [failed, setFailed] = useState(false);
+
+  if (failed) {
+    return (
+      <svg width="48" height="48" viewBox="0 0 24 24" className="text-blue-600">
+        <circle cx="12" cy="12" r="10" fill="currentColor" opacity="0.12" />
+        <circle cx="12" cy="12" r="3.5" stroke="currentColor" strokeWidth="2" fill="none" />
+        <path d="M3 12c3-4 6-6 9-6s6 2 9 6c-3 4-6 6-9 6s-6-2-9-6z" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+      </svg>
+    );
+  }
+
+  return (
+    // eslint-disable-next-line jsx-a11y/img-redundant-alt
+    <img
+      src="/images/Devaland-Logo.jpg"
+      alt="Devaland logo"
+      className="h-16 lg:h-20 w-auto object-contain"
+      onError={() => setFailed(true)}
+    />
+  );
+}

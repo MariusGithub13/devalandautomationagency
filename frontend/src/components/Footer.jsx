@@ -215,7 +215,7 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3">
-              <img src="/images/Devaland-Logo.jpg" alt="Devaland logo" className="h-20 w-20 md:h-24 md:w-24 rounded-full border border-gray-200 bg-white shadow object-contain" />
+              <FooterLogo />
               <div>
                 <div className="font-semibold text-gray-900">{brand.name}</div>
                 <div className="text-sm text-gray-600">{brand.tagline}</div>
@@ -359,5 +359,29 @@ export default function Footer() {
         {/* ...existing code... */}
       </div>
     </footer>
+  );
+}
+
+function FooterLogo() {
+  const [failed, setFailed] = React.useState(false);
+
+  if (failed) {
+    return (
+      <svg width="56" height="56" viewBox="0 0 24 24" className="text-blue-600">
+        <circle cx="12" cy="12" r="10" fill="currentColor" opacity="0.12" />
+        <circle cx="12" cy="12" r="3.5" stroke="currentColor" strokeWidth="2" fill="none" />
+        <path d="M3 12c3-4 6-6 9-6s6 2 9 6c-3 4-6 6-9 6s-6-2-9-6z" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+      </svg>
+    );
+  }
+
+  return (
+    // eslint-disable-next-line jsx-a11y/img-redundant-alt
+    <img
+      src="/images/Devaland-Logo.jpg"
+      alt="Devaland logo"
+      className="h-20 w-20 md:h-24 md:w-24 rounded-full border border-gray-200 bg-white shadow object-contain"
+      onError={() => setFailed(true)}
+    />
   );
 }
