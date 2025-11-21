@@ -175,12 +175,24 @@ export default function Footer() {
               </li>
             </ul>
               {/* ANPC/SOL/SAL logos */}
-              <div className="mt-6 flex flex-row items-center space-x-4">
-                <a href="https://ec.europa.eu/consumers/odr/main/index.cfm?event=main.home2.show&lng=RO" target="_blank" rel="noopener noreferrer" className="inline-block">
-                  <img src="/images/sol.png" alt="SOL" className="h-10 md:h-12 object-contain" />
+              <div className="mt-6 flex flex-col md:flex-row items-center md:space-x-4 space-y-2 md:space-y-0">
+                <a
+                  href="https://ec.europa.eu/consumers/odr/main/index.cfm?event=main.home2.show&lng=RO"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Open ODR (SOL) in new tab"
+                  className="inline-block"
+                >
+                  <img src="/images/sol.png" alt="SOL" className="h-10 md:h-12 object-contain rounded-sm shadow-sm border border-gray-100 bg-white" />
                 </a>
-                <a href="https://reclamatiisal.anpc.ro/" target="_blank" rel="noopener noreferrer" className="inline-block">
-                  <img src="/images/sal.png" alt="SAL" className="h-10 md:h-12 object-contain" />
+                <a
+                  href="https://reclamatiisal.anpc.ro/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Open ANPC reclamations (SAL) in new tab"
+                  className="inline-block"
+                >
+                  <img src="/images/sal.png" alt="SAL" className="h-10 md:h-12 object-contain rounded-sm shadow-sm border border-gray-100 bg-white" />
                 </a>
               </div>
           </div>
