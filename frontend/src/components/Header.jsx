@@ -144,7 +144,7 @@ function HeaderLogo() {
   return (
     // eslint-disable-next-line jsx-a11y/img-redundant-alt
     <img
-      src="/images/Devaland-Logo.jpg"
+      src={process.env.PUBLIC_URL + "/images/Devaland-Logo.jpg"}
       alt="Devaland logo"
       className="h-16 lg:h-20 w-auto object-contain"
       onError={() => setFailed(true)}
