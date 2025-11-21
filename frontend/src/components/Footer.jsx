@@ -118,6 +118,8 @@ function InlineLogo() {
   );
 }
 
+import LogoImg from '../assets/Devaland-Logo.jpg';
+
 export default function Footer() {
   // Trustpilot script is included in `public/index.html` for Netlify compatibility.
   // Ensure Trustpilot TrustBox initializes even if the script loaded before/after React mount.
@@ -378,7 +380,7 @@ function FooterLogo() {
   return (
     // eslint-disable-next-line jsx-a11y/img-redundant-alt
     <img
-      src={process.env.PUBLIC_URL + "/images/Devaland-Logo.jpg"}
+      src={LogoImg}
       alt="Devaland logo"
       className="h-20 w-20 md:h-24 md:w-24 rounded-full border border-gray-200 bg-white shadow object-contain"
       onError={() => setFailed(true)}

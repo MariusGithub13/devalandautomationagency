@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import LogoImg from '../assets/Devaland-Logo.jpg';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { Button } from './ui/button';
@@ -144,7 +145,7 @@ function HeaderLogo() {
   return (
     // eslint-disable-next-line jsx-a11y/img-redundant-alt
     <img
-      src={process.env.PUBLIC_URL + "/images/Devaland-Logo.jpg"}
+      src={LogoImg}
       alt="Devaland logo"
       className="h-16 lg:h-20 w-auto object-contain"
       onError={() => setFailed(true)}
