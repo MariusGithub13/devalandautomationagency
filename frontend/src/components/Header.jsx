@@ -42,7 +42,7 @@ const Header = () => {
       isScrolled ? 'bg-white shadow-lg border-b border-gray-200/20' : 'bg-white'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20 lg:h-24">
+        <div className="flex justify-between items-center h-24 lg:h-28">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3 hover-scale">
             {/** header image with fallback to inline SVG if loading fails */}
@@ -51,12 +51,12 @@ const Header = () => {
           </Link>
 
           {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center space-x-6">
+            <nav className="hidden lg:flex items-center space-x-8">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 to={item.href}
-                className={`relative px-3 py-2 text-base lg:text-lg font-medium transition-colors duration-200 ${
+                className={`relative px-3 py-2 text-sm lg:text-base font-medium transition-colors duration-200 ${
                   isActive(item.href)
                     ? 'text-blue-600'
                     : 'text-gray-600 hover:text-gray-900'
@@ -93,7 +93,7 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="lg:hidden absolute top-full left-0 right-0 bg-white border-b border-gray-200 shadow-lg">
+          <div className="lg:hidden fixed top-24 left-0 right-0 bg-white border-b border-gray-200 shadow-lg z-40 max-h-[calc(100vh-6rem)] overflow-y-auto">
             <nav className="px-4 py-6 space-y-4">
               {navigation.map((item) => (
                 <Link
