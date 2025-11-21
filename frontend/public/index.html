@@ -426,6 +426,20 @@
           if (banner) banner.style.display = "block";
         }
 
+        // Expose a function so UI elsewhere (footer button) can re-open the banner
+        window.showGdprBanner = function () {
+          try {
+            if (banner) banner.style.display = "block";
+          } catch (e) {}
+        };
+
+        // Listen for a custom event dispatched by the app to open cookie settings
+        window.addEventListener("openCookieSettings", function () {
+          try {
+            if (typeof window.showGdprBanner === "function") window.showGdprBanner();
+          } catch (e) {}
+        });
+
         if (btnReject) {
           btnReject.addEventListener("click", function () {
             localStorage.setItem(marketingKey, "denied");

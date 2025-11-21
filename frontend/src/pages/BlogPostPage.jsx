@@ -98,8 +98,28 @@ const BlogPostPage = () => {
 
               {/* Article Body */}
               <div className="prose prose-lg max-w-none">
-                <div className="whitespace-pre-line leading-relaxed">
-                  {post.content}
+                <div className="leading-relaxed">
+                  {(() => {
+                    const markdownToHtml = (text) => {
+                      if (!text) return '';
+                      // Convert markdown-like H2 headings to HTML with ids
+                      let html = text.replace(/^## (.+)$/gm, (_, m) => {
+                        const id = m.toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, '-');
+                        return `<h2 id="${id}">${m}</h2>`;
+                      });
+                      // Convert bold markers **text** to <strong>
+                      html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+                      // Preserve paragraph breaks
+                      html = html.replace(/\n\n/g, '<br/><br/>');
+                      return html;
+                    };
+
+                    const contentHtml = markdownToHtml(post.content);
+
+                    return (
+                      <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
+                    );
+                  })()}
                 </div>
               </div>
 
@@ -170,22 +190,47 @@ const BlogPostPage = () => {
             <div className="lg:col-span-1">
               <div className="sticky top-8">
                 {/* Table of Contents (for long articles) */}
-                {post.content.includes('##') && (
-                  <div className="bg-gray-50 rounded-lg p-6 mb-8">
-                    <h3 className="font-semibold text-gray-900 mb-4">Table of Contents</h3>
-                    <nav className="space-y-2">
-                      {post.content.match(/## .+/g)?.slice(0, 8).map((heading, index) => (
-                        <a 
-                          key={index}
-                          href={`#${heading.replace('## ', '').toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, '-')}`}
-                          className="block text-sm text-gray-600 hover:text-blue-600 transition-colors duration-200"
-                        >
-                          {heading.replace('## ', '')}
-                        </a>
-                      ))}
-                    </nav>
-                  </div>
-                )}
+                {(post.content.includes('##') || post.content.includes('<h2')) && (() => {
+                  const markdownToHtml = (text) => {
+                    if (!text) return '';
+                    return text.replace(/^## (.+)$/gm, (_, m) => {
+                      const id = m.toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, '-');
+                      return `<h2 id="${id}">${m}</h2>`;
+                    }).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n\n/g, '<br/><br/>');
+                  };
+
+                  const contentHtml = markdownToHtml(post.content);
+                  const headings = [];
+                  try {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(contentHtml, 'text/html');
+                    const hs = Array.from(doc.querySelectorAll('h2'));
+                    hs.slice(0, 8).forEach(h => headings.push({ text: h.textContent, id: h.id || h.textContent.toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, '-') }));
+                  } catch (e) {
+                    // fallback to simple regex if DOMParser is unavailable
+                    const matches = post.content.match(/## .+/g) || [];
+                    matches.slice(0, 8).forEach(m => headings.push({ text: m.replace('## ', ''), id: m.replace('## ', '').toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, '-') }));
+                  }
+
+                  if (headings.length === 0) return null;
+
+                  return (
+                    <div className="bg-gray-50 rounded-lg p-6 mb-8">
+                      <h3 className="font-semibold text-gray-900 mb-4">Table of Contents</h3>
+                      <nav className="space-y-2">
+                        {headings.map((heading, index) => (
+                          <a
+                            key={index}
+                            href={`#${heading.id}`}
+                            className="block text-sm text-gray-600 hover:text-blue-600 transition-colors duration-200"
+                          >
+                            {heading.text}
+                          </a>
+                        ))}
+                      </nav>
+                    </div>
+                  );
+                })()}
 
                 {/* Related Articles */}
                 <div className="bg-white border border-gray-200 rounded-lg p-6">
