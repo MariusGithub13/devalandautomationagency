@@ -118,16 +118,74 @@ function InlineLogo() {
 }
 
 export default function Footer() {
-  useEffect(() => {
-    const selector = 'script[src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js"]';
-    if (!document.querySelector(selector)) {
-      const s = document.createElement("script");
-      s.type = "text/javascript";
-      s.src = "//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js";
-      s.async = true;
-      document.head.appendChild(s);
+  // Trustpilot script is included in `public/index.html` for Netlify compatibility.
+  // Ensure Trustpilot TrustBox initializes even if the script loaded before/after React mount.
+  React.useEffect(() => {
+    let attempts = 0;
+    const maxAttempts = 10;
+    const delay = 500; // ms
+
+    function tryInit() {
+      attempts += 1;
+      const widgets = document.querySelectorAll('.trustpilot-widget');
+      if (typeof window.Trustpilot !== 'undefined') {
+        try {
+          // Prefer available API methods (different versions expose different names)
+          if (typeof window.Trustpilot.loadFromElements === 'function') {
+            window.Trustpilot.loadFromElements(widgets);
+            return;
+          }
+          if (typeof window.Trustpilot.loadFromElement === 'function') {
+            widgets.forEach((el) => window.Trustpilot.loadFromElement(el));
+            return;
+          }
+          if (typeof window.Trustpilot.init === 'function') {
+            window.Trustpilot.init();
+            return;
+          }
+        } catch (err) {
+          // ignore and retry
+          // eslint-disable-next-line no-console
+          console.warn('Trustpilot init error, will retry', err);
+        }
+      }
+
+      if (attempts < maxAttempts) {
+        setTimeout(tryInit, delay);
+      } else {
+        // eslint-disable-next-line no-console
+        console.warn('Trustpilot widget failed to initialize after multiple attempts');
+      }
     }
+
+    tryInit();
   }, []);
+
+  // Diagnostic wrapper for cookie settings control: logs which vendor API is available
+  function handleOpenCookieSettings(e) {
+    try {
+      const hasConsentManager = typeof window.consentManager !== "undefined" && typeof window.consentManager.open === "function";
+      const hasGhl = typeof window.GHL !== "undefined" && window.GHL && typeof window.GHL.consent !== "undefined" && typeof window.GHL.consent.open === "function";
+      const hasShowGdprBanner = typeof window.showGdprBanner === "function";
+      // eslint-disable-next-line no-console
+      console.info("Cookie settings opener diagnostics:", {
+        consentManager: hasConsentManager,
+        ghlConsent: hasGhl,
+        showGdprBanner: hasShowGdprBanner,
+      });
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.warn("Error while detecting cookie settings APIs", err);
+    }
+
+    // Preserve existing behaviour (openCookieSettings does vendor fallbacks)
+    try {
+      openCookieSettings(e);
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error("openCookieSettings threw an error:", err);
+    }
+  }
 
   return (
     <footer className="mt-16 border-t border-gray-200/70 bg-white">
@@ -145,23 +203,25 @@ export default function Footer() {
             </div>
             <button
               type="button"
-              onClick={openCookieSettings}
+              onClick={handleOpenCookieSettings}
               className="mt-4 inline-flex items-center gap-1 text-sm underline underline-offset-4 text-gray-600 hover:text-blue-700"
             >
               Change cookie settings
             </button>
             {/* Trustpilot Review Collector widget (TrustBox) */}
             <div className="mt-4">
-              <div
-                className="trustpilot-widget"
-                data-locale="en-US"
-                data-template-id="56278e9abfbbba0bdcd568bc"
-                data-businessunit-id="68d4dd4d6b90a6eb23a0d4f2"
-                data-style-height="52px"
-                data-style-width="100%"
-                data-token="a130c89b-6620-42ad-99b5-9162b70c1229"
-              >
-                <a href="https://www.trustpilot.com/review/devaland.com" target="_blank" rel="noopener noreferrer">Trustpilot</a>
+              <div className="p-2 max-w-xs rounded-md border border-gray-100 bg-white">
+                <div
+                  className="trustpilot-widget"
+                  data-locale="en-US"
+                  data-template-id="56278e9abfbbba0bdcd568bc"
+                  data-businessunit-id="68d4dd4d6b90a6eb23a0d4f2"
+                  data-style-height="52px"
+                  data-style-width="100%"
+                  data-token="a130c89b-6620-42ad-99b5-9162b70c1229"
+                >
+                  <a href="https://www.trustpilot.com/review/devaland.com" target="_blank" rel="noopener noreferrer">Trustpilot</a>
+                </div>
               </div>
             </div>
           </div>
