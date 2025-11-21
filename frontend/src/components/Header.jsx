@@ -42,7 +42,7 @@ const Header = () => {
       isScrolled ? 'bg-white shadow-lg border-b border-gray-200/20' : 'bg-white'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16 lg:h-20">
+        <div className="flex justify-between items-center h-20 lg:h-24">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3 hover-scale">
             {/** header image with fallback to inline SVG if loading fails */}
@@ -51,12 +51,12 @@ const Header = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-6">
+            <nav className="hidden lg:flex items-center space-x-6">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 to={item.href}
-                className={`relative px-3 py-2 text-sm font-medium transition-colors duration-200 ${
+                className={`relative px-3 py-2 text-base lg:text-lg font-medium transition-colors duration-200 ${
                   isActive(item.href)
                     ? 'text-blue-600'
                     : 'text-gray-600 hover:text-gray-900'
