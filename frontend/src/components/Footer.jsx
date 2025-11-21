@@ -175,12 +175,12 @@ export default function Footer() {
               </li>
             </ul>
               {/* ANPC/SOL/SAL logos */}
-              <div className="mt-6 flex gap-4 items-center">
+              <div className="mt-6 flex flex-row items-center space-x-4">
                 <a href="https://ec.europa.eu/consumers/odr/main/index.cfm?event=main.home2.show&lng=RO" target="_blank" rel="noopener noreferrer" className="inline-block">
-                  <img src="/images/sol.png" alt="SOL" className="h-12 object-contain" />
+                  <img src="/images/sol.png" alt="SOL" className="h-10 md:h-12 object-contain" />
                 </a>
                 <a href="https://reclamatiisal.anpc.ro/" target="_blank" rel="noopener noreferrer" className="inline-block">
-                  <img src="/images/sal.png" alt="SAL" className="h-12 object-contain" />
+                  <img src="/images/sal.png" alt="SAL" className="h-10 md:h-12 object-contain" />
                 </a>
               </div>
           </div>
