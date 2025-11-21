@@ -228,19 +228,20 @@ export default function Footer() {
             >
               Change cookie settings
             </button>
-            {/* Trustpilot Review Collector widget (TrustBox) */}
-            <div className="mt-4">
-              <div className="p-2 max-w-xs rounded-md border border-gray-100 bg-white">
+            {/* Trustpilot Review Collector widget (TrustBox) - visually prominent */}
+            <div className="mt-8 flex flex-col items-center justify-center">
+              <div className="w-full max-w-lg px-6 py-8 rounded-xl border border-gray-100 bg-white shadow-lg flex flex-col items-center">
+                <div className="mb-4 text-2xl font-semibold text-gray-900 text-center">See what our customers say</div>
                 <div
                   className="trustpilot-widget"
                   data-locale="en-US"
                   data-template-id="56278e9abfbbba0bdcd568bc"
                   data-businessunit-id="68d4dd4d6b90a6eb23a0d4f2"
-                  data-style-height="52px"
-                  data-style-width="100%"
+                  data-style-height="80px"
+                  data-style-width="400px"
                   data-token="a130c89b-6620-42ad-99b5-9162b70c1229"
                 >
-                  <a href="https://www.trustpilot.com/review/devaland.com" target="_blank" rel="noopener noreferrer">Trustpilot</a>
+                  <a href="https://www.trustpilot.com/review/devaland.com" target="_blank" rel="noopener noreferrer" className="block text-center text-lg font-bold text-gray-900">Trustpilot</a>
                 </div>
               </div>
             </div>
@@ -305,20 +306,22 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Legal row */}
+        {/* Legal row - centered tabs */}
         <div className="mt-8 text-sm text-gray-600">
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 w-full text-center">
             <a href="/privacy" className="hover:text-blue-700 underline-offset-4 hover:underline">Privacy Policy</a>
             <a href="/terms" className="hover:text-blue-700 underline-offset-4 hover:underline">Terms & Conditions</a>
             <a href="/cookies" className="hover:text-blue-700 underline-offset-4 hover:underline">Cookie Policy</a>
             <a href="/gdpr" className="hover:text-blue-700 underline-offset-4 hover:underline">GDPR</a>
-              <a href="http://www.anpc.gov.ro/" className="hover:text-blue-700 underline-offset-4 hover:underline" target="_blank" rel="noopener noreferrer">ANPC</a>
-            <span className="text-gray-400">|</span>
-            <span className="text-gray-500">
-              Copyright © {new Date().getFullYear()} {LEGAL.company}.
-              &nbsp;C.I.F./VAT: {LEGAL.vat}. Trade Registry: {LEGAL.trade}.
-            </span>
+            <a href="http://www.anpc.gov.ro/" className="hover:text-blue-700 underline-offset-4 hover:underline" target="_blank" rel="noopener noreferrer">ANPC</a>
+            <a href="https://ec.europa.eu/consumers/odr/main/index.cfm?event=main.home2.show&lng=RO" className="hover:text-blue-700 underline-offset-4 hover:underline" target="_blank" rel="noopener noreferrer">ANPC SOL</a>
+            <a href="https://reclamatiisal.anpc.ro/" className="hover:text-blue-700 underline-offset-4 hover:underline" target="_blank" rel="noopener noreferrer">ANPC SAL</a>
           </div>
+        </div>
+
+        {/* Copyright - move to very bottom, centered */}
+        <div className="mt-4 text-center text-xs text-gray-500 w-full">
+          Copyright © {new Date().getFullYear()} {LEGAL.company}. &nbsp;C.I.F./VAT: {LEGAL.vat}. Trade Registry: {LEGAL.trade}.
         </div>
 
         {/* Icons */}
