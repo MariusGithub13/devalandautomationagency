@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { openCookieSettings } from "../utils/openCookieSettings";
+import { toast } from "../hooks/use-toast";
 import {
   Linkedin, Facebook, Instagram, Youtube, Github, Twitch,
   Globe, Phone, Mail, MapPin, MessageCircle, MessageSquare, Megaphone, Link
@@ -176,6 +177,25 @@ export default function Footer() {
     } catch (err) {
       // eslint-disable-next-line no-console
       console.warn("Error while detecting cookie settings APIs", err);
+    }
+
+    // Show an on-page ephemeral toast for non-dev users with the diagnostics
+    try {
+      const t = toast({
+        title: "Cookie settings",
+        description: `Detected: consentManager=${hasConsentManager}, GHL=${hasGhl}, showGdprBanner=${hasShowGdprBanner}`,
+      });
+      // auto-dismiss visually after 6s for ephemeral UX
+      setTimeout(() => {
+        try {
+          t.dismiss();
+        } catch (err) {
+          // ignore
+        }
+      }, 6000);
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.warn("Failed to show on-page diagnostic toast", err);
     }
 
     // Preserve existing behaviour (openCookieSettings does vendor fallbacks)
