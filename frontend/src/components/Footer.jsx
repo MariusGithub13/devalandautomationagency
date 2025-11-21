@@ -174,6 +174,11 @@ export default function Footer() {
                 </a>
               </li>
             </ul>
+              {/* ANPC/SOL/SAL logos */}
+              <div className="mt-6 flex gap-4 items-center">
+                <img src="/images/sol.png" alt="SOL" className="h-12 object-contain" />
+                <img src="/images/sal.png" alt="SAL" className="h-12 object-contain" />
+              </div>
           </div>
         </div>
 
@@ -184,7 +189,7 @@ export default function Footer() {
             <a href="/terms" className="hover:text-blue-700 underline-offset-4 hover:underline">Terms & Conditions</a>
             <a href="/cookies" className="hover:text-blue-700 underline-offset-4 hover:underline">Cookie Policy</a>
             <a href="/gdpr" className="hover:text-blue-700 underline-offset-4 hover:underline">GDPR</a>
-            <a href="http://www.anpc.gov.ro/" class="hover:text-blue-700 underline-offset-4 hover:underline" target="_blank" rel="noopener noreferrer">ANPC</a>
+              <a href="http://www.anpc.gov.ro/" className="hover:text-blue-700 underline-offset-4 hover:underline" target="_blank" rel="noopener noreferrer">ANPC</a>
             <span className="text-gray-400">|</span>
             <span className="text-gray-500">
               Copyright © {new Date().getFullYear()} {LEGAL.company}.
@@ -215,6 +220,8 @@ export default function Footer() {
             ))}
           </div>
         </div>
+
+        {/* ...existing code... */}
       </div>
     </footer>
   );
