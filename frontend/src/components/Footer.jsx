@@ -7,7 +7,7 @@ import {
 } from "lucide-react";
 
 const brand = {
-  name: "Devaland",
+  name: "Devaland Automation Agency",
   tagline: "Marketing Automation & Klaviyo Specialists",
 };
 
@@ -215,19 +215,28 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3">
-              <InlineLogo />
+              <img src="/logo192.png" alt="Devaland logo" className="h-14 w-14 rounded-full border border-gray-200 bg-white shadow" />
               <div>
                 <div className="font-semibold text-gray-900">{brand.name}</div>
                 <div className="text-sm text-gray-600">{brand.tagline}</div>
               </div>
             </div>
-            <button
-              type="button"
-              onClick={handleOpenCookieSettings}
-              className="mt-4 inline-flex items-center gap-1 text-sm underline underline-offset-4 text-gray-600 hover:text-blue-700"
-            >
-              Change cookie settings
-            </button>
+            {/* ...existing code... */}
+                    {/* Copyright - move to very bottom, centered */}
+                    <div className="mt-4 text-center text-xs text-gray-500 w-full">
+                      Copyright © {new Date().getFullYear()} {LEGAL.company}. &nbsp;C.I.F./VAT: {LEGAL.vat}. Trade Registry: {LEGAL.trade}.
+                    </div>
+
+                    {/* Change cookie settings - move to very bottom, centered */}
+                    <div className="mt-2 mb-2 w-full flex justify-center">
+                      <button
+                        type="button"
+                        onClick={handleOpenCookieSettings}
+                        className="inline-flex items-center gap-1 text-sm underline underline-offset-4 text-gray-600 hover:text-blue-700"
+                      >
+                        Change cookie settings
+                      </button>
+                    </div>
             {/* Trustpilot Review Collector widget (TrustBox) - visually prominent */}
             <div className="mt-8 flex flex-col items-center justify-center">
               <div className="w-full max-w-lg px-6 py-8 rounded-xl border border-gray-100 bg-white shadow-lg flex flex-col items-center">
