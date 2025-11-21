@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
-import { openCookieSettings } from "../utils/openCookieSettings";
-import { toast } from "../hooks/use-toast";
+// cookie settings removed — keep footer clean
 import {
   Linkedin, Facebook, Instagram, Youtube, Github, Twitch,
   Globe, Phone, Mail, MapPin, MessageCircle, MessageSquare, Megaphone, Link
@@ -164,50 +163,7 @@ export default function Footer() {
     tryInit();
   }, []);
 
-  // Diagnostic wrapper for cookie settings control: logs which vendor API is available
-  function handleOpenCookieSettings(e) {
-    try {
-      const hasConsentManager = typeof window.consentManager !== "undefined" && typeof window.consentManager.open === "function";
-      const hasGhl = typeof window.GHL !== "undefined" && window.GHL && typeof window.GHL.consent !== "undefined" && typeof window.GHL.consent.open === "function";
-      const hasShowGdprBanner = typeof window.showGdprBanner === "function";
-      // eslint-disable-next-line no-console
-      console.info("Cookie settings opener diagnostics:", {
-        consentManager: hasConsentManager,
-        ghlConsent: hasGhl,
-        showGdprBanner: hasShowGdprBanner,
-      });
-    } catch (err) {
-      // eslint-disable-next-line no-console
-      console.warn("Error while detecting cookie settings APIs", err);
-    }
-
-    // Show an on-page ephemeral toast for non-dev users with the diagnostics
-    try {
-      const t = toast({
-        title: "Cookie settings",
-        description: `Detected: consentManager=${hasConsentManager}, GHL=${hasGhl}, showGdprBanner=${hasShowGdprBanner}`,
-      });
-      // auto-dismiss visually after 6s for ephemeral UX
-      setTimeout(() => {
-        try {
-          t.dismiss();
-        } catch (err) {
-          // ignore
-        }
-      }, 6000);
-    } catch (err) {
-      // eslint-disable-next-line no-console
-      console.warn("Failed to show on-page diagnostic toast", err);
-    }
-
-    // Preserve existing behaviour (openCookieSettings does vendor fallbacks)
-    try {
-      openCookieSettings(e);
-    } catch (err) {
-      // eslint-disable-next-line no-console
-      console.error("openCookieSettings threw an error:", err);
-    }
-  }
+  // cookie settings control removed to declutter footer
 
   return (
     <footer className="mt-16 border-t border-gray-200/70 bg-white">
@@ -223,22 +179,6 @@ export default function Footer() {
                 <div className="text-sm text-gray-600">{brand.tagline}</div>
               </div>
             </div>
-            {/* ...existing code... */}
-                    {/* Copyright - move to very bottom, centered */}
-                    <div className="mt-4 text-center text-xs text-gray-500 w-full">
-                      Copyright © {new Date().getFullYear()} {LEGAL.company}. &nbsp;C.I.F./VAT: {LEGAL.vat}. Trade Registry: {LEGAL.trade}.
-                    </div>
-
-                    {/* Change cookie settings - move to very bottom, centered */}
-                    <div className="mt-2 mb-2 w-full flex justify-center">
-                      <button
-                        type="button"
-                        onClick={handleOpenCookieSettings}
-                        className="inline-flex items-center gap-1 text-sm underline underline-offset-4 text-gray-600 hover:text-blue-700"
-                      >
-                        Change cookie settings
-                      </button>
-                    </div>
             {/* Trustpilot Review Collector widget (TrustBox) - visually prominent */}
             <div className="mt-8 flex flex-col items-center justify-center">
               <div className="w-full max-w-lg px-6 py-8 rounded-xl border border-gray-100 bg-white shadow-lg flex flex-col items-center">
@@ -331,7 +271,7 @@ export default function Footer() {
         </div>
 
         {/* Copyright - move to very bottom, centered */}
-        <div className="mt-4 text-center text-xs text-gray-500 w-full">
+          <div className="mt-12 text-center text-xs text-gray-500 w-full">
           Copyright © {new Date().getFullYear()} {LEGAL.company}. &nbsp;C.I.F./VAT: {LEGAL.vat}. Trade Registry: {LEGAL.trade}.
         </div>
 
