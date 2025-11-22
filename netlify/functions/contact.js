@@ -1,5 +1,19 @@
 const nodemailer = require('nodemailer');
 
+// Helper function to get readable project type label
+function getProjectTypeLabel(value) {
+  const projectTypes = {
+    'klaviyo-shopify': 'Klaviyo Automation Services for Growing Shopify Store',
+    'rpa': 'Robotic Process Automation (RPA) Development',
+    'workflow': 'Workflow Automation',
+    'ai': 'Voice AI Agents & Chatbot Solutions',
+    'integration': 'System Integration',
+    'consulting': 'Automation Consulting',
+    'other': 'Other'
+  };
+  return projectTypes[value] || value;
+}
+
 exports.handler = async (event, context) => {
   // Handle CORS preflight
   if (event.httpMethod === 'OPTIONS') {
@@ -141,7 +155,7 @@ async function sendEmailNotification(formData) {
               <p><strong>Email:</strong> <a href="mailto:${formData.email}">${formData.email}</a></p>
               <p><strong>Company:</strong> ${formData.company}</p>
               ${formData.phone ? `<p><strong>Phone:</strong> ${formData.phone}</p>` : ''}
-              ${formData.projectType ? `<p><strong>Project Type:</strong> ${formData.projectType}</p>` : ''}
+              ${formData.projectType ? `<p><strong>Project Type:</strong> ${getProjectTypeLabel(formData.projectType)}</p>` : ''}
               ${formData.budget ? `<p><strong>Budget:</strong> ${formData.budget}</p>` : ''}
               ${formData.shopifyStore ? `<p><strong>Shopify Store:</strong> ${formData.shopifyStore}</p>` : ''}
               ${formData.emailListSize ? `<p><strong>Email List Size:</strong> ${formData.emailListSize}</p>` : ''}
@@ -219,7 +233,7 @@ async function sendConfirmationEmail(formData) {
               <h3 style="color: #1e40af; margin-top: 0;">Your Submission Details:</h3>
               <p><strong>Company:</strong> ${formData.company}</p>
               ${formData.phone ? `<p><strong>Phone:</strong> ${formData.phone}</p>` : ''}
-              ${formData.projectType ? `<p><strong>Project Type:</strong> ${formData.projectType}</p>` : ''}
+              ${formData.projectType ? `<p><strong>Project Type:</strong> ${getProjectTypeLabel(formData.projectType)}</p>` : ''}
               ${formData.budget ? `<p><strong>Budget:</strong> ${formData.budget}</p>` : ''}
             </div>
             
