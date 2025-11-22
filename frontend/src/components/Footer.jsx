@@ -288,8 +288,8 @@ export default function Footer() {
           <div className="flex flex-wrap items-center justify-center gap-3">
             {links.socialIcons.map(({ href, Icon, label, color }) => (
               <a key={href} href={href} aria-label={label} target="_blank" rel="noopener noreferrer"
-                 className={`rounded-full border border-gray-200 p-2 transition-all duration-300 ${color || 'hover:border-blue-600 hover:text-blue-700'}`}>
-                <Icon size={18} />
+                 className={`rounded-full bg-gray-100 border-2 border-gray-200 p-2.5 text-gray-700 transition-all duration-300 ${color || 'hover:bg-blue-600 hover:text-white hover:border-blue-600'}`}>
+                <Icon size={20} />
               </a>
             ))}
           </div>
