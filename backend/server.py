@@ -17,10 +17,19 @@ from email.mime.multipart import MIMEMultipart
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
-# MongoDB connection
-mongo_url = os.environ['MONGO_URL']
-client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ['DB_NAME']]
+# MongoDB connection (optional - will work without it)
+mongo_url = os.environ.get('MONGO_URL', 'mongodb://localhost:27017')
+try:
+    client = AsyncIOMotorClient(mongo_url, serverSelectionTimeoutMS=2000)
+    db = client[os.environ.get('DB_NAME', 'devaland_db')]
+    mongodb_available = True
+    logger = logging.getLogger(__name__)
+    logger.info("MongoDB connection established")
+except Exception as e:
+    db = None
+    mongodb_available = False
+    logger = logging.getLogger(__name__)
+    logger.warning(f"MongoDB not available: {e}. Emails will still be sent.")
 
 # Create the main app without a prefix
 app = FastAPI()
@@ -163,26 +172,34 @@ async def submit_contact_form(form_data: ContactFormCreate):
         # Create submission object with timestamp
         submission = ContactFormSubmission(**form_data.dict())
         
-        # Store in MongoDB
-        await db.contact_submissions.insert_one(submission.dict())
-        logger.info(f"Contact form submission stored: {submission.id}")
-        
-        # Send email notification
+        # Send email notification (priority)
         email_sent = await send_email_notification(submission)
         if email_sent:
-            logger.info(f"Email notification sent for submission: {submission.id}")
+            logger.info(f"✅ Email notification sent for submission: {submission.id}")
         else:
-            logger.warning(f"Email notification failed for submission: {submission.id}")
+            logger.warning(f"⚠️ Email notification failed for submission: {submission.id}")
+        
+        # Store in MongoDB if available
+        if mongodb_available and db is not None:
+            try:
+                await db.contact_submissions.insert_one(submission.dict())
+                logger.info(f"📝 Contact form submission stored: {submission.id}")
+            except Exception as mongo_error:
+                logger.warning(f"MongoDB storage failed (email was still sent): {mongo_error}")
+        else:
+            logger.info(f"ℹ️ MongoDB not available, but email was sent: {submission.id}")
         
         return submission
         
     except Exception as e:
-        logger.error(f"Error processing contact form: {str(e)}")
-        raise HTTPException(status_code=500, detail="Failed to process contact form submission")
+        logger.error(f"❌ Error processing contact form: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Failed to process contact form: {str(e)}")
 
 @api_router.get("/contact", response_model=List[ContactFormSubmission])
 async def get_contact_submissions(limit: int = 100):
     """Get all contact form submissions (admin endpoint)"""
+    if not mongodb_available or db is None:
+        raise HTTPException(status_code=503, detail="MongoDB not available. Contact submissions are being emailed but not stored.")
     try:
         submissions = await db.contact_submissions.find().sort("timestamp", -1).to_list(limit)
         return [ContactFormSubmission(**submission) for submission in submissions]
