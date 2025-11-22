@@ -282,13 +282,8 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Copyright - move to very bottom, centered */}
-          <div className="mt-12 text-center text-xs text-gray-500 w-full">
-          Copyright © {new Date().getFullYear()} {LEGAL.company}. &nbsp;C.I.F./VAT: {LEGAL.vat}. Trade Registry: {LEGAL.trade}.
-        </div>
-
         {/* Icons */}
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+        <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
           {links.socialIcons.map(({ href, Icon, label }) => (
             <a key={href} href={href} aria-label={label} target="_blank" rel="noopener noreferrer"
                className="rounded-full border border-gray-200 p-2 hover:border-blue-600 hover:text-blue-700">
@@ -308,6 +303,11 @@ export default function Footer() {
               </a>
             ))}
           </div>
+        </div>
+
+        {/* Copyright - at the very bottom, centered */}
+        <div className="mt-12 text-center text-xs text-gray-500 w-full">
+          Copyright © {new Date().getFullYear()} {LEGAL.company}. &nbsp;C.I.F./VAT: {LEGAL.vat}. Trade Registry: {LEGAL.trade}.
         </div>
 
         {/* ...existing code... */}
