@@ -245,20 +245,20 @@ const BlogPostPage = () => {
                   if (headings.length === 0) return null;
 
                   return (
-                    <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-8 mb-8 border border-blue-100 shadow-sm">
-                      <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
-                        <span className="bg-blue-600 text-white rounded-lg px-3 py-1 mr-3 text-sm">TOC</span>
-                        Table of Contents
-                      </h3>
-                      <nav className="space-y-3">
+                    <div className="bg-white rounded-xl p-6 mb-8 border-2 border-blue-200 shadow-lg">
+                      <div className="flex items-center gap-2 mb-5 pb-4 border-b-2 border-blue-100">
+                        <div className="bg-blue-600 text-white rounded-lg px-3 py-1.5 text-sm font-bold">TOC</div>
+                        <h3 className="text-lg font-bold text-gray-900">Table of Contents</h3>
+                      </div>
+                      <nav className="space-y-2">
                         {headings.map((heading, index) => (
                           <a
                             key={index}
                             href={`#${heading.id}`}
-                            className="block text-base text-gray-700 hover:text-blue-600 hover:bg-white/60 transition-all duration-200 rounded-lg px-4 py-2.5 font-medium border-l-4 border-transparent hover:border-blue-600"
+                            className="group flex items-start gap-3 text-sm text-gray-700 hover:text-blue-600 transition-all duration-200 rounded-lg px-3 py-2 hover:bg-blue-50"
                           >
-                            <span className="text-blue-600 font-semibold mr-2">{index + 1}.</span>
-                            {heading.text}
+                            <span className="flex-shrink-0 w-6 h-6 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xs font-bold group-hover:bg-blue-600 group-hover:text-white transition-colors">{index + 1}</span>
+                            <span className="leading-tight flex-1">{heading.text}</span>
                           </a>
                         ))}
                       </nav>
