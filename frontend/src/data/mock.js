@@ -192,7 +192,7 @@ export const team = [
     name: "Sarah Mitchell",
     role: "Head of Technical Implementation",
     bio: "Senior automation engineer specializing in UiPath, Python, and enterprise system integrations.", 
-    image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop&q=80",
     expertise: ["UiPath Development", "Python Automation", "API Integration"]
   }
 ];
