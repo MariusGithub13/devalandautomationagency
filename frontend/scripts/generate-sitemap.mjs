@@ -27,6 +27,17 @@ const ROUTES = [
   "/gdpr",
 ];
 
+// Blog post slugs from mock.js
+// Generated using: title.toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, '-')
+const BLOG_POSTS = [
+  "/blog/10-klaviyo-automation-flows-every-e-commerce-store-needs",
+  "/blog/email-segmentation-strategies-that-actually-work",
+  "/blog/maximizing-black-friday-sales-with-klaviyo",
+  "/blog/sms-marketing-the-perfect-complement-to-email",
+  "/blog/advanced-klaviyo-analytics-beyond-open-and-click-rates",
+  "/blog/building-customer-loyalty-through-email-personalization",
+];
+
 // Optionally find static HTML blog posts under public/blog/*.html
 function discoverBlogUrls() {
   const blogDir = path.join(PUBLIC, "blog");
@@ -65,7 +76,7 @@ ${body}
 
 function main() {
   const blog = discoverBlogUrls();
-  const unique = Array.from(new Set([...ROUTES, ...blog]));
+  const unique = Array.from(new Set([...ROUTES, ...BLOG_POSTS, ...blog]));
   const xml = toXml(unique);
   const out = path.join(PUBLIC, "sitemap.xml");
   fs.writeFileSync(out, xml, "utf8");
