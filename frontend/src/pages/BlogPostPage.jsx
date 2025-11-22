@@ -215,15 +215,19 @@ const BlogPostPage = () => {
                   if (headings.length === 0) return null;
 
                   return (
-                    <div className="bg-gray-50 rounded-lg p-6 mb-8">
-                      <h3 className="font-semibold text-gray-900 mb-4">Table of Contents</h3>
-                      <nav className="space-y-2">
+                    <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-8 mb-8 border border-blue-100 shadow-sm">
+                      <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
+                        <span className="bg-blue-600 text-white rounded-lg px-3 py-1 mr-3 text-sm">TOC</span>
+                        Table of Contents
+                      </h3>
+                      <nav className="space-y-3">
                         {headings.map((heading, index) => (
                           <a
                             key={index}
                             href={`#${heading.id}`}
-                            className="block text-sm text-gray-600 hover:text-blue-600 transition-colors duration-200"
+                            className="block text-base text-gray-700 hover:text-blue-600 hover:bg-white/60 transition-all duration-200 rounded-lg px-4 py-2.5 font-medium border-l-4 border-transparent hover:border-blue-600"
                           >
+                            <span className="text-blue-600 font-semibold mr-2">{index + 1}.</span>
                             {heading.text}
                           </a>
                         ))}
