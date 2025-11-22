@@ -255,10 +255,16 @@ const BlogPostPage = () => {
                           <a
                             key={index}
                             href={`#${heading.id}`}
-                            className="group flex items-start gap-3 text-sm text-gray-700 hover:text-blue-600 transition-all duration-200 rounded-lg px-3 py-2 hover:bg-blue-50"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              const element = document.getElementById(heading.id);
+                              if (element) {
+                                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                              }
+                            }}
+                            className="group flex items-start gap-2 text-sm text-gray-700 hover:text-blue-600 transition-all duration-200 rounded-lg px-3 py-2.5 hover:bg-blue-50 border-l-3 border-transparent hover:border-l-4 hover:border-blue-600"
                           >
-                            <span className="flex-shrink-0 w-6 h-6 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xs font-bold group-hover:bg-blue-600 group-hover:text-white transition-colors">{index + 1}</span>
-                            <span className="leading-tight flex-1">{heading.text}</span>
+                            <span className="leading-snug flex-1">{heading.text}</span>
                           </a>
                         ))}
                       </nav>
