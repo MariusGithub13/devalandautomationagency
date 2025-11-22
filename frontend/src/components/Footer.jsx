@@ -309,7 +309,7 @@ export default function Footer() {
         </div>
 
         {/* Copyright - at the very bottom, centered */}
-        <div className="mt-12 text-center text-xs text-gray-500 w-full">
+        <div className="mt-12 text-center text-sm text-gray-600 w-full">
           Copyright © {new Date().getFullYear()} {LEGAL.company}. &nbsp;C.I.F./VAT: {LEGAL.vat}. Trade Registry: {LEGAL.trade}.
         </div>
 
