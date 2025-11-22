@@ -278,6 +278,16 @@ export default function Footer() {
                   <img src="/images/sal.png" alt="SAL" className="h-12 object-contain rounded-sm shadow border border-gray-200 bg-white p-1" />
                   <span className="sr-only">ANPC reclamations portal — opens in a new tab</span>
                 </a>
+                <a
+                  href="https://consumer-redress.ec.europa.eu/index_en"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Open EU Consumer Redress in new tab"
+                  className="inline-block"
+                >
+                  <img src="/images/EU Consumer Redress.svg" alt="Consumer Redress in the EU" className="h-12 object-contain rounded-sm shadow border border-gray-200 bg-white p-1" />
+                  <span className="sr-only">EU Consumer Redress — opens in a new tab</span>
+                </a>
               </div>
           </div>
         </div>
