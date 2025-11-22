@@ -17,8 +17,9 @@ const LEGAL = {
   // Source of truth for contacts (from /contact):
   phoneDisplay: "+40 (721) 269 312",
   phoneHref: "tel:+40721269312",
-  emailHref: "/contact", // keep canonical (form). If you want mailto, replace with mailto:you@domain
-  address: "Sântandrei 13, Simeria 335903, Hunedoara, Romania",
+  email: "office@devaland.com",
+  emailHref: "mailto:office@devaland.com",
+  address: "Sântandrei 13, Simeria 335903,\nHunedoara County, Transylvania, Romania\n(Near Dracula's Castle :)",
 };
 
 const links = {
@@ -214,21 +215,31 @@ export default function Footer() {
           <div>
             <div className="text-sm font-semibold text-gray-900 mb-3">Contact</div>
             <ul className="space-y-2 text-sm text-gray-700">
-              <li className="flex items-center gap-2">
-                <MapPin size={16} className="text-gray-500" />
-                <span>{LEGAL.address}</span>
+              <li className="flex items-start gap-2">
+                <div className="text-gray-900 font-medium">
+                  {LEGAL.company}
+                </div>
               </li>
-              <li className="flex items-center gap-2">
-                <Phone size={16} className="text-gray-500" />
+              <li className="flex items-start gap-2">
+                <span className="text-gray-600">
+                  C.I.F./VAT: {LEGAL.vat}
+                </span>
+              </li>
+              <li className="flex items-center gap-2 mt-3">
+                <Phone size={16} className="text-gray-500 flex-shrink-0" />
                 <a href={LEGAL.phoneHref} className="hover:text-blue-700 underline-offset-4 hover:underline">
                   {LEGAL.phoneDisplay}
                 </a>
               </li>
               <li className="flex items-center gap-2">
-                <Mail size={16} className="text-gray-500" />
+                <Mail size={16} className="text-gray-500 flex-shrink-0" />
                 <a href={LEGAL.emailHref} className="hover:text-blue-700 underline-offset-4 hover:underline">
-                  Email us (form)
+                  {LEGAL.email}
                 </a>
+              </li>
+              <li className="flex items-start gap-2">
+                <MapPin size={16} className="text-gray-500 flex-shrink-0 mt-0.5" />
+                <span className="whitespace-pre-line">{LEGAL.address}</span>
               </li>
             </ul>
               {/* ANPC/SOL/SAL logos - stack SAL below SOL for clearer visual order */}
