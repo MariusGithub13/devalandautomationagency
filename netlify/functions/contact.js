@@ -232,7 +232,8 @@ async function sendConfirmationEmail(formData) {
             <ul>
               <li>Check out our <a href="https://devaland.com/case-studies" style="color: #1e40af;">case studies</a></li>
               <li>Read our <a href="https://devaland.com/blog" style="color: #1e40af;">blog</a></li>
-              <li>Schedule a call directly on our <a href="https://calendly.com/devaland-io" style="color: #1e40af;">Calendly</a></li>
+              <li>Schedule a call directly on our <a href="https://calendly.com/devaland/30min" style="color: #1e40af;">Calendly</a></li>
+              <li>Connect with me on <a href="https://www.linkedin.com/in/marius-andronie/" style="color: #1e40af;">LinkedIn</a></li>
             </ul>
             
             <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd;">
@@ -240,7 +241,8 @@ async function sendConfirmationEmail(formData) {
                 Best regards,<br>
                 <strong>The Devaland Team</strong><br>
                 <a href="mailto:office@devaland.com" style="color: #1e40af;">office@devaland.com</a><br>
-                <a href="https://devaland.com" style="color: #1e40af;">devaland.com</a>
+                <a href="https://devaland.com" style="color: #1e40af;">devaland.com</a><br>
+                <a href="https://www.linkedin.com/in/marius-andronie/" style="color: #1e40af;">LinkedIn Profile</a>
               </p>
             </div>
             
