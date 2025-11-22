@@ -8,6 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { toast } from 'sonner';
 import { companyData } from '../data/mock';
+import { sendTrustpilotInvitation, generateReferenceId } from '../utils/trustpilot';
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -58,6 +59,14 @@ const ContactPage = () => {
       : 'Thank you! We\'ll contact you within 24 hours to schedule your consultation.';
     
     toast.success(successMessage);
+    
+    // Send Trustpilot invitation after successful form submission
+    const referenceId = generateReferenceId('Contact');
+    sendTrustpilotInvitation({
+      recipientEmail: formData.email,
+      recipientName: formData.name,
+      referenceId: referenceId
+    });
     
     // Reset form
     setFormData({
