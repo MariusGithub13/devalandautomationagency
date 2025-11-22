@@ -98,6 +98,36 @@ const BlogPostPage = () => {
 
               {/* Article Body */}
               <div className="prose prose-lg max-w-none">
+                <style>{`
+                  .prose h2 {
+                    font-size: 2rem;
+                    font-weight: 700;
+                    color: #1f2937;
+                    margin-top: 3rem;
+                    margin-bottom: 1.5rem;
+                    padding-bottom: 0.75rem;
+                    border-bottom: 3px solid #3b82f6;
+                    background: linear-gradient(to right, #eff6ff, transparent);
+                    padding-left: 1rem;
+                    padding-right: 1rem;
+                    padding-top: 0.75rem;
+                    border-radius: 0.5rem;
+                    position: relative;
+                  }
+                  .prose h2:before {
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    bottom: 0;
+                    width: 4px;
+                    background: linear-gradient(to bottom, #3b82f6, #1d4ed8);
+                    border-radius: 0.5rem 0 0 0.5rem;
+                  }
+                  .prose h2:first-of-type {
+                    margin-top: 1rem;
+                  }
+                `}</style>
                 <div className="leading-relaxed">
                   {(() => {
                     const markdownToHtml = (text) => {
