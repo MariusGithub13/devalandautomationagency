@@ -42,12 +42,12 @@ const Header = () => {
       isScrolled ? 'bg-white shadow-lg border-b border-gray-200/20' : 'bg-white'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-24 lg:h-28">
+        <div className="flex justify-between items-center h-20 sm:h-24 lg:h-28">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3 hover-scale">
+          <Link to="/" className="flex items-center space-x-2 sm:space-x-3 hover-scale flex-shrink-0">
             {/** header image with fallback to inline SVG if loading fails */}
             <HeaderLogo />
-            <span className="text-xl font-display text-gray-900">{companyData.name}</span>
+            <span className="text-sm sm:text-base lg:text-xl font-display text-gray-900 whitespace-nowrap">{companyData.name}</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -93,7 +93,7 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="lg:hidden fixed top-24 left-0 right-0 bg-white border-b border-gray-200 shadow-lg z-40 max-h-[calc(100vh-6rem)] overflow-y-auto">
+          <div className="lg:hidden fixed top-20 sm:top-24 left-0 right-0 bg-white border-b border-gray-200 shadow-lg z-40 max-h-[calc(100vh-5rem)] sm:max-h-[calc(100vh-6rem)] overflow-y-auto">
             <nav className="px-4 py-6 space-y-4">
               {navigation.map((item) => (
                 <Link
@@ -147,7 +147,7 @@ function HeaderLogo() {
     <img
       src={LogoImg}
       alt="Devaland logo"
-      className="h-16 lg:h-20 w-auto object-contain"
+      className="h-12 sm:h-16 lg:h-20 w-auto object-contain"
       onError={() => setFailed(true)}
     />
   );
