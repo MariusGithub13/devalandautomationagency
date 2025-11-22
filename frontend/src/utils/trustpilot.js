@@ -19,13 +19,21 @@ export const sendTrustpilotInvitation = ({ recipientEmail, recipientName, refere
             source: 'InvitationScript',
           };
 
-          window.tp('createInvitation', trustpilot_invitation);
-          console.log('✅ Trustpilot invitation sent successfully', { 
-            recipientEmail, 
-            recipientName,
-            referenceId 
+          // Send invitation with callback
+          window.tp('createInvitation', trustpilot_invitation, function(error, response) {
+            if (error) {
+              console.error('❌ Trustpilot API error:', error);
+              resolve(false);
+            } else {
+              console.log('✅ Trustpilot invitation confirmed by API', { 
+                recipientEmail, 
+                recipientName,
+                referenceId,
+                response 
+              });
+              resolve(true);
+            }
           });
-          resolve(true);
         } else if (attempts < 20) {
           // Retry up to 20 times (10 seconds total)
           console.log(`⏳ Waiting for Trustpilot to load... (attempt ${attempts + 1}/20)`);
