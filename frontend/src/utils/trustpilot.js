@@ -16,7 +16,8 @@ export const sendTrustpilotInvitation = ({ recipientEmail, recipientName, refere
             recipientEmail,
             recipientName,
             referenceId,
-            source: 'InvitationScript',
+            source: 'InvitationScript'
+            // Note: locationId removed - only use if you have multiple locations
           };
 
           // Send invitation with callback
