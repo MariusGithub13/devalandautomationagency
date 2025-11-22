@@ -53,47 +53,70 @@ const ContactPage = () => {
       return;
     }
 
-    // Simulate form submission
-    const successMessage = formData.projectType === 'klaviyo-shopify' 
-      ? 'Thank you! We\'ll contact you within 24 hours to schedule your Klaviyo automation audit for your Shopify store.'
-      : 'Thank you! We\'ll contact you within 24 hours to schedule your consultation.';
-    
-    toast.success(successMessage);
-    
-    // Send Trustpilot invitation after successful form submission
-    const referenceId = generateReferenceId('Contact');
-    console.log('📧 Sending Trustpilot invitation...', {
-      email: formData.email,
-      name: formData.name,
-      referenceId: referenceId
-    });
-    
-    const invitationSent = await sendTrustpilotInvitation({
-      recipientEmail: formData.email,
-      recipientName: formData.name,
-      referenceId: referenceId
-    });
-    
-    if (invitationSent) {
-      toast.success('Review invitation sent! Check your email from Trustpilot.', {
-        duration: 5000
+    try {
+      // Submit form to backend API
+      const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+      const response = await fetch(`${apiUrl}/api/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       });
-    } else {
-      console.warn('⚠️ Trustpilot invitation may not have been sent');
+
+      if (!response.ok) {
+        throw new Error('Failed to submit form');
+      }
+
+      const result = await response.json();
+      console.log('✅ Form submitted successfully:', result);
+
+      // Show success message
+      const successMessage = formData.projectType === 'klaviyo-shopify' 
+        ? 'Thank you! We\'ll contact you within 24 hours to schedule your Klaviyo automation audit for your Shopify store.'
+        : 'Thank you! We\'ll contact you within 24 hours to schedule your consultation.';
+      
+      toast.success(successMessage);
+      
+      // Send Trustpilot invitation after successful form submission
+      const referenceId = generateReferenceId('Contact');
+      console.log('📧 Sending Trustpilot invitation...', {
+        email: formData.email,
+        name: formData.name,
+        referenceId: referenceId
+      });
+      
+      const invitationSent = await sendTrustpilotInvitation({
+        recipientEmail: formData.email,
+        recipientName: formData.name,
+        referenceId: referenceId
+      });
+      
+      if (invitationSent) {
+        toast.success('Review invitation sent! Check your email from Trustpilot.', {
+          duration: 5000
+        });
+      } else {
+        console.warn('⚠️ Trustpilot invitation may not have been sent');
+      }
+      
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        company: '',
+        phone: '',
+        projectType: '',
+        message: '',
+        budget: '',
+        shopifyStore: '',
+        emailListSize: ''
+      });
+      
+    } catch (error) {
+      console.error('❌ Form submission error:', error);
+      toast.error('Failed to submit form. Please try again or contact us directly at office@devaland.com');
     }
-    
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      company: '',
-      phone: '',
-      projectType: '',
-      message: '',
-      budget: '',
-      shopifyStore: '',
-      emailListSize: ''
-    });
   };
 
   return (
