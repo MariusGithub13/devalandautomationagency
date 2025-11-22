@@ -196,10 +196,10 @@ const HomePage = () => {
           </div>
 
           <div className="text-center mt-12">
-            <Button asChild size="lg" className="btn-primary text-white px-8 py-4 rounded-lg mr-4">
+            <Button asChild size="lg" className="btn-primary text-white px-8 py-4 rounded-lg mr-4 text-lg font-semibold">
               <Link to="/services">Explore Automation Services</Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="px-8 py-4 rounded-lg">
+            <Button asChild size="lg" variant="outline" className="px-8 py-4 rounded-lg text-lg font-semibold">
               <Link to="/klaviyo">Klaviyo for Shopify</Link>
             </Button>
           </div>
