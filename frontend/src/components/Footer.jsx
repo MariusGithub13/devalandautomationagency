@@ -34,16 +34,16 @@ const links = {
     { to: "/sitemap.html", label: "Sitemap (HTML)" },
   ],
   socialIcons: [
-    { href: "https://www.linkedin.com/in/marius-andronie/", Icon: Linkedin, label: "LinkedIn" },
-    { href: "https://www.facebook.com/Devaland13", Icon: Facebook, label: "Facebook" },
-    { href: "https://www.instagram.com/digitalvampire13/", Icon: Instagram, label: "Instagram" },
-    { href: "https://www.youtube.com/@devaland13", Icon: Youtube, label: "YouTube" },
-    { href: "https://github.com/MariusGithub13", Icon: Github, label: "GitHub" },
-    { href: "https://www.twitch.tv/devaland13", Icon: Twitch, label: "Twitch" },
-    { href: "https://x.com/Carlosman1313", Icon: Megaphone, label: "X (Twitter)" },
-    { href: "https://www.threads.com/@digitalvampire13", Icon: MessageSquare, label: "Threads" },
-    { href: "https://www.reddit.com/user/Devaland13/", Icon: MessageCircle, label: "Reddit" },
-    { href: "https://devaland.net/", Icon: Globe, label: "devaland.net" },
+    { href: "https://www.linkedin.com/in/marius-andronie/", Icon: Linkedin, label: "LinkedIn", color: "hover:bg-[#0A66C2] hover:text-white hover:border-[#0A66C2]" },
+    { href: "https://www.facebook.com/Devaland13", Icon: Facebook, label: "Facebook", color: "hover:bg-[#1877F2] hover:text-white hover:border-[#1877F2]" },
+    { href: "https://www.instagram.com/digitalvampire13/", Icon: Instagram, label: "Instagram", color: "hover:bg-gradient-to-br hover:from-[#833AB4] hover:via-[#FD1D1D] hover:to-[#FCAF45] hover:text-white hover:border-transparent" },
+    { href: "https://www.youtube.com/@devaland13", Icon: Youtube, label: "YouTube", color: "hover:bg-[#FF0000] hover:text-white hover:border-[#FF0000]" },
+    { href: "https://github.com/MariusGithub13", Icon: Github, label: "GitHub", color: "hover:bg-[#181717] hover:text-white hover:border-[#181717]" },
+    { href: "https://www.twitch.tv/devaland13", Icon: Twitch, label: "Twitch", color: "hover:bg-[#9146FF] hover:text-white hover:border-[#9146FF]" },
+    { href: "https://x.com/Carlosman1313", Icon: Megaphone, label: "X (Twitter)", color: "hover:bg-black hover:text-white hover:border-black" },
+    { href: "https://www.threads.com/@digitalvampire13", Icon: MessageSquare, label: "Threads", color: "hover:bg-black hover:text-white hover:border-black" },
+    { href: "https://www.reddit.com/user/Devaland13/", Icon: MessageCircle, label: "Reddit", color: "hover:bg-[#FF4500] hover:text-white hover:border-[#FF4500]" },
+    { href: "https://devaland.net/", Icon: Globe, label: "devaland.net", color: "hover:bg-blue-600 hover:text-white hover:border-blue-600" },
     { href: "https://bx.community/@GrayWolf", Icon: Globe, label: "bx.community" },
     { href: "https://renewableenergy-directory.com/", Icon: Globe, label: "Renewable Directory" },
     { href: "https://awesomegang.com/marius-andronie/", Icon: Globe, label: "AwesomeGang" },
@@ -286,9 +286,9 @@ export default function Footer() {
         <div className="mt-12 text-center">
           <div className="text-gray-700 font-semibold mb-4 text-base">Connect With Us</div>
           <div className="flex flex-wrap items-center justify-center gap-3">
-            {links.socialIcons.map(({ href, Icon, label }) => (
+            {links.socialIcons.map(({ href, Icon, label, color }) => (
               <a key={href} href={href} aria-label={label} target="_blank" rel="noopener noreferrer"
-                 className="rounded-full border border-gray-200 p-2 hover:border-blue-600 hover:text-blue-700">
+                 className={`rounded-full border border-gray-200 p-2 transition-all duration-300 ${color || 'hover:border-blue-600 hover:text-blue-700'}`}>
                 <Icon size={18} />
               </a>
             ))}
