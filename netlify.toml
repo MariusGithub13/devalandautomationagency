@@ -9,12 +9,18 @@
   # When base="frontend", publish="build" resolves to frontend/build correctly
   publish = "build"
 
-  # Serverless functions directory
-  functions = "../netlify/functions"
+[functions]
+  # Serverless functions directory (relative to repo root)
+  directory = "netlify/functions"
+  # Use Node.js 18 for functions
+  node_bundler = "esbuild"
 
 [build.environment]
   # lock Node so Netlify doesn't upgrade and break ajv / webpack
   NODE_VERSION = "18.20.4"
+  
+  # AWS Lambda compatibility for functions
+  AWS_LAMBDA_JS_RUNTIME = "nodejs18.x"
 
   # Force npm (not yarn / pnpm)
   NETLIFY_USE_NPM = "true"
