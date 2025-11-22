@@ -55,7 +55,7 @@
         "technologies": ["UiPath", "Automation Anywhere", "Blue Prism"]
       },
       {
-        "name": "AI & Chatbot Solutions",
+        "name": "Voice AI Agents & Chatbot Solutions",
         "description": "Custom AI implementations and intelligent chatbot development",
         "technologies": ["OpenAI", "Custom ML models", "Chatbot platforms"]
       }

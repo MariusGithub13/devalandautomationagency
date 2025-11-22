@@ -131,7 +131,7 @@ const HomePage = () => {
                       { name: 'Sales Automation', link: '/services#sales--marketing-automation' },
                       { name: 'Operations Automation', link: '/services#operations--hr-automation' }
                     ];
-                  case 4: // AI & Chatbot Solutions
+                  case 4: // Voice AI Agents & Chatbot Solutions
                     return [
                       { name: 'Sales Automation', link: '/services#sales--marketing-automation' },
                       { name: 'Operations Automation', link: '/services#operations--hr-automation' }

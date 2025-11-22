@@ -78,7 +78,7 @@ export const services = [
   {
     id: 4,
     category: "Technical Implementation",
-    title: "AI & Chatbot Solutions", 
+    title: "Voice AI Agents & Chatbot Solutions", 
     description: "Custom AI implementations, intelligent chatbots, and machine learning automation.",
     image: serviceImages.ai,
     tools: ["OpenAI GPT", "Microsoft Bot Framework", "Dialogflow", "Azure AI"],
