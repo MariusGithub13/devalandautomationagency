@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle, Users, Award, TrendingUp } from 'lucide-react';
+import { ArrowRight, CheckCircle, Users, Award, TrendingUp, ExternalLink } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 // TrustpilotWidget removed - using consistent footer-style widget
-import { companyData, heroImages, services, caseStudies } from '../data/mock';
+import { companyData, heroImages, services, caseStudies, awards } from '../data/mock';
 
 const HomePage = () => {
   return (
@@ -256,6 +256,39 @@ const HomePage = () => {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Industry Recognition Section */}
+      <section className="section-padding bg-gradient-primary text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-display mb-6">Industry Recognition</h2>
+            <p className="text-xl opacity-90 max-w-2xl mx-auto">
+              Our commitment to excellence has been recognized by leading industry organizations and publications.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {awards.map((award, index) => (
+              <Card key={index} className="glass border-white/20 group hover-lift">
+                <CardContent className="p-6 text-center">
+                  <Award size={48} className="text-yellow-400 mx-auto mb-4" />
+                  <h3 className="text-xl font-bold text-white mb-2">{award.title}</h3>
+                  <p className="text-white/80 mb-4">{award.description}</p>
+                  <a 
+                    href={award.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center space-x-2 text-yellow-400 hover:text-yellow-300 transition-colors duration-200"
+                  >
+                    <span className="text-sm font-medium">View Recognition</span>
+                    <ExternalLink size={14} />
+                  </a>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
