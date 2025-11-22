@@ -283,13 +283,16 @@ export default function Footer() {
         </div>
 
         {/* Icons */}
-        <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
-          {links.socialIcons.map(({ href, Icon, label }) => (
-            <a key={href} href={href} aria-label={label} target="_blank" rel="noopener noreferrer"
-               className="rounded-full border border-gray-200 p-2 hover:border-blue-600 hover:text-blue-700">
-              <Icon size={18} />
-            </a>
-          ))}
+        <div className="mt-12 text-center">
+          <div className="text-gray-700 font-semibold mb-4 text-base">Connect With Us</div>
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            {links.socialIcons.map(({ href, Icon, label }) => (
+              <a key={href} href={href} aria-label={label} target="_blank" rel="noopener noreferrer"
+                 className="rounded-full border border-gray-200 p-2 hover:border-blue-600 hover:text-blue-700">
+                <Icon size={18} />
+              </a>
+            ))}
+          </div>
         </div>
 
         {/* SEO text links */}
