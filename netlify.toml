@@ -1,13 +1,9 @@
 [build]
-  # We tell Netlify: cd into frontend first
-  base = "frontend"
-
   # Then run this to build
-  command = "npm ci --legacy-peer-deps && npm run build"
+  command = "cd frontend && npm ci --legacy-peer-deps && npm run build"
 
-  # And publish the CRA build output under frontend/build
-  # When base="frontend", publish="build" resolves to frontend/build correctly
-  publish = "build"
+  # And publish the CRA build output
+  publish = "frontend/build"
 
 [functions]
   # Serverless functions directory (relative to repo root)
