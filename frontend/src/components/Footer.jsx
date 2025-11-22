@@ -169,8 +169,8 @@ export default function Footer() {
   return (
     <footer className="mt-16 border-t border-gray-200/70 bg-white">
       <div className="mx-auto w-full max-w-7xl px-4 py-10 md:px-6">
-        {/* Top: brand + explore + contact */}
-        <div className="grid gap-12 md:grid-cols-3 md:gap-16">
+        {/* Top: brand + explore + legal + contact */}
+        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4 md:gap-16">
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3">
@@ -208,6 +208,20 @@ export default function Footer() {
                   {l.label}
                 </a>
               ))}
+            </nav>
+          </div>
+
+          {/* Legal */}
+          <div>
+            <div className="text-sm font-semibold text-gray-900 mb-3">Legal</div>
+            <nav className="grid grid-cols-1 gap-2 text-sm">
+              <a href="/privacy" className="text-gray-600 hover:text-blue-700 underline-offset-4 hover:underline">Privacy Policy</a>
+              <a href="/terms" className="text-gray-600 hover:text-blue-700 underline-offset-4 hover:underline">Terms & Conditions</a>
+              <a href="/cookies" className="text-gray-600 hover:text-blue-700 underline-offset-4 hover:underline">Cookie Policy</a>
+              <a href="/gdpr" className="text-gray-600 hover:text-blue-700 underline-offset-4 hover:underline">GDPR</a>
+              <a href="http://www.anpc.gov.ro/" className="text-gray-600 hover:text-blue-700 underline-offset-4 hover:underline" target="_blank" rel="noopener noreferrer">ANPC</a>
+              <a href="https://ec.europa.eu/consumers/odr/main/index.cfm?event=main.home2.show&lng=RO" className="text-gray-600 hover:text-blue-700 underline-offset-4 hover:underline" target="_blank" rel="noopener noreferrer">ANPC SOL</a>
+              <a href="https://reclamatiisal.anpc.ro/" className="text-gray-600 hover:text-blue-700 underline-offset-4 hover:underline" target="_blank" rel="noopener noreferrer">ANPC SAL</a>
             </nav>
           </div>
 
@@ -265,19 +279,6 @@ export default function Footer() {
                   <span className="sr-only">ANPC reclamations portal — opens in a new tab</span>
                 </a>
               </div>
-          </div>
-        </div>
-
-        {/* Legal row - centered tabs */}
-        <div className="mt-8 text-sm text-gray-600">
-          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 w-full text-center">
-            <a href="/privacy" className="hover:text-blue-700 underline-offset-4 hover:underline">Privacy Policy</a>
-            <a href="/terms" className="hover:text-blue-700 underline-offset-4 hover:underline">Terms & Conditions</a>
-            <a href="/cookies" className="hover:text-blue-700 underline-offset-4 hover:underline">Cookie Policy</a>
-            <a href="/gdpr" className="hover:text-blue-700 underline-offset-4 hover:underline">GDPR</a>
-            <a href="http://www.anpc.gov.ro/" className="hover:text-blue-700 underline-offset-4 hover:underline" target="_blank" rel="noopener noreferrer">ANPC</a>
-            <a href="https://ec.europa.eu/consumers/odr/main/index.cfm?event=main.home2.show&lng=RO" className="hover:text-blue-700 underline-offset-4 hover:underline" target="_blank" rel="noopener noreferrer">ANPC SOL</a>
-            <a href="https://reclamatiisal.anpc.ro/" className="hover:text-blue-700 underline-offset-4 hover:underline" target="_blank" rel="noopener noreferrer">ANPC SAL</a>
           </div>
         </div>
 
