@@ -87,18 +87,28 @@ const ContactPage = () => {
         referenceId: referenceId
       });
       
-      const invitationSent = await sendTrustpilotInvitation({
-        recipientEmail: formData.email,
-        recipientName: formData.name,
-        referenceId: referenceId
-      });
-      
-      if (invitationSent) {
-        toast.success('Review invitation sent! Check your email from Trustpilot.', {
-          duration: 5000
+      try {
+        const invitationSent = await sendTrustpilotInvitation({
+          recipientEmail: formData.email,
+          recipientName: formData.name,
+          referenceId: referenceId
         });
-      } else {
-        console.warn('⚠️ Trustpilot invitation may not have been sent');
+        
+        if (invitationSent) {
+          console.log('✅ Trustpilot invitation sent successfully');
+          toast.success('🎉 You\'ll receive a review invitation from Trustpilot via email!', {
+            duration: 6000
+          });
+        } else {
+          console.warn('⚠️ Trustpilot invitation may not have been sent');
+          toast.info('Note: Review invitation is pending. You may receive it shortly.', {
+            duration: 5000
+          });
+        }
+      } catch (trustpilotError) {
+        console.error('❌ Trustpilot invitation error:', trustpilotError);
+        // Don't show error to user since form submission was successful
+        // Just log it for debugging
       }
       
       // Reset form
