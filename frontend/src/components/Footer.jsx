@@ -206,7 +206,7 @@ export default function Footer() {
                   As a certified Klaviyo partner agency, we empower businesses across diverse industries to accelerate revenue and build meaningful customer relationships through advanced email marketing strategies.
                 </p>
                 <a
-                  href="https://www.klaviyo.com/"
+                  href="https://www.klaviyo.com/partners/signup?utm_source=001Nu00000HqbJVIAZ&utm_medium=partner"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Visit Klaviyo website"
