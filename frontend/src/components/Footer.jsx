@@ -181,19 +181,19 @@ export default function Footer() {
               </div>
             </div>
             {/* Trustpilot Review Collector widget (TrustBox) - visually prominent */}
-            <div className="mt-8 flex flex-col items-center justify-center">
-              <div className="w-full max-w-lg px-6 py-8 rounded-xl border border-gray-100 bg-white shadow-lg flex flex-col items-center">
-                <div className="mb-4 text-2xl font-semibold text-gray-900 text-center">See what our customers say</div>
+            <div className="mt-6 flex flex-col items-center justify-center">
+              <div className="w-full max-w-md px-4 py-5 rounded-lg border border-gray-200 bg-white shadow-md flex flex-col items-center">
+                <div className="mb-3 text-lg font-semibold text-gray-900 text-center">See what our customers say</div>
                 <div
                   className="trustpilot-widget"
                   data-locale="en-US"
                   data-template-id="56278e9abfbbba0bdcd568bc"
                   data-businessunit-id="68d4dd4d6b90a6eb23a0d4f2"
                   data-style-height="80px"
-                  data-style-width="400px"
+                  data-style-width="100%"
                   data-token="a130c89b-6620-42ad-99b5-9162b70c1229"
                 >
-                  <a href="https://www.trustpilot.com/review/devaland.com" target="_blank" rel="noopener noreferrer" className="block text-center text-lg font-bold text-gray-900">Trustpilot</a>
+                  <a href="https://www.trustpilot.com/review/devaland.com" target="_blank" rel="noopener noreferrer" className="block text-center text-base font-bold text-gray-900">Trustpilot</a>
                 </div>
               </div>
             </div>
