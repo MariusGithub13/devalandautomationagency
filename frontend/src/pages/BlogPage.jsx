@@ -95,9 +95,14 @@ const BlogPage = () => {
                     {filteredPosts[0].category}
                   </Badge>
                   
-                  <h2 className="text-3xl md:text-4xl font-display text-gray-900 mb-4 leading-tight">
-                    {filteredPosts[0].title}
-                  </h2>
+                  <Link 
+                    to={`/blog/${filteredPosts[0].title.toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, '-')}`}
+                    className="hover:text-blue-600 transition-colors duration-200"
+                  >
+                    <h2 className="text-3xl md:text-4xl font-display text-gray-900 mb-4 leading-tight hover:text-blue-600 transition-colors duration-200">
+                      {filteredPosts[0].title}
+                    </h2>
+                  </Link>
                   
                   <p className="text-lg text-gray-600 mb-6 leading-relaxed">
                     {filteredPosts[0].excerpt}
@@ -161,13 +166,12 @@ const BlogPage = () => {
 
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {filteredPosts.slice(1).map((post, index) => (
-                  <Link 
-                    key={post.id}
-                    to={`/blog/${post.title.toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, '-')}`}
-                    className="block"
-                  >
-                    <Card className={`hover-lift cursor-pointer animate-fade-in-up delay-${index * 100}`}>
+                  <Card key={post.id} className={`hover-lift cursor-pointer animate-fade-in-up delay-${index * 100}`}>
                     <CardHeader className="p-0">
+                      <Link 
+                        to={`/blog/${post.title.toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, '-')}`}
+                        className="block"
+                      >
                       <div className="relative overflow-hidden rounded-t-lg">
                         <img 
                           src={post.image}
@@ -180,12 +184,17 @@ const BlogPage = () => {
                           </Badge>
                         </div>
                       </div>
+                      </Link>
                     </CardHeader>
                     
                     <CardContent className="p-6">
-                      <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
-                        {post.title}
-                      </h3>
+                      <Link 
+                        to={`/blog/${post.title.toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, '-')}`}
+                      >
+                        <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2 hover:text-blue-600 transition-colors duration-200">
+                          {post.title}
+                        </h3>
+                      </Link>
                       
                       <p className="text-gray-600 mb-4 line-clamp-3">
                         {post.excerpt}
@@ -209,14 +218,16 @@ const BlogPage = () => {
                       
                       <div className="flex items-center justify-between">
                         <span className="text-sm text-gray-600">{post.author}</span>
-                        <div className="text-blue-600 group-hover:text-blue-800 flex items-center">
+                        <Link 
+                          to={`/blog/${post.title.toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, '-')}`}
+                          className="text-blue-600 hover:text-blue-800 flex items-center group"
+                        >
                           <span className="text-sm font-medium">Read More</span>
                           <ArrowRight size={14} className="ml-1 group-hover:translate-x-1 transition-transform duration-200" />
-                        </div>
+                        </Link>
                       </div>
                     </CardContent>
                   </Card>
-                  </Link>
                 ))}
               </div>
             </>
