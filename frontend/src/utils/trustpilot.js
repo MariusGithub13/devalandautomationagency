@@ -4,30 +4,44 @@
  * @param {string} params.recipientEmail - Customer's email address
  * @param {string} params.recipientName - Customer's name
  * @param {string} params.referenceId - Unique reference ID (e.g., order number, form submission ID)
- * @returns {boolean} Success status
+ * @returns {Promise<boolean>} Success status
  */
 export const sendTrustpilotInvitation = ({ recipientEmail, recipientName, referenceId }) => {
-  try {
-    // Check if Trustpilot is loaded
-    if (typeof window.tp !== 'function') {
-      console.warn('Trustpilot integration not loaded yet');
-      return false;
+  return new Promise((resolve) => {
+    try {
+      // Wait for Trustpilot to load if it's not ready yet
+      const checkAndSend = (attempts = 0) => {
+        if (typeof window.tp === 'function') {
+          const trustpilot_invitation = {
+            recipientEmail,
+            recipientName,
+            referenceId,
+            source: 'InvitationScript',
+          };
+
+          window.tp('createInvitation', trustpilot_invitation);
+          console.log('✅ Trustpilot invitation sent successfully', { 
+            recipientEmail, 
+            recipientName,
+            referenceId 
+          });
+          resolve(true);
+        } else if (attempts < 20) {
+          // Retry up to 20 times (10 seconds total)
+          console.log(`⏳ Waiting for Trustpilot to load... (attempt ${attempts + 1}/20)`);
+          setTimeout(() => checkAndSend(attempts + 1), 500);
+        } else {
+          console.error('❌ Trustpilot integration not loaded after 10 seconds');
+          resolve(false);
+        }
+      };
+
+      checkAndSend();
+    } catch (error) {
+      console.error('❌ Failed to send Trustpilot invitation:', error);
+      resolve(false);
     }
-
-    const trustpilot_invitation = {
-      recipientEmail,
-      recipientName,
-      referenceId,
-      source: 'InvitationScript',
-    };
-
-    window.tp('createInvitation', trustpilot_invitation);
-    console.log('Trustpilot invitation sent successfully', { recipientEmail, referenceId });
-    return true;
-  } catch (error) {
-    console.error('Failed to send Trustpilot invitation:', error);
-    return false;
-  }
+  });
 };
 
 /**

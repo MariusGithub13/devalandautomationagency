@@ -38,7 +38,7 @@ const ContactPage = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     // Basic validation
@@ -62,11 +62,25 @@ const ContactPage = () => {
     
     // Send Trustpilot invitation after successful form submission
     const referenceId = generateReferenceId('Contact');
-    sendTrustpilotInvitation({
+    console.log('📧 Sending Trustpilot invitation...', {
+      email: formData.email,
+      name: formData.name,
+      referenceId: referenceId
+    });
+    
+    const invitationSent = await sendTrustpilotInvitation({
       recipientEmail: formData.email,
       recipientName: formData.name,
       referenceId: referenceId
     });
+    
+    if (invitationSent) {
+      toast.success('Review invitation sent! Check your email from Trustpilot.', {
+        duration: 5000
+      });
+    } else {
+      console.warn('⚠️ Trustpilot invitation may not have been sent');
+    }
     
     // Reset form
     setFormData({
