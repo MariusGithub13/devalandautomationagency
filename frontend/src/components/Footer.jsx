@@ -307,6 +307,16 @@ export default function Footer() {
                   <img src="/images/EU Consumer Redress.svg" alt="Consumer Redress in the EU" className="h-16 w-auto object-contain rounded-sm shadow border border-gray-200 bg-white p-1" />
                   <span className="sr-only">EU Consumer Redress — opens in a new tab</span>
                 </a>
+                <a
+                  href="https://ec.europa.eu/taxation_customs/vies/#/vat-validation"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="EU VIES VAT Validation"
+                  className="inline-block"
+                >
+                  <img src="/images/vies-eu.png" alt="VIES VAT number validation - European Commission" className="h-16 w-auto object-contain rounded-sm shadow border border-gray-200 bg-white p-1" />
+                  <span className="sr-only">EU VIES VAT Validation — opens in a new tab</span>
+                </a>
               </div>
           </div>
         </div>
