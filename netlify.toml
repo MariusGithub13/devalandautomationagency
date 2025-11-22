@@ -9,6 +9,9 @@
   # When base="frontend", publish="build" resolves to frontend/build correctly
   publish = "build"
 
+  # Serverless functions directory
+  functions = "../netlify/functions"
+
 [build.environment]
   # lock Node so Netlify doesn't upgrade and break ajv / webpack
   NODE_VERSION = "18.20.4"
@@ -24,6 +27,14 @@
   # 🔥 NEW: prevent CRA from running ESLint during `npm run build`
   # so Deploy Previews don't fail just because devDependencies were skipped.
   DISABLE_ESLINT_PLUGIN = "true"
+
+  # SMTP Configuration for contact form emails
+  # These need to be set in Netlify UI: Site settings > Environment variables
+  # SMTP_HOST = "smtp.gmail.com"
+  # SMTP_PORT = "587"
+  # SMTP_USER = "office@devaland.com"
+  # SMTP_PASSWORD = "your-app-password"
+  # CONTACT_EMAIL = "office@devaland.com"
 
 # SPA redirect:
 # Send EVERY route (/, /services, /blog/:slug, etc) to index.html

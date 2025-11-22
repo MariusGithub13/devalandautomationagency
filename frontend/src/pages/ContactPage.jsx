@@ -54,9 +54,10 @@ const ContactPage = () => {
     }
 
     try {
-      // Submit form to backend API
-      const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
-      const response = await fetch(`${apiUrl}/api/contact`, {
+      // Submit form to Netlify Function
+      // In production, Netlify Functions are available at /.netlify/functions/[function-name]
+      const apiUrl = process.env.REACT_APP_API_URL || '/.netlify/functions';
+      const response = await fetch(`${apiUrl}/contact`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
