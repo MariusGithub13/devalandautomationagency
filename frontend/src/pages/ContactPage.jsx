@@ -203,7 +203,7 @@ const ContactPage = () => {
                           </SelectTrigger>
                           <SelectContent>
                             <SelectItem value="klaviyo-shopify">Klaviyo Automation Services for Growing Shopify Store</SelectItem>
-                            <SelectItem value="rpa">RPA Development</SelectItem>
+                            <SelectItem value="rpa">Robotic Process Automation (RPA) Development</SelectItem>
                             <SelectItem value="workflow">Workflow Automation</SelectItem>
                             <SelectItem value="ai">Voice AI Agents & Chatbot Solutions</SelectItem>
                             <SelectItem value="integration">System Integration</SelectItem>

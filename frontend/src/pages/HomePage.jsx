@@ -119,14 +119,14 @@ const HomePage = () => {
                   case 1: // Sales & Marketing Automation
                     return [
                       { name: 'Klaviyo Services', link: '/klaviyo' },
-                      { name: 'RPA Development', link: '/services#rpa-development' }
+                      { name: 'Robotic Process Automation (RPA) Development', link: '/services#rpa-development' }
                     ];
                   case 2: // Operations & HR Automation  
                     return [
-                      { name: 'RPA Development', link: '/services#rpa-development' },
+                      { name: 'Robotic Process Automation (RPA) Development', link: '/services#rpa-development' },
                       { name: 'AI Solutions', link: '/services#ai--chatbot-solutions' }
                     ];
-                  case 3: // RPA Development
+                  case 3: // Robotic Process Automation (RPA) Development
                     return [
                       { name: 'Sales Automation', link: '/services#sales--marketing-automation' },
                       { name: 'Operations Automation', link: '/services#operations--hr-automation' }

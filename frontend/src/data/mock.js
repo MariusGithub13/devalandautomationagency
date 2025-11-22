@@ -69,7 +69,7 @@ export const services = [
   {
     id: 3,
     category: "Technical Implementation", 
-    title: "RPA Development",
+    title: "Robotic Process Automation (RPA) Development",
     description: "Robotic Process Automation using enterprise-grade platforms for complex business processes.",
     image: serviceImages.rpa,
     tools: ["UiPath", "Automation Anywhere", "Blue Prism", "Power Automate"],
