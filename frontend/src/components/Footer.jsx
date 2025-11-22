@@ -34,16 +34,16 @@ const links = {
     { to: "/sitemap.html", label: "Sitemap (HTML)" },
   ],
   socialIcons: [
-    { href: "https://www.linkedin.com/in/marius-andronie/", Icon: Linkedin, label: "LinkedIn", color: "hover:bg-[#0A66C2] hover:text-white hover:border-[#0A66C2]" },
-    { href: "https://www.facebook.com/Devaland13", Icon: Facebook, label: "Facebook", color: "hover:bg-[#1877F2] hover:text-white hover:border-[#1877F2]" },
-    { href: "https://www.instagram.com/digitalvampire13/", Icon: Instagram, label: "Instagram", color: "hover:bg-gradient-to-br hover:from-[#833AB4] hover:via-[#FD1D1D] hover:to-[#FCAF45] hover:text-white hover:border-transparent" },
-    { href: "https://www.youtube.com/@devaland13", Icon: Youtube, label: "YouTube", color: "hover:bg-[#FF0000] hover:text-white hover:border-[#FF0000]" },
-    { href: "https://github.com/MariusGithub13", Icon: Github, label: "GitHub", color: "hover:bg-[#181717] hover:text-white hover:border-[#181717]" },
-    { href: "https://www.twitch.tv/devaland13", Icon: Twitch, label: "Twitch", color: "hover:bg-[#9146FF] hover:text-white hover:border-[#9146FF]" },
-    { href: "https://x.com/Carlosman1313", Icon: Megaphone, label: "X (Twitter)", color: "hover:bg-black hover:text-white hover:border-black" },
-    { href: "https://www.threads.com/@digitalvampire13", Icon: MessageSquare, label: "Threads", color: "hover:bg-black hover:text-white hover:border-black" },
-    { href: "https://www.reddit.com/user/Devaland13/", Icon: MessageCircle, label: "Reddit", color: "hover:bg-[#FF4500] hover:text-white hover:border-[#FF4500]" },
-    { href: "https://devaland.net/", Icon: Globe, label: "devaland.net", color: "hover:bg-blue-600 hover:text-white hover:border-blue-600" },
+    { href: "https://www.linkedin.com/in/marius-andronie/", Icon: Linkedin, label: "LinkedIn", color: "bg-[#0A66C2]/10 text-[#0A66C2] border-[#0A66C2]/20 hover:bg-[#0A66C2] hover:text-white hover:border-[#0A66C2] hover:scale-110" },
+    { href: "https://www.facebook.com/Devaland13", Icon: Facebook, label: "Facebook", color: "bg-[#1877F2]/10 text-[#1877F2] border-[#1877F2]/20 hover:bg-[#1877F2] hover:text-white hover:border-[#1877F2] hover:scale-110" },
+    { href: "https://www.instagram.com/digitalvampire13/", Icon: Instagram, label: "Instagram", color: "bg-gradient-to-br from-[#833AB4]/10 via-[#FD1D1D]/10 to-[#FCAF45]/10 text-[#E1306C] border-[#E1306C]/20 hover:from-[#833AB4] hover:via-[#FD1D1D] hover:to-[#FCAF45] hover:text-white hover:border-transparent hover:scale-110" },
+    { href: "https://www.youtube.com/@devaland13", Icon: Youtube, label: "YouTube", color: "bg-[#FF0000]/10 text-[#FF0000] border-[#FF0000]/20 hover:bg-[#FF0000] hover:text-white hover:border-[#FF0000] hover:scale-110" },
+    { href: "https://github.com/MariusGithub13", Icon: Github, label: "GitHub", color: "bg-[#181717]/10 text-[#181717] border-[#181717]/20 hover:bg-[#181717] hover:text-white hover:border-[#181717] hover:scale-110" },
+    { href: "https://www.twitch.tv/devaland13", Icon: Twitch, label: "Twitch", color: "bg-[#9146FF]/10 text-[#9146FF] border-[#9146FF]/20 hover:bg-[#9146FF] hover:text-white hover:border-[#9146FF] hover:scale-110" },
+    { href: "https://x.com/Carlosman1313", Icon: Megaphone, label: "X (Twitter)", color: "bg-black/10 text-black border-black/20 hover:bg-black hover:text-white hover:border-black hover:scale-110" },
+    { href: "https://www.threads.com/@digitalvampire13", Icon: MessageSquare, label: "Threads", color: "bg-black/10 text-black border-black/20 hover:bg-black hover:text-white hover:border-black hover:scale-110" },
+    { href: "https://www.reddit.com/user/Devaland13/", Icon: MessageCircle, label: "Reddit", color: "bg-[#FF4500]/10 text-[#FF4500] border-[#FF4500]/20 hover:bg-[#FF4500] hover:text-white hover:border-[#FF4500] hover:scale-110" },
+    { href: "https://devaland.net/", Icon: Globe, label: "devaland.net", color: "bg-blue-600/10 text-blue-600 border-blue-600/20 hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:scale-110" },
     { href: "https://bx.community/@GrayWolf", Icon: Globe, label: "bx.community" },
     { href: "https://renewableenergy-directory.com/", Icon: Globe, label: "Renewable Directory" },
     { href: "https://awesomegang.com/marius-andronie/", Icon: Globe, label: "AwesomeGang" },
@@ -317,7 +317,7 @@ export default function Footer() {
           <div className="flex flex-wrap items-center justify-center gap-3">
             {links.socialIcons.map(({ href, Icon, label, color }) => (
               <a key={href} href={href} aria-label={label} target="_blank" rel="noopener noreferrer"
-                 className={`rounded-full bg-gray-100 border-2 border-gray-200 p-2.5 text-gray-700 transition-all duration-300 ${color || 'hover:bg-blue-600 hover:text-white hover:border-blue-600'}`}>
+                 className={`rounded-full border-2 p-2.5 transition-all duration-300 ${color || 'bg-gray-100 text-gray-700 border-gray-200 hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:scale-110'}`}>
                 <Icon size={20} />
               </a>
             ))}
