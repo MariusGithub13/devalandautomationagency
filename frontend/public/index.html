@@ -409,6 +409,16 @@
           window.__chatWidgetInjected = true;
 
           console.log("🤖 Injecting voice AI widget...");
+          
+          // First, add the chat-widget element to the DOM
+          var widgetDiv = document.createElement("chat-widget");
+          widgetDiv.setAttribute("widget-id", "6922c05520fcaa7b0e25e690");
+          widgetDiv.setAttribute("location-id", "3hga7apoIS9IL45Lks5V");
+          widgetDiv.setAttribute("chat-type", "voiceAiChat");
+          document.body.appendChild(widgetDiv);
+          console.log("✅ Widget element added to DOM");
+          
+          // Then load the script
           var s = document.createElement("script");
           s.src = "https://beta.leadconnectorhq.com/loader.js";
           s.setAttribute(
