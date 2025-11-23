@@ -13,6 +13,7 @@ const BlogPage = () => {
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
+  const [gdprConsent, setGdprConsent] = useState(false);
 
   const categories = ['All', ...new Set(blogPosts.map(post => post.category))];
   
@@ -28,6 +29,11 @@ const BlogPage = () => {
     
     if (!email || !email.includes('@')) {
       setSubmitMessage('Please enter a valid email address');
+      return;
+    }
+
+    if (!gdprConsent) {
+      setSubmitMessage('Please accept the privacy policy to subscribe');
       return;
     }
 
@@ -52,6 +58,7 @@ const BlogPage = () => {
       if (response.ok) {
         setSubmitMessage('✓ Successfully subscribed! Check your email for confirmation.');
         setEmail('');
+        setGdprConsent(false);
       } else {
         const errorData = await response.json();
         console.error('Newsletter error:', errorData);
@@ -290,23 +297,47 @@ const BlogPage = () => {
             Get the latest insights, case studies, and automation strategies delivered to your inbox monthly.
           </p>
           
-          <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-            <Input
-              type="email"
-              placeholder="Enter your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              disabled={isSubmitting}
-              required
-              className="flex-1 bg-white text-gray-900 border-0"
-            />
-            <Button 
-              type="submit"
-              disabled={isSubmitting}
-              className="btn-accent text-white px-6 py-3"
-            >
-              {isSubmitting ? 'Subscribing...' : 'Subscribe'}
-            </Button>
+          <form onSubmit={handleNewsletterSubmit} className="flex flex-col gap-4 max-w-md mx-auto">
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Input
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                disabled={isSubmitting}
+                required
+                className="flex-1 bg-white text-gray-900 border-0"
+              />
+              <Button 
+                type="submit"
+                disabled={isSubmitting}
+                className="btn-accent text-white px-6 py-3"
+              >
+                {isSubmitting ? 'Subscribing...' : 'Subscribe'}
+              </Button>
+            </div>
+            
+            <div className="flex items-start gap-2 text-left">
+              <input
+                type="checkbox"
+                id="gdpr-consent"
+                checked={gdprConsent}
+                onChange={(e) => setGdprConsent(e.target.checked)}
+                disabled={isSubmitting}
+                className="mt-1 h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+              />
+              <label htmlFor="gdpr-consent" className="text-sm text-white opacity-90 cursor-pointer">
+                I agree to receive email updates from Devaland and accept the{' '}
+                <a href="/privacy" className="underline hover:text-blue-200" target="_blank" rel="noopener noreferrer">
+                  Privacy Policy
+                </a>
+                {' '}and{' '}
+                <a href="/gdpr" className="underline hover:text-blue-200" target="_blank" rel="noopener noreferrer">
+                  GDPR compliance
+                </a>
+                .
+              </label>
+            </div>
           </form>
           
           {submitMessage && (
