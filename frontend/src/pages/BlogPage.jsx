@@ -10,6 +10,9 @@ import { blogPosts } from '../data/mock';
 const BlogPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [email, setEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState('');
 
   const categories = ['All', ...new Set(blogPosts.map(post => post.category))];
   
@@ -19,6 +22,45 @@ const BlogPage = () => {
     const matchesCategory = selectedCategory === 'All' || post.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
+
+  const handleNewsletterSubmit = async (e) => {
+    e.preventDefault();
+    
+    if (!email || !email.includes('@')) {
+      setSubmitMessage('Please enter a valid email address');
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitMessage('');
+
+    try {
+      const response = await fetch('/.netlify/functions/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: 'Newsletter Subscriber',
+          email: email,
+          subject: 'Newsletter Subscription',
+          message: 'Please add me to the newsletter mailing list.',
+          projectType: 'newsletter'
+        }),
+      });
+
+      if (response.ok) {
+        setSubmitMessage('✓ Successfully subscribed! Check your email for confirmation.');
+        setEmail('');
+      } else {
+        setSubmitMessage('Something went wrong. Please try again.');
+      }
+    } catch (error) {
+      setSubmitMessage('Unable to subscribe. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="pt-16">
@@ -245,16 +287,30 @@ const BlogPage = () => {
             Get the latest insights, case studies, and automation strategies delivered to your inbox monthly.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+          <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
             <Input
               type="email"
               placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              disabled={isSubmitting}
+              required
               className="flex-1 bg-white text-gray-900 border-0"
             />
-            <Button className="btn-accent text-white px-6 py-3">
-              Subscribe
+            <Button 
+              type="submit"
+              disabled={isSubmitting}
+              className="btn-accent text-white px-6 py-3"
+            >
+              {isSubmitting ? 'Subscribing...' : 'Subscribe'}
             </Button>
-          </div>
+          </form>
+          
+          {submitMessage && (
+            <p className={`text-sm mt-4 font-semibold ${submitMessage.includes('✓') ? 'text-green-200' : 'text-yellow-200'}`}>
+              {submitMessage}
+            </p>
+          )}
           
           <p className="text-sm opacity-75 mt-4">
             No spam, unsubscribe at any time.
