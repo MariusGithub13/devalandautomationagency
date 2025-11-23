@@ -1,15 +1,24 @@
 # Copilot / AI Agent Instructions for this repository
 
-Purpose: Help an AI coding agent become productive quickly in this mono-repo containing a small FastAPI backend and a Create React App-based frontend.
+Purpose: Help an AI coding agent become productive quickly in this mono-repo containing a FastAPI backend, React SPA frontend, and Netlify serverless functions.
 
-- **Big picture**: This repo has two main parts:
-  - `backend/` — FastAPI app (`server.py`) using Motor (async MongoDB). Environment-driven config: `MONGO_URL`, `DB_NAME`, `CORS_ORIGINS`. Routes are mounted under the `/api` prefix (see `APIRouter(prefix="/api")`). Use `uvicorn` to run during development (example below).
+- **Big picture**: This repo has three main parts:
+  - `backend/` — FastAPI app (`server.py`) using Motor (async MongoDB, optional). Environment-driven config: `MONGO_URL`, `DB_NAME`, `CORS_ORIGINS`, SMTP settings. Routes are mounted under the `/api` prefix (see `APIRouter(prefix="/api")`). Use `uvicorn` to run during development (example below).
   - `frontend/` — React (Create React App) with `craco` used for builds. Entry is `src/index.js` and routing is in `src/App.js` (React Router v6). UI primitives live in `src/components/ui/` (Radix + custom wrappers).
+  - `netlify/functions/` — Serverless functions (Node.js 18) handling contact form submissions via SMTP. Deployed automatically with frontend to Netlify.
 
-- **Why this structure**: separation of API and UI simplifies local dev and deployment. Frontend deploys to Netlify as SPA (see `netlify.toml` for build config). Frontend build step runs a sitemap generator (`scripts/generate-sitemap.mjs`) before `npm run build`.
+- **Why this structure**: separation of API and UI simplifies local dev and deployment. Frontend + serverless functions deploy to Netlify as SPA (see `netlify.toml` for build config). Contact forms are handled via Netlify functions (not FastAPI) to avoid CORS complexity and enable automatic email notifications. Frontend build step runs a sitemap generator (`scripts/generate-sitemap.mjs`) before `npm run build`.
+
+- **Contact form architecture** (critical pattern):
+  - Frontend submits to `/.netlify/functions/contact` (Netlify serverless function in `netlify/functions/contact.js`)
+  - Netlify function sends **two emails** using nodemailer/SMTP: notification to `office@devaland.com` AND confirmation to customer
+  - Backend `/api/contact` endpoint exists but is **secondary** — MongoDB storage is optional (emails work without DB)
+  - SMTP config via env vars: `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASSWORD`, `CONTACT_EMAIL`
+  - Both implementations gracefully handle MongoDB unavailability — email sending is the primary goal
 
 - **Key files to reference**:
-  - `backend/server.py` — API, DB client, CORS, example models (`StatusCheck`, `StatusCheckCreate`) and endpoints (`POST /api/status`, `GET /api/status`).
+  - `backend/server.py` — API, DB client, CORS, example models (`StatusCheck`, `StatusCheckCreate`) and endpoints (`POST /api/status`, `GET /api/status`). Contact endpoint at `POST /api/contact` with email notification via `aiosmtplib`.
+  - `netlify/functions/contact.js` — Primary contact form handler using nodemailer. Sends notification + confirmation emails, handles CORS, includes project type labels.
   - `backend/requirements.txt` — exact Python deps and lint/test tooling to match.
   - `frontend/package.json` — node engine, `craco` usage, lifecycle hooks (notably `postinstall` -> `fix-missing-files`), and `prebuild` sitemap generation.
   - `frontend/src/App.js` — routing, lazy-loading example for `ChatBubble`, and how `Toaster`, `Header`, `Footer`, and consent components are wired.
@@ -28,7 +37,10 @@ Purpose: Help an AI coding agent become productive quickly in this mono-repo con
   - Tests / linters follow Python tooling from `requirements.txt` (pytest, black, isort, flake8, mypy) and frontend CRA test scripts.
 
 - **Environment & secrets**:
-  - Backend expects `backend/.env` (loaded with python-dotenv). Keys used by the code: `MONGO_URL`, `DB_NAME`, optionally `CORS_ORIGINS`.
+  - Backend expects `backend/.env` (loaded with python-dotenv). Keys used by the code: `MONGO_URL`, `DB_NAME`, optionally `CORS_ORIGINS`, plus SMTP settings: `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASSWORD`, `CONTACT_EMAIL`.
+  - See `backend/.env.example` for complete configuration template with notes about Gmail App Passwords and alternative SMTP providers.
+  - Netlify functions: SMTP env vars must be set in Netlify UI under Site settings > Environment variables (same keys as backend).
+  - See `netlify/functions/.env.example` for Netlify-specific configuration guidance.
   - Do not hardcode secrets in code. If asked to add a secret, reference `.env` and document required keys in PR description.
 
 - **Patterns & conventions specific to this repo**:
@@ -52,6 +64,17 @@ Purpose: Help an AI coding agent become productive quickly in this mono-repo con
   - Using DB: follow async pattern `await db.collection.find().to_list()` and return Pydantic-constructed objects if returning via FastAPI.
   - Creating UI components: extend Radix primitives with CVA variants (see `button.jsx`) and use `cn()` for className composition.
 
+- **Sitemap generation workflow** (important for SEO):
+  - Sitemap is generated at build time by `frontend/scripts/generate-sitemap.mjs` (runs via `prebuild` hook in `package.json`)
+  - When adding a new page route, you MUST update THREE places:
+    1. Create page component in `frontend/src/pages/[PageName].jsx`
+    2. Add route in `frontend/src/App.js`: `<Route path="/new-route" element={<NewPage />} />`
+    3. Add URL to `ROUTES` array in `frontend/scripts/generate-sitemap.mjs`: `"/new-route"`
+  - For blog posts, add slug to `BLOG_POSTS` array in sitemap script (format: `/blog/slug-here`)
+  - Generated sitemap writes to `frontend/public/sitemap.xml` and includes lastmod, changefreq, priority per route
+  - If you forget to update sitemap script, the new route won't appear in search engines
+  - Sitemap script also auto-discovers static HTML files in `frontend/public/blog/` directory
+
 - **Testing & CI hints**:
   - Backend tests: repository includes `pytest` in requirements — run from project root: `pytest -q` (after installing backend deps in venv and setting test DB env variables).
   - Frontend tests: `cd frontend && npm test` (CRA test runner).
@@ -63,6 +86,7 @@ Purpose: Help an AI coding agent become productive quickly in this mono-repo con
 
 - **Files to check when debugging issues**:
   - `backend/server.py` for API logic and DB connection issues.
+  - `netlify/functions/contact.js` for contact form email delivery issues.
   - `frontend/package.json` for build scripts, `scripts/generate-sitemap.mjs` for prebuild behavior.
   - `frontend/src/App.js` and `frontend/src/index.js` for routing, providers, and root render issues.
   - `netlify.toml` for deployment config, CSP headers causing content blocking, or build failures.
