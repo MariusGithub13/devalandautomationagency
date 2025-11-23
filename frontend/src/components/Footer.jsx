@@ -198,40 +198,22 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Klaviyo and Review Widget - Side by Side */}
-            <div className="mt-6 flex flex-col md:flex-row gap-6 items-start justify-center">
-              {/* Klaviyo Partner Badge */}
-              <div className="w-full max-w-md flex flex-col items-center justify-center">
-                <div className="w-full h-full px-4 py-5 rounded-lg border border-gray-200 bg-white shadow-md flex flex-col items-center justify-between">
-                  <div>
-                    <div className="mb-3 text-lg font-semibold text-gray-900 text-center">Devaland is a Certified Klaviyo Partner</div>
-                    <p className="mb-4 text-sm text-gray-600 text-center leading-relaxed">
-                      As a certified Klaviyo partner agency, we empower businesses across diverse industries to accelerate revenue and build meaningful customer relationships through advanced email marketing strategies.
-                    </p>
-                  </div>
-                  <a
-                    href="https://www.klaviyo.com/partners/signup?utm_source=001Nu00000HqbJVIAZ&utm_medium=partner"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Visit Klaviyo website"
-                    className="inline-block"
-                  >
-                    <img src="/images/Klaviyo Agency Partner.webp" alt="Klaviyo Agency Partner" className="h-16 object-contain" />
-                  </a>
-                </div>
-              </div>
-
-              {/* Review Widget */}
-              <div className="w-full max-w-md flex flex-col items-center justify-center">
-                <div className="w-full h-full px-4 py-5 rounded-lg border border-gray-200 bg-white shadow-md flex flex-col items-center">
-                  <div className="mb-3 text-lg font-semibold text-gray-900 text-center">Client Reviews</div>
-                  <iframe 
-                    className='lc_reviews_widget' 
-                    src='https://api.devaland.com/reputation/widgets/review_widget/3hga7apoIS9IL45Lks5V'
-                    style={{ border: 'none', width: '100%', minHeight: '350px' }}
-                    title="Customer Reviews"
-                  />
-                </div>
+            {/* Klaviyo Partner Badge */}
+            <div className="mt-6 flex flex-col items-center justify-center">
+              <div className="w-full max-w-md px-4 py-5 rounded-lg border border-gray-200 bg-white shadow-md flex flex-col items-center">
+                <div className="mb-3 text-lg font-semibold text-gray-900 text-center">Devaland is a Certified Klaviyo Partner</div>
+                <p className="mb-4 text-sm text-gray-600 text-center leading-relaxed">
+                  As a certified Klaviyo partner agency, we empower businesses across diverse industries to accelerate revenue and build meaningful customer relationships through advanced email marketing strategies.
+                </p>
+                <a
+                  href="https://www.klaviyo.com/partners/signup?utm_source=001Nu00000HqbJVIAZ&utm_medium=partner"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Visit Klaviyo website"
+                  className="inline-block"
+                >
+                  <img src="/images/Klaviyo Agency Partner.webp" alt="Klaviyo Agency Partner" className="h-16 object-contain" />
+                </a>
               </div>
             </div>
           </div>
@@ -353,6 +335,19 @@ export default function Footer() {
                   >
                     <img src="/images/EU Consumer Redress.svg" alt="VIES VAT number validation - European Commission" className="h-16 w-auto object-contain rounded-sm shadow border border-gray-200 bg-white p-1" />
                   </a>
+                </div>
+              </div>
+
+              {/* Review Widget - after compliance badges */}
+              <div className="mt-6 flex flex-col items-start">
+                <div className="w-full max-w-md px-4 py-5 rounded-lg border border-gray-200 bg-white shadow-md flex flex-col items-center">
+                  <div className="mb-3 text-lg font-semibold text-gray-900 text-center">Client Reviews</div>
+                  <iframe 
+                    className='lc_reviews_widget' 
+                    src='https://api.devaland.com/reputation/widgets/review_widget/3hga7apoIS9IL45Lks5V'
+                    style={{ border: 'none', width: '100%', minHeight: '350px' }}
+                    title="Customer Reviews"
+                  />
                 </div>
               </div>
           </div>
