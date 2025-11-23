@@ -199,9 +199,9 @@ export default function Footer() {
             </div>
 
             {/* Klaviyo and Review Widget - Side by Side */}
-            <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-md mx-auto">
+            <div className="mt-6 flex flex-col md:flex-row gap-6 items-start justify-center">
               {/* Klaviyo Partner Badge */}
-              <div className="flex flex-col items-center justify-center">
+              <div className="w-full max-w-md flex flex-col items-center justify-center">
                 <div className="w-full h-full px-4 py-5 rounded-lg border border-gray-200 bg-white shadow-md flex flex-col items-center justify-between">
                   <div>
                     <div className="mb-3 text-lg font-semibold text-gray-900 text-center">Devaland is a Certified Klaviyo Partner</div>
@@ -222,7 +222,7 @@ export default function Footer() {
               </div>
 
               {/* Review Widget */}
-              <div className="flex flex-col items-center justify-center">
+              <div className="w-full max-w-md flex flex-col items-center justify-center">
                 <div className="w-full h-full px-4 py-5 rounded-lg border border-gray-200 bg-white shadow-md flex flex-col items-center">
                   <div className="mb-3 text-lg font-semibold text-gray-900 text-center">Client Reviews</div>
                   <iframe 
