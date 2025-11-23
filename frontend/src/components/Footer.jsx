@@ -199,7 +199,7 @@ export default function Footer() {
             </div>
 
             {/* Klaviyo and Review Widget - Side by Side */}
-            <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-md mx-auto">
               {/* Klaviyo Partner Badge */}
               <div className="flex flex-col items-center justify-center">
                 <div className="w-full h-full px-4 py-5 rounded-lg border border-gray-200 bg-white shadow-md flex flex-col items-center justify-between">
