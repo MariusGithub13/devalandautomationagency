@@ -96,7 +96,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Social Proof - Review Widget */}
+      {/* Social Proof - Client Testimonials */}
       <section className="section-padding bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -107,13 +107,49 @@ const HomePage = () => {
               Don't just take our word for it. See what our clients have to say about working with Devaland.
             </p>
           </div>
-          <div className="flex justify-center">
-            <iframe 
-              className='lc_reviews_widget' 
-              src='https://api.devaland.com/reputation/widgets/review_widget/3hga7apoIS9IL45Lks5V'
-              style={{ border: 'none', width: '100%', maxWidth: '1200px', minHeight: '600px' }}
-              title="Customer Reviews"
-            />
+
+          {/* Testimonials Grid */}
+          <div className="grid md:grid-cols-3 gap-8 mb-12">
+            {caseStudies.map((caseStudy) => (
+              <div key={caseStudy.id} className="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-shadow">
+                <div className="mb-6">
+                  <svg className="w-10 h-10 text-blue-600 mb-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                  </svg>
+                  <p className="text-gray-700 mb-6 leading-relaxed italic">
+                    "{caseStudy.testimonial}"
+                  </p>
+                </div>
+                <div className="border-t border-gray-200 pt-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="font-semibold text-gray-900">{caseStudy.clientName}</p>
+                      <p className="text-sm text-gray-600">{caseStudy.clientTitle}</p>
+                      <p className="text-sm text-blue-600 font-medium mt-1">{caseStudy.client}</p>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-2xl font-bold text-green-600">{caseStudy.results.timeReduction}</div>
+                      <div className="text-xs text-gray-600">Time Saved</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Review Widget */}
+          <div className="flex justify-center mt-12">
+            <div className="w-full max-w-4xl">
+              <h3 className="text-2xl font-semibold text-center text-gray-900 mb-6">
+                See More Reviews
+              </h3>
+              <iframe 
+                className='lc_reviews_widget' 
+                src='https://api.devaland.com/reputation/widgets/review_widget/3hga7apoIS9IL45Lks5V'
+                style={{ border: 'none', width: '100%', minHeight: '500px' }}
+                title="Customer Reviews"
+              />
+            </div>
           </div>
         </div>
       </section>
