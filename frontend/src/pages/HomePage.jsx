@@ -96,7 +96,27 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Social Proof - Trustpilot widget moved to footer only */}
+      {/* Social Proof - Review Widget */}
+      <section className="section-padding bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-display text-gray-900 mb-6">
+              What Our Clients Say
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Don't just take our word for it. See what our clients have to say about working with Devaland.
+            </p>
+          </div>
+          <div className="flex justify-center">
+            <iframe 
+              className='lc_reviews_widget' 
+              src='https://api.devaland.com/reputation/widgets/review_widget/3hga7apoIS9IL45Lks5V'
+              style={{ border: 'none', width: '100%', maxWidth: '1200px', minHeight: '600px' }}
+              title="Customer Reviews"
+            />
+          </div>
+        </div>
+      </section>
 
       {/* Services Overview */}
       <section className="section-padding bg-white">

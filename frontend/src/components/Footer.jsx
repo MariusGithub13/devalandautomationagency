@@ -216,6 +216,19 @@ export default function Footer() {
                 </a>
               </div>
             </div>
+
+            {/* Review Widget */}
+            <div className="mt-6 flex flex-col items-center justify-center">
+              <div className="w-full max-w-md px-4 py-5 rounded-lg border border-gray-200 bg-white shadow-md flex flex-col items-center">
+                <div className="mb-3 text-lg font-semibold text-gray-900 text-center">Client Reviews</div>
+                <iframe 
+                  className='lc_reviews_widget' 
+                  src='https://api.devaland.com/reputation/widgets/review_widget/3hga7apoIS9IL45Lks5V'
+                  style={{ border: 'none', width: '100%', minHeight: '400px' }}
+                  title="Customer Reviews"
+                />
+              </div>
+            </div>
           </div>
 
           {/* Explore */}
