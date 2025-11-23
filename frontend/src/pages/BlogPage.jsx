@@ -43,8 +43,8 @@ const BlogPage = () => {
         body: JSON.stringify({
           name: 'Newsletter Subscriber',
           email: email,
-          subject: 'Newsletter Subscription',
-          message: 'Please add me to the newsletter mailing list.',
+          company: 'Newsletter Subscription',
+          message: 'Please add me to the newsletter mailing list for automation insights and updates.',
           projectType: 'newsletter'
         }),
       });
@@ -53,9 +53,12 @@ const BlogPage = () => {
         setSubmitMessage('✓ Successfully subscribed! Check your email for confirmation.');
         setEmail('');
       } else {
+        const errorData = await response.json();
+        console.error('Newsletter error:', errorData);
         setSubmitMessage('Something went wrong. Please try again.');
       }
     } catch (error) {
+      console.error('Newsletter submission error:', error);
       setSubmitMessage('Unable to subscribe. Please try again later.');
     } finally {
       setIsSubmitting(false);
