@@ -198,35 +198,38 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Review Widget */}
-            <div className="mt-6 flex flex-col items-center justify-center">
-              <div className="w-full max-w-md px-4 py-5 rounded-lg border border-gray-200 bg-white shadow-md flex flex-col items-center">
-                <div className="mb-3 text-lg font-semibold text-gray-900 text-center">Client Reviews</div>
-                <iframe 
-                  className='lc_reviews_widget' 
-                  src='https://api.devaland.com/reputation/widgets/review_widget/3hga7apoIS9IL45Lks5V'
-                  style={{ border: 'none', width: '100%', minHeight: '400px' }}
-                  title="Customer Reviews"
-                />
+            {/* Review Widget and Klaviyo Badge - Side by Side */}
+            <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* Review Widget */}
+              <div className="flex flex-col items-center justify-center">
+                <div className="w-full px-3 py-4 rounded-lg border border-gray-200 bg-white shadow-md flex flex-col items-center">
+                  <div className="mb-2 text-base font-semibold text-gray-900 text-center">Client Reviews</div>
+                  <iframe 
+                    className='lc_reviews_widget' 
+                    src='https://api.devaland.com/reputation/widgets/review_widget/3hga7apoIS9IL45Lks5V'
+                    style={{ border: 'none', width: '100%', minHeight: '300px' }}
+                    title="Customer Reviews"
+                  />
+                </div>
               </div>
-            </div>
 
-            {/* Klaviyo Partner Badge */}
-            <div className="mt-6 flex flex-col items-center justify-center">
-              <div className="w-full max-w-md px-4 py-5 rounded-lg border border-gray-200 bg-white shadow-md flex flex-col items-center">
-                <div className="mb-3 text-lg font-semibold text-gray-900 text-center">Devaland is a Certified Klaviyo Partner</div>
-                <p className="mb-4 text-sm text-gray-600 text-center leading-relaxed">
-                  As a certified Klaviyo partner agency, we empower businesses across diverse industries to accelerate revenue and build meaningful customer relationships through advanced email marketing strategies.
-                </p>
-                <a
-                  href="https://www.klaviyo.com/partners/signup?utm_source=001Nu00000HqbJVIAZ&utm_medium=partner"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Visit Klaviyo website"
-                  className="inline-block"
-                >
-                  <img src="/images/Klaviyo Agency Partner.webp" alt="Klaviyo Agency Partner" className="h-16 object-contain" />
-                </a>
+              {/* Klaviyo Partner Badge */}
+              <div className="flex flex-col items-center justify-center">
+                <div className="w-full px-3 py-4 rounded-lg border border-gray-200 bg-white shadow-md flex flex-col items-center">
+                  <div className="mb-2 text-base font-semibold text-gray-900 text-center">Certified Klaviyo Partner</div>
+                  <p className="mb-3 text-xs text-gray-600 text-center leading-relaxed">
+                    As a certified Klaviyo partner agency, we empower businesses to accelerate revenue through advanced email marketing.
+                  </p>
+                  <a
+                    href="https://www.klaviyo.com/partners/signup?utm_source=001Nu00000HqbJVIAZ&utm_medium=partner"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Visit Klaviyo website"
+                    className="inline-block"
+                  >
+                    <img src="/images/Klaviyo Agency Partner.webp" alt="Klaviyo Agency Partner" className="h-12 object-contain" />
+                  </a>
+                </div>
               </div>
             </div>
           </div>
