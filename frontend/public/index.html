@@ -422,11 +422,25 @@
           // Don't set async - let the loader control timing
           s.onload = function() {
             console.log("✅ Voice AI widget script loaded successfully");
-            // Give the widget time to initialize
+            
+            // Listen for widget errors
+            window.addEventListener('error', function(e) {
+              if (e.message && e.message.includes('voice')) {
+                console.error("🎤 Voice widget error:", e.message);
+              }
+            });
+            
+            // Check for widget initialization
             setTimeout(function() {
               var widgetEl = document.querySelector('chat-widget');
               if (widgetEl) {
                 console.log("✅ Widget element found:", widgetEl);
+                
+                // Log widget attributes for debugging
+                var agentInfo = widgetEl.getAttribute('voice-ai-agent');
+                if (agentInfo) {
+                  console.log("🎤 Voice AI agent info:", JSON.parse(agentInfo));
+                }
               } else {
                 console.warn("⚠️ Widget element not found after loading");
               }
