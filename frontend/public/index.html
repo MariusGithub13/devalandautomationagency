@@ -419,9 +419,18 @@
             "data-widget-id",
             "6922c05520fcaa7b0e25e690"
           );
-          s.async = true;
+          // Don't set async - let the loader control timing
           s.onload = function() {
             console.log("✅ Voice AI widget script loaded successfully");
+            // Give the widget time to initialize
+            setTimeout(function() {
+              var widgetEl = document.querySelector('chat-widget');
+              if (widgetEl) {
+                console.log("✅ Widget element found:", widgetEl);
+              } else {
+                console.warn("⚠️ Widget element not found after loading");
+              }
+            }, 2000);
           };
           s.onerror = function() {
             console.error("❌ Failed to load voice AI widget script");
