@@ -345,7 +345,9 @@ export default function Footer() {
                   <iframe 
                     className='lc_reviews_widget' 
                     src='https://api.devaland.com/reputation/widgets/review_widget/3hga7apoIS9IL45Lks5V'
-                    style={{ border: 'none', width: '100%', minHeight: '350px' }}
+                    frameBorder='0'
+                    scrolling='no'
+                    style={{ minWidth: '100%', width: '100%' }}
                     title="Customer Reviews"
                   />
                 </div>
