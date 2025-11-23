@@ -437,6 +437,31 @@
           s.onload = function() {
             console.log("✅ Voice AI widget script loaded successfully");
             
+            // Monitor fetch requests to see what's failing
+            var originalFetch = window.fetch;
+            window.fetch = function() {
+              var url = arguments[0];
+              if (typeof url === 'string' && url.includes('leadconnector')) {
+                console.log("🌐 API Call:", url);
+              }
+              return originalFetch.apply(this, arguments).then(function(response) {
+                if (typeof url === 'string' && url.includes('leadconnector')) {
+                  console.log("📡 Response:", response.status, response.statusText, url);
+                  if (!response.ok) {
+                    response.clone().text().then(function(text) {
+                      console.error("❌ API Error Response:", text);
+                    });
+                  }
+                }
+                return response;
+              }).catch(function(error) {
+                if (typeof url === 'string' && url.includes('leadconnector')) {
+                  console.error("❌ API Error:", error, url);
+                }
+                throw error;
+              });
+            };
+            
             // Listen for widget errors
             window.addEventListener('error', function(e) {
               if (e.message && e.message.includes('voice')) {
