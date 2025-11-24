@@ -4,6 +4,7 @@ import { Button } from '../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { Link } from 'react-router-dom';
+import SEO from '../components/SEO';
 import { caseStudies } from '../data/mock';
 
 const CaseStudiesPage = () => {
@@ -15,8 +16,32 @@ const CaseStudiesPage = () => {
     ? caseStudies 
     : caseStudies.filter(study => study.industry === selectedIndustry);
 
+  const caseStudiesSchema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Automation Success Stories & Case Studies",
+    "description": "Real results from enterprise automation implementations across industries",
+    "url": "https://devaland.com/case-studies"
+  };
+
   return (
-    <div className="pt-16">
+    <>
+      <SEO 
+        title="Case Studies - Proven Automation Success Stories"
+        description="See how we've helped enterprises achieve remarkable results through automation. Real case studies with measurable ROI, including Klaviyo email marketing, RPA, and workflow automation implementations."
+        canonical="https://devaland.com/case-studies"
+        keywords={[
+          "automation case studies",
+          "klaviyo success stories",
+          "RPA case studies",
+          "workflow automation results",
+          "email marketing case studies",
+          "automation ROI"
+        ]}
+        schema={caseStudiesSchema}
+      />
+      
+      <div className="pt-16">
       {/* Hero Section */}
       <section className="section-padding bg-gradient-subtle">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -194,6 +219,7 @@ const CaseStudiesPage = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

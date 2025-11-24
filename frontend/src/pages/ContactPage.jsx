@@ -7,10 +7,36 @@ import { Textarea } from '../components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../components/ui/select';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { toast } from 'sonner';
+import SEO from '../components/SEO';
 import { companyData } from '../data/mock';
 import { sendTrustpilotInvitation, generateReferenceId } from '../utils/trustpilot';
 
 const ContactPage = () => {
+  const contactSchema = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Contact Devaland",
+    "description": "Get in touch with our automation experts for a free consultation",
+    "url": "https://devaland.com/contact",
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://devaland.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Contact",
+          "item": "https://devaland.com/contact"
+        }
+      ]
+    }
+  };
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -131,7 +157,21 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="pt-16">
+    <>
+      <SEO 
+        title="Contact Us - Get Your Free Automation Consultation"
+        description="Get in touch with our automation experts. Schedule a free consultation to discover how Klaviyo, RPA, and workflow automation can transform your business. 24-hour response guarantee."
+        canonical="https://devaland.com/contact"
+        keywords={[
+          "contact automation agency",
+          "free automation consultation",
+          "klaviyo consultation",
+          "RPA consultation"
+        ]}
+        schema={contactSchema}
+      />
+      
+      <div className="pt-16">
       {/* Hero Section */}
       <section className="section-padding-sm bg-gradient-subtle">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -512,6 +552,7 @@ const ContactPage = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

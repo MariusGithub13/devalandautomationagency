@@ -5,9 +5,22 @@ import { Card, CardContent, CardHeader } from '../components/ui/card';
 import { Input } from '../components/ui/input';
 import { Badge } from '../components/ui/badge';
 import { Link } from 'react-router-dom';
+import SEO from '../components/SEO';
 import { blogPosts } from '../data/mock';
 
 const BlogPage = () => {
+  const blogSchema = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Devaland Automation Blog",
+    "description": "Expert insights on email marketing automation, Klaviyo, RPA, and business process automation",
+    "url": "https://devaland.com/blog",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Devaland Marketing SRL",
+      "url": "https://devaland.com"
+    }
+  };
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [email, setEmail] = useState('');
@@ -23,6 +36,25 @@ const BlogPage = () => {
     const matchesCategory = selectedCategory === 'All' || post.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
+
+  return (
+    <>
+      <SEO 
+        title="Blog - Automation & Email Marketing Insights"
+        description="Expert insights on email marketing automation, Klaviyo best practices, RPA development, and business process automation. Stay ahead with our latest guides and case studies."
+        canonical="https://devaland.com/blog"
+        keywords={[
+          "email marketing blog",
+          "klaviyo tips",
+          "automation blog",
+          "RPA insights",
+          "workflow automation guides",
+          "klaviyo best practices"
+        ]}
+        schema={blogSchema}
+      />
+      
+      <div className="pt-16">
 
   const handleNewsletterSubmit = async (e) => {
     e.preventDefault();
@@ -374,6 +406,7 @@ const BlogPage = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

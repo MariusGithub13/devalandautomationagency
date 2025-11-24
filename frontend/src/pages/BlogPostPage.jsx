@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Calendar, Clock, Share2, Linkedin, Facebook, Twitter } from 'lucide-react';
 import { Badge } from '../components/ui/badge';
 import { Button } from '../components/ui/button';
+import SEO from '../components/SEO';
 import { blogPosts } from '../data/mock';
 
 const BlogPostPage = () => {
@@ -29,11 +30,78 @@ const BlogPostPage = () => {
     );
   }
 
+  // Generate canonical URL from slug
+  const canonicalUrl = `https://devaland.com/blog/${slug}`;
+  
+  // Generate Article schema for SEO
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": post.title,
+    "description": post.excerpt,
+    "image": post.image || "https://customer-assets.emergentagent.com/job_process-genius-5/artifacts/kau0y3tw_Devaland-Logo.jpg",
+    "datePublished": post.date,
+    "dateModified": post.date,
+    "author": {
+      "@type": "Person",
+      "name": post.author
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Devaland Marketing SRL",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://customer-assets.emergentagent.com/job_process-genius-5/artifacts/kau0y3tw_Devaland-Logo.jpg"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": canonicalUrl
+    },
+    "keywords": post.tags?.join(", ") || post.category,
+    "articleSection": post.category,
+    "wordCount": post.content?.length || 1000,
+    "timeRequired": post.readTime,
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://devaland.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://devaland.com/blog"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": post.title,
+          "item": canonicalUrl
+        }
+      ]
+    }
+  };
+
   const shareUrl = window.location.href;
   const shareTitle = encodeURIComponent(post.title);
 
   return (
     <>
+      <SEO 
+        title={post.title}
+        description={post.excerpt}
+        canonical={canonicalUrl}
+        ogImage={post.image || "https://customer-assets.emergentagent.com/job_process-genius-5/artifacts/kau0y3tw_Devaland-Logo.jpg"}
+        ogType="article"
+        keywords={post.tags || [post.category, "email marketing", "automation", "klaviyo"]}
+        schema={articleSchema}
+      />
+      
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-blue-600 to-purple-700 text-white py-20">
         <div className="absolute inset-0 bg-black/20"></div>

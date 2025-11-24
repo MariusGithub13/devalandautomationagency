@@ -4,11 +4,48 @@ import { Button } from '../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { Link } from 'react-router-dom';
+import SEO from '../components/SEO';
 import { companyData, klaviyoServices, serviceImages, awards, klaviyoSuccessStories, klaviyoStats } from '../data/mock';
 
 const KlaviyoPage = () => {
+  const klaviyoSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Klaviyo Email Marketing Services",
+    "description": "Expert Klaviyo email marketing and automation for Shopify brands. Official Klaviyo Partner agency specializing in flow optimization, campaign management, and revenue growth.",
+    "provider": {
+      "@type": "Organization",
+      "name": "Devaland Marketing SRL",
+      "url": "https://devaland.com"
+    },
+    "areaServed": "Worldwide",
+    "availableChannel": {
+      "@type": "ServiceChannel",
+      "serviceUrl": "https://devaland.com/klaviyo"
+    }
+  };
+
   return (
-    <div className="pt-16">
+    <>
+      <SEO 
+        title="Klaviyo Email Marketing Services for Shopify"
+        description="Expert Klaviyo email marketing and automation for Shopify brands. Official Klaviyo Partner. Drive revenue growth with proven flows, segmentation, and campaigns. 45% average revenue increase."
+        canonical="https://devaland.com/klaviyo"
+        keywords={[
+          "klaviyo agency",
+          "klaviyo email marketing",
+          "shopify klaviyo integration",
+          "klaviyo flows",
+          "klaviyo automation",
+          "klaviyo partner",
+          "email automation shopify",
+          "klaviyo campaign management",
+          "klaviyo segmentation"
+        ]}
+        schema={klaviyoSchema}
+      />
+      
+      <div className="pt-16">
       {/* Hero Section */}
       <section className="section-padding bg-gradient-to-br from-purple-50 via-white to-blue-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -426,6 +463,7 @@ const KlaviyoPage = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

@@ -4,13 +4,46 @@ import { Button } from '../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { Link } from 'react-router-dom';
+import SEO from '../components/SEO';
 import { services } from '../data/mock';
 
 const ServicesPage = () => {
   const categories = [...new Set(services.map(service => service.category))];
 
+  const servicesSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": services.slice(0, 6).map((service, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "Service",
+        "name": service.title,
+        "description": service.description
+      }
+    }))
+  };
+
   return (
-    <div className="pt-16">
+    <>
+      <SEO 
+        title="Enterprise Automation Services"
+        description="Strategic automation solutions for enterprise transformation. RPA development, workflow automation, AI chatbots, Klaviyo email marketing, and system integration services with measurable ROI."
+        canonical="https://devaland.com/services"
+        keywords={[
+          "automation services",
+          "RPA development",
+          "workflow automation",
+          "business process automation",
+          "enterprise automation",
+          "AI chatbot development",
+          "system integration",
+          "automation consulting"
+        ]}
+        schema={servicesSchema}
+      />
+      
+      <div className="pt-16">
       {/* Hero Section */}
       <section className="section-padding bg-gradient-subtle">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -197,6 +230,7 @@ const ServicesPage = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

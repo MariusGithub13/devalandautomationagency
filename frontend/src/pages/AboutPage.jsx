@@ -3,11 +3,35 @@ import { ArrowRight, Users, Award, Target, Lightbulb, ExternalLink, Linkedin } f
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import { Link } from 'react-router-dom';
+import SEO from '../components/SEO';
 import { companyData, team, heroImages, awards } from '../data/mock';
 
 const AboutPage = () => {
+  const aboutSchema = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "About Devaland Automation Agency",
+    "description": "Learn about our mission to transform enterprise operations through intelligent automation",
+    "url": "https://devaland.com/about"
+  };
+
   return (
-    <div className="pt-16">
+    <>
+      <SEO 
+        title="About Us - Enterprise Automation Experts"
+        description="Founded to transform how enterprises operate, Devaland has grown to a leading automation agency trusted worldwide. Learn about our team, mission, and values driving digital transformation."
+        canonical="https://devaland.com/about"
+        keywords={[
+          "automation agency",
+          "devaland team",
+          "automation experts",
+          "klaviyo partner",
+          "RPA specialists"
+        ]}
+        schema={aboutSchema}
+      />
+      
+      <div className="pt-16">
       {/* Hero Section */}
       <section className="section-padding bg-gradient-subtle">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -330,6 +354,7 @@ const AboutPage = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 
