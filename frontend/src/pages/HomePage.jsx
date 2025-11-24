@@ -3,12 +3,64 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle, Users, Award, TrendingUp, ExternalLink } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
+import SEO from '../components/SEO';
 // TrustpilotWidget removed - using consistent footer-style widget
 import { companyData, heroImages, services, caseStudies, awards } from '../data/mock';
 
 const HomePage = () => {
+  // Structured data for homepage
+  const homeSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Devaland Marketing SRL",
+    "alternateName": "Devaland",
+    "url": "https://devaland.com",
+    "logo": "https://customer-assets.emergentagent.com/job_process-genius-5/artifacts/kau0y3tw_Devaland-Logo.jpg",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+40-721-269-312",
+      "contactType": "customer service",
+      "availableLanguage": ["English", "Romanian"]
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Sântandrei 13",
+      "addressLocality": "Simeria",
+      "postalCode": "335903",
+      "addressRegion": "Hunedoara County",
+      "addressCountry": "Romania"
+    },
+    "sameAs": [
+      "https://www.linkedin.com/company/devaland/",
+      "https://www.linkedin.com/in/marius-andronie/",
+      "https://www.facebook.com/marius.andronie/",
+      "https://www.instagram.com/mariusandronie/",
+      "https://www.youtube.com/@devaland13",
+      "https://www.trustpilot.com/review/devaland.com"
+    ],
+    "description": "Leading automation agency specializing in RPA, workflow automation, and Klaviyo email marketing for Shopify brands."
+  };
+
   return (
-    <div className="pt-16">
+    <>
+      <SEO 
+        title="Devaland Automation Agency"
+        description="Leading automation agency specializing in RPA, workflow automation, and Klaviyo email marketing for Shopify brands. Transform your operations with intelligent automation solutions."
+        canonical="https://devaland.com"
+        keywords={[
+          "automation agency",
+          "RPA development", 
+          "Klaviyo email marketing",
+          "Shopify email automation",
+          "enterprise automation",
+          "workflow automation",
+          "business process automation",
+          "AI chatbot development"
+        ]}
+        schema={homeSchema}
+      />
+      
+      <div className="pt-16">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
         {/* Background */}
@@ -323,6 +375,7 @@ const HomePage = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

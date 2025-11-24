@@ -5,13 +5,6 @@
   # And publish the CRA build output
   publish = "frontend/build"
 
-# ============================================
-# Plugins for SEO and Performance
-# ============================================
-[[plugins]]
-  # Pre-render pages for better SEO and crawler visibility
-  package = "@netlify/plugin-prerendering"
-
 [functions]
   # Serverless functions directory (relative to repo root)
   directory = "netlify/functions"
