@@ -216,63 +216,135 @@ async function sendConfirmationEmail(formData) {
       }
     });
 
-    // Create HTML confirmation email
-    const htmlBody = `
-      <html>
-        <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
-          <div style="max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
-            <h2 style="color: #1e40af; border-bottom: 2px solid #1e40af; padding-bottom: 10px;">
-              Thank You for Contacting Devaland
-            </h2>
-            
-            <p>Hi ${formData.name},</p>
-            
-            <p>Thank you for reaching out to us! We've received your message and will get back to you within 24 hours.</p>
-            
-            <div style="background: #f9fafb; padding: 15px; border-radius: 5px; margin: 20px 0;">
-              <h3 style="color: #1e40af; margin-top: 0;">Your Submission Details:</h3>
-              <p><strong>Company:</strong> ${formData.company}</p>
-              ${formData.phone ? `<p><strong>Phone:</strong> ${formData.phone}</p>` : ''}
-              ${formData.projectType ? `<p><strong>Project Type:</strong> ${getProjectTypeLabel(formData.projectType)}</p>` : ''}
-              ${formData.budget ? `<p><strong>Budget:</strong> ${formData.budget}</p>` : ''}
+    // Check if this is a newsletter subscription
+    const isNewsletter = formData.projectType === 'newsletter' || formData.company === 'Newsletter Subscription';
+
+    let htmlBody;
+    let subject;
+
+    if (isNewsletter) {
+      // Newsletter-specific confirmation email
+      subject = 'Welcome to Devaland\'s Automation Newsletter! 🚀';
+      htmlBody = `
+        <html>
+          <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+            <div style="max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
+              <h2 style="color: #1e40af; border-bottom: 2px solid #1e40af; padding-bottom: 10px;">
+                Welcome to Devaland's Automation Newsletter! 🚀
+              </h2>
+              
+              <p>Hi there,</p>
+              
+              <p>Thank you for subscribing to our newsletter! You've just taken the first step towards staying ahead in the world of automation and AI.</p>
+              
+              <div style="background: #f0f7ff; padding: 20px; border-radius: 5px; margin: 20px 0; border-left: 4px solid #1e40af;">
+                <h3 style="color: #1e40af; margin-top: 0;">What to Expect:</h3>
+                <ul style="margin: 10px 0; padding-left: 20px;">
+                  <li><strong>Monthly Insights:</strong> Latest automation trends and strategies</li>
+                  <li><strong>Case Studies:</strong> Real-world success stories from our clients</li>
+                  <li><strong>Expert Tips:</strong> Klaviyo, RPA, and AI automation best practices</li>
+                  <li><strong>Exclusive Content:</strong> Early access to new resources and tools</li>
+                </ul>
+              </div>
+              
+              <p>While you're here, explore our resources:</p>
+              <div style="background: #fff; padding: 15px; border-radius: 5px; margin: 20px 0;">
+                <ul style="list-style: none; padding: 0; margin: 0;">
+                  <li style="margin: 10px 0;">📚 <a href="https://devaland.com/blog" style="color: #1e40af; text-decoration: none; font-weight: 500;">Read Our Blog</a> - Automation insights and guides</li>
+                  <li style="margin: 10px 0;">💼 <a href="https://devaland.com/case-studies" style="color: #1e40af; text-decoration: none; font-weight: 500;">View Case Studies</a> - See our proven results</li>
+                  <li style="margin: 10px 0;">🎯 <a href="https://devaland.com/klaviyo" style="color: #1e40af; text-decoration: none; font-weight: 500;">Klaviyo Services</a> - Email marketing automation</li>
+                  <li style="margin: 10px 0;">📅 <a href="https://calendly.com/devaland/30min" style="color: #1e40af; text-decoration: none; font-weight: 500;">Book a Free Consultation</a> - Let's discuss your automation needs</li>
+                </ul>
+              </div>
+              
+              <div style="background: #f9fafb; padding: 15px; border-radius: 5px; margin: 20px 0;">
+                <p style="margin: 0; font-size: 14px; color: #666;">
+                  <strong>Need immediate help?</strong><br>
+                  Don't wait for the next newsletter. Reach out to us directly at 
+                  <a href="mailto:office@devaland.com" style="color: #1e40af;">office@devaland.com</a> 
+                  or connect with our founder on 
+                  <a href="https://www.linkedin.com/in/marius-andronie/" style="color: #1e40af;">LinkedIn</a>.
+                </p>
+              </div>
+              
+              <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd;">
+                <p style="font-size: 14px; color: #666;">
+                  Best regards,<br>
+                  <strong>Marius Andronie</strong><br>
+                  Founder & CEO, Devaland Marketing<br>
+                  <a href="mailto:office@devaland.com" style="color: #1e40af;">office@devaland.com</a><br>
+                  <a href="https://devaland.com" style="color: #1e40af;">devaland.com</a>
+                </p>
+              </div>
+              
+              <div style="margin-top: 20px; padding: 15px; background: #f9fafb; border-radius: 5px; font-size: 12px; color: #999; text-align: center;">
+                <p style="margin: 0;">You're receiving this because you subscribed to Devaland's newsletter.</p>
+                <p style="margin: 5px 0 0 0;">Don't want to receive these emails? <a href="mailto:office@devaland.com?subject=Unsubscribe" style="color: #1e40af;">Unsubscribe here</a></p>
+              </div>
             </div>
-            
-            <div style="background: #fff; padding: 15px; border-left: 4px solid #1e40af; margin: 20px 0;">
-              <p><strong>Your Message:</strong></p>
-              <p style="white-space: pre-wrap;">${formData.message}</p>
+          </body>
+        </html>
+      `;
+    } else {
+      // Regular contact form confirmation
+      subject = 'Thank you for contacting Devaland - We\'ll be in touch soon!';
+      htmlBody = `
+        <html>
+          <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+            <div style="max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
+              <h2 style="color: #1e40af; border-bottom: 2px solid #1e40af; padding-bottom: 10px;">
+                Thank You for Contacting Devaland
+              </h2>
+              
+              <p>Hi ${formData.name},</p>
+              
+              <p>Thank you for reaching out to us! We've received your message and will get back to you within 24 hours.</p>
+              
+              <div style="background: #f9fafb; padding: 15px; border-radius: 5px; margin: 20px 0;">
+                <h3 style="color: #1e40af; margin-top: 0;">Your Submission Details:</h3>
+                <p><strong>Company:</strong> ${formData.company}</p>
+                ${formData.phone ? `<p><strong>Phone:</strong> ${formData.phone}</p>` : ''}
+                ${formData.projectType ? `<p><strong>Project Type:</strong> ${getProjectTypeLabel(formData.projectType)}</p>` : ''}
+                ${formData.budget ? `<p><strong>Budget:</strong> ${formData.budget}</p>` : ''}
+              </div>
+              
+              <div style="background: #fff; padding: 15px; border-left: 4px solid #1e40af; margin: 20px 0;">
+                <p><strong>Your Message:</strong></p>
+                <p style="white-space: pre-wrap;">${formData.message}</p>
+              </div>
+              
+              <p>In the meantime, feel free to:</p>
+              <ul>
+                <li>Check out our <a href="https://devaland.com/case-studies" style="color: #1e40af;">case studies</a></li>
+                <li>Read our <a href="https://devaland.com/blog" style="color: #1e40af;">blog</a></li>
+                <li>Schedule a call directly on our <a href="https://calendly.com/devaland/30min" style="color: #1e40af;">Calendly</a></li>
+                <li>Connect with me on <a href="https://www.linkedin.com/in/marius-andronie/" style="color: #1e40af;">LinkedIn</a></li>
+              </ul>
+              
+              <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd;">
+                <p style="font-size: 14px; color: #666;">
+                  Best regards,<br>
+                  <strong>The Devaland Team</strong><br>
+                  <a href="mailto:office@devaland.com" style="color: #1e40af;">office@devaland.com</a><br>
+                  <a href="https://devaland.com" style="color: #1e40af;">devaland.com</a><br>
+                  <a href="https://www.linkedin.com/in/marius-andronie/" style="color: #1e40af;">LinkedIn Profile</a>
+                </p>
+              </div>
+              
+              <div style="margin-top: 20px; font-size: 12px; color: #999;">
+                <p>Reference ID: ${formData.id}</p>
+              </div>
             </div>
-            
-            <p>In the meantime, feel free to:</p>
-            <ul>
-              <li>Check out our <a href="https://devaland.com/case-studies" style="color: #1e40af;">case studies</a></li>
-              <li>Read our <a href="https://devaland.com/blog" style="color: #1e40af;">blog</a></li>
-              <li>Schedule a call directly on our <a href="https://calendly.com/devaland/30min" style="color: #1e40af;">Calendly</a></li>
-              <li>Connect with me on <a href="https://www.linkedin.com/in/marius-andronie/" style="color: #1e40af;">LinkedIn</a></li>
-            </ul>
-            
-            <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd;">
-              <p style="font-size: 14px; color: #666;">
-                Best regards,<br>
-                <strong>The Devaland Team</strong><br>
-                <a href="mailto:office@devaland.com" style="color: #1e40af;">office@devaland.com</a><br>
-                <a href="https://devaland.com" style="color: #1e40af;">devaland.com</a><br>
-                <a href="https://www.linkedin.com/in/marius-andronie/" style="color: #1e40af;">LinkedIn Profile</a>
-              </p>
-            </div>
-            
-            <div style="margin-top: 20px; font-size: 12px; color: #999;">
-              <p>Reference ID: ${formData.id}</p>
-            </div>
-          </div>
-        </body>
-      </html>
-    `;
+          </body>
+        </html>
+      `;
+    }
 
     // Send confirmation email to the customer
     await transporter.sendMail({
       from: smtpUser,
       to: formData.email,
-      subject: 'Thank you for contacting Devaland - We\'ll be in touch soon!',
+      subject: subject,
       html: htmlBody
     });
 

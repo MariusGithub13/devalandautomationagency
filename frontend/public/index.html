@@ -542,7 +542,12 @@
       })();
     </script>
 
-    <!-- Review Widget Script -->
-    <script src='https://api.devaland.com/reputation/assets/review-widget.js'></script>
+    <!-- Review Widget Script - TEMPORARILY DISABLED due to invalid structured data
+         See: https://search.google.com/search-console
+         Issues: "Rating is outside the specified or default range" and "Value in property 'reviewCount' must be positive"
+         This script injects invalid Review snippets structured data that causes Google Search Console errors.
+         TODO: Contact api.devaland.com provider to fix structured data or replace with Trustpilot native widget
+    -->
+    <!-- <script src='https://api.devaland.com/reputation/assets/review-widget.js'></script> -->
   </body>
 </html>
