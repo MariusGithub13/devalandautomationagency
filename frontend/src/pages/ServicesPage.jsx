@@ -97,6 +97,8 @@ const ServicesPage = () => {
                       <img 
                         src={service.image} 
                         alt={service.title}
+                        loading="lazy"
+                        decoding="async"
                         className="w-full h-64 object-cover hover-scale"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>

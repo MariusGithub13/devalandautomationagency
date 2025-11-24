@@ -106,6 +106,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://images.unsplash.com" />
+    
+    <!-- Preload critical assets for faster LCP -->
+    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2" as="font" type="font/woff2" crossorigin />
     <link
       rel="preconnect"
       href="https://customer-assets.emergentagent.com"
@@ -124,19 +127,21 @@
       href="//gs-extension-embeds-final.vercel.app"
     />
 
-    <!-- Trustpilot widget script (loads TrustBox widgets) -->
+    <!-- Trustpilot widget script (loads TrustBox widgets) - deferred for better performance -->
     <script
       type="text/javascript"
       src="https://widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js"
-      async
+      defer
     ></script>
 
-    <!-- Trustpilot JavaScript Integration for automated review invitations -->
-    <script>
-      (function(w,d,s,r,n){w.TrustpilotObject=n;w[n]=w[n]||function(){(w[n].q=w[n].q||[]).push(arguments)};
-        a=d.createElement(s);a.async=1;a.src=r;a.type='text/java'+s;f=d.getElementsByTagName(s)[0];
-        f.parentNode.insertBefore(a,f)})(window,document,'script', 'https://invitejs.trustpilot.com/tp.min.js', 'tp');
+    <!-- Trustpilot JavaScript Integration for automated review invitations - deferred -->
+    <script defer>
+      window.addEventListener('load', function() {
+        (function(w,d,s,r,n){w.TrustpilotObject=n;w[n]=w[n]||function(){(w[n].q=w[n].q||[]).push(arguments)};
+          a=d.createElement(s);a.async=1;a.src=r;a.type='text/java'+s;f=d.getElementsByTagName(s)[0];
+          f.parentNode.insertBefore(a,f)})(window,document,'script', 'https://invitejs.trustpilot.com/tp.min.js', 'tp');
         tp('register', 'e9BCOjPleCArlV92');
+      });
     </script>
 
     <!-- Critical minimal styles so first paint isn't ugly -->

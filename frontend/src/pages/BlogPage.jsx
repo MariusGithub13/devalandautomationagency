@@ -165,7 +165,8 @@ const BlogPage = () => {
                   <img 
                     src={filteredPosts[0].image}
                     alt={filteredPosts[0].title}
-                    className="w-full h-full min-h-[400px] object-cover"
+                    loading="lazy"
+                    className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                 </div>

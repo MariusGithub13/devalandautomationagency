@@ -160,6 +160,8 @@ const BlogPostPage = () => {
                 <img 
                   src={post.image} 
                   alt={post.title}
+                  loading="eager"
+                  fetchpriority="high"
                   className="w-full h-[400px] object-cover"
                 />
               </div>

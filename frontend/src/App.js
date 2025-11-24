@@ -5,27 +5,23 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import CookieConsent from "./components/CookieConsent";
 import HomePage from "./pages/HomePage"; 
-import KlaviyoPage from "./pages/KlaviyoPage";
-import ServicesPage from "./pages/ServicesPage";
-import CaseStudiesPage from "./pages/CaseStudiesPage";
-import AboutPage from "./pages/AboutPage";
-import BlogPage from "./pages/BlogPage";
-import BlogPostPage from "./pages/BlogPostPage";
-import ContactPage from "./pages/ContactPage";
-import PrivacyPage from "./pages/PrivacyPage";
-import TermsPage from "./pages/TermsPage";
-import CookiesPage from "./pages/CookiesPage";
-import GDPRPage from "./pages/GDPRPage";
-// add near other page imports
-import KlaviyoCaseStudies from "./pages/KlaviyoCaseStudies";
 
-// inside <Routes> … </Routes> add:
-<Route path="/klaviyo-case-studies" element={<KlaviyoCaseStudies />} />
+// Lazy load pages for better code splitting and performance
+const KlaviyoPage = lazy(() => import("./pages/KlaviyoPage"));
+const ServicesPage = lazy(() => import("./pages/ServicesPage"));
+const CaseStudiesPage = lazy(() => import("./pages/CaseStudiesPage"));
+const AboutPage = lazy(() => import("./pages/AboutPage"));
+const BlogPage = lazy(() => import("./pages/BlogPage"));
+const BlogPostPage = lazy(() => import("./pages/BlogPostPage"));
+const ContactPage = lazy(() => import("./pages/ContactPage"));
+const PrivacyPage = lazy(() => import("./pages/PrivacyPage"));
+const TermsPage = lazy(() => import("./pages/TermsPage"));
+const CookiesPage = lazy(() => import("./pages/CookiesPage"));
+const GDPRPage = lazy(() => import("./pages/GDPRPage"));
+const KlaviyoCaseStudies = lazy(() => import("./pages/KlaviyoCaseStudies"));
+const ChatBubble = lazy(() => import("./components/ChatBubble"));
 
 import "./App.css";
-
-// ✅ Lazy load the ChatBubble component for better performance
-const ChatBubble = lazy(() => import("./components/ChatBubble"));
 
 function App() {
   return (
@@ -33,21 +29,27 @@ function App() {
       <BrowserRouter>
         <Header />
         <main className="min-h-screen">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/klaviyo" element={<KlaviyoPage />} />
-            <Route path="/services" element={<ServicesPage />} />
-            <Route path="/case-studies" element={<CaseStudiesPage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/blog" element={<BlogPage />} />
-            <Route path="/blog/:slug" element={<BlogPostPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/privacy" element={<PrivacyPage />} />
-            <Route path="/terms" element={<TermsPage />} />
-            <Route path="/cookies" element={<CookiesPage />} />
-            <Route path="/gdpr" element={<GDPRPage />} />
-            <Route path="/klaviyo-case-studies" element={<KlaviyoCaseStudies />} />
-          </Routes>
+          <Suspense fallback={
+            <div className="flex items-center justify-center min-h-screen">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+            </div>
+          }>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/klaviyo" element={<KlaviyoPage />} />
+              <Route path="/services" element={<ServicesPage />} />
+              <Route path="/case-studies" element={<CaseStudiesPage />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/blog" element={<BlogPage />} />
+              <Route path="/blog/:slug" element={<BlogPostPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route path="/privacy" element={<PrivacyPage />} />
+              <Route path="/terms" element={<TermsPage />} />
+              <Route path="/cookies" element={<CookiesPage />} />
+              <Route path="/gdpr" element={<GDPRPage />} />
+              <Route path="/klaviyo-case-studies" element={<KlaviyoCaseStudies />} />
+            </Routes>
+          </Suspense>
         </main>
         <Footer />
         <CookieConsent />

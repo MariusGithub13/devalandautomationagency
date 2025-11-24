@@ -2,6 +2,43 @@
 
 Purpose: Help an AI coding agent become productive quickly in this mono-repo containing a FastAPI backend, React SPA frontend, and Netlify serverless functions.
 
+## Quick Start Guide (Read This First!)
+
+**Essential Commands**:
+```bash
+# Frontend development
+cd frontend && npm install && npm start
+
+# Frontend build (includes sitemap generation)
+cd frontend && npm run build
+
+# Backend development (requires backend/.env with MONGO_URL, DB_NAME, SMTP config)
+cd backend && python -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+uvicorn server:app --reload --port 8000
+
+# Test Netlify functions locally
+cd netlify/functions && npm install
+```
+
+**Critical Architecture Facts**:
+- **Contact forms**: Primary handler is `netlify/functions/contact.js` (not FastAPI) - sends dual emails via nodemailer
+- **Routes**: Add new routes in THREE places: `App.js`, `src/pages/`, and `scripts/generate-sitemap.mjs`
+- **UI components**: Always use primitives from `src/components/ui/` with CVA variants + `cn()` utility
+- **Import alias**: Use `@/` for all src imports (configured in `jsconfig.json`)
+- **Lazy loading**: Wrap heavy components in `React.lazy()` + `Suspense` (see `ChatBubble` example)
+
+**Environment Setup**:
+- Backend: Create `backend/.env` with `MONGO_URL`, `DB_NAME`, SMTP settings (see `backend/.env.example`)
+- Netlify: Set SMTP vars in Netlify UI (same keys as backend .env)
+- MongoDB is **optional** - emails work without it (graceful degradation)
+
+**When Debugging**:
+- CSP/CORS issues → `netlify.toml` headers section
+- Build failures → `craco.config.js`, `package.json` lifecycle hooks
+- Email delivery → `netlify/functions/contact.js` logs
+- SEO/indexing → `SEO_INDEXING_FIXES.md`, `netlify.toml` prerendering config
+
 ## Architecture Overview
 
 - **Big picture**: This repo has three main parts:

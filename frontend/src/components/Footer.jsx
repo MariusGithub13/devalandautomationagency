@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, memo } from "react";
 // cookie settings removed — keep footer clean
 import {
   Linkedin, Facebook, Instagram, Youtube, Github, Twitch,
@@ -120,7 +120,7 @@ function InlineLogo() {
 
 import LogoImg from '../assets/Devaland-Logo.jpg';
 
-export default function Footer() {
+const Footer = memo(() => {
   // Trustpilot script is included in `public/index.html` for Netlify compatibility.
   // Ensure Trustpilot TrustBox initializes even if the script loaded before/after React mount.
   React.useEffect(() => {
@@ -390,7 +390,9 @@ export default function Footer() {
       </div>
     </footer>
   );
-}
+});
+
+Footer.displayName = 'Footer';
 
 function FooterLogo() {
   const [failed, setFailed] = React.useState(false);
@@ -415,3 +417,5 @@ function FooterLogo() {
     />
   );
 }
+
+export default Footer;

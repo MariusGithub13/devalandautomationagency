@@ -98,6 +98,8 @@ const KlaviyoPage = () => {
               <img 
                 src={serviceImages.klaviyo}
                 alt="Email Marketing Dashboard"
+                loading="eager"
+                fetchpriority="high"
                 className="w-full rounded-2xl shadow-2xl hover-scale"
               />
             </div>

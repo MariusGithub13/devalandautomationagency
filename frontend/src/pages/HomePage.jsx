@@ -69,6 +69,8 @@ const HomePage = () => {
             src={heroImages.primary}
             alt="Digital Transformation"
             className="w-full h-full object-cover"
+            loading="eager"
+            fetchpriority="high"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-gray-900/90 via-gray-900/70 to-blue-900/80"></div>
         </div>
@@ -205,6 +207,8 @@ const HomePage = () => {
                           src={service.image} 
                           alt={service.title}
                           className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                          loading="lazy"
+                          decoding="async"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                       </div>
@@ -294,6 +298,8 @@ const HomePage = () => {
               <img 
                 src={heroImages.transformation} 
                 alt="Automation Success"
+                loading="lazy"
+                decoding="async"
                 className="w-full rounded-2xl shadow-2xl hover-scale"
               />
               <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-lg">
