@@ -467,3 +467,73 @@ export const klaviyoStats = {
   averageClickRate: "9.2%",
   clientsServed: "50+"
 };
+
+// FAQ Data for different pages
+export const klaviyoFAQs = [
+  {
+    question: "What is Klaviyo and why should I use it for my Shopify store?",
+    answer: "Klaviyo is a powerful email marketing platform designed specifically for e-commerce businesses. It integrates seamlessly with Shopify to track customer behavior, segment audiences, and send personalized emails that drive revenue. Unlike generic email tools, Klaviyo provides deep e-commerce analytics and automation flows that can recover abandoned carts, increase repeat purchases, and boost customer lifetime value."
+  },
+  {
+    question: "How long does it take to set up Klaviyo automation flows?",
+    answer: "A basic Klaviyo setup with essential flows (welcome series, abandoned cart, post-purchase) typically takes 1-2 weeks. More advanced implementations with segmentation, A/B testing, and custom flows can take 3-4 weeks. We prioritize quick wins first - usually you'll see results from abandoned cart recovery within the first week."
+  },
+  {
+    question: "What ROI can I expect from Klaviyo email marketing?",
+    answer: "Our clients typically see 15-45% of their total revenue attributed to Klaviyo within 3-6 months. Abandoned cart flows alone can recover 20-30% of lost sales. The exact ROI depends on your list size, product margins, and current email marketing maturity, but email consistently delivers $36-42 for every $1 spent."
+  },
+  {
+    question: "Do you provide ongoing Klaviyo management or just setup?",
+    answer: "We offer both! Initial setup includes flow configuration, segmentation, and template design. Ongoing management includes campaign creation, A/B testing, performance optimization, list growth strategies, and monthly reporting. Many clients start with setup and add management as they see results."
+  },
+  {
+    question: "Can Klaviyo integrate with my other marketing tools?",
+    answer: "Yes! Klaviyo integrates with 300+ apps including Shopify, ReCharge (subscriptions), Yotpo (reviews), Gorgias (customer service), Facebook Ads, Google Ads, and SMS platforms. We help you create a unified marketing stack where data flows seamlessly between tools."
+  }
+];
+
+export const automationFAQs = [
+  {
+    question: "What processes can be automated with RPA?",
+    answer: "RPA (Robotic Process Automation) works best for repetitive, rule-based tasks: data entry, invoice processing, report generation, email automation, CRM updates, order processing, and system integrations. If a human can document the steps, a bot can automate it. We've automated everything from HR onboarding to complex financial reconciliations."
+  },
+  {
+    question: "How much does automation development cost?",
+    answer: "Automation projects range from $5,000 for simple process automation to $50,000+ for enterprise RPA implementations. ROI is typically achieved in 6-18 months through labor savings. We start with a free process assessment to identify high-impact, quick-win opportunities that deliver value fast."
+  },
+  {
+    question: "Will automation eliminate jobs in my company?",
+    answer: "No - automation eliminates tedious tasks, not jobs. Your team shifts from manual data entry to higher-value work like analysis, strategy, and customer relationships. Most clients redeploy staff to growth initiatives rather than reducing headcount. Automation helps you scale without proportional hiring."
+  },
+  {
+    question: "How long does it take to implement automation?",
+    answer: "Simple workflow automation: 2-4 weeks. RPA development: 6-12 weeks. Enterprise automation: 3-6 months. We use agile methodology with 2-week sprints, so you see working automation quickly rather than waiting for a big reveal. Most clients are live with their first bot within 30 days."
+  },
+  {
+    question: "What happens if my process changes after automation?",
+    answer: "Great question! We build maintainable automation with documentation and training. Minor changes can be handled by your team, and we offer support packages for ongoing optimization. We design automations to be flexible and easy to modify as your business evolves."
+  }
+];
+
+export const generalFAQs = [
+  {
+    question: "How do I get started with Devaland?",
+    answer: "Book a free 30-minute discovery call through our website. We'll discuss your challenges, review your processes, and identify quick wins. If it's a good fit, we'll create a detailed proposal with timeline and ROI projections. No high-pressure sales - just honest advice about whether automation makes sense for you."
+  },
+  {
+    question: "Do you work with businesses outside Romania?",
+    answer: "Absolutely! While we're based in Romania, 80% of our clients are international (US, UK, EU, Australia). All communication is in English, we work across time zones, and everything is managed remotely using modern collaboration tools. Location doesn't matter - results do."
+  },
+  {
+    question: "What industries do you specialize in?",
+    answer: "E-commerce/Shopify (Klaviyo email marketing), SaaS (onboarding automation), professional services (workflow optimization), finance (invoice/payment automation), and healthcare (patient communication). That said, automation principles apply across industries - if you have repetitive processes, we can help."
+  },
+  {
+    question: "Do I need technical skills to work with you?",
+    answer: "Not at all! We translate technical complexity into business outcomes. You tell us what you want to achieve, we handle the implementation. Post-launch, we provide training so your team can manage day-to-day operations without needing developers."
+  },
+  {
+    question: "What's your typical project timeline?",
+    answer: "Discovery & proposal: 1 week. Klaviyo setup: 2-4 weeks. Simple automation: 3-6 weeks. Complex RPA: 8-12 weeks. Enterprise projects: 3-6 months. We break large projects into phases so you see value incrementally rather than waiting for everything to be perfect."
+  }
+];
