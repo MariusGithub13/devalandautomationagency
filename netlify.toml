@@ -5,9 +5,8 @@
   # And publish the CRA build output
   publish = "frontend/build"
 
-# Netlify Prerendering Plugin for better SEO and crawlability
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
+# NOTE: React SPA prerendering happens via meta tags, structured data, and Netlify's automatic crawl optimization
+# For true SSR, consider migrating to Next.js in the future
 
 [functions]
   # Serverless functions directory (relative to repo root)
