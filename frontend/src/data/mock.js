@@ -558,14 +558,16 @@ export const voiceAIData = {
     },
     {
       icon: "MessageSquare",
-      title: "Website Chatbots",
-      description: "Smart chatbots embedded on your website to engage visitors and capture leads instantly.",
+      title: "Website Chat Widgets",
+      description: "Smart AI chatbots embedded as a widget on your website to engage visitors and capture leads instantly.",
       features: [
-        "Instant response to common questions",
+        "Easy embed: Just add 1 line of code to your site",
+        "Instant response to common questions 24/7",
         "Lead capture with intelligent forms",
         "Product recommendations and upsells",
         "Support ticket creation and routing",
-        "Multi-language support (50+ languages)"
+        "Multi-language support (50+ languages)",
+        "Customizable design to match your brand"
       ]
     },
     {

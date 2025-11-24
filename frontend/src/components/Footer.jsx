@@ -26,6 +26,7 @@ const links = {
   explore: [
     { to: "/", label: "Home" },
     { to: "/klaviyo", label: "Klaviyo Services" },
+    { to: "/voice-ai", label: "Voice AI Agents" },
     { to: "/services", label: "Automation Services" },
     { to: "/case-studies", label: "Case Studies" },
     { to: "/about", label: "About" },

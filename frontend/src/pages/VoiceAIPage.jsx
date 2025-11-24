@@ -127,6 +127,24 @@ const VoiceAIPage = () => {
         </div>
       </section>
 
+      {/* Quick CTA Banner */}
+      <section className="bg-gradient-to-r from-blue-600 to-purple-600 py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="text-white text-center md:text-left">
+              <h3 className="text-2xl font-bold mb-2">Ready to Automate Your Customer Support?</h3>
+              <p className="text-blue-100 text-lg">Get a free audit and custom Voice AI demo tailored to your business</p>
+            </div>
+            <Button asChild size="lg" className="bg-white text-blue-600 hover:bg-gray-100 font-bold shadow-lg flex-shrink-0">
+              <a href={companyData.calendly} target="_blank" rel="noopener noreferrer">
+                <Phone className="w-5 h-5 mr-2" />
+                Book Free Audit
+              </a>
+            </Button>
+          </div>
+        </div>
+      </section>
+
       {/* Use Cases Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -71,18 +71,6 @@ const Header = memo(() => {
             ))}
           </nav>
 
-          {/* CTA Button */}
-          <div className="hidden lg:flex items-center space-x-4">
-            <Button 
-              asChild
-              className="btn-primary text-white font-medium px-6 py-2.5 rounded-lg hover:shadow-lg transition-all duration-300"
-            >
-              <a href={companyData.calendly} target="_blank" rel="noopener noreferrer">
-                Book Free Audit
-              </a>
-            </Button>
-          </div>
-
           {/* Mobile menu button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}

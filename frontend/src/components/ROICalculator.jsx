@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Card, CardContent } from './ui/card';
 import { Button } from './ui/button';
 import { Calculator, TrendingUp, DollarSign } from 'lucide-react';
+import { companyData } from '../data/mock';
 
 const ROICalculator = () => {
   const [inputs, setInputs] = useState({
@@ -59,11 +60,11 @@ const ROICalculator = () => {
   const results = showResults ? calculateROI() : null;
 
   return (
-    <Card className="border-2 border-blue-500 shadow-xl">
+    <Card className="border-2 border-blue-200 shadow-2xl bg-gradient-to-br from-white to-blue-50">
       <CardContent className="p-8">
         <div className="flex items-center gap-3 mb-6">
-          <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-            <Calculator className="w-6 h-6 text-blue-600" />
+          <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-lg flex items-center justify-center shadow-lg">
+            <Calculator className="w-6 h-6 text-white" />
           </div>
           <div>
             <h3 className="text-2xl font-bold text-gray-900">ROI Calculator</h3>
@@ -142,10 +143,12 @@ const ROICalculator = () => {
         </div>
 
         <Button 
+          type="button"
           onClick={() => setShowResults(true)}
-          className="w-full btn-primary text-white mb-6"
+          className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold py-4 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
           size="lg"
         >
+          <Calculator className="w-5 h-5 mr-2" />
           Calculate My Savings
           <TrendingUp className="w-5 h-5 ml-2" />
         </Button>

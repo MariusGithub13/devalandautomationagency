@@ -101,13 +101,14 @@ Allow: /*.ico
 
 # ============================================
 # Important Content for AI Understanding
-# ============================================
+# ================================================================
 Allow: /llms.txt
 Allow: /sitemap.xml
 Allow: /sitemap.html
 Allow: /blog/
 Allow: /case-studies/
 Allow: /klaviyo
+Allow: /voice-ai
 Allow: /services
 Allow: /about
 Allow: /contact
