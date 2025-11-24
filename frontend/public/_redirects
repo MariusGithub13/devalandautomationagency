@@ -1,1 +1,23 @@
-/* /index.html 200
+# ============================================
+# Netlify Redirects Configuration
+# ============================================
+# This file provides fallback redirects when netlify.toml is not processed
+# Keep in sync with netlify.toml [[redirects]] section
+
+# Force HTTPS
+http://devaland.com/*  https://devaland.com/:splat  301!
+http://www.devaland.com/*  https://devaland.com/:splat  301!
+
+# Redirect www to non-www
+https://www.devaland.com/*  https://devaland.com/:splat  301!
+
+# Old URL patterns (301 permanent redirects)
+/klaviyo-services  /klaviyo  301
+/services/klaviyo  /klaviyo  301
+/privacy-policy  /privacy  301
+/terms-of-service  /terms  301
+/cookie-policy  /cookies  301
+
+# SPA fallback - MUST BE LAST
+# All other routes go to index.html (React Router handles them)
+/*  /index.html  200

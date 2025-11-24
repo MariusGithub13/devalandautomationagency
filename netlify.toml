@@ -5,6 +5,13 @@
   # And publish the CRA build output
   publish = "frontend/build"
 
+# ============================================
+# Plugins for SEO and Performance
+# ============================================
+[[plugins]]
+  # Pre-render pages for better SEO and crawler visibility
+  package = "@netlify/plugin-prerendering"
+
 [functions]
   # Serverless functions directory (relative to repo root)
   directory = "netlify/functions"
@@ -38,7 +45,57 @@
   # SMTP_PASSWORD = "your-app-password"
   # CONTACT_EMAIL = "office@devaland.com"
 
-# SPA redirect:
+# ============================================
+# Redirects and URL Normalization
+# ============================================
+
+# Force HTTPS (if not already handled by Netlify)
+[[redirects]]
+  from = "http://devaland.com/*"
+  to = "https://devaland.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://www.devaland.com/*"
+  to = "https://devaland.com/:splat"
+  status = 301
+  force = true
+
+# Redirect www to non-www
+[[redirects]]
+  from = "https://www.devaland.com/*"
+  to = "https://devaland.com/:splat"
+  status = 301
+  force = true
+
+# Old URL patterns (add specific ones from GSC 404 report)
+[[redirects]]
+  from = "/klaviyo-services"
+  to = "/klaviyo"
+  status = 301
+
+[[redirects]]
+  from = "/services/klaviyo"
+  to = "/klaviyo"
+  status = 301
+
+[[redirects]]
+  from = "/privacy-policy"
+  to = "/privacy"
+  status = 301
+
+[[redirects]]
+  from = "/terms-of-service"
+  to = "/terms"
+  status = 301
+
+[[redirects]]
+  from = "/cookie-policy"
+  to = "/cookies"
+  status = 301
+
+# SPA redirect - MUST BE LAST
 # Send EVERY route (/, /services, /blog/:slug, etc) to index.html
 # so React Router can handle it client-side instead of 404.
 [[redirects]]

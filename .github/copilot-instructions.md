@@ -413,6 +413,51 @@ if (marketingConsent === 'granted') {
 
 ## Known Issues & Maintenance Notes
 
+### Google Search Console Indexing Issues (November 2025)
+
+**Current Status**: Multiple indexing problems affecting 300+ pages
+
+**Problems Identified**:
+- 139 pages: "Crawled - currently not indexed" (Google sees content but won't index)
+- 72 pages: "Soft 404" (Google thinks pages are empty)
+- 47 pages: "Alternative page with proper canonical tag"
+- 39 pages: "Not found (404)" - old URLs in Google's index
+- 29 pages: "Page with redirect" - redirect chains
+
+**Root Cause**: React SPA architecture issues:
+1. Googlebot sees empty HTML shell before JavaScript executes
+2. No server-side rendering (SSR) or pre-rendering
+3. Content loads client-side after initial page load
+4. Missing per-page meta tags and structured data
+
+**Fixes Implemented** (Nov 24, 2025):
+1. ✅ Added Netlify prerendering plugin to netlify.toml
+2. ✅ Implemented comprehensive 301 redirects for old URLs
+3. ✅ Added HTTPS and www → non-www redirect forcing
+4. ✅ Improved caching headers for static assets vs HTML
+5. ✅ Added HSTS header for security and SEO trust signals
+6. ✅ Synchronized netlify.toml and public/_redirects files
+
+**Pending Actions**:
+- [ ] Install react-helmet-async for per-page SEO meta tags
+- [ ] Add structured data (JSON-LD) to all page types
+- [ ] Export GSC 404 list and create additional redirects
+- [ ] Request re-indexing via GSC URL Inspection tool
+- [ ] Monitor Coverage report weekly for 4 weeks
+- [ ] Consider Next.js migration for built-in SSR/SSG (long-term)
+
+**Temporary Workarounds**:
+- Netlify prerendering plugin generates static HTML for crawlers
+- Explicit redirects prevent redirect chains
+- Aggressive caching for static assets improves Core Web Vitals
+
+**Monitoring Plan**:
+- Week 1-2: Expect 20-30% improvement in indexed pages
+- Week 3-4: Target 50-60% improvement
+- Month 2: Stabilization at 80%+ pages indexed
+
+See `SEO_INDEXING_FIXES.md` for complete action plan and technical details.
+
 ### SEO Performance Insights (November 2025)
 
 **Google Search Console Analysis** (Last 90 days):
