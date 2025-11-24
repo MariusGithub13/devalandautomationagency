@@ -8,6 +8,7 @@ import HomePage from "./pages/HomePage";
 
 // Lazy load pages for better code splitting and performance
 const KlaviyoPage = lazy(() => import("./pages/KlaviyoPage"));
+const VoiceAIPage = lazy(() => import("./pages/VoiceAIPage"));
 const ServicesPage = lazy(() => import("./pages/ServicesPage"));
 const CaseStudiesPage = lazy(() => import("./pages/CaseStudiesPage"));
 const AboutPage = lazy(() => import("./pages/AboutPage"));
@@ -37,6 +38,7 @@ function App() {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/klaviyo" element={<KlaviyoPage />} />
+              <Route path="/voice-ai" element={<VoiceAIPage />} />
               <Route path="/services" element={<ServicesPage />} />
               <Route path="/case-studies" element={<CaseStudiesPage />} />
               <Route path="/about" element={<AboutPage />} />

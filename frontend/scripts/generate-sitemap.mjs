@@ -14,6 +14,7 @@ const BASE = "https://devaland.com";
 const ROUTES = [
   "/",
   "/klaviyo",
+  "/voice-ai",
   "/services",
   "/case-studies",
   "/about",

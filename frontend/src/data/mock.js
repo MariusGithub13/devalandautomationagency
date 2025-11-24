@@ -537,3 +537,202 @@ export const generalFAQs = [
     answer: "Discovery & proposal: 1 week. Klaviyo setup: 2-4 weeks. Simple automation: 3-6 weeks. Complex RPA: 8-12 weeks. Enterprise projects: 3-6 months. We break large projects into phases so you see value incrementally rather than waiting for everything to be perfect."
   }
 ];
+
+// Voice AI Agents & Chatbots Data
+export const voiceAIData = {
+  heroImage: "https://images.unsplash.com/photo-1589254065878-42c9da997008?q=80&w=2070",
+  benefitsImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070",
+  
+  useCases: [
+    {
+      icon: "Phone",
+      title: "AI Phone Assistants",
+      description: "Intelligent voice agents that handle inbound and outbound calls with natural conversation flow.",
+      features: [
+        "24/7 phone support without human agents",
+        "Appointment scheduling and confirmations",
+        "Lead qualification and routing",
+        "Order status updates and tracking",
+        "Survey collection and feedback calls"
+      ]
+    },
+    {
+      icon: "MessageSquare",
+      title: "Website Chatbots",
+      description: "Smart chatbots embedded on your website to engage visitors and capture leads instantly.",
+      features: [
+        "Instant response to common questions",
+        "Lead capture with intelligent forms",
+        "Product recommendations and upsells",
+        "Support ticket creation and routing",
+        "Multi-language support (50+ languages)"
+      ]
+    },
+    {
+      icon: "Users",
+      title: "Customer Support Automation",
+      description: "Deflect repetitive support inquiries while routing complex issues to your team.",
+      features: [
+        "80% reduction in support tickets",
+        "Instant answers from your knowledge base",
+        "Seamless handoff to human agents",
+        "Integration with Zendesk, Intercom, Gorgias",
+        "24/7 availability across all time zones"
+      ]
+    },
+    {
+      icon: "Clock",
+      title: "After-Hours Coverage",
+      description: "Never miss a lead or customer inquiry, even when your team is offline.",
+      features: [
+        "Capture leads outside business hours",
+        "Emergency call routing and escalation",
+        "Appointment booking while you sleep",
+        "FAQ handling for international customers",
+        "Morning briefing of overnight inquiries"
+      ]
+    }
+  ],
+
+  features: [
+    {
+      icon: "Zap",
+      title: "Instant Deployment",
+      description: "Get your AI agent live in 7-14 days, not months. Pre-trained on your business data."
+    },
+    {
+      icon: "Shield",
+      title: "Enterprise Security",
+      description: "SOC 2 compliant infrastructure with end-to-end encryption and GDPR compliance."
+    },
+    {
+      icon: "BarChart3",
+      title: "Real-Time Analytics",
+      description: "Track conversations, sentiment, resolution rates, and ROI with detailed dashboards."
+    },
+    {
+      icon: "Users",
+      title: "Human Handoff",
+      description: "Seamlessly transfer complex inquiries to your team with full conversation context."
+    },
+    {
+      icon: "TrendingUp",
+      title: "Continuous Learning",
+      description: "AI improves over time by learning from interactions and your team's responses."
+    },
+    {
+      icon: "Clock",
+      title: "Omnichannel Support",
+      description: "Deploy across phone, website chat, WhatsApp, SMS, Facebook Messenger, and more."
+    }
+  ],
+
+  benefits: [
+    {
+      title: "Scale Without Hiring",
+      description: "Handle 10x more inquiries without adding headcount. AI agents cost 90% less than human support."
+    },
+    {
+      title: "Never Miss a Lead",
+      description: "Capture and qualify leads 24/7, even when your sales team is sleeping or on vacation."
+    },
+    {
+      title: "Faster Response Times",
+      description: "Instant responses improve customer satisfaction and conversion rates by 40%."
+    },
+    {
+      title: "Consistent Brand Voice",
+      description: "AI agents deliver on-brand messaging every time, eliminating human variability."
+    },
+    {
+      title: "Data-Driven Insights",
+      description: "Discover customer pain points, common questions, and opportunities through conversation analytics."
+    }
+  ],
+
+  packages: [
+    {
+      name: "Starter Bot",
+      description: "Perfect for small businesses testing AI automation",
+      price: "$2,500",
+      priceNote: "one-time setup",
+      features: [
+        "Website chatbot (1 bot)",
+        "Up to 500 conversations/month",
+        "5 pre-built conversation flows",
+        "Knowledge base integration",
+        "Email support",
+        "Basic analytics dashboard"
+      ],
+      popular: false
+    },
+    {
+      name: "Growth Suite",
+      description: "Ideal for scaling businesses with high inquiry volume",
+      price: "$5,000",
+      priceNote: "one-time setup",
+      features: [
+        "Website chatbot + AI phone assistant",
+        "Up to 2,000 conversations/month",
+        "Unlimited conversation flows",
+        "CRM integration (HubSpot, Salesforce)",
+        "Priority support with dedicated manager",
+        "Advanced analytics & A/B testing",
+        "Multi-language support (5 languages)"
+      ],
+      popular: true
+    },
+    {
+      name: "Enterprise",
+      description: "Custom AI solutions for large-scale operations",
+      price: "Custom",
+      priceNote: "pricing",
+      features: [
+        "Unlimited bots across all channels",
+        "Unlimited conversations",
+        "Custom AI model training",
+        "White-label solution available",
+        "Dedicated AI engineer on retainer",
+        "SLA guarantees (99.9% uptime)",
+        "Integration with any system",
+        "Ongoing optimization & training"
+      ],
+      popular: false
+    }
+  ],
+
+  technologies: [
+    "OpenAI GPT-4",
+    "Microsoft Azure AI",
+    "Google Dialogflow",
+    "Amazon Lex",
+    "Twilio Voice API",
+    "Anthropic Claude",
+    "ElevenLabs Voice",
+    "Retell AI"
+  ]
+};
+
+// Voice AI FAQs
+export const voiceAIFAQs = [
+  {
+    question: "How natural do AI voice agents sound?",
+    answer: "Our AI voice agents use advanced text-to-speech technology (ElevenLabs, Azure Neural Voices) that sound 95% human-like. We customize voice tone, speaking pace, and even regional accents to match your brand. Most customers can't tell they're speaking to AI until told."
+  },
+  {
+    question: "Can the AI agent handle complex questions?",
+    answer: "Yes! Our AI agents are trained on your specific business data: FAQs, product catalogs, support docs, and past conversations. For complex issues beyond the AI's scope, it seamlessly transfers to a human agent with full conversation context. We aim for 80% autonomous resolution."
+  },
+  {
+    question: "How long does it take to deploy a voice AI agent?",
+    answer: "Standard deployment: 7-14 days. This includes AI training on your data, conversation flow design, integration setup, and testing. Enterprise implementations with custom integrations may take 4-6 weeks. You'll see a working demo within the first week."
+  },
+  {
+    question: "What happens if the AI doesn't understand a question?",
+    answer: "The AI is trained to recognize when it's uncertain. It will either: (1) ask clarifying questions, (2) offer to connect to a human agent, or (3) collect contact info for callback. We continuously improve the AI by reviewing failed conversations and adding to its training data."
+  },
+  {
+    question: "Can I integrate the AI with my existing tools?",
+    answer: "Absolutely! We integrate with 100+ platforms: CRMs (HubSpot, Salesforce, Pipedrive), helpdesks (Zendesk, Intercom, Gorgias), calendars (Calendly, Google Calendar), e-commerce (Shopify, WooCommerce), and communication tools (Slack, Teams). Custom integrations available for enterprise clients."
+  }
+];
