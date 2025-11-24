@@ -37,25 +37,6 @@ const BlogPage = () => {
     return matchesSearch && matchesCategory;
   });
 
-  return (
-    <>
-      <SEO 
-        title="Blog - Automation & Email Marketing Insights"
-        description="Expert insights on email marketing automation, Klaviyo best practices, RPA development, and business process automation. Stay ahead with our latest guides and case studies."
-        canonical="https://devaland.com/blog"
-        keywords={[
-          "email marketing blog",
-          "klaviyo tips",
-          "automation blog",
-          "RPA insights",
-          "workflow automation guides",
-          "klaviyo best practices"
-        ]}
-        schema={blogSchema}
-      />
-      
-      <div className="pt-16">
-
   const handleNewsletterSubmit = async (e) => {
     e.preventDefault();
     
@@ -105,6 +86,21 @@ const BlogPage = () => {
   };
 
   return (
+    <>
+      <SEO 
+        title="Blog - Automation & Email Marketing Insights"
+        description="Expert insights on email marketing automation, Klaviyo best practices, RPA development, and business process automation. Stay ahead with our latest guides and case studies."
+        canonical="https://devaland.com/blog"
+        keywords={[
+          "email marketing blog",
+          "klaviyo tips",
+          "automation blog",
+          "RPA insights",
+          "workflow automation guides",
+          "klaviyo best practices"
+        ]}
+        schema={blogSchema}
+      />
     <div className="pt-16">
       {/* Hero Section */}
       <section className="section-padding bg-gradient-subtle">
