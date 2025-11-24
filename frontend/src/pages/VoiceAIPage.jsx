@@ -1,10 +1,11 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
-import { Phone, MessageSquare, Clock, TrendingUp, CheckCircle, Zap, Users, BarChart3, Shield, ArrowRight, Star } from 'lucide-react';
+import { Phone, MessageSquare, Clock, TrendingUp, CheckCircle, Zap, Users, BarChart3, Shield, ArrowRight, Star, ExternalLink } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import { voiceAIData, companyData } from '../data/mock';
+import ROICalculator from '../components/ROICalculator';
 
 const VoiceAIPage = () => {
   return (
@@ -285,6 +286,123 @@ const VoiceAIPage = () => {
                 </CardContent>
               </Card>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ROI Calculator Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+              Calculate Your Potential Savings
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              See how much you could save by automating customer support with Voice AI
+            </p>
+          </div>
+          <ROICalculator />
+        </div>
+      </section>
+
+      {/* Client Showcase Section */}
+      <section className="py-20 bg-gradient-to-br from-blue-50 to-purple-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+              Real Brands. Real Results.
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Companies already using our Voice AI solutions
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {/* Shea Terra Organics Case Study */}
+            <Card className="border-2 hover:border-blue-500 transition-all duration-300 hover:shadow-lg">
+              <CardContent className="p-8">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-blue-500 rounded-xl flex items-center justify-center">
+                    <MessageSquare className="w-8 h-8 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold text-gray-900">Shea Terra Organics</h3>
+                    <p className="text-gray-600">Natural Beauty & Skincare</p>
+                  </div>
+                </div>
+                
+                <p className="text-gray-700 mb-6">
+                  E-commerce brand using Voice AI chatbot for 24/7 customer support, product recommendations, 
+                  and order tracking. Handles skincare questions, ingredient inquiries, and shipping updates automatically.
+                </p>
+
+                <div className="grid grid-cols-2 gap-4 mb-6">
+                  <div className="bg-green-50 rounded-lg p-4">
+                    <div className="text-2xl font-bold text-green-600">24/7</div>
+                    <div className="text-sm text-gray-600">Support Coverage</div>
+                  </div>
+                  <div className="bg-blue-50 rounded-lg p-4">
+                    <div className="text-2xl font-bold text-blue-600">Live</div>
+                    <div className="text-sm text-gray-600">On Website</div>
+                  </div>
+                </div>
+
+                <Button asChild variant="outline" className="w-full">
+                  <a href="https://www.sheaterraorganics.com/" target="_blank" rel="noopener noreferrer">
+                    Visit Website
+                    <ExternalLink className="w-4 h-4 ml-2" />
+                  </a>
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Devaland Own Chat Widget */}
+            <Card className="border-2 border-blue-500 bg-gradient-to-br from-blue-50 to-white">
+              <CardContent className="p-8">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-500 rounded-xl flex items-center justify-center">
+                    <Zap className="w-8 h-8 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold text-gray-900">Devaland.com</h3>
+                    <p className="text-gray-600">We Practice What We Preach</p>
+                  </div>
+                </div>
+                
+                <p className="text-gray-700 mb-6">
+                  <strong className="text-blue-600">Try it yourself!</strong> The chat widget on this website is powered by 
+                  our own Voice AI technology. It handles inquiries about our services, books consultations, 
+                  and answers questions about automation—24/7, without human intervention.
+                </p>
+
+                <div className="bg-blue-100 border border-blue-200 rounded-lg p-4 mb-6">
+                  <p className="text-sm text-blue-900 font-medium">
+                    💡 Look for the chat widget in the bottom-right corner of this page. Ask it anything!
+                  </p>
+                </div>
+
+                <Button asChild className="w-full btn-primary text-white">
+                  <a href="#chatwidget" onClick={(e) => {
+                    e.preventDefault();
+                    // Trigger chat widget if it exists
+                    const chatButton = document.querySelector('[data-chat-widget], .chat-widget-button, #chat-widget-container button');
+                    if (chatButton) chatButton.click();
+                  }}>
+                    Test Our AI Chat Now
+                    <MessageSquare className="w-4 h-4 ml-2" />
+                  </a>
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="text-center mt-12">
+            <p className="text-gray-600 mb-4">Want to be featured here?</p>
+            <Button asChild size="lg" variant="outline">
+              <a href={companyData.calendly} target="_blank" rel="noopener noreferrer">
+                Become a Voice AI Success Story
+              </a>
+            </Button>
           </div>
         </div>
       </section>
