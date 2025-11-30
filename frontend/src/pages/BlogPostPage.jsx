@@ -4,6 +4,7 @@ import { ArrowLeft, Calendar, Clock, Share2, Linkedin, Facebook, Twitter } from 
 import { Badge } from '../components/ui/badge';
 import { Button } from '../components/ui/button';
 import SEO from '../components/SEO';
+import Breadcrumb from '../components/Breadcrumb';
 import { blogPosts } from '../data/mock';
 
 const BlogPostPage = () => {
@@ -61,30 +62,7 @@ const BlogPostPage = () => {
     "keywords": post.tags?.join(", ") || post.category,
     "articleSection": post.category,
     "wordCount": post.content?.length || 1000,
-    "timeRequired": post.readTime,
-    "breadcrumb": {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://devaland.com"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Blog",
-          "item": "https://devaland.com/blog"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": post.title,
-          "item": canonicalUrl
-        }
-      ]
-    }
+    "timeRequired": post.readTime
   };
 
   const shareUrl = window.location.href;
@@ -101,6 +79,16 @@ const BlogPostPage = () => {
         keywords={post.tags || [post.category, "email marketing", "automation", "klaviyo"]}
         schema={articleSchema}
       />
+      
+      {/* Breadcrumb Navigation */}
+      <div className="pt-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Breadcrumb 
+          items={[
+            { label: 'Blog', href: '/blog' },
+            { label: post.title, href: `/blog/${slug}` }
+          ]}
+        />
+      </div>
       
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-blue-600 to-purple-700 text-white py-20">

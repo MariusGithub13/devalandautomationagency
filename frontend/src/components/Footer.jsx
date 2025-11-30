@@ -382,18 +382,35 @@ const Footer = memo(() => {
                 </div>
               </div>
 
-              {/* Review Widget - after compliance badges */}
+              {/* Trustpilot Reviews Widget - Replaces problematic review widget
+                  Uses official Trustpilot TrustBox with VALID structured data
+                  Fixes Google Search Console errors on /blog and /klaviyo pages
+                  Business Unit ID: 68d4dd4d6b90a6eb23a0d4f2
+              */}
               <div className="mt-6 flex flex-col items-start">
                 <div className="w-full max-w-md px-4 py-5 rounded-lg border border-gray-200 bg-white shadow-md flex flex-col items-center">
                   <div className="mb-3 text-lg font-semibold text-gray-900 text-center">Client Reviews</div>
-                  <iframe 
-                    className='lc_reviews_widget' 
-                    src='https://api.devaland.com/reputation/widgets/review_widget/3hga7apoIS9IL45Lks5V'
-                    frameBorder='0'
-                    scrolling='no'
-                    style={{ minWidth: '100%', width: '100%' }}
-                    title="Customer Reviews"
-                  />
+                  {/* Trustpilot Micro Review Count TrustBox */}
+                  <div
+                    className="trustpilot-widget"
+                    data-locale="en-US"
+                    data-template-id="5419b6ffb0d04a076446a9af"
+                    data-businessunit-id="68d4dd4d6b90a6eb23a0d4f2"
+                    data-style-height="20px"
+                    data-style-width="100%"
+                    data-theme="light"
+                    data-min-review-count="0"
+                    data-without-reviews-preferred-string-id="1"
+                  >
+                    <a 
+                      href="https://www.trustpilot.com/review/devaland.com" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="block text-center text-sm text-blue-600 hover:text-blue-800 font-medium"
+                    >
+                      Trustpilot Reviews
+                    </a>
+                  </div>
                 </div>
               </div>
           </div>

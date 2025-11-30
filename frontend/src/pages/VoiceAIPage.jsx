@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Phone, MessageSquare, Clock, TrendingUp, CheckCircle, Zap, Users, BarChart3, Shield, ArrowRight, Star, ExternalLink } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
+import Breadcrumb from '../components/Breadcrumb';
 import { voiceAIData, companyData } from '../data/mock';
 import ROICalculator from '../components/ROICalculator';
 
@@ -50,8 +51,18 @@ const VoiceAIPage = () => {
         </script>
       </Helmet>
 
+      {/* Breadcrumb Navigation */}
+      <div className="pt-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Breadcrumb 
+          items={[
+            { label: 'Services', href: '/services' },
+            { label: 'Voice AI Agents', href: '/voice-ai' }
+          ]}
+        />
+      </div>
+
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50">
+      <section className="relative pt-12 pb-20 lg:pb-28 overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="text-left">

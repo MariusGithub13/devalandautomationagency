@@ -8,6 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { toast } from 'sonner';
 import SEO from '../components/SEO';
+import Breadcrumb from '../components/Breadcrumb';
 import { companyData } from '../data/mock';
 import { sendTrustpilotInvitation, generateReferenceId } from '../utils/trustpilot';
 
@@ -17,24 +18,7 @@ const ContactPage = () => {
     "@type": "ContactPage",
     "name": "Contact Devaland",
     "description": "Get in touch with our automation experts for a free consultation",
-    "url": "https://devaland.com/contact",
-    "breadcrumb": {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://devaland.com"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Contact",
-          "item": "https://devaland.com/contact"
-        }
-      ]
-    }
+    "url": "https://devaland.com/contact"
   };
 
   const [formData, setFormData] = useState({
@@ -172,6 +156,15 @@ const ContactPage = () => {
       />
       
       <div className="pt-16">
+      {/* Breadcrumb Navigation */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Breadcrumb 
+          items={[
+            { label: 'Contact', href: '/contact' }
+          ]}
+        />
+      </div>
+      
       {/* Hero Section */}
       <section className="section-padding-sm bg-gradient-subtle">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

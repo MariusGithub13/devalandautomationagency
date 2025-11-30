@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card'
 import { Badge } from '../components/ui/badge';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
+import Breadcrumb from '../components/Breadcrumb';
 import { services } from '../data/mock';
 
 const ServicesPage = () => {
@@ -44,6 +45,15 @@ const ServicesPage = () => {
       />
       
       <div className="pt-16">
+      {/* Breadcrumb Navigation */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Breadcrumb 
+          items={[
+            { label: 'Services', href: '/services' }
+          ]}
+        />
+      </div>
+      
       {/* Hero Section */}
       <section className="section-padding bg-gradient-subtle">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

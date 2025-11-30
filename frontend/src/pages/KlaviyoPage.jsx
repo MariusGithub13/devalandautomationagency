@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card'
 import { Badge } from '../components/ui/badge';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
+import Breadcrumb from '../components/Breadcrumb';
 import { companyData, klaviyoServices, serviceImages, awards, klaviyoSuccessStories, klaviyoStats } from '../data/mock';
 
 const KlaviyoPage = () => {
@@ -46,6 +47,15 @@ const KlaviyoPage = () => {
       />
       
       <div className="pt-16">
+      {/* Breadcrumb Navigation */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Breadcrumb 
+          items={[
+            { label: 'Services', href: '/services' },
+            { label: 'Klaviyo Email Marketing', href: '/klaviyo' }
+          ]}
+        />
+      </div>
       {/* Hero Section */}
       <section className="section-padding bg-gradient-to-br from-purple-50 via-white to-blue-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
