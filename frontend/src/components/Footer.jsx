@@ -256,7 +256,7 @@ const Footer = memo(() => {
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-gray-600">
-                  C.I.F./VAT: {LEGAL.vat}
+                  VAT Code: {LEGAL.vat}
                 </span>
               </li>
               <li className="flex items-center gap-2 mt-3">
@@ -274,6 +274,20 @@ const Footer = memo(() => {
               <li className="flex items-start gap-2">
                 <MapPin size={16} className="text-gray-500 flex-shrink-0 mt-0.5" />
                 <span className="whitespace-pre-line">{LEGAL.address}</span>
+              </li>
+              <li className="flex items-start gap-2 mt-3">
+                <Link size={16} className="text-gray-500 flex-shrink-0 mt-0.5" />
+                <div>
+                  <div className="text-xs text-gray-500 mb-1">VIES VAT number validation</div>
+                  <a 
+                    href="https://ec.europa.eu/taxation_customs/vies/#/vat-validation" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:text-blue-700 underline text-sm break-all"
+                  >
+                    ec.europa.eu/taxation_customs/vies
+                  </a>
+                </div>
               </li>
             </ul>
               {/* ANPC/SOL/SAL logos - stack SAL below SOL for clearer visual order */}
@@ -384,7 +398,7 @@ const Footer = memo(() => {
 
         {/* Copyright - at the very bottom, centered */}
         <div className="mt-12 text-center text-sm text-gray-600 w-full">
-          Copyright © {new Date().getFullYear()} {LEGAL.company}. &nbsp;C.I.F./VAT: {LEGAL.vat}. Trade Registry: {LEGAL.trade}.
+          Copyright © {new Date().getFullYear()} {LEGAL.company}. &nbsp;VAT Code: {LEGAL.vat}. Trade Registry: {LEGAL.trade}.
         </div>
 
         {/* ...existing code... */}
