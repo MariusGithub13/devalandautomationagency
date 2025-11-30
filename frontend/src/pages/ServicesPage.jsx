@@ -27,8 +27,8 @@ const ServicesPage = () => {
   return (
     <>
       <SEO 
-        title="Enterprise Automation Services"
-        description="Strategic automation solutions for enterprise transformation. RPA development, workflow automation, AI chatbots, Klaviyo email marketing, and system integration services with measurable ROI."
+        title="Automation Services - AI Chatbots, RPA, Workflow Automation | Devaland"
+        description="Strategic automation solutions for enterprise transformation. AI chatbots, Voice AI, RPA development, workflow automation, Klaviyo email marketing, and system integration services with measurable ROI."
         canonical="https://devaland.com/services"
         keywords={[
           "automation services",

@@ -2,9 +2,17 @@ import React from 'react';
 import { Shield, CheckCircle, UserCheck, Lock } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { companyData } from '../data/mock';
+import SEO from '../components/SEO';
 
 const GDPRPage = () => {
   return (
+    <>
+      <SEO 
+        title="GDPR Compliance - Devaland Automation Agency | EU Data Protection"
+        description="Devaland's commitment to GDPR compliance and EU data protection. Learn about your rights, our data processing practices, and how we protect your personal information."
+        canonical="https://devaland.com/gdpr"
+        keywords={['GDPR compliance', 'EU data protection', 'data privacy rights', 'personal data protection', 'GDPR regulations']}
+      />
     <div className="pt-16">
       <section className="section-padding bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -170,6 +178,7 @@ const GDPRPage = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

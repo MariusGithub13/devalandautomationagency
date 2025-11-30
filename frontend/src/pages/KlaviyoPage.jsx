@@ -28,8 +28,8 @@ const KlaviyoPage = () => {
   return (
     <>
       <SEO 
-        title="Klaviyo Email Marketing Services for Shopify"
-        description="Expert Klaviyo email marketing and automation for Shopify brands. Official Klaviyo Partner. Drive revenue growth with proven flows, segmentation, and campaigns. 45% average revenue increase."
+        title="Klaviyo Email Marketing Agency for Shopify & E-commerce | Expert Flows & Automation"
+        description="Expert Klaviyo email marketing agency for Shopify & e-commerce stores. Official Klaviyo Partner. Drive revenue growth with proven automation flows, advanced segmentation, SMS campaigns & performance-based plans. 45% average revenue increase."
         canonical="https://devaland.com/klaviyo"
         keywords={[
           "klaviyo agency",

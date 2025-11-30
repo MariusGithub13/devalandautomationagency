@@ -27,8 +27,8 @@ const CaseStudiesPage = () => {
   return (
     <>
       <SEO 
-        title="Case Studies - Proven Automation Success Stories"
-        description="See how we've helped enterprises achieve remarkable results through automation. Real case studies with measurable ROI, including Klaviyo email marketing, RPA, and workflow automation implementations."
+        title="Case Studies - Proven Automation & AI Success Stories | Devaland Results"
+        description="See how we've helped e-commerce businesses achieve remarkable results through automation, AI chatbots, Voice AI agents, and Klaviyo email marketing. Real case studies with measurable ROI and 10x returns."
         canonical="https://devaland.com/case-studies"
         keywords={[
           "automation case studies",

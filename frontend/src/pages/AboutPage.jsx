@@ -18,8 +18,8 @@ const AboutPage = () => {
   return (
     <>
       <SEO 
-        title="About Us - Enterprise Automation Experts"
-        description="Founded to transform how enterprises operate, Devaland has grown to a leading automation agency trusted worldwide. Learn about our team, mission, and values driving digital transformation."
+        title="About Devaland - Expert Automation & AI Solutions Team | Enterprise Services"
+        description="Founded to transform how enterprises operate, Devaland has grown to a leading automation agency trusted worldwide. Meet our team of automation experts, Klaviyo partners, and RPA specialists driving digital transformation."
         canonical="https://devaland.com/about"
         keywords={[
           "automation agency",

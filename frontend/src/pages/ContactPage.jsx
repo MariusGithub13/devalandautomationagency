@@ -159,8 +159,8 @@ const ContactPage = () => {
   return (
     <>
       <SEO 
-        title="Contact Us - Get Your Free Automation Consultation"
-        description="Get in touch with our automation experts. Schedule a free consultation to discover how Klaviyo, RPA, and workflow automation can transform your business. 24-hour response guarantee."
+        title="Contact Devaland - Free Automation Consultation | AI Chatbots & Email Marketing"
+        description="Get in touch with our automation experts. Schedule a free consultation to discover how AI chatbots, Voice AI, Klaviyo email marketing, RPA, and workflow automation can transform your business. 24-hour response guarantee."
         canonical="https://devaland.com/contact"
         keywords={[
           "contact automation agency",

@@ -1,8 +1,16 @@
 import React from 'react';
 import { companyData } from '../data/mock';
+import SEO from '../components/SEO';
 
 const PrivacyPage = () => {
   return (
+    <>
+      <SEO 
+        title="Privacy Policy - Devaland Automation Agency | Data Protection & Security"
+        description="Learn how Devaland protects your personal data and privacy. Our comprehensive privacy policy covers data collection, usage, and your rights under GDPR."
+        canonical="https://devaland.com/privacy"
+        keywords={['privacy policy', 'data protection', 'GDPR compliance', 'personal data', 'privacy rights']}
+      />
     <div className="pt-16">
       <section className="section-padding bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -104,6 +112,7 @@ const PrivacyPage = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

@@ -1,8 +1,16 @@
 import React from 'react';
 import { companyData } from '../data/mock';
+import SEO from '../components/SEO';
 
 const TermsPage = () => {
   return (
+    <>
+      <SEO 
+        title="Terms & Conditions - Devaland Automation Agency | Service Agreement"
+        description="Read Devaland's terms and conditions for our automation services, AI chatbots, and email marketing solutions. Understanding our service agreements and client responsibilities."
+        canonical="https://devaland.com/terms"
+        keywords={['terms and conditions', 'service agreement', 'terms of use', 'legal terms', 'client agreement']}
+      />
     <div className="pt-16">
       <section className="section-padding bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -104,6 +112,7 @@ const TermsPage = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

@@ -44,8 +44,8 @@ const HomePage = () => {
   return (
     <>
       <SEO 
-        title="Devaland Automation Agency"
-        description="Leading automation agency specializing in RPA, workflow automation, and Klaviyo email marketing for Shopify brands. Transform your operations with intelligent automation solutions."
+        title="Devaland Automation Agency - AI Chatbots, RPA & Klaviyo Email Marketing Experts"
+        description="Leading automation agency specializing in AI chatbots, RPA, workflow automation, and Klaviyo email marketing for Shopify & e-commerce brands. Transform your operations with intelligent automation solutions."
         canonical="https://devaland.com"
         keywords={[
           "automation agency",

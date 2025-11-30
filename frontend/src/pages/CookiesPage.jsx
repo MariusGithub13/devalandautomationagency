@@ -1,8 +1,16 @@
 import React from 'react';
 import { companyData } from '../data/mock';
+import SEO from '../components/SEO';
 
 const CookiesPage = () => {
   return (
+    <>
+      <SEO 
+        title="Cookie Policy - Devaland Automation Agency | Website Cookies Explained"
+        description="Learn about how Devaland uses cookies to enhance your browsing experience. Our cookie policy explains what cookies we use and how to manage your preferences."
+        canonical="https://devaland.com/cookies"
+        keywords={['cookie policy', 'website cookies', 'cookie consent', 'browser cookies', 'cookie management']}
+      />
     <div className="pt-16">
       <section className="section-padding bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -105,6 +113,7 @@ const CookiesPage = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 
