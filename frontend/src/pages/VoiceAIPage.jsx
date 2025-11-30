@@ -668,7 +668,7 @@ const VoiceAIPage = () => {
         </div>
       </section>
 
-      {/* Pricing/Packages Section */}
+      {/* Pricing/Packages Section - Detailed Monthly Plans for Each Chat Widget */}
       <section className="py-20 bg-gradient-to-br from-blue-50 to-purple-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -676,44 +676,468 @@ const VoiceAIPage = () => {
               Flexible Packages for Every Business
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Choose the perfect Voice AI solution for your needs. All packages include setup, training, and ongoing support.
+              Transparent monthly pricing for each chat widget type. All packages include setup, custom AI training, and ongoing support.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {voiceAIData.packages.map((pkg, index) => (
-              <Card key={index} className={`relative ${pkg.popular ? 'border-2 border-blue-500 shadow-xl scale-105' : 'border'}`}>
-                {pkg.popular && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-blue-500 text-white px-4 py-1 rounded-full text-sm font-bold flex items-center gap-1">
-                      <Star className="w-4 h-4" />
-                      Most Popular
-                    </span>
+          {/* All-In-One Chat Packages */}
+          <div className="mb-16">
+            <div className="flex items-center gap-3 mb-8">
+              <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-lg flex items-center justify-center">
+                <MessageSquare className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold text-gray-900">All-In-One Chat Widget</h3>
+                <p className="text-gray-600">Live Chat + Voice AI + Facebook + Instagram + WhatsApp + SMS/Email</p>
+              </div>
+            </div>
+            <div className="grid md:grid-cols-3 gap-8">
+              <Card className="border-2">
+                <CardContent className="p-6">
+                  <h4 className="text-xl font-bold text-gray-900 mb-2">Starter</h4>
+                  <div className="mb-4">
+                    <span className="text-3xl font-bold text-gray-900">$297</span>
+                    <span className="text-gray-600">/month</span>
                   </div>
-                )}
-                <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">{pkg.name}</h3>
-                  <p className="text-gray-600 mb-6">{pkg.description}</p>
-                  <div className="mb-6">
-                    <span className="text-4xl font-bold text-gray-900">{pkg.price}</span>
-                    {pkg.priceNote && <span className="text-gray-600 ml-2">{pkg.priceNote}</span>}
-                  </div>
-                  <ul className="space-y-3 mb-8">
-                    {pkg.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-start gap-3">
-                        <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                        <span className="text-gray-700">{feature}</span>
-                      </li>
-                    ))}
+                  <ul className="space-y-2 mb-6">
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      All 6 channels enabled
+                    </li>
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      Up to 500 conversations/month
+                    </li>
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      2 team members
+                    </li>
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      Basic AI training
+                    </li>
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      Email support
+                    </li>
                   </ul>
-                  <Button asChild className={`w-full ${pkg.popular ? 'btn-primary text-white' : ''}`} variant={pkg.popular ? 'default' : 'outline'}>
-                    <a href={companyData.calendly} target="_blank" rel="noopener noreferrer">
-                      Get Started
-                    </a>
+                  <Button asChild variant="outline" className="w-full">
+                    <a href={companyData.calendly} target="_blank" rel="noopener noreferrer">Get Started</a>
                   </Button>
                 </CardContent>
               </Card>
-            ))}
+
+              <Card className="border-2 border-blue-500 shadow-xl relative">
+                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                  <span className="bg-blue-500 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+                    <Star className="w-3 h-3" />
+                    POPULAR
+                  </span>
+                </div>
+                <CardContent className="p-6">
+                  <h4 className="text-xl font-bold text-gray-900 mb-2">Professional</h4>
+                  <div className="mb-4">
+                    <span className="text-3xl font-bold text-gray-900">$597</span>
+                    <span className="text-gray-600">/month</span>
+                  </div>
+                  <ul className="space-y-2 mb-6">
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      All 6 channels enabled
+                    </li>
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      Up to 2,000 conversations/month
+                    </li>
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      5 team members
+                    </li>
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      Advanced AI training + custom flows
+                    </li>
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      Priority support + analytics
+                    </li>
+                  </ul>
+                  <Button asChild className="w-full btn-primary text-white">
+                    <a href={companyData.calendly} target="_blank" rel="noopener noreferrer">Get Started</a>
+                  </Button>
+                </CardContent>
+              </Card>
+
+              <Card className="border-2">
+                <CardContent className="p-6">
+                  <h4 className="text-xl font-bold text-gray-900 mb-2">Enterprise</h4>
+                  <div className="mb-4">
+                    <span className="text-3xl font-bold text-gray-900">$1,497</span>
+                    <span className="text-gray-600">/month</span>
+                  </div>
+                  <ul className="space-y-2 mb-6">
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      All 6 channels enabled
+                    </li>
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      Unlimited conversations
+                    </li>
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      Unlimited team members
+                    </li>
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      Custom AI + integrations
+                    </li>
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      Dedicated account manager
+                    </li>
+                  </ul>
+                  <Button asChild variant="outline" className="w-full">
+                    <a href={companyData.calendly} target="_blank" rel="noopener noreferrer">Get Started</a>
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+
+          {/* Voice AI Only Packages */}
+          <div className="mb-16">
+            <div className="flex items-center gap-3 mb-8">
+              <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
+                <Phone className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold text-gray-900">Voice AI Chat Widget</h3>
+                <p className="text-gray-600">AI-powered voice conversations on your website</p>
+              </div>
+            </div>
+            <div className="grid md:grid-cols-3 gap-8">
+              <Card className="border-2">
+                <CardContent className="p-6">
+                  <h4 className="text-xl font-bold text-gray-900 mb-2">Basic</h4>
+                  <div className="mb-4">
+                    <span className="text-3xl font-bold text-gray-900">$197</span>
+                    <span className="text-gray-600">/month</span>
+                  </div>
+                  <ul className="space-y-2 mb-6">
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      Up to 300 voice calls/month
+                    </li>
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      Custom voice agent training
+                    </li>
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      Call recordings & transcripts
+                    </li>
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      Basic analytics dashboard
+                    </li>
+                  </ul>
+                  <Button asChild variant="outline" className="w-full">
+                    <a href={companyData.calendly} target="_blank" rel="noopener noreferrer">Get Started</a>
+                  </Button>
+                </CardContent>
+              </Card>
+
+              <Card className="border-2">
+                <CardContent className="p-6">
+                  <h4 className="text-xl font-bold text-gray-900 mb-2">Professional</h4>
+                  <div className="mb-4">
+                    <span className="text-3xl font-bold text-gray-900">$397</span>
+                    <span className="text-gray-600">/month</span>
+                  </div>
+                  <ul className="space-y-2 mb-6">
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      Up to 1,000 voice calls/month
+                    </li>
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      Advanced AI personality tuning
+                    </li>
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      CRM integrations
+                    </li>
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      Advanced analytics + reporting
+                    </li>
+                  </ul>
+                  <Button asChild variant="outline" className="w-full">
+                    <a href={companyData.calendly} target="_blank" rel="noopener noreferrer">Get Started</a>
+                  </Button>
+                </CardContent>
+              </Card>
+
+              <Card className="border-2">
+                <CardContent className="p-6">
+                  <h4 className="text-xl font-bold text-gray-900 mb-2">Enterprise</h4>
+                  <div className="mb-4">
+                    <span className="text-3xl font-bold text-gray-900">$997</span>
+                    <span className="text-gray-600">/month</span>
+                  </div>
+                  <ul className="space-y-2 mb-6">
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      Unlimited voice calls
+                    </li>
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      Multi-language support
+                    </li>
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      Custom integrations + API access
+                    </li>
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      Dedicated success manager
+                    </li>
+                  </ul>
+                  <Button asChild variant="outline" className="w-full">
+                    <a href={companyData.calendly} target="_blank" rel="noopener noreferrer">Get Started</a>
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+
+          {/* Live Chat Only Packages */}
+          <div className="mb-16">
+            <div className="flex items-center gap-3 mb-8">
+              <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
+                <MessageSquare className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold text-gray-900">Live Chat Widget</h3>
+                <p className="text-gray-600">Real-time text messaging with AI assistance</p>
+              </div>
+            </div>
+            <div className="grid md:grid-cols-3 gap-8">
+              <Card className="border-2">
+                <CardContent className="p-6">
+                  <h4 className="text-xl font-bold text-gray-900 mb-2">Starter</h4>
+                  <div className="mb-4">
+                    <span className="text-3xl font-bold text-gray-900">$97</span>
+                    <span className="text-gray-600">/month</span>
+                  </div>
+                  <ul className="space-y-2 mb-6">
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      Up to 500 chats/month
+                    </li>
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      2 agents
+                    </li>
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      AI-powered auto-responses
+                    </li>
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      Chat history
+                    </li>
+                  </ul>
+                  <Button asChild variant="outline" className="w-full">
+                    <a href={companyData.calendly} target="_blank" rel="noopener noreferrer">Get Started</a>
+                  </Button>
+                </CardContent>
+              </Card>
+
+              <Card className="border-2">
+                <CardContent className="p-6">
+                  <h4 className="text-xl font-bold text-gray-900 mb-2">Professional</h4>
+                  <div className="mb-4">
+                    <span className="text-3xl font-bold text-gray-900">$197</span>
+                    <span className="text-gray-600">/month</span>
+                  </div>
+                  <ul className="space-y-2 mb-6">
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      Up to 2,000 chats/month
+                    </li>
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      5 agents
+                    </li>
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      AI co-pilot for agents
+                    </li>
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      Advanced analytics
+                    </li>
+                  </ul>
+                  <Button asChild variant="outline" className="w-full">
+                    <a href={companyData.calendly} target="_blank" rel="noopener noreferrer">Get Started</a>
+                  </Button>
+                </CardContent>
+              </Card>
+
+              <Card className="border-2">
+                <CardContent className="p-6">
+                  <h4 className="text-xl font-bold text-gray-900 mb-2">Enterprise</h4>
+                  <div className="mb-4">
+                    <span className="text-3xl font-bold text-gray-900">$497</span>
+                    <span className="text-gray-600">/month</span>
+                  </div>
+                  <ul className="space-y-2 mb-6">
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      Unlimited chats
+                    </li>
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      Unlimited agents
+                    </li>
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      Custom AI workflows
+                    </li>
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      White-label options
+                    </li>
+                  </ul>
+                  <Button asChild variant="outline" className="w-full">
+                    <a href={companyData.calendly} target="_blank" rel="noopener noreferrer">Get Started</a>
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+
+          {/* Single-Channel Packages (WhatsApp, Facebook, Instagram, SMS/Email) */}
+          <div className="mb-16">
+            <div className="flex items-center gap-3 mb-8">
+              <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-500 rounded-lg flex items-center justify-center">
+                <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                </svg>
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold text-gray-900">Single-Channel Widgets</h3>
+                <p className="text-gray-600">WhatsApp, Facebook, Instagram, or SMS/Email only</p>
+              </div>
+            </div>
+            <div className="grid md:grid-cols-3 gap-8">
+              <Card className="border-2">
+                <CardContent className="p-6">
+                  <h4 className="text-xl font-bold text-gray-900 mb-2">Basic</h4>
+                  <div className="mb-4">
+                    <span className="text-3xl font-bold text-gray-900">$77</span>
+                    <span className="text-gray-600">/month</span>
+                  </div>
+                  <ul className="space-y-2 mb-6">
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      Single channel (choose one)
+                    </li>
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      Up to 300 messages/month
+                    </li>
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      Basic AI auto-replies
+                    </li>
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      Message history
+                    </li>
+                  </ul>
+                  <Button asChild variant="outline" className="w-full">
+                    <a href={companyData.calendly} target="_blank" rel="noopener noreferrer">Get Started</a>
+                  </Button>
+                </CardContent>
+              </Card>
+
+              <Card className="border-2">
+                <CardContent className="p-6">
+                  <h4 className="text-xl font-bold text-gray-900 mb-2">Professional</h4>
+                  <div className="mb-4">
+                    <span className="text-3xl font-bold text-gray-900">$147</span>
+                    <span className="text-gray-600">/month</span>
+                  </div>
+                  <ul className="space-y-2 mb-6">
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      Single channel (choose one)
+                    </li>
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      Up to 1,500 messages/month
+                    </li>
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      Advanced AI workflows
+                    </li>
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      Analytics dashboard
+                    </li>
+                  </ul>
+                  <Button asChild variant="outline" className="w-full">
+                    <a href={companyData.calendly} target="_blank" rel="noopener noreferrer">Get Started</a>
+                  </Button>
+                </CardContent>
+              </Card>
+
+              <Card className="border-2">
+                <CardContent className="p-6">
+                  <h4 className="text-xl font-bold text-gray-900 mb-2">Enterprise</h4>
+                  <div className="mb-4">
+                    <span className="text-3xl font-bold text-gray-900">$297</span>
+                    <span className="text-gray-600">/month</span>
+                  </div>
+                  <ul className="space-y-2 mb-6">
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      Single channel (choose one)
+                    </li>
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      Unlimited messages
+                    </li>
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      Custom AI + integrations
+                    </li>
+                    <li className="flex items-center gap-2 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      Priority support
+                    </li>
+                  </ul>
+                  <Button asChild variant="outline" className="w-full">
+                    <a href={companyData.calendly} target="_blank" rel="noopener noreferrer">Get Started</a>
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+
+          {/* Setup Fee Notice */}
+          <div className="bg-white border-2 border-gray-200 rounded-2xl p-8 text-center">
+            <h3 className="text-xl font-bold text-gray-900 mb-4">One-Time Setup Fee</h3>
+            <p className="text-gray-600 mb-4">
+              All packages include a <strong>one-time setup fee of $500-$2,500</strong> depending on complexity. 
+              This covers custom AI training, widget installation, integration setup, and team onboarding.
+            </p>
+            <p className="text-sm text-gray-500">
+              Setup fees waived for annual commitments • Volume discounts available • Custom enterprise pricing upon request
+            </p>
           </div>
         </div>
       </section>
