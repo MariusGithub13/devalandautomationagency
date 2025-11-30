@@ -848,7 +848,13 @@ const VoiceAIPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-2">
+              <Card className="border-2 border-blue-500 shadow-xl relative">
+                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                  <span className="bg-blue-500 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+                    <Star className="w-3 h-3" />
+                    POPULAR
+                  </span>
+                </div>
                 <CardContent className="p-6">
                   <h4 className="text-xl font-bold text-gray-900 mb-2">Professional</h4>
                   <div className="mb-4">
@@ -873,7 +879,7 @@ const VoiceAIPage = () => {
                       Advanced analytics + reporting
                     </li>
                   </ul>
-                  <Button asChild variant="outline" className="w-full">
+                  <Button asChild className="w-full btn-primary text-white">
                     <a href={companyData.calendly} target="_blank" rel="noopener noreferrer">Get Started</a>
                   </Button>
                 </CardContent>
@@ -955,7 +961,13 @@ const VoiceAIPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-2">
+              <Card className="border-2 border-blue-500 shadow-xl relative">
+                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                  <span className="bg-blue-500 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+                    <Star className="w-3 h-3" />
+                    POPULAR
+                  </span>
+                </div>
                 <CardContent className="p-6">
                   <h4 className="text-xl font-bold text-gray-900 mb-2">Professional</h4>
                   <div className="mb-4">
@@ -980,7 +992,7 @@ const VoiceAIPage = () => {
                       Advanced analytics
                     </li>
                   </ul>
-                  <Button asChild variant="outline" className="w-full">
+                  <Button asChild className="w-full btn-primary text-white">
                     <a href={companyData.calendly} target="_blank" rel="noopener noreferrer">Get Started</a>
                   </Button>
                 </CardContent>
@@ -1064,7 +1076,13 @@ const VoiceAIPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-2">
+              <Card className="border-2 border-blue-500 shadow-xl relative">
+                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                  <span className="bg-blue-500 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+                    <Star className="w-3 h-3" />
+                    POPULAR
+                  </span>
+                </div>
                 <CardContent className="p-6">
                   <h4 className="text-xl font-bold text-gray-900 mb-2">Professional</h4>
                   <div className="mb-4">
@@ -1089,7 +1107,7 @@ const VoiceAIPage = () => {
                       Analytics dashboard
                     </li>
                   </ul>
-                  <Button asChild variant="outline" className="w-full">
+                  <Button asChild className="w-full btn-primary text-white">
                     <a href={companyData.calendly} target="_blank" rel="noopener noreferrer">Get Started</a>
                   </Button>
                 </CardContent>
