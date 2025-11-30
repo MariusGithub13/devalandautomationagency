@@ -437,7 +437,7 @@ const ROICalculator = () => {
                     <DollarSign className="w-4 h-4 text-orange-600" />
                   </div>
                   <div>
-                    <div className="font-bold text-gray-900">{results.config.leadConversionBoost * 100}%</div>
+                    <div className="font-bold text-gray-900">{(results.config.leadConversionBoost * 100).toFixed(0)}%</div>
                     <div className="text-gray-600">Lead conversion boost</div>
                   </div>
                 </div>
