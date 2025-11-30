@@ -298,7 +298,7 @@ const Footer = memo(() => {
               <li className="flex items-start gap-2 mt-3">
                 <Link size={16} className="text-gray-500 flex-shrink-0 mt-0.5" />
                 <div>
-                  <div className="text-xs text-gray-500 mb-1">VIES VAT number validation</div>
+                  <div className="text-sm font-bold text-gray-700 mb-1">VIES VAT number validation</div>
                   <a 
                     href="https://ec.europa.eu/taxation_customs/vies/#/vat-validation" 
                     target="_blank" 
