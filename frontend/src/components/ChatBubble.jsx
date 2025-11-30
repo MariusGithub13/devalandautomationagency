@@ -1,10 +1,10 @@
 // frontend/src/components/ChatBubble.jsx
-// Loads LeadConnector chat widget. Vendor's white cookie banner
-// will handle consent and activate marketing/chat accordingly.
+// Loads LeadConnector chat widget with new widget ID
+// Cookie consent is handled in index.html
 
 import React, { useEffect } from "react";
 
-const CHAT_WIDGET_URL = "https://widgets.leadconnectorhq.com/loader.js";
+const WIDGET_ID = "692c19db36936d434b1c0208";
 const SCRIPT_ID = "leadconnector-loader";
 
 const ChatBubble = () => {
@@ -14,7 +14,12 @@ const ChatBubble = () => {
 
     const s = document.createElement("script");
     s.id = SCRIPT_ID;
-    s.src = CHAT_WIDGET_URL;
+    s.src = "https://beta.leadconnectorhq.com/loader.js";
+    s.setAttribute(
+      "data-resources-url",
+      "https://beta.leadconnectorhq.com/chat-widget/loader.js"
+    );
+    s.setAttribute("data-widget-id", WIDGET_ID);
     s.async = true;
     s.type = "text/javascript";
     document.body.appendChild(s);

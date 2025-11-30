@@ -413,17 +413,9 @@
           if (window.__chatWidgetInjected) return;
           window.__chatWidgetInjected = true;
 
-          console.log("🤖 Injecting voice AI widget...");
+          console.log("🤖 Injecting chat widget...");
           
-          // First, add the chat-widget element to the DOM
-          var widgetDiv = document.createElement("chat-widget");
-          widgetDiv.setAttribute("widget-id", "6922c05520fcaa7b0e25e690");
-          widgetDiv.setAttribute("location-id", "3hga7apoIS9IL45Lks5V");
-          widgetDiv.setAttribute("chat-type", "voiceAiChat");
-          document.body.appendChild(widgetDiv);
-          console.log("✅ Widget element added to DOM");
-          
-          // Then load the script
+          // Load the new chat widget script
           var s = document.createElement("script");
           s.src = "https://beta.leadconnectorhq.com/loader.js";
           s.setAttribute(
@@ -432,66 +424,14 @@
           );
           s.setAttribute(
             "data-widget-id",
-            "6922c05520fcaa7b0e25e690"
-          );
-          s.setAttribute(
-            "data-location-id",
-            "3hga7apoIS9IL45Lks5V"
+            "692c19db36936d434b1c0208"
           );
           // Don't set async - let the loader control timing
           s.onload = function() {
-            console.log("✅ Voice AI widget script loaded successfully");
-            
-            // Monitor fetch requests to see what's failing
-            var originalFetch = window.fetch;
-            window.fetch = function() {
-              var url = arguments[0];
-              if (typeof url === 'string' && url.includes('leadconnector')) {
-                console.log("🌐 API Call:", url);
-              }
-              return originalFetch.apply(this, arguments).then(function(response) {
-                if (typeof url === 'string' && url.includes('leadconnector')) {
-                  console.log("📡 Response:", response.status, response.statusText, url);
-                  if (!response.ok) {
-                    response.clone().text().then(function(text) {
-                      console.error("❌ API Error Response:", text);
-                    });
-                  }
-                }
-                return response;
-              }).catch(function(error) {
-                if (typeof url === 'string' && url.includes('leadconnector')) {
-                  console.error("❌ API Error:", error, url);
-                }
-                throw error;
-              });
-            };
-            
-            // Listen for widget errors
-            window.addEventListener('error', function(e) {
-              if (e.message && e.message.includes('voice')) {
-                console.error("🎤 Voice widget error:", e.message);
-              }
-            });
-            
-            // Check for widget initialization
-            setTimeout(function() {
-              var widgetEl = document.querySelector('chat-widget');
-              if (widgetEl) {
-                console.log("✅ Widget element found:", widgetEl);
-                
-                // Log widget attributes for debugging
-                var agentInfo = widgetEl.getAttribute('voice-ai-agent');
-                if (agentInfo) {
-                  console.log("🎤 Voice AI agent info:", JSON.parse(agentInfo));
-                }
-              } else {
-                console.warn("⚠️ Widget element not found after loading");
-              }
-            }, 2000);
+            console.log("✅ Chat widget script loaded successfully");
           };
           s.onerror = function() {
-            console.error("❌ Failed to load voice AI widget script");
+            console.error("❌ Failed to load chat widget script");
           };
           document.body.appendChild(s);
         }

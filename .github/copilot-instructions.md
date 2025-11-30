@@ -26,7 +26,7 @@ cd netlify/functions && npm install
 - **Routes**: Add new routes in THREE places: `App.js`, `src/pages/`, and `scripts/generate-sitemap.mjs`
 - **UI components**: Always use primitives from `src/components/ui/` with CVA variants + `cn()` utility
 - **Import alias**: Use `@/` for all src imports (configured in `jsconfig.json`)
-- **Lazy loading**: Wrap heavy components in `React.lazy()` + `Suspense` (see `ChatBubble` example)
+- **Lazy loading**: Wrap heavy components in `React.lazy()` + `Suspense` (see `ChatBubble` example in `App.js`)
 
 **Environment Setup**:
 - Backend: Create `backend/.env` with `MONGO_URL`, `DB_NAME`, SMTP settings (see `backend/.env.example`)
@@ -96,6 +96,7 @@ cd netlify/functions && npm install
 - Router composition: API routes are added to an `APIRouter(prefix="/api")` and then included in `app`. When adding endpoints prefer router usage for consistent prefixing.
 - Async DB: use `motor.motor_asyncio.AsyncIOMotorClient` and `await` for DB calls. Close the client on shutdown (see `@app.on_event("shutdown")`).
 - Frontend import alias `@/` is used in `src` (see `jsconfig.json`) — prefer `@/path` imports over relative deep paths.
+- **SEO per page**: Every page MUST use `<SEO />` component from `@/components/SEO` with unique title, description, canonical URL, and keywords. Pass structured data via `schema` prop for JSON-LD. See `HomePage.jsx`, `KlaviyoPage.jsx` for examples.
 - UI primitives: prefer components in `src/components/ui/` (e.g., `button.jsx`, `toast.jsx`) to ensure consistent styling and accessibility.
   - Use `class-variance-authority` (CVA) pattern for variant-based styling (see `button.jsx` for reference).
   - Always use `cn()` from `@/lib/utils` for className merging instead of manual string concatenation.
@@ -111,6 +112,25 @@ cd netlify/functions && npm install
 
 - Adding an API route: mirror `create_status_check` in `backend/server.py` — create Pydantic models for requests/responses and persist via Motor.
 - Adding a route in frontend: add a page component under `frontend/src/pages/` and register the route in `frontend/src/App.js`. Update `scripts/generate-sitemap.mjs` ROUTES array.
+- **SEO implementation**: Import `SEO` component in page, use within component body with unique props:
+  ```jsx
+  import SEO from '@/components/SEO';
+  
+  function MyPage() {
+    return (
+      <>
+        <SEO 
+          title="My Page Title"
+          description="Unique description for search engines"
+          canonical="https://devaland.com/my-page"
+          keywords={["keyword1", "keyword2"]}
+          schema={{ /* JSON-LD structured data */ }}
+        />
+        {/* Page content */}
+      </>
+    );
+  }
+  ```
 - Using DB: follow async pattern `await db.collection.find().to_list()` and return Pydantic-constructed objects if returning via FastAPI.
 - Creating UI components: extend Radix primitives with CVA variants (see `button.jsx`) and use `cn()` for className composition.
 
@@ -467,17 +487,18 @@ if (marketingConsent === 'granted') {
 3. Content loads client-side after initial page load
 4. Missing per-page meta tags and structured data
 
-**Fixes Implemented** (Nov 24, 2025):
+**Fixes Implemented** (Nov 24-30, 2025):
 1. ✅ Added Netlify prerendering plugin to netlify.toml
 2. ✅ Implemented comprehensive 301 redirects for old URLs
 3. ✅ Added HTTPS and www → non-www redirect forcing
 4. ✅ Improved caching headers for static assets vs HTML
 5. ✅ Added HSTS header for security and SEO trust signals
 6. ✅ Synchronized netlify.toml and public/_redirects files
+7. ✅ Installed and implemented react-helmet-async (see `src/components/SEO.jsx`)
+8. ✅ Created .env.example files for backend and Netlify functions
 
 **Pending Actions**:
-- [ ] Install react-helmet-async for per-page SEO meta tags
-- [ ] Add structured data (JSON-LD) to all page types
+- [ ] Add structured data (JSON-LD) to all page types (partially implemented in `public/structured-data.json`)
 - [ ] Export GSC 404 list and create additional redirects
 - [ ] Request re-indexing via GSC URL Inspection tool
 - [ ] Monitor Coverage report weekly for 4 weeks
