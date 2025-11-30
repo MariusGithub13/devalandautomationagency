@@ -37,6 +37,8 @@ const BLOG_POSTS = [
   "/blog/sms-marketing-the-perfect-complement-to-email",
   "/blog/advanced-klaviyo-analytics-beyond-open-and-click-rates",
   "/blog/building-customer-loyalty-through-email-personalization",
+  "/blog/all-in-one-chat-widget-complete-guide",
+  "/blog/voice-ai-agents-future-business-communication",
 ];
 
 // Optionally find static HTML blog posts under public/blog/*.html
