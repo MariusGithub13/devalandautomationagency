@@ -259,7 +259,7 @@ const Footer = memo(() => {
               <li className="flex items-start gap-2 mt-3">
                 <MapPin size={16} className="text-gray-500 flex-shrink-0 mt-0.5" />
                 <div>
-                  <div className="font-semibold text-gray-900 mb-1">Headquarters (Company's Registered Office):</div>
+                  <div className="font-semibold text-gray-900 mb-1">Headquarters (Company's Registered Tax Office):</div>
                   <span className="whitespace-pre-line text-gray-600">{LEGAL.address}</span>
                 </div>
               </li>
