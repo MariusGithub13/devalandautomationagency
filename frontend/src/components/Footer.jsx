@@ -305,7 +305,7 @@ const Footer = memo(() => {
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-gray-600 text-xs">
-                  Romanian Trade Registry ID Code: J2024039063003
+                  Romanian Commercial Trade Registry ID Code: J2024039063003
                 </span>
               </li>
               <li className="flex items-start gap-2">
