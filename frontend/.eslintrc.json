@@ -1,0 +1,9 @@
+{
+  "extends": [
+    "react-app"
+  ],
+  "rules": {
+    "jsx-a11y/img-redundant-alt": "off",
+    "import/first": "off"
+  }
+}
