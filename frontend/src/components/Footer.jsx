@@ -254,10 +254,49 @@ const Footer = memo(() => {
                   {LEGAL.company}
                 </div>
               </li>
-              <li className="flex items-start gap-2">
+              
+              {/* Headquarters */}
+              <li className="flex items-start gap-2 mt-3">
+                <MapPin size={16} className="text-gray-500 flex-shrink-0 mt-0.5" />
+                <div>
+                  <div className="font-semibold text-gray-900 mb-1">Headquarters:</div>
+                  <span className="whitespace-pre-line text-gray-600">{LEGAL.address}</span>
+                </div>
+              </li>
+
+              {/* Contact Details */}
+              <li className="flex items-center gap-2 mt-3">
+                <Phone size={16} className="text-gray-500 flex-shrink-0" />
+                <a href={LEGAL.phoneHref} className="hover:text-blue-700 underline-offset-4 hover:underline">
+                  {LEGAL.phoneDisplay}
+                </a>
+              </li>
+              <li className="flex items-center gap-2">
+                <Mail size={16} className="text-gray-500 flex-shrink-0" />
+                <a href={LEGAL.emailHref} className="hover:text-blue-700 underline-offset-4 hover:underline">
+                  {LEGAL.email}
+                </a>
+              </li>
+
+              {/* Company Registration Details */}
+              <li className="flex items-start gap-2 mt-3">
                 <span className="text-gray-600">
                   VAT Code: {LEGAL.vat}
                 </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <Link size={16} className="text-gray-500 flex-shrink-0 mt-0.5" />
+                <div>
+                  <div className="text-sm font-bold text-gray-700 mb-1">VIES VAT number validation:</div>
+                  <a 
+                    href="https://ec.europa.eu/taxation_customs/vies/#/vat-validation" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:text-blue-700 underline text-sm break-all"
+                  >
+                    ec.europa.eu/taxation_customs/vies
+                  </a>
+                </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-gray-600">
@@ -278,36 +317,6 @@ const Footer = memo(() => {
                 <span className="text-gray-600 text-xs">
                   CAEN Code: 7311 – Advertising Agencies
                 </span>
-              </li>
-              <li className="flex items-center gap-2 mt-3">
-                <Phone size={16} className="text-gray-500 flex-shrink-0" />
-                <a href={LEGAL.phoneHref} className="hover:text-blue-700 underline-offset-4 hover:underline">
-                  {LEGAL.phoneDisplay}
-                </a>
-              </li>
-              <li className="flex items-center gap-2">
-                <Mail size={16} className="text-gray-500 flex-shrink-0" />
-                <a href={LEGAL.emailHref} className="hover:text-blue-700 underline-offset-4 hover:underline">
-                  {LEGAL.email}
-                </a>
-              </li>
-              <li className="flex items-start gap-2">
-                <MapPin size={16} className="text-gray-500 flex-shrink-0 mt-0.5" />
-                <span className="whitespace-pre-line">{LEGAL.address}</span>
-              </li>
-              <li className="flex items-start gap-2 mt-3">
-                <Link size={16} className="text-gray-500 flex-shrink-0 mt-0.5" />
-                <div>
-                  <div className="text-sm font-bold text-gray-700 mb-1">VIES VAT number validation</div>
-                  <a 
-                    href="https://ec.europa.eu/taxation_customs/vies/#/vat-validation" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-blue-600 hover:text-blue-700 underline text-sm break-all"
-                  >
-                    ec.europa.eu/taxation_customs/vies
-                  </a>
-                </div>
               </li>
             </ul>
               {/* ANPC/SOL/SAL logos - stack SAL below SOL for clearer visual order */}
