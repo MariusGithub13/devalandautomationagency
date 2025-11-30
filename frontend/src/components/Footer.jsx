@@ -257,7 +257,7 @@ const Footer = memo(() => {
               
               {/* Headquarters */}
               <li className="flex items-start gap-2 mt-3">
-                <MapPin size={16} className="text-gray-500 flex-shrink-0 mt-0.5" />
+                <MapPin size={16} className="text-blue-600 flex-shrink-0 mt-0.5" />
                 <div>
                   <div className="font-semibold text-gray-900 mb-1">Headquarters (Company's Registered Tax Office):</div>
                   <span className="whitespace-pre-line text-gray-600">{LEGAL.address}</span>
@@ -266,7 +266,7 @@ const Footer = memo(() => {
 
               {/* Contact Details */}
               <li className="flex items-center gap-2 mt-3">
-                <Phone size={16} className="text-gray-500 flex-shrink-0" />
+                <Phone size={16} className="text-green-600 flex-shrink-0" />
                 <a href={LEGAL.phoneHref} className="hover:text-blue-700 underline-offset-4 hover:underline">
                   {LEGAL.phoneDisplay}
                 </a>
