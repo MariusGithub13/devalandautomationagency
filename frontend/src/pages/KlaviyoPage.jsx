@@ -433,6 +433,359 @@ const KlaviyoPage = () => {
         </div>
       </section>
 
+      {/* Pricing Packages Section */}
+      <section className="section-padding bg-gradient-to-br from-purple-50 via-white to-blue-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <Badge className="mb-4 bg-purple-100 text-purple-800">Flexible Pricing Options</Badge>
+            <h2 className="text-4xl md:text-5xl font-display text-gray-900 mb-6">
+              Choose Your Klaviyo Growth Plan
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              From DIY setup to fully managed email marketing. All packages include expert Klaviyo strategy, implementation, and proven tactics that drive revenue growth.
+            </p>
+          </div>
+
+          {/* Main Pricing Tiers */}
+          <div className="grid md:grid-cols-4 gap-6 mb-16">
+            {/* DIY Setup */}
+            <Card className="border-2 hover:border-purple-300 transition-all duration-300">
+              <CardContent className="p-6">
+                <div className="text-center mb-6">
+                  <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Zap size={32} className="text-purple-600" />
+                  </div>
+                  <h4 className="text-2xl font-bold text-gray-900 mb-2">DIY Setup</h4>
+                  <p className="text-sm text-gray-600 mb-4">Perfect for getting started</p>
+                  <div className="mb-4">
+                    <span className="text-4xl font-bold text-gray-900">$997</span>
+                  </div>
+                  <p className="text-xs text-gray-500">One-time setup fee</p>
+                </div>
+                <ul className="space-y-3 mb-6">
+                  <li className="flex items-start gap-2 text-sm">
+                    <CheckCircle className="w-4 h-4 text-purple-600 flex-shrink-0 mt-0.5" />
+                    <span>Klaviyo account setup & integration</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-sm">
+                    <CheckCircle className="w-4 h-4 text-purple-600 flex-shrink-0 mt-0.5" />
+                    <span>5 core email flows configured</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-sm">
+                    <CheckCircle className="w-4 h-4 text-purple-600 flex-shrink-0 mt-0.5" />
+                    <span>Basic segmentation setup</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-sm">
+                    <CheckCircle className="w-4 h-4 text-purple-600 flex-shrink-0 mt-0.5" />
+                    <span>Email templates & design</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-sm">
+                    <CheckCircle className="w-4 h-4 text-purple-600 flex-shrink-0 mt-0.5" />
+                    <span>30-day email support</span>
+                  </li>
+                </ul>
+                <Button asChild variant="outline" className="w-full border-purple-300 text-purple-700 hover:bg-purple-50">
+                  <a href={companyData.calendly} target="_blank" rel="noopener noreferrer">Get Started</a>
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Growth */}
+            <Card className="border-2 border-purple-500 shadow-2xl relative scale-105 bg-white">
+              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                <Badge className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-4 py-1.5 text-sm font-bold shadow-lg">
+                  ⭐ MOST POPULAR
+                </Badge>
+              </div>
+              <CardContent className="p-6">
+                <div className="text-center mb-6">
+                  <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <TrendingUp size={32} className="text-white" />
+                  </div>
+                  <h4 className="text-2xl font-bold text-gray-900 mb-2">Growth</h4>
+                  <p className="text-sm text-gray-600 mb-4">For scaling businesses</p>
+                  <div className="mb-2">
+                    <span className="text-4xl font-bold text-purple-600">$1,997</span>
+                    <span className="text-gray-600">/mo</span>
+                  </div>
+                  <p className="text-xs text-gray-500">+ $2,997 setup fee</p>
+                </div>
+                <ul className="space-y-3 mb-6">
+                  <li className="flex items-start gap-2 text-sm">
+                    <CheckCircle className="w-4 h-4 text-purple-600 flex-shrink-0 mt-0.5" />
+                    <span><strong>Everything in DIY</strong></span>
+                  </li>
+                  <li className="flex items-start gap-2 text-sm">
+                    <CheckCircle className="w-4 h-4 text-purple-600 flex-shrink-0 mt-0.5" />
+                    <span>10+ advanced automation flows</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-sm">
+                    <CheckCircle className="w-4 h-4 text-purple-600 flex-shrink-0 mt-0.5" />
+                    <span>4 custom campaigns per month</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-sm">
+                    <CheckCircle className="w-4 h-4 text-purple-600 flex-shrink-0 mt-0.5" />
+                    <span>Advanced segmentation strategy</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-sm">
+                    <CheckCircle className="w-4 h-4 text-purple-600 flex-shrink-0 mt-0.5" />
+                    <span>A/B testing & optimization</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-sm">
+                    <CheckCircle className="w-4 h-4 text-purple-600 flex-shrink-0 mt-0.5" />
+                    <span>Monthly performance reports</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-sm">
+                    <CheckCircle className="w-4 h-4 text-purple-600 flex-shrink-0 mt-0.5" />
+                    <span>Priority email & chat support</span>
+                  </li>
+                </ul>
+                <Button asChild className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-bold shadow-lg">
+                  <a href={companyData.calendly} target="_blank" rel="noopener noreferrer">Get Started</a>
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Scale */}
+            <Card className="border-2 hover:border-purple-300 transition-all duration-300">
+              <CardContent className="p-6">
+                <div className="text-center mb-6">
+                  <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Mail size={32} className="text-blue-600" />
+                  </div>
+                  <h4 className="text-2xl font-bold text-gray-900 mb-2">Scale</h4>
+                  <p className="text-sm text-gray-600 mb-4">For high-volume brands</p>
+                  <div className="mb-2">
+                    <span className="text-4xl font-bold text-gray-900">$3,997</span>
+                    <span className="text-gray-600">/mo</span>
+                  </div>
+                  <p className="text-xs text-gray-500">+ $4,997 setup fee</p>
+                </div>
+                <ul className="space-y-3 mb-6">
+                  <li className="flex items-start gap-2 text-sm">
+                    <CheckCircle className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
+                    <span><strong>Everything in Growth</strong></span>
+                  </li>
+                  <li className="flex items-start gap-2 text-sm">
+                    <CheckCircle className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
+                    <span>15+ custom flows with advanced logic</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-sm">
+                    <CheckCircle className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
+                    <span>8 campaigns per month</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-sm">
+                    <CheckCircle className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
+                    <span>Predictive analytics & AI optimization</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-sm">
+                    <CheckCircle className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
+                    <span>SMS/MMS integration available</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-sm">
+                    <CheckCircle className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
+                    <span>Dedicated account manager</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-sm">
+                    <CheckCircle className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
+                    <span>Bi-weekly strategy calls</span>
+                  </li>
+                </ul>
+                <Button asChild variant="outline" className="w-full">
+                  <a href={companyData.calendly} target="_blank" rel="noopener noreferrer">Get Started</a>
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Performance Plan */}
+            <Card className="border-2 border-green-500 shadow-xl bg-gradient-to-br from-green-50 to-emerald-50 relative">
+              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                <Badge className="bg-green-600 text-white px-4 py-1.5 text-sm font-bold">
+                  💰 RISK-FREE
+                </Badge>
+              </div>
+              <CardContent className="p-6">
+                <div className="text-center mb-6">
+                  <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <TrendingUp size={32} className="text-white" />
+                  </div>
+                  <h4 className="text-2xl font-bold text-gray-900 mb-2">Performance</h4>
+                  <p className="text-sm text-gray-600 mb-4">We only win when you win</p>
+                  <div className="mb-2">
+                    <span className="text-4xl font-bold text-green-600">$0</span>
+                    <span className="text-gray-600">/mo</span>
+                  </div>
+                  <p className="text-xs text-gray-500">+ 15-20% of incremental revenue</p>
+                </div>
+                <ul className="space-y-3 mb-6">
+                  <li className="flex items-start gap-2 text-sm">
+                    <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" />
+                    <span><strong>No upfront costs or monthly fees</strong></span>
+                  </li>
+                  <li className="flex items-start gap-2 text-sm">
+                    <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" />
+                    <span>Complete Klaviyo setup & management</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-sm">
+                    <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" />
+                    <span>Unlimited flows & campaigns</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-sm">
+                    <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" />
+                    <span>We only earn from new revenue we generate</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-sm">
+                    <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" />
+                    <span>Minimum $50k/month in revenue required</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-sm">
+                    <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" />
+                    <span>6-month minimum commitment</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-sm">
+                    <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" />
+                    <span>Transparent performance tracking</span>
+                  </li>
+                </ul>
+                <Button asChild className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-bold">
+                  <a href={companyData.calendly} target="_blank" rel="noopener noreferrer">Apply Now</a>
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Add-Ons Section */}
+          <div className="mb-16">
+            <div className="text-center mb-8">
+              <h3 className="text-2xl font-bold text-gray-900 mb-3">Powerful Add-Ons</h3>
+              <p className="text-gray-600">Enhance any package with these premium services</p>
+            </div>
+            <div className="grid md:grid-cols-3 gap-6">
+              <Card className="border hover:border-purple-300 transition-all">
+                <CardContent className="p-6">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+                      <MessageSquare size={20} className="text-purple-600" />
+                    </div>
+                    <h4 className="text-lg font-bold text-gray-900">SMS Marketing</h4>
+                  </div>
+                  <p className="text-gray-600 text-sm mb-4">
+                    Extend your reach with text message campaigns and automated SMS flows.
+                  </p>
+                  <div className="mb-4">
+                    <span className="text-2xl font-bold text-purple-600">+$797</span>
+                    <span className="text-gray-600 text-sm">/month</span>
+                  </div>
+                  <ul className="space-y-2 text-sm text-gray-600 mb-4">
+                    <li>• 6 SMS automation flows</li>
+                    <li>• 4 SMS campaigns/month</li>
+                    <li>• MMS support</li>
+                    <li>• Compliance management</li>
+                  </ul>
+                  <Button asChild variant="outline" size="sm" className="w-full">
+                    <a href={companyData.calendly} target="_blank" rel="noopener noreferrer">Add to Plan</a>
+                  </Button>
+                </CardContent>
+              </Card>
+
+              <Card className="border hover:border-blue-300 transition-all">
+                <CardContent className="p-6">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                      <Zap size={20} className="text-blue-600" />
+                    </div>
+                    <h4 className="text-lg font-bold text-gray-900">Premium Design</h4>
+                  </div>
+                  <p className="text-gray-600 text-sm mb-4">
+                    Custom email templates designed to match your brand perfectly.
+                  </p>
+                  <div className="mb-4">
+                    <span className="text-2xl font-bold text-blue-600">+$1,497</span>
+                    <span className="text-gray-600 text-sm">/one-time</span>
+                  </div>
+                  <ul className="space-y-2 text-sm text-gray-600 mb-4">
+                    <li>• 10 custom email templates</li>
+                    <li>• Brand style guide</li>
+                    <li>• Mobile-optimized designs</li>
+                    <li>• Unlimited revisions</li>
+                  </ul>
+                  <Button asChild variant="outline" size="sm" className="w-full">
+                    <a href={companyData.calendly} target="_blank" rel="noopener noreferrer">Add to Plan</a>
+                  </Button>
+                </CardContent>
+              </Card>
+
+              <Card className="border hover:border-green-300 transition-all">
+                <CardContent className="p-6">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                      <TrendingUp size={20} className="text-green-600" />
+                    </div>
+                    <h4 className="text-lg font-bold text-gray-900">Migration Service</h4>
+                  </div>
+                  <p className="text-gray-600 text-sm mb-4">
+                    Seamless migration from any email platform to Klaviyo with zero data loss.
+                  </p>
+                  <div className="mb-4">
+                    <span className="text-2xl font-bold text-green-600">+$997</span>
+                    <span className="text-gray-600 text-sm">/one-time</span>
+                  </div>
+                  <ul className="space-y-2 text-sm text-gray-600 mb-4">
+                    <li>• Full data migration</li>
+                    <li>• Flow recreation</li>
+                    <li>• Historical data import</li>
+                    <li>• Post-migration support</li>
+                  </ul>
+                  <Button asChild variant="outline" size="sm" className="w-full">
+                    <a href={companyData.calendly} target="_blank" rel="noopener noreferrer">Add to Plan</a>
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+
+          {/* Pricing Notes */}
+          <div className="bg-gradient-to-r from-purple-50 to-blue-50 border-2 border-purple-200 rounded-2xl p-8">
+            <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">What's Included in Every Package</h3>
+            <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+              <div className="flex items-start gap-3">
+                <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-1" />
+                <div>
+                  <p className="font-semibold text-gray-900">Klaviyo Platform Costs Not Included</p>
+                  <p className="text-sm text-gray-600">You'll need an active Klaviyo subscription (starts at $45/month)</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-1" />
+                <div>
+                  <p className="font-semibold text-gray-900">Monthly Performance Reviews</p>
+                  <p className="text-sm text-gray-600">Detailed analytics and optimization recommendations</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-1" />
+                <div>
+                  <p className="font-semibold text-gray-900">No Long-Term Contracts</p>
+                  <p className="text-sm text-gray-600">Month-to-month service with 30-day cancellation notice</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-1" />
+                <div>
+                  <p className="font-semibold text-gray-900">Annual Discounts Available</p>
+                  <p className="text-sm text-gray-600">Save 15% with annual commitment + waived setup fees</p>
+                </div>
+              </div>
+            </div>
+            <div className="text-center mt-6">
+              <p className="text-sm text-gray-600">
+                Need a custom package? Contact us for enterprise pricing and multi-brand discounts.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="section-padding bg-gray-900 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
