@@ -15,7 +15,7 @@ const KlaviyoPage = () => {
     "description": "Expert Klaviyo email marketing and automation for Shopify brands. Official Klaviyo Partner agency specializing in flow optimization, campaign management, and revenue growth.",
     "provider": {
       "@type": "Organization",
-      "name": "Devaland Marketing SRL",
+      "name": "Devaland Marketing S.R.L.",
       "url": "https://devaland.com"
     },
     "areaServed": "Worldwide",

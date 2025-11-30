@@ -13,7 +13,7 @@ export const companyData = {
     businessHours: "9:00am – 5:00pm, Monday to Friday"
   },
   legal: {
-    companyName: "DEVALAND MARKETING SRL",
+    companyName: "DEVALAND MARKETING S.R.L.",
     vatNumber: "RO50841395",
     tradeRegistry: "ROONRC.J2024039063003",
     dateOfIncorporation: "November 07, 2024",

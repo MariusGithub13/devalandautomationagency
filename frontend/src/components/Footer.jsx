@@ -11,7 +11,7 @@ const brand = {
 };
 
 const LEGAL = {
-  company: "DEVALAND MARKETING SRL",
+  company: "DEVALAND MARKETING S.R.L.",
   vat: "RO50841395",
   trade: "ROONRCJ2024039063003",
   // Source of truth for contacts (from /contact):

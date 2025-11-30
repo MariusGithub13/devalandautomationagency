@@ -48,7 +48,7 @@ const BlogPostPage = () => {
     },
     "publisher": {
       "@type": "Organization",
-      "name": "Devaland Marketing SRL",
+      "name": "Devaland Marketing S.R.L.",
       "logo": {
         "@type": "ImageObject",
         "url": "https://customer-assets.emergentagent.com/job_process-genius-5/artifacts/kau0y3tw_Devaland-Logo.jpg"

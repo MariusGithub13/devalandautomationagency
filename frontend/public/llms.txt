@@ -6,7 +6,7 @@
 # Basic Information
 # ============================================
 site: https://devaland.com
-owner: Devaland Marketing SRL
+owner: Devaland Marketing S.R.L.
 brand: Devaland Automation Agency
 contact: office@devaland.com
 contact_page: https://devaland.com/contact
@@ -133,7 +133,7 @@ location:
   languages: English, Romanian
 
 company_info:
-  legal_name: Devaland Marketing SRL
+  legal_name: Devaland Marketing S.R.L.
   founded: 2020
   phone: +40-721-269-312
   email: office@devaland.com

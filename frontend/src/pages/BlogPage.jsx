@@ -17,7 +17,7 @@ const BlogPage = () => {
     "url": "https://devaland.com/blog",
     "publisher": {
       "@type": "Organization",
-      "name": "Devaland Marketing SRL",
+      "name": "Devaland Marketing S.R.L.",
       "url": "https://devaland.com"
     }
   };

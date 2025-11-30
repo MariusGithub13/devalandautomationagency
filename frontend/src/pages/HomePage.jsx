@@ -12,7 +12,7 @@ const HomePage = () => {
   const homeSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "Devaland Marketing SRL",
+    "name": "Devaland Marketing S.R.L.",
     "alternateName": "Devaland",
     "url": "https://devaland.com",
     "logo": "https://customer-assets.emergentagent.com/job_process-genius-5/artifacts/kau0y3tw_Devaland-Logo.jpg",

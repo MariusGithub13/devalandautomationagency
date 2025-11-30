@@ -4,8 +4,8 @@
     {
       "@type": "Organization",
       "@id": "https://devaland.com/#organization",
-      "name": "DEVALAND MARKETING SRL",
-      "legalName": "DEVALAND MARKETING SRL", 
+      "name": "DEVALAND MARKETING S.R.L.",
+      "legalName": "DEVALAND MARKETING S.R.L.", 
       "url": "https://devaland.com",
       "logo": "https://devaland.com/logo.png",
       "description": "Marketing automation specialists focusing on Klaviyo email marketing, Shopify integrations, RPA development, and AI solutions for e-commerce businesses.",
