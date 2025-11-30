@@ -259,6 +259,26 @@ const Footer = memo(() => {
                   VAT Code: {LEGAL.vat}
                 </span>
               </li>
+              <li className="flex items-start gap-2">
+                <span className="text-gray-600">
+                  VAT Registered: February 01, 2025
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-gray-600 text-xs">
+                  Romanian Trade Registry ID Code: J2024039063003
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-gray-600 text-xs">
+                  European Union Trade Registry Unique ID Code (EUID): ROONRC.J2024039063003
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-gray-600 text-xs">
+                  CAEN Code: 7311 – Advertising Agencies
+                </span>
+              </li>
               <li className="flex items-center gap-2 mt-3">
                 <Phone size={16} className="text-gray-500 flex-shrink-0" />
                 <a href={LEGAL.phoneHref} className="hover:text-blue-700 underline-offset-4 hover:underline">
