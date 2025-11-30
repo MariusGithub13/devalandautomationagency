@@ -272,7 +272,7 @@ const Footer = memo(() => {
                 </a>
               </li>
               <li className="flex items-center gap-2">
-                <Mail size={16} className="text-gray-500 flex-shrink-0" />
+                <Mail size={16} className="text-blue-600 flex-shrink-0" />
                 <a href={LEGAL.emailHref} className="hover:text-blue-700 underline-offset-4 hover:underline">
                   {LEGAL.email}
                 </a>
@@ -285,7 +285,7 @@ const Footer = memo(() => {
                 </span>
               </li>
               <li className="flex items-start gap-2">
-                <Link size={16} className="text-gray-500 flex-shrink-0 mt-0.5" />
+                <Link size={16} className="text-blue-600 flex-shrink-0 mt-0.5" />
                 <div>
                   <div className="text-sm font-bold text-gray-700 mb-1">VIES VAT number validation:</div>
                   <a 
