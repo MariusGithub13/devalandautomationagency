@@ -564,7 +564,7 @@ export const generalFAQs = [
 
 // Voice AI Agents & Chatbots Data
 export const voiceAIData = {
-  heroImage: "https://images.unsplash.com/photo-1589254065878-42c9da997008?q=80&w=2070",
+  heroImage: require('../assets/devaland-automation-agency-robot-girl-blue-eyes13.jpg'),
   benefitsImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070",
   
   useCases: [
