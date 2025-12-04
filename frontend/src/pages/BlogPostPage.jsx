@@ -185,6 +185,38 @@ const BlogPostPage = () => {
                   .prose h2:first-of-type {
                     margin-top: 1rem;
                   }
+                  .prose h3 {
+                    font-size: 1.5rem;
+                    font-weight: 600;
+                    color: #1f2937;
+                    margin-top: 2rem;
+                    margin-bottom: 1rem;
+                    padding-left: 0.75rem;
+                    border-left: 3px solid #3b82f6;
+                  }
+                  .prose h4 {
+                    font-size: 1.25rem;
+                    font-weight: 600;
+                    color: #374151;
+                    margin-top: 1.5rem;
+                    margin-bottom: 0.75rem;
+                  }
+                  .prose ul {
+                    list-style-type: disc;
+                    padding-left: 1.5rem;
+                    margin-top: 1rem;
+                    margin-bottom: 1rem;
+                  }
+                  .prose ol {
+                    list-style-type: decimal;
+                    padding-left: 1.5rem;
+                    margin-top: 1rem;
+                    margin-bottom: 1rem;
+                  }
+                  .prose li {
+                    margin-bottom: 0.5rem;
+                    line-height: 1.75;
+                  }
                   .prose a {
                     color: #2563eb;
                     text-decoration: underline;
@@ -200,15 +232,44 @@ const BlogPostPage = () => {
                   {(() => {
                     const markdownToHtml = (text) => {
                       if (!text) return '';
-                      // Convert markdown-like H2 headings to HTML with ids
-                      let html = text.replace(/^## (.+)$/gm, (_, m) => {
+                      
+                      let html = text;
+                      
+                      // Convert H4 headings (#### ) before H3 to avoid conflicts
+                      html = html.replace(/^#### (.+)$/gm, (_, m) => {
+                        const id = m.toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, '-');
+                        return `<h4 id="${id}">${m}</h4>`;
+                      });
+                      
+                      // Convert H3 headings (### ) before H2 to avoid conflicts
+                      html = html.replace(/^### (.+)$/gm, (_, m) => {
+                        const id = m.toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, '-');
+                        return `<h3 id="${id}">${m}</h3>`;
+                      });
+                      
+                      // Convert H2 headings (## )
+                      html = html.replace(/^## (.+)$/gm, (_, m) => {
                         const id = m.toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, '-');
                         return `<h2 id="${id}">${m}</h2>`;
                       });
+                      
                       // Convert bold markers **text** to <strong>
                       html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+                      
+                      // Convert bullet lists (lines starting with - or *)
+                      html = html.replace(/^([*-]) (.+)$/gm, '<li>$2</li>');
+                      
+                      // Wrap consecutive <li> elements in <ul>
+                      html = html.replace(/(<li>.*?<\/li>\s*)+/gs, (match) => {
+                        return `<ul>${match}</ul>`;
+                      });
+                      
+                      // Convert numbered lists (lines starting with number.)
+                      html = html.replace(/^\d+\.\s+(.+)$/gm, '<li>$1</li>');
+                      
                       // Preserve paragraph breaks
                       html = html.replace(/\n\n/g, '<br/><br/>');
+                      
                       return html;
                     };
 
