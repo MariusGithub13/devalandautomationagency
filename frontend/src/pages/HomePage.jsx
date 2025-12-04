@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle, Users, Award, TrendingUp, ExternalLink } from 'lucide-react';
+import { ArrowRight, CheckCircle, Users, Award, TrendingUp, ExternalLink, Sparkles, Zap, Brain } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import SEO from '../components/SEO';
 // TrustpilotWidget removed - using consistent footer-style widget
 import { companyData, heroImages, services, caseStudies, awards } from '../data/mock';
+import robotLadyImage from '../assets/Devaland-robot-lady.jpeg';
 
 const HomePage = () => {
   // Structured data for homepage
@@ -145,6 +146,116 @@ const HomePage = () => {
                   </div>
                 </CardContent>
               </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* AI-Powered Innovation Section with Robot Lady */}
+      <section className="relative py-20 overflow-hidden bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900">
+        {/* Animated background elements */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl animate-blob"></div>
+          <div className="absolute top-40 right-10 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000"></div>
+          <div className="absolute bottom-20 left-1/2 w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000"></div>
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left side - Content */}
+            <div className="text-white animate-fade-in-up">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium mb-6 border border-white/20">
+                <Sparkles className="w-4 h-4 text-yellow-300" />
+                <span>Next-Generation AI Automation</span>
+              </div>
+
+              <h2 className="text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+                Meet Your AI-Powered
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-300 via-purple-300 to-pink-300">
+                  Automation Partner
+                </span>
+              </h2>
+
+              <p className="text-xl text-gray-200 mb-8 leading-relaxed">
+                We combine cutting-edge artificial intelligence with proven automation frameworks to deliver 
+                intelligent solutions that learn, adapt, and scale with your business.
+              </p>
+
+              <div className="space-y-4 mb-8">
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center">
+                    <Brain className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold mb-1">Intelligent Decision Making</h3>
+                    <p className="text-gray-300">AI-powered systems that understand context and make smart choices</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-purple-400 to-purple-600 rounded-lg flex items-center justify-center">
+                    <Zap className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold mb-1">Lightning-Fast Processing</h3>
+                    <p className="text-gray-300">Handle thousands of tasks simultaneously with zero errors</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-pink-400 to-pink-600 rounded-lg flex items-center justify-center">
+                    <TrendingUp className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold mb-1">Continuous Improvement</h3>
+                    <p className="text-gray-300">Systems that learn from data and get better over time</p>
+                  </div>
+                </div>
+              </div>
+
+              <Button 
+                asChild
+                size="lg"
+                className="bg-white text-blue-900 hover:bg-gray-100 font-semibold px-8 py-4 text-lg rounded-lg shadow-xl hover-lift"
+              >
+                <Link to="/voice-ai" className="inline-flex items-center space-x-2">
+                  <span>Explore AI Solutions</span>
+                  <ArrowRight size={20} />
+                </Link>
+              </Button>
+            </div>
+
+            {/* Right side - Robot Lady Image */}
+            <div className="relative animate-fade-in-up delay-300">
+              <div className="relative">
+                {/* Glow effect behind image */}
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-2xl blur-3xl opacity-30 animate-pulse"></div>
+                
+                {/* Main image container */}
+                <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white/20 backdrop-blur-sm">
+                  <img
+                    src={robotLadyImage}
+                    alt="AI-Powered Automation Assistant - Devaland's intelligent automation solutions"
+                    className="w-full h-auto object-cover"
+                    loading="lazy"
+                  />
+                  {/* Overlay gradient for better text readability if needed */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-blue-900/20 via-transparent to-transparent"></div>
+                </div>
+
+                {/* Floating badge */}
+                <div className="absolute -bottom-6 -left-6 bg-white rounded-xl shadow-2xl p-4 animate-float">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                      <Sparkles className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <div className="font-bold text-gray-900">AI-Powered</div>
+                      <div className="text-sm text-gray-600">24/7 Automation</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
