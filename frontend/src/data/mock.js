@@ -40,10 +40,10 @@ export const heroImages = {
 };
 
 export const serviceImages = {
-  rpa: "https://images.unsplash.com/photo-1647427060118-4911c9821b82",
-  workflow: "https://images.unsplash.com/photo-1666148670142-2f01b117e6e0",
-  ai: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01",
-  automation: "https://images.unsplash.com/photo-1716436329475-4c55d05383bb",
+  rpa: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=2065", // AI robot hand typing on keyboard
+  workflow: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=2070", // Futuristic AI workspace
+  ai: "https://images.unsplash.com/photo-1677756119517-756a188d2d94?q=80&w=2050", // AI woman with digital interface
+  automation: "https://images.unsplash.com/photo-1655393001768-d946c97d6fd1?q=80&w=2070", // Humanoid robot at desk
   klaviyo: "https://images.unsplash.com/photo-1563013544-824ae1b704d3"
 };
 
