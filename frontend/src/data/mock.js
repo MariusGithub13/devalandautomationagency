@@ -43,7 +43,7 @@ export const serviceImages = {
   rpa: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015", // Business analytics dashboard
   workflow: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070", // Chart growth analytics
   ai: "https://images.unsplash.com/photo-1535320903710-d993d3d77d29?q=80&w=2070", // Technology innovation growth
-  automation: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070", // Business metrics dashboard
+  automation: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070", // Office documents and organization
   klaviyo: "https://images.unsplash.com/photo-1563013544-824ae1b704d3"
 };
 
