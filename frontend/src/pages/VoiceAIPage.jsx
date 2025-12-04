@@ -138,6 +138,212 @@ const VoiceAIPage = () => {
         </div>
       </section>
 
+      {/* Live Demo Section */}
+      <section className="py-20 bg-gradient-to-br from-purple-50 via-blue-50 to-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-100 text-green-700 rounded-full text-sm font-medium mb-6">
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+              Live Demos Available Now
+            </div>
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+              Experience Our Voice AI in Action
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Try our live Voice AI agents right now — no signup required. See how natural conversations drive real results.
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-8 mb-12">
+            {/* Phone Demo */}
+            <Card className="hover-lift border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-white">
+              <CardContent className="p-8">
+                <div className="flex items-start gap-4 mb-6">
+                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg">
+                    <Phone className="w-8 h-8 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-2">Call Luna - Multilingual Demo</h3>
+                    <p className="text-gray-600">Speak with our Voice AI in Italian, English, Spanish & more</p>
+                  </div>
+                </div>
+                
+                <div className="bg-white rounded-xl p-6 border-2 border-blue-300 mb-6">
+                  <div className="flex items-center justify-center gap-3 mb-3">
+                    <Phone className="w-6 h-6 text-blue-600" />
+                    <a 
+                      href="tel:+15597174103" 
+                      className="text-3xl font-bold text-blue-600 hover:text-blue-700 transition-colors"
+                    >
+                      +1 (559) 717-4103
+                    </a>
+                  </div>
+                  <p className="text-center text-sm text-gray-600">Tap to call from mobile or use your phone</p>
+                </div>
+
+                <div className="space-y-2 text-sm text-gray-600">
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-green-500" />
+                    <span>Natural conversation flow</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-green-500" />
+                    <span>Multi-language support</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-green-500" />
+                    <span>Real-time responses</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Live Website Demo */}
+            <Card className="hover-lift border-2 border-purple-200 bg-gradient-to-br from-purple-50 to-white">
+              <CardContent className="p-8">
+                <div className="flex items-start gap-4 mb-6">
+                  <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg">
+                    <MessageSquare className="w-8 h-8 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-2">Meet Amy - E-commerce AI</h3>
+                    <p className="text-gray-600">Live on a real Shopify brand handling customer queries</p>
+                  </div>
+                </div>
+
+                <Button 
+                  asChild 
+                  size="lg" 
+                  className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white mb-6"
+                >
+                  <a href="https://www.sheaterraorganics.com/" target="_blank" rel="noopener noreferrer">
+                    <ExternalLink className="w-5 h-5 mr-2" />
+                    Visit Live Demo Site
+                  </a>
+                </Button>
+
+                <div className="space-y-2 text-sm text-gray-600">
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-green-500" />
+                    <span>Real customer interactions</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-green-500" />
+                    <span>English & Spanish support</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-green-500" />
+                    <span>Product recommendations</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Industry-Specific Demos */}
+          <div className="mb-12">
+            <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Industry-Specific Voice AI Demos</h3>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <Card className="hover-lift bg-white border-2 border-gray-200 hover:border-blue-400 transition-colors">
+                <CardContent className="p-6 text-center">
+                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                    </svg>
+                  </div>
+                  <h4 className="font-bold text-gray-900 mb-2">Hotels</h4>
+                  <p className="text-sm text-gray-600 mb-4">Bookings & concierge services</p>
+                  <Button asChild variant="outline" size="sm" className="w-full">
+                    <a href="https://ai.devaland.net/hotels" target="_blank" rel="noopener noreferrer">
+                      Try Demo
+                      <ExternalLink className="w-3 h-3 ml-2" />
+                    </a>
+                  </Button>
+                </CardContent>
+              </Card>
+
+              <Card className="hover-lift bg-white border-2 border-gray-200 hover:border-blue-400 transition-colors">
+                <CardContent className="p-6 text-center">
+                  <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                    </svg>
+                  </div>
+                  <h4 className="font-bold text-gray-900 mb-2">Dental Clinics</h4>
+                  <p className="text-sm text-gray-600 mb-4">Appointments & service bookings</p>
+                  <Button asChild variant="outline" size="sm" className="w-full">
+                    <a href="https://ai.devaland.net/londoncitydentists" target="_blank" rel="noopener noreferrer">
+                      Try Demo
+                      <ExternalLink className="w-3 h-3 ml-2" />
+                    </a>
+                  </Button>
+                </CardContent>
+              </Card>
+
+              <Card className="hover-lift bg-white border-2 border-gray-200 hover:border-blue-400 transition-colors">
+                <CardContent className="p-6 text-center">
+                  <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg className="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <h4 className="font-bold text-gray-900 mb-2">Restaurants</h4>
+                  <p className="text-sm text-gray-600 mb-4">Orders & reservations</p>
+                  <Button asChild variant="outline" size="sm" className="w-full">
+                    <a href="https://ai.devaland.net/Pizzeria" target="_blank" rel="noopener noreferrer">
+                      Try Demo
+                      <ExternalLink className="w-3 h-3 ml-2" />
+                    </a>
+                  </Button>
+                </CardContent>
+              </Card>
+
+              <Card className="hover-lift bg-white border-2 border-gray-200 hover:border-blue-400 transition-colors">
+                <CardContent className="p-6 text-center">
+                  <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <h4 className="font-bold text-gray-900 mb-2">Banking</h4>
+                  <p className="text-sm text-gray-600 mb-4">Advanced workflows</p>
+                  <Button asChild variant="outline" size="sm" className="w-full">
+                    <a href="https://ai.devaland.net/banking" target="_blank" rel="noopener noreferrer">
+                      Try Demo
+                      <ExternalLink className="w-3 h-3 ml-2" />
+                    </a>
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+
+          {/* Video Overview */}
+          <Card className="bg-gradient-to-br from-blue-900 to-purple-900 text-white border-0">
+            <CardContent className="p-8 text-center">
+              <h3 className="text-2xl font-bold mb-4">See How Brands Capture Leads 24/7</h3>
+              <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
+                Watch real examples of Voice AI agents handling customer inquiries, booking appointments, and qualifying leads — all automatically.
+              </p>
+              <Button 
+                asChild 
+                size="lg" 
+                className="bg-white text-blue-900 hover:bg-gray-100"
+              >
+                <a 
+                  href="https://www.linkedin.com/feed/update/urn:li:activity:7397501012212850688/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                >
+                  <ExternalLink className="w-5 h-5 mr-2" />
+                  Watch LinkedIn Demo Video
+                </a>
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
       {/* All-In-One Chat Widget Feature Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
