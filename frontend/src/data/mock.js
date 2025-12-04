@@ -36,7 +36,7 @@ export const companyData = {
 export const heroImages = {
   primary: "https://images.unsplash.com/photo-1644325349124-d1756b79dd42",
   secondary: "https://images.unsplash.com/photo-1580742432710-d3c3703559a9",
-  transformation: "https://images.unsplash.com/photo-1644329770639-1a20809b82a3"
+  transformation: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015" // Business growth analytics
 };
 
 export const serviceImages = {
