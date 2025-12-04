@@ -389,10 +389,10 @@ const Footer = memo(() => {
               <div className="mt-6 flex flex-col items-start">
                 <div className="w-full max-w-md px-4 py-5 rounded-lg border border-gray-200 bg-white shadow-md flex flex-col items-center">
                   <div className="mb-3 text-lg font-semibold text-gray-900 text-center">Client Reviews</div>
-                  {/* Google Reviews Link - Search for "Devaland Marketing" to find your business */}
+                  {/* Google Reviews Link - Search for "Devaland Marketing" */}
                   <div className="w-full">
                     <a 
-                      href="https://search.google.com/local/writereview?placeid=ChIJg8iqM3NsRUcRg4mqyjlr7Hk" 
+                      href="https://www.google.com/search?q=devaland+marketing" 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="flex items-center justify-center gap-3 px-4 py-3 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:border-blue-500 transition-all group"
@@ -405,7 +405,7 @@ const Footer = memo(() => {
                       </svg>
                       <div className="text-left">
                         <div className="text-sm font-semibold text-gray-900 group-hover:text-blue-600">Google Reviews</div>
-                        <div className="text-xs text-gray-600">Leave us a review</div>
+                        <div className="text-xs text-gray-600">See our business profile</div>
                       </div>
                     </a>
                   </div>
