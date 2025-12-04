@@ -26,7 +26,7 @@ cd netlify/functions && npm install
 - **Routes**: Add new routes in THREE places: `App.js`, `src/pages/`, and `scripts/generate-sitemap.mjs`
 - **UI components**: Always use primitives from `src/components/ui/` with CVA variants + `cn()` utility
 - **Import alias**: Use `@/` for all src imports (configured in `jsconfig.json`)
-- **Lazy loading**: Wrap heavy components in `React.lazy()` + `Suspense` (see `ChatBubble` example in `App.js`)
+- **Lazy loading**: ALL pages except HomePage use `React.lazy()` + `Suspense` - follow this pattern for new pages and heavy components
 
 **Environment Setup**:
 - Backend: Create `backend/.env` with `MONGO_URL`, `DB_NAME`, SMTP settings (see `backend/.env.example`)
@@ -36,17 +36,21 @@ cd netlify/functions && npm install
 **When Debugging**:
 - CSP/CORS issues → `netlify.toml` headers section
 - Build failures → `craco.config.js`, `package.json` lifecycle hooks
-- Email delivery → `netlify/functions/contact.js` logs
-- SEO/indexing → `SEO_INDEXING_FIXES.md`, `netlify.toml` prerendering config
+- Email delivery → `netlify/functions/contact.js` logs (check Netlify function logs in UI)
+- SEO/indexing → `SEO_INDEXING_FIXES.md`, `netlify.toml` prerendering config, `SEO.jsx` component
+- Import errors → Check `jsconfig.json` for `@/` alias configuration
+- Sitemap issues → `scripts/generate-sitemap.mjs` runs in `prebuild` hook
 
 ## Architecture Overview
 
 - **Big picture**: This repo has three main parts:
-  - `backend/` — FastAPI app (`server.py`) using Motor (async MongoDB, optional). Environment-driven config: `MONGO_URL`, `DB_NAME`, `CORS_ORIGINS`, SMTP settings. Routes are mounted under the `/api` prefix (see `APIRouter(prefix="/api")`). Use `uvicorn` to run during development (example below).
-  - `frontend/` — React (Create React App) with `craco` used for builds. Entry is `src/index.js` and routing is in `src/App.js` (React Router v6). UI primitives live in `src/components/ui/` (Radix + custom wrappers).
+  - `backend/` — FastAPI app (`server.py`) using Motor (async MongoDB, optional). Environment-driven config: `MONGO_URL`, `DB_NAME`, `CORS_ORIGINS`, SMTP settings. Routes are mounted under the `/api` prefix (see `APIRouter(prefix="/api")`). Use `uvicorn` to run during development.
+  - `frontend/` — React (Create React App) with `craco` for build customization. Entry is `src/index.js` and routing is in `src/App.js` (React Router v6). UI primitives live in `src/components/ui/` (Radix + custom wrappers). Extensive lazy loading via `React.lazy()` for all pages except HomePage.
   - `netlify/functions/` — Serverless functions (Node.js 18) handling contact form submissions via SMTP. Deployed automatically with frontend to Netlify.
 
 - **Why this structure**: separation of API and UI simplifies local dev and deployment. Frontend + serverless functions deploy to Netlify as SPA (see `netlify.toml` for build config). Contact forms are handled via Netlify functions (not FastAPI) to avoid CORS complexity and enable automatic email notifications. Frontend build step runs a sitemap generator (`scripts/generate-sitemap.mjs`) before `npm run build`.
+
+- **Build output**: `frontend/build/` contains the production-ready SPA. Files in `frontend/public/` are copied to `build/` during the build process. Generated files like `sitemap.xml` are written to `public/` before build and end up in `build/`.
 
 ## Critical Data Flows
 
@@ -67,10 +71,12 @@ cd netlify/functions && npm install
 - `frontend/package.json` — node engine (18.x), `craco` usage, lifecycle hooks (notably `postinstall` -> `fix-missing-files`), and `prebuild` sitemap generation.
 - `frontend/src/App.js` — routing, lazy-loading example for `ChatBubble`, and how `Toaster`, `Header`, `Footer`, and consent components are wired.
 - `frontend/src/components/ui/` — shared UI primitives (Radix wrappers). Use these rather than adding ad-hoc DOM/ARIA implementations.
+- `frontend/src/components/SEO.jsx` — SEO component using `react-helmet-async` for dynamic meta tags, Open Graph data, and JSON-LD structured data injection. Every page MUST use this component.
 - `frontend/src/components/Breadcrumb.jsx` — Reusable breadcrumb navigation component with automatic JSON-LD BreadcrumbList structured data generation. Used on all pages except homepage.
 - `frontend/src/components/ROICalculator.jsx` — Interactive calculator with business size configurations and ROI calculations. Example of complex stateful component with multiple input fields.
 - `frontend/src/components/TrustpilotWidget.jsx` — Third-party widget integration example: loads external script in `useEffect`, handles cleanup, provides fallback UI before script loads.
 - `frontend/src/data/mock.js` — Centralized data store for services, blog posts, company info, case studies. **Update this file** when adding new content instead of hardcoding in components.
+- `frontend/jsconfig.json` — Configures `@/` path alias for cleaner imports (maps to `src/` directory).
 - `netlify.toml` — deployment config with build commands, env vars (Node 18.20.4, `--legacy-peer-deps`), CSP headers, and SPA redirect rules.
 - `craco.config.js` — webpack customization: disables source maps, configures `@/` alias, and optional hot reload control via `DISABLE_HOT_RELOAD` env var.
 - `frontend/src/lib/utils.js` — `cn()` utility for merging Tailwind classes (using `clsx` + `tailwind-merge`).

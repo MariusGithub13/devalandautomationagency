@@ -185,6 +185,16 @@ const BlogPostPage = () => {
                   .prose h2:first-of-type {
                     margin-top: 1rem;
                   }
+                  .prose a {
+                    color: #2563eb;
+                    text-decoration: underline;
+                    font-weight: 500;
+                    transition: color 0.2s ease;
+                  }
+                  .prose a:hover {
+                    color: #1d4ed8;
+                    text-decoration: underline;
+                  }
                 `}</style>
                 <div className="leading-relaxed">
                   {(() => {
