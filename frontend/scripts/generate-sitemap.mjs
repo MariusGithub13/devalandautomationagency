@@ -39,6 +39,7 @@ const BLOG_POSTS = [
   "/blog/building-customer-loyalty-through-email-personalization",
   "/blog/all-in-one-chat-widget-complete-guide",
   "/blog/voice-ai-agents-future-business-communication",
+  "/blog/voice-ai-implementation-real-business-results-roi-analysis-technical-guide",
 ];
 
 // Optionally find static HTML blog posts under public/blog/*.html
