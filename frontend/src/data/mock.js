@@ -40,10 +40,10 @@ export const heroImages = {
 };
 
 export const serviceImages = {
-  rpa: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=2065", // AI robot hand typing on keyboard
-  workflow: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=2070", // Futuristic AI workspace
-  ai: "https://images.unsplash.com/photo-1677756119517-756a188d2d94?q=80&w=2050", // AI woman with digital interface
-  automation: "https://images.unsplash.com/photo-1655393001768-d946c97d6fd1?q=80&w=2070", // Humanoid robot at desk
+  rpa: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=2070", // Digital technology code abstract
+  workflow: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070", // Chart analytics business data
+  ai: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?q=80&w=2070", // AI brain network connections
+  automation: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?q=80&w=2070", // Modern office workspace organized
   klaviyo: "https://images.unsplash.com/photo-1563013544-824ae1b704d3"
 };
 
