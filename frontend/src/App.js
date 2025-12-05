@@ -10,6 +10,7 @@ import HomePage from "./pages/HomePage";
 const KlaviyoPage = lazy(() => import("./pages/KlaviyoPage"));
 const KlaviyoGDPRPage = lazy(() => import("./pages/KlaviyoGDPRPage"));
 const KlaviyoBlackFridayPage = lazy(() => import("./pages/KlaviyoBlackFridayPage"));
+const KlaviyoFlowsExamplesPage = lazy(() => import("./pages/KlaviyoFlowsExamplesPage"));
 const VoiceAIPage = lazy(() => import("./pages/VoiceAIPage"));
 const ServicesPage = lazy(() => import("./pages/ServicesPage"));
 const CaseStudiesPage = lazy(() => import("./pages/CaseStudiesPage"));
@@ -42,6 +43,7 @@ function App() {
               <Route path="/klaviyo" element={<KlaviyoPage />} />
               <Route path="/klaviyo-gdpr-compliance" element={<KlaviyoGDPRPage />} />
               <Route path="/klaviyo-black-friday-strategy" element={<KlaviyoBlackFridayPage />} />
+              <Route path="/klaviyo-flows-examples" element={<KlaviyoFlowsExamplesPage />} />
               <Route path="/voice-ai" element={<VoiceAIPage />} />
               <Route path="/services" element={<ServicesPage />} />
               <Route path="/case-studies" element={<CaseStudiesPage />} />

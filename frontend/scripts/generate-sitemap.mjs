@@ -16,6 +16,7 @@ const ROUTES = [
   "/klaviyo",
   "/klaviyo-gdpr-compliance",
   "/klaviyo-black-friday-strategy",
+  "/klaviyo-flows-examples",
   "/voice-ai",
   "/services",
   "/case-studies",
