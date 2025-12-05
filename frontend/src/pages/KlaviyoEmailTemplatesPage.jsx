@@ -136,24 +136,24 @@ const KlaviyoEmailTemplatesPage = () => {
               </p>
               <div className="flex flex-wrap gap-4">
                 <Button 
-                  as="a"
-                  href={companyData.calendly}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  asChild
                   size="lg"
                   className="bg-white text-blue-600 hover:bg-blue-50"
                 >
-                  Get Custom Templates
-                  <ArrowRight className="ml-2 h-5 w-5" />
+                  <a href={companyData.calendly} target="_blank" rel="noopener noreferrer">
+                    Get Custom Templates
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </a>
                 </Button>
                 <Button 
-                  as={Link}
-                  to="/klaviyo"
+                  asChild
                   variant="outline"
                   size="lg"
                   className="border-white text-white hover:bg-white/10"
                 >
-                  Explore Klaviyo Services
+                  <Link to="/klaviyo">
+                    Explore Klaviyo Services
+                  </Link>
                 </Button>
               </div>
             </div>
@@ -720,24 +720,24 @@ const KlaviyoEmailTemplatesPage = () => {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Button 
-              as="a"
-              href={companyData.calendly}
-              target="_blank"
-              rel="noopener noreferrer"
+              asChild
               size="lg"
               className="bg-white text-blue-600 hover:bg-blue-50"
             >
-              Get Custom Templates
-              <ArrowRight className="ml-2 h-5 w-5" />
+              <a href={companyData.calendly} target="_blank" rel="noopener noreferrer">
+                Get Custom Templates
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </a>
             </Button>
             <Button 
-              as={Link}
-              to="/klaviyo-case-studies"
+              asChild
               variant="outline"
               size="lg"
               className="border-white text-white hover:bg-white/10"
             >
-              View Design Examples
+              <Link to="/klaviyo-case-studies">
+                View Design Examples
+              </Link>
             </Button>
           </div>
         </div>

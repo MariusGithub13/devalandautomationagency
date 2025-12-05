@@ -136,24 +136,24 @@ const KlaviyoSegmentationPage = () => {
               </p>
               <div className="flex flex-wrap gap-4">
                 <Button 
-                  as="a"
-                  href={companyData.calendly}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  asChild
                   size="lg"
                   className="bg-white text-blue-600 hover:bg-blue-50"
                 >
-                  Get Segmentation Audit
-                  <ArrowRight className="ml-2 h-5 w-5" />
+                  <a href={companyData.calendly} target="_blank" rel="noopener noreferrer">
+                    Get Segmentation Audit
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </a>
                 </Button>
                 <Button 
-                  as={Link}
-                  to="/klaviyo"
+                  asChild
                   variant="outline"
                   size="lg"
                   className="border-white text-white hover:bg-white/10"
                 >
-                  Explore Klaviyo Services
+                  <Link to="/klaviyo">
+                    Explore Klaviyo Services
+                  </Link>
                 </Button>
               </div>
             </div>
@@ -610,24 +610,24 @@ const KlaviyoSegmentationPage = () => {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Button 
-              as="a"
-              href={companyData.calendly}
-              target="_blank"
-              rel="noopener noreferrer"
+              asChild
               size="lg"
               className="bg-white text-purple-600 hover:bg-blue-50"
             >
-              Book Free Segmentation Audit
-              <ArrowRight className="ml-2 h-5 w-5" />
+              <a href={companyData.calendly} target="_blank" rel="noopener noreferrer">
+                Book Free Segmentation Audit
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </a>
             </Button>
             <Button 
-              as={Link}
-              to="/blog/email-segmentation-strategies-that-actually-work"
+              asChild
               variant="outline"
               size="lg"
               className="border-white text-white hover:bg-white/10"
             >
-              Read Full Segmentation Guide
+              <Link to="/blog/email-segmentation-strategies-that-actually-work">
+                Read Full Segmentation Guide
+              </Link>
             </Button>
           </div>
         </div>
