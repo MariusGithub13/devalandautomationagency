@@ -9,6 +9,7 @@ import HomePage from "./pages/HomePage";
 // Lazy load pages for better code splitting and performance
 const KlaviyoPage = lazy(() => import("./pages/KlaviyoPage"));
 const KlaviyoGDPRPage = lazy(() => import("./pages/KlaviyoGDPRPage"));
+const KlaviyoGDPRCompliancePage = lazy(() => import("./pages/KlaviyoGDPRCompliancePage"));
 const KlaviyoBlackFridayPage = lazy(() => import("./pages/KlaviyoBlackFridayPage"));
 const KlaviyoFlowsExamplesPage = lazy(() => import("./pages/KlaviyoFlowsExamplesPage"));
 const KlaviyoPredictedNextOrderPage = lazy(() => import("./pages/KlaviyoPredictedNextOrderPage"));
@@ -44,7 +45,8 @@ function App() {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/klaviyo" element={<KlaviyoPage />} />
-              <Route path="/klaviyo-gdpr-compliance" element={<KlaviyoGDPRPage />} />
+              <Route path="/klaviyo-gdpr" element={<KlaviyoGDPRPage />} />
+              <Route path="/klaviyo-gdpr-compliance" element={<KlaviyoGDPRCompliancePage />} />
               <Route path="/klaviyo-black-friday-strategy" element={<KlaviyoBlackFridayPage />} />
               <Route path="/klaviyo-flows-examples" element={<KlaviyoFlowsExamplesPage />} />
               <Route path="/klaviyo-predicted-next-order" element={<KlaviyoPredictedNextOrderPage />} />
