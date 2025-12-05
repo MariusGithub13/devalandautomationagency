@@ -114,12 +114,9 @@ Allow: /about
 Allow: /contact
 
 # ============================================
-# Crawl Rate (Be Polite)
-# ============================================
-Crawl-delay: 1
-
-# ============================================
 # Sitemaps
 # ============================================
+# Note: Googlebot automatically manages crawl rate based on server performance.
+# Crawl-delay is not supported by Googlebot and has been removed to avoid warnings.
 Sitemap: https://devaland.com/sitemap.xml
 Sitemap: https://devaland.com/sitemap.html

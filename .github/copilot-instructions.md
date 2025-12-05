@@ -2,6 +2,17 @@
 
 Purpose: Help an AI coding agent become productive quickly in this mono-repo containing a FastAPI backend, React SPA frontend, and Netlify serverless functions.
 
+## Additional Documentation Resources
+
+This file provides the core architecture and patterns. For specific topics, see:
+- **`CONTACT_FORM_SETUP.md`** — Detailed SMTP configuration and contact form troubleshooting
+- **`SEO_INDEXING_FIXES.md`** — Complete SEO action plan and Google Search Console fixes
+- **`BREADCRUMB_SEO_STRATEGY.md`** — Breadcrumb implementation and site architecture
+- **`KLAVIYO_PAGE_SEO_OPPORTUNITY.md`** — Specific SEO optimization for Klaviyo content
+- **`VOICE_AI_SEO_GUIDE.md`** — Voice AI page SEO and content strategy
+- **`ROI_CALCULATOR_SUMMARY.md`** — ROI calculator component documentation
+- **`TRUSTPILOT_IMPLEMENTATION_COMPLETE.md`** — Trustpilot widget integration guide
+
 ## Quick Start Guide (Read This First!)
 
 **Essential Commands**:
@@ -29,9 +40,11 @@ cd netlify/functions && npm install
 - **Lazy loading**: ALL pages except HomePage use `React.lazy()` + `Suspense` - follow this pattern for new pages and heavy components
 
 **Environment Setup**:
-- Backend: Create `backend/.env` with `MONGO_URL`, `DB_NAME`, SMTP settings (see `backend/.env.example`)
+- Backend: Create `backend/.env` with `MONGO_URL`, `DB_NAME`, SMTP settings (keys: `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASSWORD`, `CONTACT_EMAIL`)
 - Netlify: Set SMTP vars in Netlify UI (same keys as backend .env)
 - MongoDB is **optional** - emails work without it (graceful degradation)
+- See `backend/.env.example` and `netlify/functions/.env.example` for templates and SMTP provider examples
+- See `CONTACT_FORM_SETUP.md` for detailed SMTP configuration walkthrough
 
 **When Debugging**:
 - CSP/CORS issues → `netlify.toml` headers section
@@ -95,10 +108,10 @@ cd netlify/functions && npm install
 ## Environment & Secrets
 
 **Backend expects `backend/.env`** (loaded with python-dotenv):
-- Backend expects `backend/.env` (loaded with python-dotenv). Keys used by the code: `MONGO_URL`, `DB_NAME`, optionally `CORS_ORIGINS`, plus SMTP settings: `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASSWORD`, `CONTACT_EMAIL`.
-- See `backend/.env.example` for complete configuration template with notes about Gmail App Passwords and alternative SMTP providers.
-- Netlify functions: SMTP env vars must be set in Netlify UI under Site settings > Environment variables (same keys as backend).
-- See `netlify/functions/.env.example` for Netlify-specific configuration guidance.
+- Keys used by the code: `MONGO_URL`, `DB_NAME`, optionally `CORS_ORIGINS`, plus SMTP settings: `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASSWORD`, `CONTACT_EMAIL`.
+- See `backend/.env.example` for complete template with all SMTP provider options (Gmail, SendGrid, AWS SES, Mailgun).
+- For detailed SMTP configuration walkthrough (Gmail App Passwords, etc.), see `CONTACT_FORM_SETUP.md` in the repository root.
+- Netlify functions: SMTP env vars must be set in Netlify UI under Site settings > Environment variables (same keys as backend). See `netlify/functions/.env.example` for setup instructions.
 - Do not hardcode secrets in code. If asked to add a secret, reference `.env` and document required keys in PR description.
 
 ## Patterns & Conventions Specific to This Repo
@@ -487,8 +500,26 @@ if (marketingConsent === 'granted') {
 ## When Making Changes an AI Agent Should Do
 
 - Edit existing files minimally and keep public APIs stable (don't rename top-level routes without updates across frontend/backend).
-- Add new environment keys to `backend/.env.example` (create if missing) and mention them in PR notes.
+- Add new environment keys to `backend/.env.example` and `netlify/functions/.env.example` and mention them in PR notes.
 - Run local build/test commands described above before proposing a change.
+- When adding new pages, remember the **THREE-PLACE RULE**: `src/pages/`, `App.js`, and `generate-sitemap.mjs`.
+
+## Common Development Pain Points
+
+**Dependency Management**:
+- React Router ESM issues → Fixed by `fix-missing-files` postinstall script (don't remove it)
+- webpack 5 compatibility → Root `package.json` pins `ajv@6.12.6` (don't upgrade without testing)
+- Peer dependency conflicts → Always use `--legacy-peer-deps` flag for npm commands
+
+**Build Failures**:
+- ESLint errors in deploy → `DISABLE_ESLINT_PLUGIN=true` in `netlify.toml`
+- Source map warnings → Source maps disabled in `craco.config.js`
+- Sitemap not updating → Check `prebuild` script in `frontend/package.json`
+
+**Runtime Issues**:
+- `@/` imports not resolving → Check both `jsconfig.json` AND `craco.config.js` have matching config
+- Chat widget CSP violations → Add origin to both `script-src` and `connect-src` in `netlify.toml`
+- Email not sending → MongoDB failure won't block emails (graceful degradation by design)
 
 ## Files to Check When Debugging Issues
 
@@ -503,7 +534,7 @@ if (marketingConsent === 'granted') {
 
 ## Known Issues & Maintenance Notes
 
-### Google Search Console Indexing Issues (November 2025)
+### Google Search Console Indexing Issues (Tracked November 2025, Updated December 2025)
 
 **Current Status**: Multiple indexing problems affecting 300+ pages
 
@@ -549,7 +580,7 @@ if (marketingConsent === 'granted') {
 
 See `SEO_INDEXING_FIXES.md` for complete action plan and technical details.
 
-### SEO Performance Insights (November 2025)
+### SEO Performance Insights (Tracked November 2025, Updated December 2025)
 
 **Google Search Console Analysis** (Last 90 days):
 - **Primary traffic**: Brand searches ("devaland") - 21 clicks, 143 impressions
@@ -642,7 +673,7 @@ When creating new blog posts for target keywords:
 5. **Meta tags**: Update page component with SEO-optimized title and description
 6. **Internal links**: Link from `/klaviyo` service page to new blog post
 
-### Review Widget Structured Data (November 2025)
+### Review Widget Structured Data (November 2025, Unresolved)
 - **Issue**: External review widget (`https://api.devaland.com/reputation/assets/review-widget.js`) injects invalid Review snippets structured data
 - **Google Search Console Errors**:
   - "Rating is outside the specified or default range"
