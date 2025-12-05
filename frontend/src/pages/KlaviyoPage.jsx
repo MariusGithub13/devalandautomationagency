@@ -11,37 +11,87 @@ import { companyData, klaviyoServices, serviceImages, awards, klaviyoSuccessStor
 const KlaviyoPage = () => {
   const klaviyoSchema = {
     "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "Klaviyo Email Marketing Services",
-    "description": "Expert Klaviyo email marketing and automation for Shopify brands. Official Klaviyo Partner agency specializing in flow optimization, campaign management, and revenue growth.",
-    "provider": {
-      "@type": "Organization",
-      "name": "Devaland Marketing S.R.L.",
-      "url": "https://devaland.com"
-    },
-    "areaServed": "Worldwide",
-    "availableChannel": {
-      "@type": "ServiceChannel",
-      "serviceUrl": "https://devaland.com/klaviyo"
-    }
+    "@graph": [
+      {
+        "@type": "Service",
+        "name": "Klaviyo Email Marketing Services",
+        "description": "Expert Klaviyo email marketing and automation for Shopify brands. Official Klaviyo Partner agency specializing in flow optimization, campaign management, and revenue growth.",
+        "provider": {
+          "@type": "Organization",
+          "name": "Devaland Marketing S.R.L.",
+          "url": "https://devaland.com"
+        },
+        "areaServed": "Worldwide",
+        "availableChannel": {
+          "@type": "ServiceChannel",
+          "serviceUrl": "https://devaland.com/klaviyo"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What are the best Klaviyo flows for e-commerce?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The best Klaviyo flows include: 1) Abandoned Cart Recovery (20-30% recovery rate), 2) Welcome Series (50-60% open rate), 3) Post-Purchase Thank You, 4) Browse Abandonment, 5) Win-Back Campaign, 6) Birthday/Anniversary Flows, 7) VIP Customer Flows, 8) Cross-sell/Upsell Flows, 9) Replenishment Reminders, and 10) Seasonal Campaigns (Black Friday/Cyber Monday)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I implement Klaviyo GDPR compliance?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Klaviyo GDPR compliance requires: 1) Double opt-in for EU subscribers, 2) Clear consent forms with explicit permission, 3) Easy unsubscribe options in every email, 4) Data processing agreements with Klaviyo, 5) Privacy policy updates, 6) Right to access and deletion requests handling. We help Shopify stores implement full GDPR-compliant Klaviyo setups with proper consent management."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is predicted date of next order in Klaviyo?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Klaviyo's Predicted Date of Next Order uses AI to forecast when customers will make their next purchase based on historical buying patterns. This predictive analytics feature helps create timely replenishment reminders and win-back campaigns. We optimize this metric to increase repeat purchase rates by 30-50%."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How much does Klaviyo email marketing cost?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Klaviyo pricing starts at $20/month for up to 500 contacts and scales with your list size. Our agency services range from $2,500 for initial setup to $997-2,997/month for full management. Most clients see 300-500% ROI within 90 days, making it highly profitable investment."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What are Klaviyo flow examples for Shopify stores?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Top Klaviyo flow examples: Abandoned Cart (3-email sequence at 1hr, 24hr, 72hr), Welcome Series (5 emails over 14 days), Post-Purchase (order confirmation + cross-sells), Win-Back (targeting 60-180 day inactive customers), VIP Customer Recognition, Browse Abandonment, Birthday Rewards, Back-in-Stock Alerts. We provide 10+ proven flow templates."
+            }
+          }
+        ]
+      }
+    ]
   };
 
   return (
     <>
       <SEO 
-        title="Klaviyo Email Marketing Agency for Shopify & E-commerce | Expert Flows & Automation"
-        description="Expert Klaviyo email marketing agency for Shopify & e-commerce stores. Official Klaviyo Partner. Drive revenue growth with proven automation flows, advanced segmentation, SMS campaigns & performance-based plans. 45% average revenue increase."
+        title="Best Klaviyo Flows & Automation Agency | 45% Revenue Increase Guaranteed"
+        description="Get the best Klaviyo flows: abandoned cart, welcome series, win-back & Black Friday campaigns. Expert Klaviyo automation agency with proven results. GDPR-compliant, SMS integration included. 10+ Klaviyo flow examples. Book free audit."
         canonical="https://devaland.com/klaviyo"
         keywords={[
-          "klaviyo agency",
-          "klaviyo email marketing",
-          "shopify klaviyo integration",
-          "klaviyo flows",
-          "klaviyo automation",
-          "klaviyo partner",
-          "email automation shopify",
-          "klaviyo campaign management",
-          "klaviyo segmentation"
+          "best klaviyo flows",
+          "klaviyo automation flows",
+          "klaviyo black friday campaign",
+          "klaviyo bfcm strategy",
+          "klaviyo gdpr compliance",
+          "klaviyo flows examples",
+          "predicted date of next order klaviyo",
+          "klaviyo abandoned cart flow",
+          "klaviyo sms marketing",
+          "klaviyo agency partner"
         ]}
         schema={klaviyoSchema}
       />
@@ -63,11 +113,11 @@ const KlaviyoPage = () => {
             <div className="animate-fade-in-up">
               <Badge className="mb-4 bg-purple-100 text-purple-800">Klaviyo Certified Partners</Badge>
               <h1 className="text-5xl md:text-6xl font-display text-gray-900 mb-6">
-                Klaviyo Email Marketing for Growing Shopify Brands
+                Best Klaviyo Flows & Automation for Shopify & E-commerce
               </h1>
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                Transform your Shopify store's email marketing with our expert Klaviyo services. 
-                Drive revenue growth through strategic automation flows, advanced segmentation, and data-driven campaigns.
+                Get proven Klaviyo automation flows: abandoned cart recovery, welcome series, Black Friday campaigns & GDPR-compliant email marketing. 
+                Expert Klaviyo agency delivering 45% revenue increases with 10+ automation flow examples.
               </p>
               
               {/* Key Stats */}

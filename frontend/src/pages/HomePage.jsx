@@ -45,18 +45,20 @@ const HomePage = () => {
   return (
     <>
       <SEO 
-        title="Devaland Automation Agency - AI Chatbots, RPA & Klaviyo Email Marketing Experts"
-        description="Leading automation agency specializing in AI chatbots, RPA, workflow automation, and Klaviyo email marketing for Shopify & e-commerce brands. Transform your operations with intelligent automation solutions."
+        title="Klaviyo Email Marketing & AI Voice Automation Agency | Devaland"
+        description="Expert Klaviyo email marketing agency + AI voice agents & chatbots for e-commerce. 45% revenue increase with proven automation flows, abandoned cart recovery, SMS marketing & 24/7 AI support. Free audit."
         canonical="https://devaland.com"
         keywords={[
-          "automation agency",
-          "RPA development", 
-          "Klaviyo email marketing",
-          "Shopify email automation",
-          "enterprise automation",
-          "workflow automation",
-          "business process automation",
-          "AI chatbot development"
+          "klaviyo email marketing agency",
+          "klaviyo automation flows",
+          "AI voice agents",
+          "AI chatbot development",
+          "shopify klaviyo expert",
+          "klaviyo abandoned cart",
+          "voice AI for business",
+          "24/7 customer support automation",
+          "klaviyo flow optimization",
+          "e-commerce automation agency"
         ]}
         schema={homeSchema}
       />
