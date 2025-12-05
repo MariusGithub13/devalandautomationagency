@@ -49,6 +49,11 @@ const BLOG_POSTS = [
   "/blog/all-in-one-chat-widget-complete-guide",
   "/blog/voice-ai-agents-future-business-communication",
   "/blog/voice-ai-implementation-real-business-results-roi-analysis-technical-guide",
+  "/blog/voice-ai-pricing-comparison-2025",
+  "/blog/ai-voice-assistants-small-business-guide-2025",
+  "/blog/voice-ai-vs-call-centers-cost-benefit-analysis",
+  "/blog/voice-ai-restaurants-phone-orders-reservations-guide",
+  "/blog/voice-ai-healthcare-hipaa-patient-scheduling-guide",
 ];
 
 // Optionally find static HTML blog posts under public/blog/*.html
