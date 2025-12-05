@@ -629,6 +629,152 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* Featured Voice AI Articles Section */}
+      <section className="section-padding bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <Badge className="bg-blue-500 text-white mb-4">
+              <Brain className="inline-block mr-2" size={16} />
+              Voice AI Expertise
+            </Badge>
+            <h2 className="text-4xl md:text-5xl font-display mb-6">
+              Voice AI Implementation Guides
+            </h2>
+            <p className="text-xl text-blue-100 max-w-3xl mx-auto">
+              Comprehensive resources for implementing Voice AI across industries - from pricing strategies to industry-specific deployment guides.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            {/* Featured Article 1: Pricing */}
+            <Link to="/blog/voice-ai-pricing-comparison-2025" className="group">
+              <Card className="bg-white/10 backdrop-blur-sm border-2 border-white/20 hover:border-blue-400 hover:shadow-2xl transition-all duration-300 h-full">
+                <CardContent className="p-6">
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center group-hover:bg-blue-400 transition-colors duration-300">
+                      <Target className="text-white" size={24} />
+                    </div>
+                    <Badge className="bg-yellow-500 text-gray-900">New</Badge>
+                  </div>
+                  <h3 className="text-xl font-bold mb-3 group-hover:text-blue-300 transition-colors duration-200">
+                    Voice AI Pricing Guide 2025
+                  </h3>
+                  <p className="text-blue-100 mb-4 line-clamp-3">
+                    Compare pricing models across platforms ($0.05-$0.60/minute). Calculate ROI and find the best plan for your call volume.
+                  </p>
+                  <div className="flex items-center text-blue-300 font-medium group-hover:text-blue-200">
+                    <span>Read Full Guide</span>
+                    <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+
+            {/* Featured Article 2: Small Business */}
+            <Link to="/blog/ai-voice-assistants-small-business-guide-2025" className="group">
+              <Card className="bg-white/10 backdrop-blur-sm border-2 border-white/20 hover:border-blue-400 hover:shadow-2xl transition-all duration-300 h-full">
+                <CardContent className="p-6">
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center group-hover:bg-purple-400 transition-colors duration-300">
+                      <Users className="text-white" size={24} />
+                    </div>
+                    <Badge className="bg-yellow-500 text-gray-900">New</Badge>
+                  </div>
+                  <h3 className="text-xl font-bold mb-3 group-hover:text-blue-300 transition-colors duration-200">
+                    Small Business Voice AI
+                  </h3>
+                  <p className="text-blue-100 mb-4 line-clamp-3">
+                    Budget-friendly guide with 60-point vendor scorecard, 4-week roadmap, and common mistakes to avoid.
+                  </p>
+                  <div className="flex items-center text-blue-300 font-medium group-hover:text-blue-200">
+                    <span>Read Full Guide</span>
+                    <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+
+            {/* Featured Article 3: vs Call Centers */}
+            <Link to="/blog/voice-ai-vs-call-centers-cost-benefit-analysis" className="group">
+              <Card className="bg-white/10 backdrop-blur-sm border-2 border-white/20 hover:border-blue-400 hover:shadow-2xl transition-all duration-300 h-full">
+                <CardContent className="p-6">
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center group-hover:bg-green-400 transition-colors duration-300">
+                      <BarChart3 className="text-white" size={24} />
+                    </div>
+                    <Badge className="bg-yellow-500 text-gray-900">New</Badge>
+                  </div>
+                  <h3 className="text-xl font-bold mb-3 group-hover:text-blue-300 transition-colors duration-200">
+                    Voice AI vs Call Centers
+                  </h3>
+                  <p className="text-blue-100 mb-4 line-clamp-3">
+                    Cost comparison: $5,267/month vs $997/month (81% savings). 3-year TCO analysis and hybrid model recommendations.
+                  </p>
+                  <div className="flex items-center text-blue-300 font-medium group-hover:text-blue-200">
+                    <span>Read Analysis</span>
+                    <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+
+            {/* Featured Article 4: Restaurants */}
+            <Link to="/blog/voice-ai-restaurants-phone-orders-reservations-guide" className="group">
+              <Card className="bg-white/10 backdrop-blur-sm border-2 border-white/20 hover:border-blue-400 hover:shadow-2xl transition-all duration-300 h-full">
+                <CardContent className="p-6">
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center group-hover:bg-orange-400 transition-colors duration-300">
+                      <Sparkles className="text-white" size={24} />
+                    </div>
+                    <Badge className="bg-yellow-500 text-gray-900">New</Badge>
+                  </div>
+                  <h3 className="text-xl font-bold mb-3 group-hover:text-blue-300 transition-colors duration-200">
+                    Voice AI for Restaurants
+                  </h3>
+                  <p className="text-blue-100 mb-4 line-clamp-3">
+                    Menu training, POS integration (Toast/Square/Clover), multilingual orders (29+ languages), peak hour management.
+                  </p>
+                  <div className="flex items-center text-blue-300 font-medium group-hover:text-blue-200">
+                    <span>Restaurant Guide</span>
+                    <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+
+            {/* Featured Article 5: Healthcare */}
+            <Link to="/blog/voice-ai-healthcare-hipaa-patient-scheduling-guide" className="group">
+              <Card className="bg-white/10 backdrop-blur-sm border-2 border-white/20 hover:border-blue-400 hover:shadow-2xl transition-all duration-300 h-full">
+                <CardContent className="p-6">
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center group-hover:bg-red-400 transition-colors duration-300">
+                      <CheckCircle className="text-white" size={24} />
+                    </div>
+                    <Badge className="bg-yellow-500 text-gray-900">New</Badge>
+                  </div>
+                  <h3 className="text-xl font-bold mb-3 group-hover:text-blue-300 transition-colors duration-200">
+                    Voice AI for Healthcare
+                  </h3>
+                  <p className="text-blue-100 mb-4 line-clamp-3">
+                    HIPAA-compliant patient scheduling, no-show reduction (18% → 7%), insurance verification, prescription refills.
+                  </p>
+                  <div className="flex items-center text-blue-300 font-medium group-hover:text-blue-200">
+                    <span>Healthcare Guide</span>
+                    <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+          </div>
+
+          <div className="text-center">
+            <Button asChild size="lg" className="bg-white text-blue-900 hover:bg-blue-50 px-8 py-4 rounded-lg text-lg font-semibold">
+              <Link to="/blog">View All Voice AI Articles</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
       {/* Featured Case Study */}
       <section className="section-padding bg-gradient-subtle">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
