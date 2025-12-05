@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
-import { Calendar, Clock, ArrowRight, Search } from 'lucide-react';
+import { Calendar, Clock, ArrowRight, Search, TrendingUp } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardHeader } from '../components/ui/card';
 import { Input } from '../components/ui/input';
 import { Badge } from '../components/ui/badge';
 import { Link } from 'react-router-dom';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '../components/ui/carousel';
 import SEO from '../components/SEO';
 import Breadcrumb from '../components/Breadcrumb';
 import { blogPosts } from '../data/mock';
@@ -235,6 +242,106 @@ const BlogPage = () => {
           </div>
         </section>
       )}
+
+      {/* Popular Articles Carousel */}
+      <section className="section-padding bg-white border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <div className="flex items-center space-x-2 mb-2">
+                <TrendingUp className="h-5 w-5 text-purple-600" />
+                <Badge className="bg-purple-100 text-purple-800">Trending Now</Badge>
+              </div>
+              <h2 className="text-3xl font-display text-gray-900">Popular Articles</h2>
+              <p className="text-gray-600 mt-2">Most read articles this month</p>
+            </div>
+          </div>
+
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent>
+              {/* Show 6 most recent articles (prioritizing Voice AI content) */}
+              {blogPosts
+                .slice()
+                .sort((a, b) => new Date(b.date) - new Date(a.date))
+                .slice(0, 6)
+                .map((post) => (
+                  <CarouselItem key={post.id} className="md:basis-1/2 lg:basis-1/3">
+                    <Card className="hover-lift cursor-pointer h-full">
+                      <CardHeader className="p-0">
+                        <Link 
+                          to={`/blog/${post.title.toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, '-')}`}
+                          className="block"
+                        >
+                          <div className="relative overflow-hidden rounded-t-lg">
+                            <img 
+                              src={post.image}
+                              alt={post.title}
+                              className="w-full h-48 object-cover hover-scale"
+                            />
+                            <div className="absolute top-4 left-4">
+                              <Badge className="bg-white/90 text-gray-800">
+                                {post.category}
+                              </Badge>
+                            </div>
+                          </div>
+                        </Link>
+                      </CardHeader>
+                      
+                      <CardContent className="p-6">
+                        <Link 
+                          to={`/blog/${post.title.toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, '-')}`}
+                        >
+                          <h3 className="text-xl font-semibold text-gray-900 mb-3 hover:text-blue-600 transition-colors duration-200 line-clamp-2">
+                            {post.title}
+                          </h3>
+                        </Link>
+                        
+                        <p className="text-gray-600 mb-4 line-clamp-2">
+                          {post.excerpt}
+                        </p>
+                        
+                        <div className="flex items-center justify-between mb-4 text-sm text-gray-500">
+                          <div className="flex items-center space-x-3">
+                            <div className="flex items-center space-x-1">
+                              <Calendar size={14} />
+                              <span>
+                                {new Date(post.date).toLocaleDateString('en-US', { 
+                                  month: 'short', 
+                                  day: 'numeric' 
+                                })}
+                              </span>
+                            </div>
+                            <div className="flex items-center space-x-1">
+                              <Clock size={14} />
+                              <span>{post.readTime}</span>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <Link 
+                          to={`/blog/${post.title.toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, '-')}`}
+                        >
+                          <Button variant="ghost" className="w-full group hover:bg-blue-50">
+                            <span>Read Article</span>
+                            <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform duration-200" />
+                          </Button>
+                        </Link>
+                      </CardContent>
+                    </Card>
+                  </CarouselItem>
+                ))}
+            </CarouselContent>
+            <CarouselPrevious className="hidden md:flex" />
+            <CarouselNext className="hidden md:flex" />
+          </Carousel>
+        </div>
+      </section>
 
       {/* All Articles */}
       <section className="section-padding bg-gray-50">
