@@ -15,6 +15,8 @@ const KlaviyoFlowsExamplesPage = lazy(() => import("./pages/KlaviyoFlowsExamples
 const KlaviyoPredictedNextOrderPage = lazy(() => import("./pages/KlaviyoPredictedNextOrderPage"));
 const KlaviyoPlacedOrderRatePage = lazy(() => import("./pages/KlaviyoPlacedOrderRatePage"));
 const KlaviyoAutomationGuidePage = lazy(() => import("./pages/KlaviyoAutomationGuidePage"));
+const KlaviyoSegmentationPage = lazy(() => import("./pages/KlaviyoSegmentationPage"));
+const KlaviyoEmailTemplatesPage = lazy(() => import("./pages/KlaviyoEmailTemplatesPage"));
 const VoiceAIPage = lazy(() => import("./pages/VoiceAIPage"));
 const ServicesPage = lazy(() => import("./pages/ServicesPage"));
 const CaseStudiesPage = lazy(() => import("./pages/CaseStudiesPage"));
@@ -52,6 +54,8 @@ function App() {
               <Route path="/klaviyo-predicted-next-order" element={<KlaviyoPredictedNextOrderPage />} />
               <Route path="/klaviyo-placed-order-rate" element={<KlaviyoPlacedOrderRatePage />} />
               <Route path="/klaviyo-automation-guide" element={<KlaviyoAutomationGuidePage />} />
+              <Route path="/klaviyo-segmentation-strategies" element={<KlaviyoSegmentationPage />} />
+              <Route path="/klaviyo-email-templates" element={<KlaviyoEmailTemplatesPage />} />
               <Route path="/voice-ai" element={<VoiceAIPage />} />
               <Route path="/services" element={<ServicesPage />} />
               <Route path="/case-studies" element={<CaseStudiesPage />} />

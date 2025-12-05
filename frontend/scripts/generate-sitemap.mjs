@@ -21,6 +21,8 @@ const ROUTES = [
   "/klaviyo-predicted-next-order",
   "/klaviyo-placed-order-rate",
   "/klaviyo-automation-guide",
+  "/klaviyo-segmentation-strategies",
+  "/klaviyo-email-templates",
   "/voice-ai",
   "/services",
   "/case-studies",
