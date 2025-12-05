@@ -200,8 +200,8 @@ export const team = [
 export const blogPosts = [
   {
     id: 1,
-    title: "10 Klaviyo Automation Flows Every E-commerce Store Needs",
-    excerpt: "Complete guide to Klaviyo automation flows that increase email revenue by 320%. Learn to implement welcome series, abandoned cart recovery, post-purchase sequences, and advanced flows with step-by-step instructions, performance benchmarks, and FAQ from Google Search.",
+    title: "Best 10 Klaviyo Automation Flows Every E-commerce Store Needs",
+    excerpt: "Complete guide to the best Klaviyo automation flows that increase email revenue by 320%. Learn to implement welcome series, abandoned cart recovery, post-purchase sequences, and advanced flows with step-by-step instructions, performance benchmarks, and FAQ from Google Search.",
     category: "Klaviyo Tips", 
     readTime: "25 min read",
     date: "2024-07-24",
@@ -211,7 +211,7 @@ export const blogPosts = [
   },
   {
     id: 2,
-    title: "Email Segmentation Strategies That Actually Work",
+    title: "Best Email Segmentation Strategies That Actually Work",
     excerpt: "Learn advanced segmentation techniques to improve your email relevance and conversion rates. We'll cover behavioral segmentation, demographic targeting, and predictive analytics to help you send the right message to the right person.",
     category: "Email Marketing",
     readTime: "9 min read",
