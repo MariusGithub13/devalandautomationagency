@@ -534,6 +534,78 @@ const HomePage = () => {
                 </CardContent>
               </Card>
             </Link>
+
+            {/* Resource 7: Segmentation Strategies - NEW */}
+            <Link to="/klaviyo-segmentation-strategies" className="group">
+              <Card className="border-2 border-blue-200 hover:border-blue-500 hover:shadow-2xl transition-all duration-300 h-full">
+                <CardContent className="p-6">
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-600 transition-colors duration-300">
+                      <Users className="text-blue-600 group-hover:text-white transition-colors duration-300" size={24} />
+                    </div>
+                    <Badge className="bg-red-100 text-red-700">NEW</Badge>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">
+                    Segmentation Strategies
+                  </h3>
+                  <p className="text-gray-600 mb-4">
+                    RFM segmentation, behavioral targeting, and predictive analytics. Increase revenue by 760% with laser-targeted campaigns.
+                  </p>
+                  <div className="flex items-center text-blue-600 font-medium group-hover:translate-x-2 transition-transform duration-300">
+                    <span>Master Segmentation</span>
+                    <ArrowRight size={16} className="ml-2" />
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+
+            {/* Resource 8: Email Templates - NEW */}
+            <Link to="/klaviyo-email-templates" className="group">
+              <Card className="border-2 border-purple-200 hover:border-purple-500 hover:shadow-2xl transition-all duration-300 h-full">
+                <CardContent className="p-6">
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center group-hover:bg-purple-600 transition-colors duration-300">
+                      <Mail className="text-purple-600 group-hover:text-white transition-colors duration-300" size={24} />
+                    </div>
+                    <Badge className="bg-red-100 text-red-700">NEW</Badge>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-purple-600 transition-colors duration-300">
+                    Email Template Design
+                  </h3>
+                  <p className="text-gray-600 mb-4">
+                    Professional templates, design best practices, and mobile optimization. Increase click rates by 40% with proven designs.
+                  </p>
+                  <div className="flex items-center text-purple-600 font-medium group-hover:translate-x-2 transition-transform duration-300">
+                    <span>View Templates</span>
+                    <ArrowRight size={16} className="ml-2" />
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+
+            {/* Resource 9: Voice AI - Cross-sell */}
+            <Link to="/voice-ai" className="group">
+              <Card className="border-2 border-indigo-200 hover:border-indigo-500 hover:shadow-2xl transition-all duration-300 h-full">
+                <CardContent className="p-6">
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center group-hover:bg-indigo-600 transition-colors duration-300">
+                      <Brain className="text-indigo-600 group-hover:text-white transition-colors duration-300" size={24} />
+                    </div>
+                    <Badge className="bg-green-100 text-green-700">Voice AI</Badge>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-indigo-600 transition-colors duration-300">
+                    Voice AI Automation
+                  </h3>
+                  <p className="text-gray-600 mb-4">
+                    Complement your email campaigns with AI voice agents. Handle calls, qualify leads, and book appointments 24/7.
+                  </p>
+                  <div className="flex items-center text-indigo-600 font-medium group-hover:translate-x-2 transition-transform duration-300">
+                    <span>Explore Voice AI</span>
+                    <ArrowRight size={16} className="ml-2" />
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
           </div>
 
           {/* CTA Row */}
