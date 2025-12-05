@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle, Users, Award, TrendingUp, ExternalLink, Sparkles, Zap, Brain } from 'lucide-react';
+import { ArrowRight, CheckCircle, Users, Award, TrendingUp, ExternalLink, Sparkles, Zap, Brain, Mail, Target, BarChart3 } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import SEO from '../components/SEO';
@@ -369,6 +369,189 @@ const HomePage = () => {
             <Button asChild size="lg" variant="outline" className="px-8 py-4 rounded-lg text-lg font-semibold">
               <Link to="/klaviyo">Klaviyo for Shopify</Link>
             </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Klaviyo Resources Section */}
+      <section className="section-padding bg-gradient-to-br from-blue-50 via-purple-50 to-indigo-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <Badge className="bg-blue-600 text-white mb-4">
+              <Mail className="inline-block mr-2" size={16} />
+              Klaviyo Email Marketing Expertise
+            </Badge>
+            <h2 className="text-4xl md:text-5xl font-display text-gray-900 mb-6">
+              Klaviyo Automation Resources
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Explore our comprehensive guides and proven strategies to maximize your Klaviyo email marketing performance and drive 30-45% revenue growth.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            {/* Resource 1: Klaviyo Flows */}
+            <Link to="/klaviyo-flows-examples" className="group">
+              <Card className="border-2 border-blue-200 hover:border-blue-500 hover:shadow-2xl transition-all duration-300 h-full">
+                <CardContent className="p-6">
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-600 transition-colors duration-300">
+                      <Zap className="text-blue-600 group-hover:text-white transition-colors duration-300" size={24} />
+                    </div>
+                    <Badge className="bg-green-100 text-green-700">Popular</Badge>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">
+                    Best Klaviyo Flows Examples
+                  </h3>
+                  <p className="text-gray-600 mb-4">
+                    30+ proven flow templates for e-commerce. Abandoned cart, welcome series, post-purchase, and advanced automation examples.
+                  </p>
+                  <div className="flex items-center text-blue-600 font-medium group-hover:translate-x-2 transition-transform duration-300">
+                    <span>View Flow Library</span>
+                    <ArrowRight size={16} className="ml-2" />
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+
+            {/* Resource 2: Automation Guide */}
+            <Link to="/klaviyo-automation-guide" className="group">
+              <Card className="border-2 border-purple-200 hover:border-purple-500 hover:shadow-2xl transition-all duration-300 h-full">
+                <CardContent className="p-6">
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center group-hover:bg-purple-600 transition-colors duration-300">
+                      <Target className="text-purple-600 group-hover:text-white transition-colors duration-300" size={24} />
+                    </div>
+                    <Badge className="bg-blue-100 text-blue-700">Essential</Badge>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-purple-600 transition-colors duration-300">
+                    Complete Automation Guide
+                  </h3>
+                  <p className="text-gray-600 mb-4">
+                    Master Klaviyo automation from setup to optimization. Proven strategies to generate 25-40% more revenue on autopilot.
+                  </p>
+                  <div className="flex items-center text-purple-600 font-medium group-hover:translate-x-2 transition-transform duration-300">
+                    <span>Read Full Guide</span>
+                    <ArrowRight size={16} className="ml-2" />
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+
+            {/* Resource 3: GDPR Compliance */}
+            <Link to="/klaviyo-gdpr-compliance" className="group">
+              <Card className="border-2 border-indigo-200 hover:border-indigo-500 hover:shadow-2xl transition-all duration-300 h-full">
+                <CardContent className="p-6">
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center group-hover:bg-indigo-600 transition-colors duration-300">
+                      <CheckCircle className="text-indigo-600 group-hover:text-white transition-colors duration-300" size={24} />
+                    </div>
+                    <Badge className="bg-orange-100 text-orange-700">Compliance</Badge>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-indigo-600 transition-colors duration-300">
+                    GDPR Compliance Guide
+                  </h3>
+                  <p className="text-gray-600 mb-4">
+                    Complete Klaviyo GDPR setup checklist. Consent management, data privacy, and compliance best practices for EU markets.
+                  </p>
+                  <div className="flex items-center text-indigo-600 font-medium group-hover:translate-x-2 transition-transform duration-300">
+                    <span>Ensure Compliance</span>
+                    <ArrowRight size={16} className="ml-2" />
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+
+            {/* Resource 4: Black Friday Strategy */}
+            <Link to="/klaviyo-black-friday-strategy" className="group">
+              <Card className="border-2 border-orange-200 hover:border-orange-500 hover:shadow-2xl transition-all duration-300 h-full">
+                <CardContent className="p-6">
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center group-hover:bg-orange-600 transition-colors duration-300">
+                      <TrendingUp className="text-orange-600 group-hover:text-white transition-colors duration-300" size={24} />
+                    </div>
+                    <Badge className="bg-purple-100 text-purple-700">Seasonal</Badge>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-orange-600 transition-colors duration-300">
+                    Black Friday Strategy
+                  </h3>
+                  <p className="text-gray-600 mb-4">
+                    Complete BFCM playbook with campaign timelines, segmentation tactics, and email sequences that drive 2-3x holiday revenue.
+                  </p>
+                  <div className="flex items-center text-orange-600 font-medium group-hover:translate-x-2 transition-transform duration-300">
+                    <span>Get BFCM Playbook</span>
+                    <ArrowRight size={16} className="ml-2" />
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+
+            {/* Resource 5: Predictive Analytics */}
+            <Link to="/klaviyo-predicted-next-order" className="group">
+              <Card className="border-2 border-green-200 hover:border-green-500 hover:shadow-2xl transition-all duration-300 h-full">
+                <CardContent className="p-6">
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center group-hover:bg-green-600 transition-colors duration-300">
+                      <BarChart3 className="text-green-600 group-hover:text-white transition-colors duration-300" size={24} />
+                    </div>
+                    <Badge className="bg-indigo-100 text-indigo-700">Advanced</Badge>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-green-600 transition-colors duration-300">
+                    Predictive Next Order Date
+                  </h3>
+                  <p className="text-gray-600 mb-4">
+                    Use AI-powered predictions for perfect replenishment timing. Increase repeat purchases by 30-40% with predictive flows.
+                  </p>
+                  <div className="flex items-center text-green-600 font-medium group-hover:translate-x-2 transition-transform duration-300">
+                    <span>Learn Predictive Analytics</span>
+                    <ArrowRight size={16} className="ml-2" />
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+
+            {/* Resource 6: Metrics Guide */}
+            <Link to="/klaviyo-placed-order-rate" className="group">
+              <Card className="border-2 border-pink-200 hover:border-pink-500 hover:shadow-2xl transition-all duration-300 h-full">
+                <CardContent className="p-6">
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center group-hover:bg-pink-600 transition-colors duration-300">
+                      <Target className="text-pink-600 group-hover:text-white transition-colors duration-300" size={24} />
+                    </div>
+                    <Badge className="bg-yellow-100 text-yellow-700">Analytics</Badge>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-pink-600 transition-colors duration-300">
+                    Placed Order Rate Explained
+                  </h3>
+                  <p className="text-gray-600 mb-4">
+                    Master the metric that matters most. Understand benchmarks, track performance, and optimize for maximum email ROI.
+                  </p>
+                  <div className="flex items-center text-pink-600 font-medium group-hover:translate-x-2 transition-transform duration-300">
+                    <span>Understand Metrics</span>
+                    <ArrowRight size={16} className="ml-2" />
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+          </div>
+
+          {/* CTA Row */}
+          <div className="bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-700 rounded-2xl p-8 md:p-12 text-center text-white">
+            <h3 className="text-3xl font-bold mb-4">Ready to Scale Your Klaviyo Revenue?</h3>
+            <p className="text-xl text-blue-100 mb-6 max-w-2xl mx-auto">
+              Our Klaviyo experts will audit your account, identify opportunities, and implement proven strategies to increase email revenue by 30-45%.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button asChild size="lg" className="bg-white text-blue-600 hover:bg-blue-50 font-semibold px-8">
+                <a href={companyData.calendly} target="_blank" rel="noopener noreferrer">
+                  Book Free Klaviyo Audit
+                  <ArrowRight className="ml-2" size={20} />
+                </a>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white/10 px-8">
+                <Link to="/klaviyo">Explore All Klaviyo Services</Link>
+              </Button>
+            </div>
           </div>
         </div>
       </section>

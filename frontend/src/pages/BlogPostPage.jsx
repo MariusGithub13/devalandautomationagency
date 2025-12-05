@@ -34,6 +34,120 @@ const BlogPostPage = () => {
   // Generate canonical URL from slug
   const canonicalUrl = `https://devaland.com/blog/${slug}`;
   
+  // Generate FAQ schema for specific high-traffic posts
+  const getFAQSchema = (postId) => {
+    const faqSchemas = {
+      1: { // Best 10 Klaviyo Automation Flows
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What are Klaviyo automation flows?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Klaviyo automation flows are pre-built email sequences that trigger automatically based on customer behavior, demographics, or time-based events. Unlike one-time campaigns, these flows run continuously, engaging customers at the perfect moment in their buying journey."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How much do Klaviyo automation flows increase revenue?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Klaviyo automation flows typically increase email marketing revenue by 200-320% compared to broadcast emails alone. Welcome series can generate 13% of total email revenue, abandoned cart flows can recover 15-25% of lost sales, and post-purchase flows can increase repeat purchase rates by 30-50%."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What's the difference between Klaviyo flows and campaigns?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Flows are automated email sequences triggered by customer behavior or time-based events that run continuously. Campaigns are one-time email broadcasts sent to specific segments at scheduled times. Flows provide personalized, timely messaging for individual customer journeys, while campaigns deliver broad messages to multiple customers simultaneously."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How long should a welcome email series be in Klaviyo?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The optimal welcome series length is 3-5 emails sent over 7-14 days. This provides enough touchpoints to build relationships without overwhelming new subscribers. High-value or complex products may warrant longer series (up to 7 emails), while simple products work well with shorter 3-email sequences."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I set up automation flows if I'm new to Klaviyo?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Start with essentials: welcome series and abandoned cart. Use Klaviyo templates and configure triggers carefully. Test with small segments first, keep personalization simple initially, monitor performance weekly, and gradually expand. Consider professional help for optimal results. Most beginners can have basic flows running within 1-2 weeks."
+            }
+          }
+        ]
+      },
+      2: { // Best Email Segmentation Strategies
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is email segmentation and why is it important?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Email segmentation involves dividing your email list into smaller, more targeted groups based on specific criteria like demographics, behavior, or purchase history. It's important because segmented campaigns achieve 14.31% higher open rates and 100.95% higher click-through rates than non-segmented campaigns."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What are the best ways to segment email lists?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Best segmentation methods include: demographic segmentation (age, location), behavioral segmentation (purchase history, website activity), RFM analysis (recency, frequency, monetary), lifecycle stage segmentation (prospects, new customers, VIPs), and predictive segmentation (likelihood to purchase, churn risk)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How many segments should I create?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Start with 3-5 basic segments (engaged vs unengaged, customers vs prospects, geographic regions). Gradually add complexity as you collect more data. Avoid over-segmentation - having too many small segments can make management difficult and reduce effectiveness."
+            }
+          }
+        ]
+      },
+      5: { // Advanced Klaviyo Analytics
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What metrics should I track in Klaviyo besides open and click rates?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Focus on revenue-focused metrics: Revenue Per Recipient (RPR), Customer Lifetime Value (CLV) impact, Placed Order Rate, attribution analysis, and cohort performance. These metrics directly tie email performance to business results and show true ROI."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I measure email marketing ROI in Klaviyo?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Use Klaviyo's revenue attribution dashboard to track total attributed revenue by channel, campaign, and flow. Calculate ROI as (Email Revenue - Email Costs) / Email Costs. Monitor revenue per recipient, conversion rates by segment, and customer lifetime value impact."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is Revenue Per Recipient and why does it matter?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Revenue Per Recipient (RPR) is total revenue divided by total email recipients. It's the most important email metric because it directly ties email performance to business results, accounts for both engagement and conversion, and helps compare campaign effectiveness across different segments."
+            }
+          }
+        ]
+      }
+    };
+    
+    return faqSchemas[postId] || null;
+  };
+
   // Generate Article schema for SEO
   const articleSchema = {
     "@context": "https://schema.org",
@@ -65,6 +179,10 @@ const BlogPostPage = () => {
     "timeRequired": post.readTime
   };
 
+  // Combine Article schema with FAQ schema if available
+  const faqSchema = getFAQSchema(post.id);
+  const schemas = faqSchema ? [articleSchema, faqSchema] : articleSchema;
+
   const shareUrl = window.location.href;
   const shareTitle = encodeURIComponent(post.title);
 
@@ -77,7 +195,7 @@ const BlogPostPage = () => {
         ogImage={post.image || "https://customer-assets.emergentagent.com/job_process-genius-5/artifacts/kau0y3tw_Devaland-Logo.jpg"}
         ogType="article"
         keywords={post.tags || [post.category, "email marketing", "automation", "klaviyo"]}
-        schema={articleSchema}
+        schema={schemas}
       />
       
       {/* Breadcrumb Navigation */}

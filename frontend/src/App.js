@@ -11,6 +11,9 @@ const KlaviyoPage = lazy(() => import("./pages/KlaviyoPage"));
 const KlaviyoGDPRPage = lazy(() => import("./pages/KlaviyoGDPRPage"));
 const KlaviyoBlackFridayPage = lazy(() => import("./pages/KlaviyoBlackFridayPage"));
 const KlaviyoFlowsExamplesPage = lazy(() => import("./pages/KlaviyoFlowsExamplesPage"));
+const KlaviyoPredictedNextOrderPage = lazy(() => import("./pages/KlaviyoPredictedNextOrderPage"));
+const KlaviyoPlacedOrderRatePage = lazy(() => import("./pages/KlaviyoPlacedOrderRatePage"));
+const KlaviyoAutomationGuidePage = lazy(() => import("./pages/KlaviyoAutomationGuidePage"));
 const VoiceAIPage = lazy(() => import("./pages/VoiceAIPage"));
 const ServicesPage = lazy(() => import("./pages/ServicesPage"));
 const CaseStudiesPage = lazy(() => import("./pages/CaseStudiesPage"));
@@ -44,6 +47,9 @@ function App() {
               <Route path="/klaviyo-gdpr-compliance" element={<KlaviyoGDPRPage />} />
               <Route path="/klaviyo-black-friday-strategy" element={<KlaviyoBlackFridayPage />} />
               <Route path="/klaviyo-flows-examples" element={<KlaviyoFlowsExamplesPage />} />
+              <Route path="/klaviyo-predicted-next-order" element={<KlaviyoPredictedNextOrderPage />} />
+              <Route path="/klaviyo-placed-order-rate" element={<KlaviyoPlacedOrderRatePage />} />
+              <Route path="/klaviyo-automation-guide" element={<KlaviyoAutomationGuidePage />} />
               <Route path="/voice-ai" element={<VoiceAIPage />} />
               <Route path="/services" element={<ServicesPage />} />
               <Route path="/case-studies" element={<CaseStudiesPage />} />
