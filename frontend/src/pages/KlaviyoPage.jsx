@@ -846,6 +846,179 @@ const KlaviyoPage = () => {
         </div>
       </section>
 
+      {/* Klaviyo Resources Section */}
+      <section className="section-padding bg-gradient-to-br from-gray-50 to-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <Badge className="mb-4 bg-purple-100 text-purple-800">Free Resources</Badge>
+            <h2 className="text-3xl md:text-4xl font-display text-gray-900 mb-4">
+              Klaviyo Guides & Resources
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Comprehensive guides and strategies to maximize your Klaviyo email marketing results
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* GDPR Compliance Guide */}
+            <Card className="hover:shadow-xl transition-shadow group">
+              <CardHeader>
+                <div className="flex items-center gap-2 mb-2">
+                  <CheckCircle className="text-green-600" size={20} />
+                  <Badge variant="outline" className="text-xs">Compliance</Badge>
+                </div>
+                <CardTitle className="text-lg group-hover:text-purple-600 transition-colors">
+                  <Link to="/klaviyo-gdpr-compliance" className="hover:underline">
+                    Klaviyo GDPR Compliance Guide
+                  </Link>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600 text-sm mb-4">
+                  Complete GDPR setup guide with double opt-in, consent forms, DPA signing, and data deletion procedures.
+                </p>
+                <Link 
+                  to="/klaviyo-gdpr-compliance"
+                  className="text-purple-600 hover:text-purple-700 font-semibold text-sm inline-flex items-center gap-1"
+                >
+                  Read Full Guide <ArrowRight size={16} />
+                </Link>
+              </CardContent>
+            </Card>
+
+            {/* Black Friday Strategy */}
+            <Card className="hover:shadow-xl transition-shadow group">
+              <CardHeader>
+                <div className="flex items-center gap-2 mb-2">
+                  <TrendingUp className="text-red-600" size={20} />
+                  <Badge variant="outline" className="text-xs">BFCM</Badge>
+                </div>
+                <CardTitle className="text-lg group-hover:text-purple-600 transition-colors">
+                  <Link to="/klaviyo-black-friday-strategy" className="hover:underline">
+                    Black Friday & BFCM Strategy
+                  </Link>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600 text-sm mb-4">
+                  8-week preparation timeline, automation flows, campaign templates, and proven tactics for holiday sales.
+                </p>
+                <Link 
+                  to="/klaviyo-black-friday-strategy"
+                  className="text-purple-600 hover:text-purple-700 font-semibold text-sm inline-flex items-center gap-1"
+                >
+                  View BFCM Guide <ArrowRight size={16} />
+                </Link>
+              </CardContent>
+            </Card>
+
+            {/* Flows Examples */}
+            <Card className="hover:shadow-xl transition-shadow group">
+              <CardHeader>
+                <div className="flex items-center gap-2 mb-2">
+                  <Zap className="text-blue-600" size={20} />
+                  <Badge variant="outline" className="text-xs">Automation</Badge>
+                </div>
+                <CardTitle className="text-lg group-hover:text-purple-600 transition-colors">
+                  <Link to="/klaviyo-flows-examples" className="hover:underline">
+                    Best Klaviyo Flows Examples
+                  </Link>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600 text-sm mb-4">
+                  6 detailed flow examples with email breakdowns, timing strategies, and implementation guides.
+                </p>
+                <Link 
+                  to="/klaviyo-flows-examples"
+                  className="text-purple-600 hover:text-purple-700 font-semibold text-sm inline-flex items-center gap-1"
+                >
+                  Explore Flows <ArrowRight size={16} />
+                </Link>
+              </CardContent>
+            </Card>
+
+            {/* Blog Post: 10 Klaviyo Flows */}
+            <Card className="hover:shadow-xl transition-shadow group">
+              <CardHeader>
+                <div className="flex items-center gap-2 mb-2">
+                  <Mail className="text-purple-600" size={20} />
+                  <Badge variant="outline" className="text-xs">Blog Post</Badge>
+                </div>
+                <CardTitle className="text-lg group-hover:text-purple-600 transition-colors">
+                  <Link to="/blog/best-10-klaviyo-automation-flows-every-e-commerce-store-needs" className="hover:underline">
+                    Best 10 Klaviyo Automation Flows
+                  </Link>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600 text-sm mb-4">
+                  In-depth guide covering welcome series, abandoned cart, post-purchase, win-back, and seasonal flows.
+                </p>
+                <Link 
+                  to="/blog/best-10-klaviyo-automation-flows-every-e-commerce-store-needs"
+                  className="text-purple-600 hover:text-purple-700 font-semibold text-sm inline-flex items-center gap-1"
+                >
+                  Read Article <ArrowRight size={16} />
+                </Link>
+              </CardContent>
+            </Card>
+
+            {/* Case Studies */}
+            <Card className="hover:shadow-xl transition-shadow group">
+              <CardHeader>
+                <div className="flex items-center gap-2 mb-2">
+                  <TrendingUp className="text-green-600" size={20} />
+                  <Badge variant="outline" className="text-xs">Success Stories</Badge>
+                </div>
+                <CardTitle className="text-lg group-hover:text-purple-600 transition-colors">
+                  <Link to="/klaviyo-case-studies" className="hover:underline">
+                    Klaviyo Success Stories
+                  </Link>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600 text-sm mb-4">
+                  Real results from Shopify brands: 45% revenue increase, 30% cart recovery, and 180% ROI improvement.
+                </p>
+                <Link 
+                  to="/klaviyo-case-studies"
+                  className="text-purple-600 hover:text-purple-700 font-semibold text-sm inline-flex items-center gap-1"
+                >
+                  View Case Studies <ArrowRight size={16} />
+                </Link>
+              </CardContent>
+            </Card>
+
+            {/* Blog: Advanced Analytics */}
+            <Card className="hover:shadow-xl transition-shadow group">
+              <CardHeader>
+                <div className="flex items-center gap-2 mb-2">
+                  <TrendingUp className="text-orange-600" size={20} />
+                  <Badge variant="outline" className="text-xs">Analytics</Badge>
+                </div>
+                <CardTitle className="text-lg group-hover:text-purple-600 transition-colors">
+                  <Link to="/blog/advanced-klaviyo-analytics-beyond-open-and-click-rates" className="hover:underline">
+                    Advanced Klaviyo Analytics
+                  </Link>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600 text-sm mb-4">
+                  Go beyond basic metrics: revenue attribution, CLV impact, predictive analytics, and ROI measurement.
+                </p>
+                <Link 
+                  to="/blog/advanced-klaviyo-analytics-beyond-open-and-click-rates"
+                  className="text-purple-600 hover:text-purple-700 font-semibold text-sm inline-flex items-center gap-1"
+                >
+                  Learn More <ArrowRight size={16} />
+                </Link>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="section-padding bg-gray-900 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
