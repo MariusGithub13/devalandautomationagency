@@ -201,7 +201,7 @@ export const blogPosts = [
   {
     id: 1,
     title: "Best 10 Klaviyo Automation Flows Every E-commerce Store Needs",
-    excerpt: "Complete guide to the best Klaviyo automation flows that increase email revenue by 320%. Learn to implement welcome series, abandoned cart recovery, post-purchase sequences, and advanced flows with step-by-step instructions, performance benchmarks, and FAQ from Google Search.",
+    excerpt: "Complete guide to the 10 best Klaviyo flows including abandoned cart, welcome series, and win-back campaigns. Learn how to build a Klaviyo sales funnel with automation workflows that increase revenue 320%. Step-by-step setup, benchmarks, and proven email tips for e-commerce success.",
     category: "Klaviyo Tips", 
     readTime: "25 min read",
     date: "2024-07-24",
