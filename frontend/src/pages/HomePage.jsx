@@ -651,7 +651,7 @@ const HomePage = () => {
                     </div>
                     <Badge className="bg-yellow-500 text-gray-900">New</Badge>
                   </div>
-                  <h3 className="text-xl font-bold mb-3 group-hover:text-blue-300 transition-colors duration-200">
+                  <h3 className="text-xl font-bold mb-3 text-white group-hover:text-blue-300 transition-colors duration-200">
                     Voice AI Pricing Guide 2025
                   </h3>
                   <p className="text-blue-100 mb-4 line-clamp-3">
@@ -675,7 +675,7 @@ const HomePage = () => {
                     </div>
                     <Badge className="bg-yellow-500 text-gray-900">New</Badge>
                   </div>
-                  <h3 className="text-xl font-bold mb-3 group-hover:text-blue-300 transition-colors duration-200">
+                  <h3 className="text-xl font-bold mb-3 text-white group-hover:text-blue-300 transition-colors duration-200">
                     Small Business Voice AI
                   </h3>
                   <p className="text-blue-100 mb-4 line-clamp-3">
@@ -699,7 +699,7 @@ const HomePage = () => {
                     </div>
                     <Badge className="bg-yellow-500 text-gray-900">New</Badge>
                   </div>
-                  <h3 className="text-xl font-bold mb-3 group-hover:text-blue-300 transition-colors duration-200">
+                  <h3 className="text-xl font-bold mb-3 text-white group-hover:text-blue-300 transition-colors duration-200">
                     Voice AI vs Call Centers
                   </h3>
                   <p className="text-blue-100 mb-4 line-clamp-3">
@@ -723,7 +723,7 @@ const HomePage = () => {
                     </div>
                     <Badge className="bg-yellow-500 text-gray-900">New</Badge>
                   </div>
-                  <h3 className="text-xl font-bold mb-3 group-hover:text-blue-300 transition-colors duration-200">
+                  <h3 className="text-xl font-bold mb-3 text-white group-hover:text-blue-300 transition-colors duration-200">
                     Voice AI for Restaurants
                   </h3>
                   <p className="text-blue-100 mb-4 line-clamp-3">
@@ -747,7 +747,7 @@ const HomePage = () => {
                     </div>
                     <Badge className="bg-yellow-500 text-gray-900">New</Badge>
                   </div>
-                  <h3 className="text-xl font-bold mb-3 group-hover:text-blue-300 transition-colors duration-200">
+                  <h3 className="text-xl font-bold mb-3 text-white group-hover:text-blue-300 transition-colors duration-200">
                     Voice AI for Healthcare
                   </h3>
                   <p className="text-blue-100 mb-4 line-clamp-3">
@@ -771,7 +771,7 @@ const HomePage = () => {
                     </div>
                     <Badge className="bg-yellow-500 text-gray-900">New</Badge>
                   </div>
-                  <h3 className="text-xl font-bold mb-3 group-hover:text-blue-300 transition-colors duration-200">
+                  <h3 className="text-xl font-bold mb-3 text-white group-hover:text-blue-300 transition-colors duration-200">
                     Voice AI for Shopify Brands
                   </h3>
                   <p className="text-blue-100 mb-4 line-clamp-3">
