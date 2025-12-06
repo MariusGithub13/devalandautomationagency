@@ -154,6 +154,39 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* Industry Recognition Section */}
+      <section className="section-padding bg-gradient-primary text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-display mb-6">Industry Recognition</h2>
+            <p className="text-xl opacity-90 max-w-2xl mx-auto">
+              Our commitment to excellence has been recognized by leading industry organizations and publications.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {awards.map((award, index) => (
+              <Card key={index} className="glass border-white/20 group hover-lift">
+                <CardContent className="p-6 text-center">
+                  <Award size={48} className="text-yellow-400 mx-auto mb-4" />
+                  <h3 className="text-xl font-bold text-white mb-2">{award.title}</h3>
+                  <p className="text-white/80 mb-4">{award.description}</p>
+                  <a 
+                    href={award.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center space-x-2 text-yellow-400 hover:text-yellow-300 transition-colors duration-200"
+                  >
+                    <span className="text-sm font-medium">View Recognition</span>
+                    <ExternalLink size={14} />
+                  </a>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* AI-Powered Innovation Section with Robot Lady */}
       <section className="relative py-20 overflow-hidden bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900">
         {/* Animated background elements */}
@@ -339,7 +372,7 @@ const HomePage = () => {
                           <Icon className="w-10 h-10 text-white" />
                         </div>
                       </div>
-                      <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-200 text-center">ext-center">
+                      <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-200 text-center">
                         {service.title}
                       </h3>
                       <p className="text-gray-600 mb-4 line-clamp-3 text-center">
@@ -840,39 +873,6 @@ const HomePage = () => {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Industry Recognition Section */}
-      <section className="section-padding bg-gradient-primary text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-display mb-6">Industry Recognition</h2>
-            <p className="text-xl opacity-90 max-w-2xl mx-auto">
-              Our commitment to excellence has been recognized by leading industry organizations and publications.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {awards.map((award, index) => (
-              <Card key={index} className="glass border-white/20 group hover-lift">
-                <CardContent className="p-6 text-center">
-                  <Award size={48} className="text-yellow-400 mx-auto mb-4" />
-                  <h3 className="text-xl font-bold text-white mb-2">{award.title}</h3>
-                  <p className="text-white/80 mb-4">{award.description}</p>
-                  <a 
-                    href={award.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center space-x-2 text-yellow-400 hover:text-yellow-300 transition-colors duration-200"
-                  >
-                    <span className="text-sm font-medium">View Recognition</span>
-                    <ExternalLink size={14} />
-                  </a>
-                </CardContent>
-              </Card>
-            ))}
           </div>
         </div>
       </section>
