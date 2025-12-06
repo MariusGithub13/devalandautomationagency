@@ -27,9 +27,9 @@ const Header = memo(() => {
 
   const navigation = [
     { name: 'Home', href: '/' },
+    { name: 'Automation Services', href: '/services' },
     { name: 'Klaviyo Services', href: '/klaviyo' },
     { name: 'Voice AI Agents', href: '/voice-ai' },
-    { name: 'Automation Services', href: '/services' },
     { name: 'Case Studies', href: '/case-studies' },
     { name: 'About', href: '/about' },
     { name: 'Blog', href: '/blog' },
