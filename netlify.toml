@@ -65,7 +65,257 @@
   status = 301
   force = true
 
-# Old URL patterns (add specific ones from GSC 404 report)
+# ============================================
+# Old Subdomain Redirects (Priority 1)
+# ============================================
+
+# Redirect old go.devaland.com subdomain to contact page
+[[redirects]]
+  from = "https://go.devaland.com/*"
+  to = "https://devaland.com/contact"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://go.devaland.com/*"
+  to = "https://devaland.com/contact"
+  status = 301
+  force = true
+
+# Redirect old marketing.devaland.com subdomain to contact page
+[[redirects]]
+  from = "https://marketing.devaland.com/*"
+  to = "https://devaland.com/contact"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://marketing.devaland.com/*"
+  to = "https://devaland.com/contact"
+  status = 301
+  force = true
+
+# ============================================
+# Multi-Language URL Redirects (Old Site Content)
+# ============================================
+
+# English variants (GB, AU, CA, NZ)
+[[redirects]]
+  from = "/en_gb/*"
+  to = "https://devaland.com/"
+  status = 301
+
+[[redirects]]
+  from = "/en_au/*"
+  to = "https://devaland.com/"
+  status = 301
+
+[[redirects]]
+  from = "/en_ca/*"
+  to = "https://devaland.com/"
+  status = 301
+
+[[redirects]]
+  from = "/en_nz/*"
+  to = "https://devaland.com/"
+  status = 301
+
+[[redirects]]
+  from = "/en/*"
+  to = "https://devaland.com/"
+  status = 301
+
+# European languages
+[[redirects]]
+  from = "/fr/*"
+  to = "https://devaland.com/"
+  status = 301
+
+[[redirects]]
+  from = "/de/*"
+  to = "https://devaland.com/"
+  status = 301
+
+[[redirects]]
+  from = "/es/*"
+  to = "https://devaland.com/"
+  status = 301
+
+[[redirects]]
+  from = "/it/*"
+  to = "https://devaland.com/"
+  status = 301
+
+[[redirects]]
+  from = "/pl/*"
+  to = "https://devaland.com/"
+  status = 301
+
+[[redirects]]
+  from = "/pt/*"
+  to = "https://devaland.com/"
+  status = 301
+
+# Other languages
+[[redirects]]
+  from = "/ar/*"
+  to = "https://devaland.com/"
+  status = 301
+
+[[redirects]]
+  from = "/ja/*"
+  to = "https://devaland.com/"
+  status = 301
+
+[[redirects]]
+  from = "/zh_hk/*"
+  to = "https://devaland.com/"
+  status = 301
+
+[[redirects]]
+  from = "/ca/*"
+  to = "https://devaland.com/"
+  status = 301
+
+# ============================================
+# Old Content Topic Redirects
+# ============================================
+
+# Old luxury travel/private jet content
+[[redirects]]
+  from = "/luxury-travel/*"
+  to = "https://devaland.com/"
+  status = 301
+
+[[redirects]]
+  from = "/private-jet-charters/*"
+  to = "https://devaland.com/"
+  status = 301
+
+[[redirects]]
+  from = "/*private-jet*"
+  to = "https://devaland.com/"
+  status = 301
+
+[[redirects]]
+  from = "/jetcharter"
+  to = "https://devaland.com/"
+  status = 301
+
+# Old VPN review content
+[[redirects]]
+  from = "/NordVPN"
+  to = "https://devaland.com/"
+  status = 301
+
+[[redirects]]
+  from = "/*nordvpn*"
+  to = "https://devaland.com/"
+  status = 301
+
+[[redirects]]
+  from = "/*atlas-vpn*"
+  to = "https://devaland.com/"
+  status = 301
+
+# Old gaming/outdoor/security content
+[[redirects]]
+  from = "/gaming/*"
+  to = "https://devaland.com/"
+  status = 301
+
+[[redirects]]
+  from = "/outdoor-living/*"
+  to = "https://devaland.com/"
+  status = 301
+
+[[redirects]]
+  from = "/*zosi-4k*"
+  to = "https://devaland.com/"
+  status = 301
+
+[[redirects]]
+  from = "/*security-camera*"
+  to = "https://devaland.com/"
+  status = 301
+
+[[redirects]]
+  from = "/*power-station*"
+  to = "https://devaland.com/"
+  status = 301
+
+[[redirects]]
+  from = "/*ecoflow*"
+  to = "https://devaland.com/"
+  status = 301
+
+# Old cryptocurrency content
+[[redirects]]
+  from = "/*bitcoin*"
+  to = "https://devaland.com/"
+  status = 301
+
+[[redirects]]
+  from = "/*cryptocurrency*"
+  to = "https://devaland.com/"
+  status = 301
+
+[[redirects]]
+  from = "/*crypto*"
+  to = "https://devaland.com/"
+  status = 301
+
+# Old tools/calculators
+[[redirects]]
+  from = "/free-online-scientific-calculator"
+  to = "https://devaland.com/"
+  status = 301
+
+[[redirects]]
+  from = "/free-online-percentage-calculator"
+  to = "https://devaland.com/"
+  status = 301
+
+[[redirects]]
+  from = "/free-jpg-to-pdf-conversion-tool"
+  to = "https://devaland.com/"
+  status = 301
+
+[[redirects]]
+  from = "/renewable-energy-directory"
+  to = "https://devaland.com/"
+  status = 301
+
+# Old misc content
+[[redirects]]
+  from = "/intui"
+  to = "https://devaland.com/"
+  status = 301
+
+[[redirects]]
+  from = "/FatStacks-Niche-Site-Profits"
+  to = "https://devaland.com/"
+  status = 301
+
+# ============================================
+# Specific Blog URL Fixes
+# ============================================
+
+# Fix for the mismatched blog URL structure
+[[redirects]]
+  from = "/blog/10-klaviyo-automation-flows-every-e-commerce-store-needs"
+  to = "/blog/best-10-klaviyo-automation-flows-every-ecommerce-store-needs"
+  status = 301
+
+[[redirects]]
+  from = "/blog/klaviyo-automation-flows-ecommerce"
+  to = "/blog/best-10-klaviyo-automation-flows-every-ecommerce-store-needs"
+  status = 301
+
+# ============================================
+# Old Page Structure Redirects
+# ============================================
+
 [[redirects]]
   from = "/klaviyo-services"
   to = "/klaviyo"
@@ -87,8 +337,86 @@
   status = 301
 
 [[redirects]]
+  from = "/terms-and-conditions"
+  to = "/terms"
+  status = 301
+
+[[redirects]]
   from = "/cookie-policy"
   to = "/cookies"
+  status = 301
+
+[[redirects]]
+  from = "/cookies-policy"
+  to = "/cookies"
+  status = 301
+
+# Old page structure
+[[redirects]]
+  from = "/digital-marketing-services"
+  to = "/services"
+  status = 301
+
+[[redirects]]
+  from = "/devaland-marketing-agency-digital-marketing-services"
+  to = "/services"
+  status = 301
+
+[[redirects]]
+  from = "/devaland-marketing-agency-services"
+  to = "/services"
+  status = 301
+
+[[redirects]]
+  from = "/about-us-devaland-marketing-agency"
+  to = "/about"
+  status = 301
+
+[[redirects]]
+  from = "/contact-devaland-digital-marketing-agency"
+  to = "/contact"
+  status = 301
+
+[[redirects]]
+  from = "/business-automation-blog"
+  to = "/blog"
+  status = 301
+
+[[redirects]]
+  from = "/career-opportunities"
+  to = "/about"
+  status = 301
+
+# ============================================
+# Clean up malformed URLs
+# ============================================
+
+# Remove social share parameters
+[[redirects]]
+  from = "/*?share=:network&*"
+  to = "/:splat"
+  status = 301
+
+[[redirects]]
+  from = "/*?share=:network"
+  to = "/:splat"
+  status = 301
+
+# Remove wordfence parameters
+[[redirects]]
+  from = "/*?wordfence_logHuman=*"
+  to = "/:splat"
+  status = 301
+
+# Feed URLs should not exist (no RSS on current site)
+[[redirects]]
+  from = "/*/feed/*"
+  to = "https://devaland.com/"
+  status = 301
+
+[[redirects]]
+  from = "/feed/*"
+  to = "https://devaland.com/"
   status = 301
 
 # SPA redirect - MUST BE LAST
