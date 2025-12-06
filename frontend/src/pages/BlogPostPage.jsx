@@ -5,6 +5,8 @@ import { Badge } from '../components/ui/badge';
 import { Button } from '../components/ui/button';
 import SEO from '../components/SEO';
 import Breadcrumb from '../components/Breadcrumb';
+import VoiceAIAdvantages from '../components/VoiceAIAdvantages';
+import PhoneAICallout from '../components/PhoneAICallout';
 import { blogPosts } from '../data/mock';
 
 const BlogPostPage = () => {
@@ -620,11 +622,65 @@ const BlogPostPage = () => {
                       return html;
                     };
 
-                    const contentHtml = markdownToHtml(post.content);
+                    // Split content by special markers for component injection
+                    const renderContent = () => {
+                      const content = post.content;
+                      
+                      // Check if this is the Voice AI Shopify article (post id 14)
+                      if (post.id === 14) {
+                        const sections = [];
+                        
+                        // Split by the Voice AI Advantage section marker
+                        const advantageMarker = '**The Voice AI Advantage:**';
+                        const phoneMarker = '📞 **Phone AI Sister Agent:**';
+                        
+                        if (content.includes(advantageMarker)) {
+                          const beforeAdvantage = content.substring(0, content.indexOf(advantageMarker));
+                          const afterAdvantage = content.substring(content.indexOf(advantageMarker));
+                          
+                          // Find where the advantage list ends (next ## heading)
+                          const nextHeadingMatch = afterAdvantage.match(/\n\n## /);
+                          const advantageEndIndex = nextHeadingMatch ? nextHeadingMatch.index : 500;
+                          const afterAdvantageList = afterAdvantage.substring(advantageEndIndex);
+                          
+                          sections.push(
+                            <div key="before-advantage" dangerouslySetInnerHTML={{ __html: markdownToHtml(beforeAdvantage) }} />
+                          );
+                          sections.push(<VoiceAIAdvantages key="voice-ai-advantages" />);
+                          
+                          // Now check for Phone AI marker in the remaining content
+                          if (afterAdvantageList.includes(phoneMarker)) {
+                            const beforePhone = afterAdvantageList.substring(0, afterAdvantageList.indexOf(phoneMarker));
+                            const afterPhone = afterAdvantageList.substring(afterAdvantageList.indexOf(phoneMarker));
+                            
+                            // Find where phone section ends (next ### heading)
+                            const nextPhoneHeadingMatch = afterPhone.match(/\n\n### /);
+                            const phoneEndIndex = nextPhoneHeadingMatch ? nextPhoneHeadingMatch.index : 300;
+                            const afterPhoneSection = afterPhone.substring(phoneEndIndex);
+                            
+                            sections.push(
+                              <div key="before-phone" dangerouslySetInnerHTML={{ __html: markdownToHtml(beforePhone) }} />
+                            );
+                            sections.push(<PhoneAICallout key="phone-ai-callout" />);
+                            sections.push(
+                              <div key="after-phone" dangerouslySetInnerHTML={{ __html: markdownToHtml(afterPhoneSection) }} />
+                            );
+                          } else {
+                            sections.push(
+                              <div key="after-advantage" dangerouslySetInnerHTML={{ __html: markdownToHtml(afterAdvantageList) }} />
+                            );
+                          }
+                          
+                          return sections;
+                        }
+                      }
+                      
+                      // Default rendering for other posts
+                      const contentHtml = markdownToHtml(content);
+                      return <div dangerouslySetInnerHTML={{ __html: contentHtml }} />;
+                    };
 
-                    return (
-                      <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
-                    );
+                    return renderContent();
                   })()}
                 </div>
               </div>
