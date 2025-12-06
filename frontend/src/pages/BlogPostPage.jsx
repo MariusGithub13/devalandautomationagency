@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Calendar, Clock, Share2, Linkedin, Facebook, Twitter } from 'lucide-react';
+import { ArrowLeft, Calendar, Clock, Share2, Linkedin, Facebook, Twitter, ChevronDown, ChevronUp } from 'lucide-react';
 import { Badge } from '../components/ui/badge';
 import { Button } from '../components/ui/button';
 import SEO from '../components/SEO';
@@ -11,6 +11,7 @@ import { blogPosts } from '../data/mock';
 
 const BlogPostPage = () => {
   const { slug } = useParams();
+  const [isTocOpen, setIsTocOpen] = useState(false);
   
   // Find the blog post by slug (check explicit slug property first, then fall back to title transformation)
   const post = blogPosts.find(p => 
@@ -503,6 +504,87 @@ const BlogPostPage = () => {
                 />
               </div>
 
+              {/* Table of Contents - Collapsible */}
+              {(post.content.includes('##') || post.content.includes('<h2')) && (() => {
+                const markdownToHtml = (text) => {
+                  if (!text) return '';
+                  return text.replace(/^## (.+)$/gm, (_, m) => {
+                    const id = m.toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, '-');
+                    return `<h2 id="${id}">${m}</h2>`;
+                  }).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n\n/g, '<br/><br/>');
+                };
+
+                const contentHtml = markdownToHtml(post.content);
+                const headings = [];
+                try {
+                  const parser = new DOMParser();
+                  const doc = parser.parseFromString(contentHtml, 'text/html');
+                  const hs = Array.from(doc.querySelectorAll('h2'));
+                  // Show ALL headings, not just first 8
+                  hs.forEach(h => headings.push({ text: h.textContent, id: h.id || h.textContent.toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, '-') }));
+                } catch (e) {
+                  const matches = post.content.match(/## .+/g) || [];
+                  matches.forEach(m => headings.push({ text: m.replace('## ', ''), id: m.replace('## ', '').toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, '-') }));
+                }
+
+                if (headings.length === 0) return null;
+
+                return (
+                  <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 mb-8 border-2 border-blue-200 shadow-lg">
+                    <button
+                      onClick={() => setIsTocOpen(!isTocOpen)}
+                      className="w-full flex items-center justify-between gap-3 mb-0 pb-4 border-b-2 border-blue-200 hover:border-blue-300 transition-colors group"
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg px-3 py-1.5 text-sm font-bold shadow-md">
+                          TOC
+                        </div>
+                        <h3 className="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
+                          Table of Contents
+                        </h3>
+                        <span className="text-xs text-gray-500 bg-white px-2 py-1 rounded-full">
+                          {headings.length} sections
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm text-gray-600 font-medium">
+                          {isTocOpen ? 'Collapse' : 'Expand'}
+                        </span>
+                        {isTocOpen ? (
+                          <ChevronUp className="text-blue-600 transition-transform" size={20} />
+                        ) : (
+                          <ChevronDown className="text-blue-600 transition-transform" size={20} />
+                        )}
+                      </div>
+                    </button>
+                    
+                    {isTocOpen && (
+                      <nav className="space-y-1 mt-4 animate-in slide-in-from-top duration-300">
+                        {headings.map((heading, index) => (
+                          <a
+                            key={index}
+                            href={`#${heading.id}`}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              const element = document.getElementById(heading.id);
+                              if (element) {
+                                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                              }
+                            }}
+                            className="group flex items-start gap-3 text-sm text-gray-700 hover:text-blue-600 transition-all duration-200 rounded-lg px-4 py-3 hover:bg-white hover:shadow-sm border-l-3 border-transparent hover:border-l-4 hover:border-blue-600"
+                          >
+                            <span className="flex-shrink-0 w-6 h-6 bg-white rounded-full flex items-center justify-center text-xs font-semibold text-gray-600 group-hover:bg-blue-600 group-hover:text-white transition-colors shadow-sm">
+                              {index + 1}
+                            </span>
+                            <span className="leading-snug flex-1">{heading.text}</span>
+                          </a>
+                        ))}
+                      </nav>
+                    )}
+                  </div>
+                );
+              })()}
+
               {/* Article Body */}
               <div className="prose prose-lg max-w-none">
                 <style>{`
@@ -751,59 +833,6 @@ const BlogPostPage = () => {
             {/* Sidebar */}
             <div className="lg:col-span-1">
               <div className="sticky top-8">
-                {/* Table of Contents (for long articles) */}
-                {(post.content.includes('##') || post.content.includes('<h2')) && (() => {
-                  const markdownToHtml = (text) => {
-                    if (!text) return '';
-                    return text.replace(/^## (.+)$/gm, (_, m) => {
-                      const id = m.toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, '-');
-                      return `<h2 id="${id}">${m}</h2>`;
-                    }).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n\n/g, '<br/><br/>');
-                  };
-
-                  const contentHtml = markdownToHtml(post.content);
-                  const headings = [];
-                  try {
-                    const parser = new DOMParser();
-                    const doc = parser.parseFromString(contentHtml, 'text/html');
-                    const hs = Array.from(doc.querySelectorAll('h2'));
-                    hs.slice(0, 8).forEach(h => headings.push({ text: h.textContent, id: h.id || h.textContent.toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, '-') }));
-                  } catch (e) {
-                    // fallback to simple regex if DOMParser is unavailable
-                    const matches = post.content.match(/## .+/g) || [];
-                    matches.slice(0, 8).forEach(m => headings.push({ text: m.replace('## ', ''), id: m.replace('## ', '').toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, '-') }));
-                  }
-
-                  if (headings.length === 0) return null;
-
-                  return (
-                    <div className="bg-white rounded-xl p-6 mb-8 border-2 border-blue-200 shadow-lg">
-                      <div className="flex items-center gap-2 mb-5 pb-4 border-b-2 border-blue-100">
-                        <div className="bg-blue-600 text-white rounded-lg px-3 py-1.5 text-sm font-bold">TOC</div>
-                        <h3 className="text-lg font-bold text-gray-900">Table of Contents</h3>
-                      </div>
-                      <nav className="space-y-2">
-                        {headings.map((heading, index) => (
-                          <a
-                            key={index}
-                            href={`#${heading.id}`}
-                            onClick={(e) => {
-                              e.preventDefault();
-                              const element = document.getElementById(heading.id);
-                              if (element) {
-                                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                              }
-                            }}
-                            className="group flex items-start gap-2 text-sm text-gray-700 hover:text-blue-600 transition-all duration-200 rounded-lg px-3 py-2.5 hover:bg-blue-50 border-l-3 border-transparent hover:border-l-4 hover:border-blue-600"
-                          >
-                            <span className="leading-snug flex-1">{heading.text}</span>
-                          </a>
-                        ))}
-                      </nav>
-                    </div>
-                  );
-                })()}
-
                 {/* Related Articles */}
                 <div className="bg-gradient-to-br from-white to-gray-50 border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-300">
                   <div className="flex items-center gap-2 mb-5">
