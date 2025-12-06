@@ -760,6 +760,30 @@ const HomePage = () => {
                 </CardContent>
               </Card>
             </Link>
+
+            {/* Featured Article 6: Shopify Brands */}
+            <Link to="/blog/voice-ai-shopify-brands-customer-service-guide" className="group">
+                <Card className="bg-white/10 backdrop-blur-sm border-2 border-white/20 hover:border-blue-400 hover:shadow-2xl transition-all duration-300 h-full">
+                <CardContent className="p-6">
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="w-12 h-12 bg-indigo-500 rounded-lg flex items-center justify-center group-hover:bg-indigo-400 transition-colors duration-300">
+                      <Zap className="text-white" size={24} />
+                    </div>
+                    <Badge className="bg-yellow-500 text-gray-900">New</Badge>
+                  </div>
+                  <h3 className="text-xl font-bold mb-3 group-hover:text-blue-300 transition-colors duration-200">
+                    Voice AI for Shopify Brands
+                  </h3>
+                  <p className="text-blue-100 mb-4 line-clamp-3">
+                    Meet Amy at Shea Terra Organics: 29+ languages, 24/7 customer service, order tracking, product recommendations. Live demo available.
+                  </p>
+                  <div className="flex items-center text-blue-300 font-medium group-hover:text-blue-200">
+                    <span>Shopify Guide</span>
+                    <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
           </div>
 
           <div className="text-center">

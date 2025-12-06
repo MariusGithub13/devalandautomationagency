@@ -54,6 +54,7 @@ const BLOG_POSTS = [
   "/blog/voice-ai-vs-call-centers-cost-benefit-analysis",
   "/blog/voice-ai-restaurants-phone-orders-reservations-guide",
   "/blog/voice-ai-healthcare-hipaa-patient-scheduling-guide",
+  "/blog/voice-ai-shopify-brands-customer-service-guide",
 ];
 
 // Optionally find static HTML blog posts under public/blog/*.html
