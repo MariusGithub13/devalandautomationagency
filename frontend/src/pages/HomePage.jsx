@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle, Users, Award, TrendingUp, ExternalLink, Sparkles, Zap, Brain, Mail, Target, BarChart3 } from 'lucide-react';
+import { ArrowRight, CheckCircle, Users, Award, TrendingUp, ExternalLink, Sparkles, Zap, Brain, Mail, Target, BarChart3, Rocket, Settings, Bot, Briefcase } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
@@ -309,6 +309,24 @@ const HomePage = () => {
 
               const relatedServices = getRelatedServices(service.id);
 
+              // Icon mapping for each service
+              const getServiceIcon = (serviceId) => {
+                switch(serviceId) {
+                  case 1: // Sales & Marketing Automation
+                    return { Icon: Rocket, gradient: 'from-blue-500 to-blue-600', bgHover: 'group-hover:from-blue-600 group-hover:to-blue-700' };
+                  case 2: // Operations & HR Automation
+                    return { Icon: Briefcase, gradient: 'from-green-500 to-green-600', bgHover: 'group-hover:from-green-600 group-hover:to-green-700' };
+                  case 3: // RPA Development
+                    return { Icon: Settings, gradient: 'from-purple-500 to-purple-600', bgHover: 'group-hover:from-purple-600 group-hover:to-purple-700' };
+                  case 4: // Voice AI & Chatbot
+                    return { Icon: Bot, gradient: 'from-orange-500 to-orange-600', bgHover: 'group-hover:from-orange-600 group-hover:to-orange-700' };
+                  default:
+                    return { Icon: Target, gradient: 'from-gray-500 to-gray-600', bgHover: 'group-hover:from-gray-600 group-hover:to-gray-700' };
+                }
+              };
+
+              const { Icon, gradient, bgHover } = getServiceIcon(service.id);
+
               return (
                 <Card key={service.id} className={`hover-lift group animate-fade-in-up delay-${index * 100} h-full`}>
                   <CardContent className="p-6 h-full flex flex-col">
@@ -316,20 +334,15 @@ const HomePage = () => {
                       to={`/services#${service.title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}`}
                       className="block"
                     >
-                      <div className="relative overflow-hidden rounded-lg mb-4">
-                        <img 
-                          src={service.image} 
-                          alt={service.title}
-                          className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                          loading="lazy"
-                          decoding="async"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                      <div className="flex items-center justify-center mb-6">
+                        <div className={`w-20 h-20 bg-gradient-to-br ${gradient} ${bgHover} rounded-2xl flex items-center justify-center shadow-lg transition-all duration-300`}>
+                          <Icon className="w-10 h-10 text-white" />
+                        </div>
                       </div>
-                      <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-200">
+                      <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-200 text-center">ext-center">
                         {service.title}
                       </h3>
-                      <p className="text-gray-600 mb-4 line-clamp-3">
+                      <p className="text-gray-600 mb-4 line-clamp-3 text-center">
                         {service.description}
                       </p>
                     </Link>
