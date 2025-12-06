@@ -946,7 +946,7 @@ const KlaviyoPage = () => {
                   <Badge variant="outline" className="text-xs">Blog Post</Badge>
                 </div>
                 <CardTitle className="text-lg group-hover:text-purple-600 transition-colors">
-                  <Link to="/blog/best-10-klaviyo-automation-flows-every-e-commerce-store-needs" className="hover:underline">
+                  <Link to="/blog/best-10-klaviyo-automation-flows-every-ecommerce-store-needs" className="hover:underline">
                     Best 10 Klaviyo Automation Flows
                   </Link>
                 </CardTitle>
@@ -956,7 +956,7 @@ const KlaviyoPage = () => {
                   In-depth guide covering welcome series, abandoned cart, post-purchase, win-back, and seasonal flows.
                 </p>
                 <Link 
-                  to="/blog/best-10-klaviyo-automation-flows-every-e-commerce-store-needs"
+                  to="/blog/best-10-klaviyo-automation-flows-every-ecommerce-store-needs"
                   className="text-purple-600 hover:text-purple-700 font-semibold text-sm inline-flex items-center gap-1"
                 >
                   Read Article <ArrowRight size={16} />

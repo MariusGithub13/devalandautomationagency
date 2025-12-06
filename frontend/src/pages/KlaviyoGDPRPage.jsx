@@ -543,8 +543,8 @@ const KlaviyoGDPRPage = () => {
               <Card className="hover:shadow-lg transition-shadow">
                 <CardContent className="p-6">
                   <h3 className="text-lg font-semibold mb-2">
-                    <Link to="/blog/10-klaviyo-automation-flows-every-e-commerce-store-needs" className="text-blue-600 hover:text-blue-700">
-                      Best Klaviyo Automation Flows →
+                    <Link to="/blog/best-10-klaviyo-automation-flows-every-ecommerce-store-needs" className="text-blue-600 hover:text-blue-700">
+                      Best 10 Klaviyo Automation Flows →
                     </Link>
                   </h3>
                   <p className="text-gray-600 text-sm">

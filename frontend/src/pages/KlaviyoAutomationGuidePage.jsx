@@ -147,7 +147,7 @@ const KlaviyoAutomationGuidePage = () => {
                 size="lg"
                 className="border-white text-white hover:bg-white/10"
               >
-                <Link to="/blog/best-10-klaviyo-automation-flows-every-e-commerce-store-needs">Read Flow Guide</Link>
+                <Link to="/blog/best-10-klaviyo-automation-flows-every-ecommerce-store-needs">Read Flow Guide</Link>
               </Button>
             </div>
           </div>

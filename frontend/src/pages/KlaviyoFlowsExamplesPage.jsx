@@ -655,7 +655,7 @@ const KlaviyoFlowsExamplesPage = () => {
               <Card className="hover:shadow-lg transition-shadow">
                 <CardContent className="p-6">
                   <h3 className="text-lg font-semibold mb-2">
-                    <Link to="/blog/10-klaviyo-automation-flows-every-e-commerce-store-needs" className="text-blue-600 hover:text-blue-700">
+                    <Link to="/blog/best-10-klaviyo-automation-flows-every-ecommerce-store-needs" className="text-blue-600 hover:text-blue-700">
                       10 Klaviyo Automation Flows (Detailed Blog Post) →
                     </Link>
                   </h3>

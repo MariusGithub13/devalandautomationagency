@@ -625,7 +625,7 @@ const KlaviyoSegmentationPage = () => {
               size="lg"
               className="border-white text-white hover:bg-white/10"
             >
-              <Link to="/blog/email-segmentation-strategies-that-actually-work">
+              <Link to="/blog/best-email-segmentation-strategies-that-actually-work">
                 Read Full Segmentation Guide
               </Link>
             </Button>
