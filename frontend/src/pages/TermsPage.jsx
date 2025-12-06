@@ -91,17 +91,140 @@ const TermsPage = () => {
               We shall not be held responsible for any content that appears on your Website. You agree to protect and defend us against all claims that are raised on your Website. No link(s) should appear on any Website that may be interpreted as libelous, obscene, or criminal, or which infringes, otherwise violates, or advocates the infringement or other violation of, any third party rights.
             </p>
 
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Disclaimer</h2>
-            <p className="text-gray-700 leading-relaxed mb-4">To the maximum extent permitted by applicable law, we exclude all representations, warranties, and conditions relating to our website and the use of this website. Nothing in this disclaimer will:</p>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Service Agreements</h2>
+            <p className="text-gray-700 leading-relaxed mb-6">
+              When you engage Devaland for automation services, you agree to the following terms:
+            </p>
+
+            <h3 className="text-xl font-semibold text-gray-900 mb-3">Project Scope and Deliverables</h3>
+            <p className="text-gray-700 leading-relaxed mb-4">
+              All projects begin with a detailed scope of work document outlining deliverables, timelines, and acceptance criteria. Changes to the agreed scope may result in additional fees and timeline adjustments. We reserve the right to refuse service modifications that fall outside our expertise or ethical guidelines.
+            </p>
+
+            <h3 className="text-xl font-semibold text-gray-900 mb-3">Payment Terms</h3>
+            <p className="text-gray-700 leading-relaxed mb-4">
+              Unless otherwise specified in your project agreement:
+            </p>
+            <ul className="list-disc pl-6 text-gray-700 mb-6">
+              <li>A 50% deposit is required to initiate project work</li>
+              <li>The remaining 50% is due upon project completion and client approval</li>
+              <li>Monthly retainer services are billed at the beginning of each month</li>
+              <li>Late payments may result in service suspension and interest charges of 1.5% per month</li>
+              <li>All fees are quoted in EUR unless otherwise specified</li>
+            </ul>
+
+            <h3 className="text-xl font-semibold text-gray-900 mb-3">Client Responsibilities</h3>
+            <p className="text-gray-700 leading-relaxed mb-4">
+              To ensure successful project delivery, clients agree to:
+            </p>
+            <ul className="list-disc pl-6 text-gray-700 mb-6">
+              <li>Provide timely access to necessary platforms, accounts, and information</li>
+              <li>Respond to requests for feedback and approvals within agreed timeframes</li>
+              <li>Ensure all provided content is original or properly licensed</li>
+              <li>Maintain backup copies of their data</li>
+              <li>Not request services that violate applicable laws or third-party terms of service</li>
+            </ul>
+
+            <h3 className="text-xl font-semibold text-gray-900 mb-3">Intellectual Property Rights</h3>
+            <p className="text-gray-700 leading-relaxed mb-6">
+              Upon full payment, clients receive ownership of custom deliverables created specifically for their project. However, Devaland retains rights to:
+            </p>
             <ul className="list-disc pl-6 text-gray-700 mb-8">
-              <li>Limit or exclude our or your liability for death or personal injury</li>
-              <li>Limit or exclude our or your liability for fraud or fraudulent misrepresentation</li>
-              <li>Limit any of our or your liabilities in any way that is not permitted under applicable law</li>
-              <li>Exclude any of our or your liabilities that may not be excluded under applicable law</li>
+              <li>Proprietary tools, templates, and methodologies used in service delivery</li>
+              <li>General knowledge and techniques developed during the project</li>
+              <li>Use the project as a case study (with client's written permission)</li>
+              <li>Reusable code components and frameworks</li>
+            </ul>
+
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Refund and Cancellation Policy</h2>
+            
+            <h3 className="text-xl font-semibold text-gray-900 mb-3">Refund Eligibility</h3>
+            <p className="text-gray-700 leading-relaxed mb-4">
+              We stand behind the quality of our work. You may be eligible for a refund if:
+            </p>
+            <ul className="list-disc pl-6 text-gray-700 mb-6">
+              <li>We fail to deliver agreed-upon services within the specified timeline (excluding delays caused by client)</li>
+              <li>Delivered work significantly deviates from approved specifications</li>
+              <li>Technical implementation fails to function as demonstrated in the proposal</li>
+              <li>We breach material terms of the service agreement</li>
+            </ul>
+
+            <h3 className="text-xl font-semibold text-gray-900 mb-3">Non-Refundable Items</h3>
+            <ul className="list-disc pl-6 text-gray-700 mb-6">
+              <li>Initial consultation fees and discovery phase work</li>
+              <li>Third-party software licenses or subscriptions purchased on your behalf</li>
+              <li>Completed work that has been approved and accepted</li>
+              <li>Services already rendered, even if the project is incomplete</li>
+            </ul>
+
+            <h3 className="text-xl font-semibold text-gray-900 mb-3">Cancellation Terms</h3>
+            <p className="text-gray-700 leading-relaxed mb-6">
+              Either party may terminate the agreement with written notice:
+            </p>
+            <ul className="list-disc pl-6 text-gray-700 mb-8">
+              <li><strong>Client Cancellation:</strong> You may cancel within 14 days of signing for a full refund (minus work already completed). After 14 days, you are responsible for payment for all completed work.</li>
+              <li><strong>Devaland Cancellation:</strong> We may terminate the agreement if client breaches terms, fails to provide necessary access/information, or engages in abusive behavior toward our team.</li>
+              <li><strong>Monthly Services:</strong> Either party may cancel with 30 days written notice. No refunds for partial months.</li>
+            </ul>
+
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Limitation of Liability</h2>
+            <p className="text-gray-700 leading-relaxed mb-4">
+              To the maximum extent permitted by applicable law:
+            </p>
+            <ul className="list-disc pl-6 text-gray-700 mb-6">
+              <li>Our total liability for any claim shall not exceed the amount paid by you for the services in the 12 months preceding the claim</li>
+              <li>We are not liable for indirect, incidental, special, consequential, or punitive damages</li>
+              <li>We are not responsible for losses resulting from client's failure to maintain data backups</li>
+              <li>We are not liable for third-party platform changes, outages, or policy violations</li>
+              <li>We do not guarantee specific business results, revenue increases, or ROI (unless explicitly stated in writing)</li>
+            </ul>
+
+            <p className="text-gray-700 leading-relaxed mb-4">Nothing in these terms will:</p>
+            <ul className="list-disc pl-6 text-gray-700 mb-8">
+              <li>Limit or exclude our liability for death or personal injury caused by negligence</li>
+              <li>Limit or exclude our liability for fraud or fraudulent misrepresentation</li>
+              <li>Limit any liability in a way that is not permitted under applicable law</li>
+              <li>Exclude any liability that may not be excluded under applicable law</li>
+            </ul>
+
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Warranty and Service Guarantees</h2>
+            <p className="text-gray-700 leading-relaxed mb-4">
+              We warrant that:
+            </p>
+            <ul className="list-disc pl-6 text-gray-700 mb-6">
+              <li>Services will be performed with reasonable skill and care</li>
+              <li>We have the right and authority to provide the agreed services</li>
+              <li>Delivered work will be free from material defects for 30 days post-delivery</li>
+              <li>We will fix bugs and errors in our work at no additional charge within the warranty period</li>
             </ul>
 
             <p className="text-gray-700 leading-relaxed mb-8">
-              As long as the website and the information and services on the website are provided free of charge, we will not be liable for any loss or damage of any nature.
+              This warranty does not cover issues arising from: client modifications to our work, third-party platform updates, misuse of implemented systems, or failure to follow our maintenance recommendations.
+            </p>
+
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Dispute Resolution</h2>
+            <p className="text-gray-700 leading-relaxed mb-6">
+              In the event of any dispute, controversy, or claim arising out of or relating to these Terms:
+            </p>
+            <ol className="list-decimal pl-6 text-gray-700 mb-8">
+              <li className="mb-2"><strong>Negotiation:</strong> The parties shall first attempt to resolve the dispute through good-faith negotiations within 30 days.</li>
+              <li className="mb-2"><strong>Mediation:</strong> If negotiation fails, the parties agree to mediation before pursuing legal action.</li>
+              <li className="mb-2"><strong>Jurisdiction:</strong> These Terms shall be governed by and construed in accordance with the laws of Romania. Any legal proceedings shall be subject to the exclusive jurisdiction of the courts of Hunedoara County, Romania.</li>
+            </ol>
+
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Confidentiality</h2>
+            <p className="text-gray-700 leading-relaxed mb-8">
+              Both parties agree to keep confidential any proprietary information shared during the course of the business relationship. This obligation survives termination of services and continues for 3 years thereafter. Confidential information does not include information that is publicly available, independently developed, or required to be disclosed by law.
+            </p>
+
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Force Majeure</h2>
+            <p className="text-gray-700 leading-relaxed mb-8">
+              Neither party shall be liable for failure to perform obligations due to events beyond reasonable control, including but not limited to: natural disasters, war, terrorism, pandemic, labor disputes, government actions, or interruption of internet/telecommunications services. In such events, the affected party will notify the other promptly and make reasonable efforts to resume performance.
+            </p>
+
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Severability</h2>
+            <p className="text-gray-700 leading-relaxed mb-8">
+              If any provision of these Terms is found to be unenforceable or invalid, that provision shall be limited or eliminated to the minimum extent necessary so that these Terms shall otherwise remain in full force and effect.
             </p>
 
             <h2 className="text-2xl font-bold text-gray-900 mb-4">Contact Information</h2>

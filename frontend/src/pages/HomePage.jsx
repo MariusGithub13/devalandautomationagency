@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle, Award, Sparkles, Zap, Brain, Mail, Rocket, Settings, Bot, Briefcase, TrendingUp, ExternalLink, Target, BarChart3, Users } from 'lucide-react';
+import { ArrowRight, CheckCircle, Award, Sparkles, Zap, Brain, Mail, Rocket, Settings, Bot, Briefcase, TrendingUp, ExternalLink, Target, BarChart3, Users, Clock } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
@@ -846,6 +846,122 @@ const HomePage = () => {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Latest from Blog Section */}
+      <section className="section-padding bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <Badge className="mb-4 bg-purple-600 text-white">Latest Insights</Badge>
+            <h2 className="text-3xl md:text-4xl font-display text-gray-900 mb-4">
+              Latest from Our Blog
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Expert insights on Klaviyo automation, Voice AI implementation, and business growth strategies
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 mb-8">
+            {/* Latest Blog Post 1 - Klaviyo Automation */}
+            <Link to="/blog/best-10-klaviyo-automation-flows-every-ecommerce-store-needs" className="group">
+              <Card className="h-full hover:shadow-xl transition-all duration-300">
+                <CardContent className="p-0">
+                  <div className="aspect-video bg-gradient-to-br from-purple-600 to-blue-600 relative overflow-hidden">
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <Mail className="text-white opacity-50" size={64} />
+                    </div>
+                    <Badge className="absolute top-4 left-4 bg-yellow-500 text-gray-900">Popular</Badge>
+                  </div>
+                  <div className="p-6">
+                    <div className="flex items-center text-sm text-gray-500 mb-3">
+                      <Clock size={16} className="mr-2" />
+                      <span>25 min read</span>
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-purple-600 transition-colors">
+                      Best 10 Klaviyo Automation Flows Every E-commerce Store Needs
+                    </h3>
+                    <p className="text-gray-600 mb-4 line-clamp-3">
+                      Complete guide to Klaviyo flows including abandoned cart, welcome series, and win-back campaigns. Increase revenue by 320% with proven automation.
+                    </p>
+                    <div className="flex items-center text-purple-600 font-medium group-hover:text-purple-700">
+                      <span>Read Article</span>
+                      <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+
+            {/* Latest Blog Post 2 - Voice AI */}
+            <Link to="/blog/voice-ai-shopify-brands-customer-service-guide" className="group">
+              <Card className="h-full hover:shadow-xl transition-all duration-300">
+                <CardContent className="p-0">
+                  <div className="aspect-video bg-gradient-to-br from-blue-600 to-indigo-600 relative overflow-hidden">
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <Bot className="text-white opacity-50" size={64} />
+                    </div>
+                    <Badge className="absolute top-4 left-4 bg-green-500 text-white">New</Badge>
+                  </div>
+                  <div className="p-6">
+                    <div className="flex items-center text-sm text-gray-500 mb-3">
+                      <Clock size={16} className="mr-2" />
+                      <span>20 min read</span>
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
+                      Voice AI for Shopify Brands: Complete Customer Service Automation
+                    </h3>
+                    <p className="text-gray-600 mb-4 line-clamp-3">
+                      Meet Amy at Shea Terra Organics: 29+ languages, 24/7 customer service, order tracking, product recommendations. Live demo available.
+                    </p>
+                    <div className="flex items-center text-blue-600 font-medium group-hover:text-blue-700">
+                      <span>Read Guide</span>
+                      <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+
+            {/* Latest Blog Post 3 - Implementation */}
+            <Link to="/blog/voice-ai-implementation-real-business-results-roi-analysis-technical-guide" className="group">
+              <Card className="h-full hover:shadow-xl transition-all duration-300">
+                <CardContent className="p-0">
+                  <div className="aspect-video bg-gradient-to-br from-green-600 to-teal-600 relative overflow-hidden">
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <BarChart3 className="text-white opacity-50" size={64} />
+                    </div>
+                    <Badge className="absolute top-4 left-4 bg-orange-500 text-white">Trending</Badge>
+                  </div>
+                  <div className="p-6">
+                    <div className="flex items-center text-sm text-gray-500 mb-3">
+                      <Clock size={16} className="mr-2" />
+                      <span>18 min read</span>
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-green-600 transition-colors">
+                      Voice AI Implementation: Real Results, ROI & Technical Guide
+                    </h3>
+                    <p className="text-gray-600 mb-4 line-clamp-3">
+                      Real business results from Voice AI implementations. Complete ROI analysis, technical architecture, and step-by-step implementation guide.
+                    </p>
+                    <div className="flex items-center text-green-600 font-medium group-hover:text-green-700">
+                      <span>Read Analysis</span>
+                      <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+          </div>
+
+          <div className="text-center">
+            <Button asChild variant="outline" size="lg" className="group">
+              <Link to="/blog" className="inline-flex items-center">
+                <span>View All Articles</span>
+                <ArrowRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </Button>
           </div>
         </div>
       </section>

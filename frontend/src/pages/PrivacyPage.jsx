@@ -70,23 +70,79 @@ const PrivacyPage = () => {
               You can visit the website without telling us who you are or revealing any information, by which someone could identify you as a specific, identifiable individual. If, however, you wish to use some of the website's features, or you wish to receive our newsletter or provide other details by filling out a form, you may provide personal data to us, such as your email, first name, last name, city of residence, organization, telephone number.
             </p>
 
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Your Rights</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Your Rights Under GDPR</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
               If you are a European resident, you have the following rights related to your data:
             </p>
             <ul className="list-disc pl-6 text-gray-700 mb-6">
-              <li>The right to be informed</li>
-              <li>The right of access</li>
-              <li>The right to rectification</li>
-              <li>The right to erasure</li>
-              <li>The right to restrict processing</li>
-              <li>The right to data portability</li>
-              <li>The right to object</li>
-              <li>Rights about automated decision-making and profiling</li>
+              <li><strong>The right to be informed:</strong> You have the right to know what data we collect and how we use it.</li>
+              <li><strong>The right of access:</strong> You can request a copy of all personal data we hold about you.</li>
+              <li><strong>The right to rectification:</strong> You can ask us to correct inaccurate or incomplete data.</li>
+              <li><strong>The right to erasure:</strong> Also known as "the right to be forgotten," you can request deletion of your personal data.</li>
+              <li><strong>The right to restrict processing:</strong> You can request that we limit how we use your data.</li>
+              <li><strong>The right to data portability:</strong> You can request your data in a structured, commonly used format.</li>
+              <li><strong>The right to object:</strong> You can object to certain types of processing, including direct marketing.</li>
+              <li><strong>Rights about automated decision-making and profiling:</strong> You can request human review of automated decisions.</li>
             </ul>
 
             <p className="text-gray-700 leading-relaxed mb-8">
-              If you would like to exercise this right, please contact us through the contact information below.
+              To exercise any of these rights, please contact us using the information provided at the end of this policy. We will respond to your request within 30 days as required by GDPR.
+            </p>
+
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Data Retention</h2>
+            <p className="text-gray-700 leading-relaxed mb-6">
+              We retain your personal data only for as long as necessary to fulfill the purposes outlined in this Privacy Policy, unless a longer retention period is required or permitted by law. Specifically:
+            </p>
+            <ul className="list-disc pl-6 text-gray-700 mb-8">
+              <li><strong>Contact Form Data:</strong> Retained for up to 3 years to maintain business records and fulfill our contractual obligations.</li>
+              <li><strong>Analytics Data:</strong> Anonymized and aggregated data may be retained indefinitely for statistical purposes.</li>
+              <li><strong>Marketing Consent Records:</strong> Retained for 7 years to comply with legal requirements and demonstrate GDPR compliance.</li>
+              <li><strong>Communication Records:</strong> Email correspondence and chat logs retained for 2 years for customer service purposes.</li>
+            </ul>
+
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">International Data Transfers</h2>
+            <p className="text-gray-700 leading-relaxed mb-6">
+              Your information may be transferred to and maintained on computers located outside of your state, province, country, or other governmental jurisdiction where data protection laws may differ. If you are located outside Romania and choose to provide information to us, please note that we transfer data, including personal data, to Romania and process it there.
+            </p>
+            <p className="text-gray-700 leading-relaxed mb-8">
+              When we transfer personal data outside the European Economic Area (EEA), we ensure appropriate safeguards are in place, such as Standard Contractual Clauses approved by the European Commission or ensuring the recipient is Privacy Shield certified.
+            </p>
+
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Data Processing Activities</h2>
+            <p className="text-gray-700 leading-relaxed mb-4">
+              We process your personal data for the following specific purposes:
+            </p>
+            <div className="space-y-4 mb-8">
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <h4 className="font-semibold text-gray-900 mb-2">Service Delivery</h4>
+                <p className="text-gray-700 text-sm"><strong>Legal Basis:</strong> Contract performance</p>
+                <p className="text-gray-700 text-sm"><strong>Purpose:</strong> To provide automation services, respond to inquiries, and manage client relationships.</p>
+                <p className="text-gray-700 text-sm"><strong>Data Categories:</strong> Name, email, phone number, company information, project details.</p>
+              </div>
+
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <h4 className="font-semibold text-gray-900 mb-2">Website Analytics</h4>
+                <p className="text-gray-700 text-sm"><strong>Legal Basis:</strong> Legitimate interest</p>
+                <p className="text-gray-700 text-sm"><strong>Purpose:</strong> To understand user behavior, improve website performance, and optimize user experience.</p>
+                <p className="text-gray-700 text-sm"><strong>Data Categories:</strong> IP address, browser type, pages visited, time on site, referring URLs.</p>
+              </div>
+
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <h4 className="font-semibold text-gray-900 mb-2">Marketing Communications</h4>
+                <p className="text-gray-700 text-sm"><strong>Legal Basis:</strong> Consent</p>
+                <p className="text-gray-700 text-sm"><strong>Purpose:</strong> To send newsletters, promotional materials, and relevant product updates (only with your explicit consent).</p>
+                <p className="text-gray-700 text-sm"><strong>Data Categories:</strong> Email address, name, communication preferences.</p>
+              </div>
+            </div>
+
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Children's Privacy</h2>
+            <p className="text-gray-700 leading-relaxed mb-8">
+              Our services are not directed to individuals under the age of 16. We do not knowingly collect personal data from children. If you are a parent or guardian and believe your child has provided us with personal data, please contact us immediately. If we become aware that we have collected personal data from children without verification of parental consent, we will take steps to remove that information from our servers.
+            </p>
+
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Changes to This Privacy Policy</h2>
+            <p className="text-gray-700 leading-relaxed mb-8">
+              We reserve the right to update this Privacy Policy at any time. When we do, we will revise the "Last updated" date at the top of this page. We encourage you to periodically review this Privacy Policy to stay informed about how we protect your information. For significant changes, we will notify you via email (if you have provided your email address) or through a prominent notice on our website.
             </p>
 
             <h2 className="text-2xl font-bold text-gray-900 mb-4">Links to Other Websites</h2>

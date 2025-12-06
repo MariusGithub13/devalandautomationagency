@@ -542,6 +542,57 @@ const ContactPage = () => {
               </Card>
             </div>
           </div>
+
+          {/* FAQ Section */}
+          <div className="max-w-4xl mx-auto mt-16">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-display text-gray-900 mb-4">Frequently Asked Questions</h2>
+              <p className="text-gray-600">Get answers to common questions about our automation services</p>
+            </div>
+            <div className="grid gap-6">
+              <Card className="hover-lift">
+                <CardContent className="p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">How long does it take to implement automation solutions?</h3>
+                  <p className="text-gray-600">Implementation timelines vary based on project complexity. Simple Klaviyo automation flows can be set up within 1-2 weeks, while comprehensive Voice AI chatbot integrations typically take 3-4 weeks. We provide a detailed timeline during your initial consultation and keep you updated throughout the process.</p>
+                </CardContent>
+              </Card>
+
+              <Card className="hover-lift">
+                <CardContent className="p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">What is your pricing structure?</h3>
+                  <p className="text-gray-600">We offer flexible pricing based on your specific needs and project scope. Our Klaviyo services start from €500/month for basic automation setups, while Voice AI chatbots begin at €1,200 for initial implementation plus monthly maintenance. Every project includes a free consultation where we provide a detailed quote with ROI projections.</p>
+                </CardContent>
+              </Card>
+
+              <Card className="hover-lift">
+                <CardContent className="p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Do you provide ongoing support after implementation?</h3>
+                  <p className="text-gray-600">Yes! All our packages include comprehensive post-implementation support. We offer 24/7 monitoring, regular optimization updates, performance reporting, and dedicated account management. Our goal is not just to implement solutions but to ensure they continue delivering results as your business grows.</p>
+                </CardContent>
+              </Card>
+
+              <Card className="hover-lift">
+                <CardContent className="p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Can you integrate with our existing systems?</h3>
+                  <p className="text-gray-600">Absolutely! We specialize in seamless integrations with popular platforms like Shopify, WooCommerce, Magento, HubSpot, Salesforce, and many others. Our team has extensive experience working with various APIs and can create custom integrations for proprietary systems. During the discovery phase, we audit your current tech stack to ensure smooth integration.</p>
+                </CardContent>
+              </Card>
+
+              <Card className="hover-lift">
+                <CardContent className="p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">What makes Devaland different from other automation agencies?</h3>
+                  <p className="text-gray-600">Our approach combines technical expertise with business strategy. Unlike agencies that just implement tools, we focus on understanding your business goals and crafting custom solutions that deliver measurable ROI. We're based in Europe (Romania), offering competitive pricing without compromising on quality. Plus, our guaranteed ROI policy means you only pay if we deliver results.</p>
+                </CardContent>
+              </Card>
+
+              <Card className="hover-lift">
+                <CardContent className="p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Do you work with businesses outside Europe?</h3>
+                  <p className="text-gray-600">Yes! While we're based in Romania, we serve clients globally. We've successfully delivered automation projects for businesses in the US, UK, Australia, and across Europe. We work in multiple time zones and ensure seamless communication through scheduled calls, project management tools, and regular status updates. All our services are delivered remotely with the same quality standards regardless of location.</p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
         </div>
       </section>
     </div>

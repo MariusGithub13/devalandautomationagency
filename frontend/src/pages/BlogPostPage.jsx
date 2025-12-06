@@ -805,25 +805,51 @@ const BlogPostPage = () => {
                 })()}
 
                 {/* Related Articles */}
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <h3 className="font-semibold text-gray-900 mb-4">Related Articles</h3>
-                  <div className="space-y-4">
+                <div className="bg-gradient-to-br from-white to-gray-50 border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-300">
+                  <div className="flex items-center gap-2 mb-5">
+                    <div className="w-1 h-6 bg-gradient-to-b from-blue-600 to-purple-600 rounded-full"></div>
+                    <h3 className="font-bold text-gray-900 text-lg">Related Articles</h3>
+                  </div>
+                  <div className="space-y-3">
                     {blogPosts
                       .filter(p => p.id !== post.id && p.category === post.category)
                       .slice(0, 3)
-                      .map(relatedPost => (
+                      .map((relatedPost, index) => (
                         <Link
                           key={relatedPost.id}
                           to={`/blog/${relatedPost.title.toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, '-')}`}
-                          className="block group"
+                          className="block group bg-white border border-gray-100 rounded-lg p-4 hover:border-blue-300 hover:shadow-md transition-all duration-300 hover:-translate-y-1"
                         >
-                          <h4 className="text-sm font-medium text-gray-900 group-hover:text-blue-600 line-clamp-2 mb-1">
-                            {relatedPost.title}
-                          </h4>
-                          <p className="text-xs text-gray-500">{relatedPost.readTime}</p>
+                          <div className="flex items-start gap-3">
+                            <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-blue-100 to-purple-100 rounded-lg flex items-center justify-center text-blue-600 font-semibold text-sm group-hover:from-blue-600 group-hover:to-purple-600 group-hover:text-white transition-all duration-300">
+                              {index + 1}
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <h4 className="text-sm font-semibold text-gray-900 group-hover:text-blue-600 line-clamp-2 mb-2 transition-colors duration-300">
+                                {relatedPost.title}
+                              </h4>
+                              <div className="flex items-center gap-3 text-xs text-gray-500">
+                                <span className="flex items-center gap-1">
+                                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                  </svg>
+                                  {relatedPost.readTime}
+                                </span>
+                                <span className="flex items-center gap-1 group-hover:text-blue-600 transition-colors duration-300">
+                                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                  </svg>
+                                  Read more
+                                </span>
+                              </div>
+                            </div>
+                          </div>
                         </Link>
                       ))}
                   </div>
+                  {blogPosts.filter(p => p.id !== post.id && p.category === post.category).length === 0 && (
+                    <p className="text-sm text-gray-500 italic text-center py-4">No related articles found in this category.</p>
+                  )}
                 </div>
 
                 {/* CTA */}
