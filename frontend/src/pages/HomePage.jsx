@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle, Users, Award, TrendingUp, ExternalLink, Sparkles, Zap, Brain, Mail, Target, BarChart3, Rocket, Settings, Bot, Briefcase } from 'lucide-react';
+import { ArrowRight, CheckCircle, Award, Sparkles, Zap, Brain, Mail, Rocket, Settings, Bot, Briefcase, TrendingUp, ExternalLink, Target, BarChart3, Users } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
@@ -10,6 +10,26 @@ import { companyData, heroImages, services, caseStudies, awards } from '../data/
 import robotLadyImage from '../assets/Devaland-robot-lady.jpeg';
 
 const HomePage = () => {
+  // Optimized service icon and related services mapping
+  const serviceConfig = {
+    1: { // Sales & Marketing
+      icon: Rocket,
+      gradient: 'from-blue-500 to-blue-600'
+    },
+    2: { // Operations & HR
+      icon: Briefcase,
+      gradient: 'from-green-500 to-green-600'
+    },
+    3: { // RPA Development
+      icon: Settings,
+      gradient: 'from-purple-500 to-purple-600'
+    },
+    4: { // Voice AI & Chatbot
+      icon: Bot,
+      gradient: 'from-orange-500 to-orange-600'
+    }
+  };
+
   // Structured data for homepage
   const homeSchema = {
     "@context": "https://schema.org",
@@ -110,18 +130,6 @@ const HomePage = () => {
                   <Link to="/case-studies">View Success Stories</Link>
                 </Button>
               </div>
-
-              {/* Trust Indicators */}
-              <div className="flex items-center space-x-8 text-white/80">
-                <div className="flex items-center space-x-2">
-                  <CheckCircle size={20} className="text-green-400" />
-                  <span className="font-medium">Enterprise Ready</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Award size={20} className="text-yellow-400" />
-                  <span className="font-medium">Certified Partners</span>
-                </div>
-              </div>
             </div>
 
             {/* Stats Card */}
@@ -188,12 +196,11 @@ const HomePage = () => {
       </section>
 
       {/* AI-Powered Innovation Section with Robot Lady */}
-      <section className="relative py-20 overflow-hidden bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900">
+      <section className="relative py-20 overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900">
         {/* Animated background elements */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl animate-blob"></div>
-          <div className="absolute top-40 right-10 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000"></div>
-          <div className="absolute bottom-20 left-1/2 w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000"></div>
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-20 left-10 w-64 h-64 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl animate-blob"></div>
+          <div className="absolute bottom-20 right-10 w-64 h-64 bg-indigo-500 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000"></div>
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -273,7 +280,10 @@ const HomePage = () => {
                     src={robotLadyImage}
                     alt="AI-Powered Automation Assistant - Devaland's intelligent automation solutions"
                     className="w-full h-auto object-cover"
-                    loading="lazy"
+                    loading="eager"
+                    decoding="async"
+                    width="600"
+                    height="800"
                   />
                   {/* Overlay gradient for better text readability if needed */}
                   <div className="absolute inset-0 bg-gradient-to-t from-blue-900/20 via-transparent to-transparent"></div>
@@ -312,63 +322,18 @@ const HomePage = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {services.map((service, index) => {
-              // Define related services for each service
-              const getRelatedServices = (serviceId) => {
-                switch(serviceId) {
-                  case 1: // Sales & Marketing Automation
-                    return [
-                      { name: 'Klaviyo Services', link: '/klaviyo' },
-                      { name: 'Robotic Process Automation (RPA) Development', link: '/services#rpa-development' }
-                    ];
-                  case 2: // Operations & HR Automation  
-                    return [
-                      { name: 'Robotic Process Automation (RPA) Development', link: '/services#rpa-development' },
-                      { name: 'AI Solutions', link: '/services#ai--chatbot-solutions' }
-                    ];
-                  case 3: // Robotic Process Automation (RPA) Development
-                    return [
-                      { name: 'Sales Automation', link: '/services#sales--marketing-automation' },
-                      { name: 'Operations Automation', link: '/services#operations--hr-automation' }
-                    ];
-                  case 4: // Voice AI Agents & Chatbot Solutions
-                    return [
-                      { name: 'Sales Automation', link: '/services#sales--marketing-automation' },
-                      { name: 'Operations Automation', link: '/services#operations--hr-automation' }
-                    ];
-                  default:
-                    return [];
-                }
-              };
-
-              const relatedServices = getRelatedServices(service.id);
-
-              // Icon mapping for each service
-              const getServiceIcon = (serviceId) => {
-                switch(serviceId) {
-                  case 1: // Sales & Marketing Automation
-                    return { Icon: Rocket, gradient: 'from-blue-500 to-blue-600', bgHover: 'group-hover:from-blue-600 group-hover:to-blue-700' };
-                  case 2: // Operations & HR Automation
-                    return { Icon: Briefcase, gradient: 'from-green-500 to-green-600', bgHover: 'group-hover:from-green-600 group-hover:to-green-700' };
-                  case 3: // RPA Development
-                    return { Icon: Settings, gradient: 'from-purple-500 to-purple-600', bgHover: 'group-hover:from-purple-600 group-hover:to-purple-700' };
-                  case 4: // Voice AI & Chatbot
-                    return { Icon: Bot, gradient: 'from-orange-500 to-orange-600', bgHover: 'group-hover:from-orange-600 group-hover:to-orange-700' };
-                  default:
-                    return { Icon: Target, gradient: 'from-gray-500 to-gray-600', bgHover: 'group-hover:from-gray-600 group-hover:to-gray-700' };
-                }
-              };
-
-              const { Icon, gradient, bgHover } = getServiceIcon(service.id);
+              const config = serviceConfig[service.id] || { icon: Target, gradient: 'from-gray-500 to-gray-600', related: [] };
+              const Icon = config.icon;
 
               return (
-                <Card key={service.id} className={`hover-lift group animate-fade-in-up delay-${index * 100} h-full`}>
+                <Card key={service.id} className="hover-lift group h-full">
                   <CardContent className="p-6 h-full flex flex-col">
                     <Link 
                       to={`/services#${service.title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}`}
                       className="block"
                     >
                       <div className="flex items-center justify-center mb-6">
-                        <div className={`w-20 h-20 bg-gradient-to-br ${gradient} ${bgHover} rounded-2xl flex items-center justify-center shadow-lg transition-all duration-300`}>
+                        <div className={`w-20 h-20 bg-gradient-to-br ${config.gradient} rounded-2xl flex items-center justify-center shadow-lg transition-transform group-hover:scale-110 duration-300`}>
                           <Icon className="w-10 h-10 text-white" />
                         </div>
                       </div>
@@ -380,25 +345,9 @@ const HomePage = () => {
                       </p>
                     </Link>
                     
-                    {/* Related Services Links */}
-                    <div className="mb-4 flex-grow">
-                      <h4 className="text-sm font-semibold text-gray-700 mb-2">Related Services:</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {relatedServices.map((relatedService, idx) => (
-                          <Link
-                            key={idx}
-                            to={relatedService.link}
-                            className="inline-flex items-center px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded-md hover:bg-blue-100 transition-colors duration-200"
-                          >
-                            #{relatedService.name}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-
                     <Link 
                       to={`/services#${service.title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}`}
-                      className="flex items-center text-blue-600 font-medium hover:text-blue-800 transition-colors duration-200 mt-auto"
+                      className="flex items-center justify-center text-blue-600 font-medium hover:text-blue-800 transition-colors duration-200 mt-auto"
                     >
                       <span>Learn More</span>
                       <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform duration-200" />
@@ -421,7 +370,7 @@ const HomePage = () => {
       </section>
 
       {/* Klaviyo Resources Section */}
-      <section className="section-padding bg-gradient-to-br from-blue-50 via-purple-50 to-indigo-50">
+      <section className="section-padding bg-gradient-to-br from-blue-50 to-indigo-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <Badge className="bg-blue-600 text-white mb-4">
