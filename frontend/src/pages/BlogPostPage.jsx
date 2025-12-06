@@ -645,8 +645,11 @@ const BlogPostPage = () => {
                     margin-bottom: 1rem;
                   }
                   .prose li {
-                    margin-bottom: 0.5rem;
-                    line-height: 1.75;
+                    margin-bottom: 0.25rem;
+                    line-height: 1.6;
+                  }
+                  .prose li:last-child {
+                    margin-bottom: 0;
                   }
                   .prose a {
                     color: #2563eb;
