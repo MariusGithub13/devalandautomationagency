@@ -635,18 +635,18 @@ const BlogPostPage = () => {
                   .prose ul {
                     list-style-type: disc;
                     padding-left: 1.5rem;
-                    margin-top: 1rem;
-                    margin-bottom: 1rem;
+                    margin-top: 0.5rem;
+                    margin-bottom: 0.5rem;
                   }
                   .prose ol {
                     list-style-type: decimal;
                     padding-left: 1.5rem;
-                    margin-top: 1rem;
-                    margin-bottom: 1rem;
+                    margin-top: 0.5rem;
+                    margin-bottom: 0.5rem;
                   }
                   .prose li {
                     margin-bottom: 0.25rem;
-                    line-height: 1.6;
+                    line-height: 1.5;
                   }
                   .prose li:last-child {
                     margin-bottom: 0;
