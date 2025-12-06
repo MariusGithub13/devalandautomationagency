@@ -4,13 +4,6 @@ import { ArrowRight, CheckCircle, Users, Award, TrendingUp, ExternalLink, Sparkl
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from '../components/ui/carousel';
 import SEO from '../components/SEO';
 // TrustpilotWidget removed - using consistent footer-style widget
 import { companyData, heroImages, services, caseStudies, awards } from '../data/mock';
@@ -652,17 +645,9 @@ const HomePage = () => {
             </p>
           </div>
 
-          <Carousel
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-            className="w-full mb-12"
-          >
-            <CarouselContent className="-ml-4">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
             {/* Featured Article 1: Pricing */}
-            <CarouselItem className="pl-4 md:basis-1/2 lg:basis-1/3">
-              <Link to="/blog/voice-ai-pricing-comparison-2025" className="group block h-full">
+            <Link to="/blog/voice-ai-pricing-comparison-2025" className="group">
                 <Card className="bg-white/10 backdrop-blur-sm border-2 border-white/20 hover:border-blue-400 hover:shadow-2xl transition-all duration-300 h-full">
                 <CardContent className="p-6">
                   <div className="flex items-start justify-between mb-4">
@@ -683,12 +668,10 @@ const HomePage = () => {
                   </div>
                 </CardContent>
               </Card>
-              </Link>
-            </CarouselItem>
+            </Link>
 
             {/* Featured Article 2: Small Business */}
-            <CarouselItem className="pl-4 md:basis-1/2 lg:basis-1/3">
-              <Link to="/blog/ai-voice-assistants-small-business-guide-2025" className="group block h-full">
+            <Link to="/blog/ai-voice-assistants-small-business-guide-2025" className="group">
                 <Card className="bg-white/10 backdrop-blur-sm border-2 border-white/20 hover:border-blue-400 hover:shadow-2xl transition-all duration-300 h-full">
                 <CardContent className="p-6">
                   <div className="flex items-start justify-between mb-4">
@@ -709,12 +692,10 @@ const HomePage = () => {
                   </div>
                 </CardContent>
               </Card>
-              </Link>
-            </CarouselItem>
+            </Link>
 
             {/* Featured Article 3: vs Call Centers */}
-            <CarouselItem className="pl-4 md:basis-1/2 lg:basis-1/3">
-              <Link to="/blog/voice-ai-vs-call-centers-cost-benefit-analysis" className="group block h-full">
+            <Link to="/blog/voice-ai-vs-call-centers-cost-benefit-analysis" className="group">
                 <Card className="bg-white/10 backdrop-blur-sm border-2 border-white/20 hover:border-blue-400 hover:shadow-2xl transition-all duration-300 h-full">
                 <CardContent className="p-6">
                   <div className="flex items-start justify-between mb-4">
@@ -735,12 +716,10 @@ const HomePage = () => {
                   </div>
                 </CardContent>
               </Card>
-              </Link>
-            </CarouselItem>
+            </Link>
 
             {/* Featured Article 4: Restaurants */}
-            <CarouselItem className="pl-4 md:basis-1/2 lg:basis-1/3">
-              <Link to="/blog/voice-ai-restaurants-phone-orders-reservations-guide" className="group block h-full">
+            <Link to="/blog/voice-ai-restaurants-phone-orders-reservations-guide" className="group">
                 <Card className="bg-white/10 backdrop-blur-sm border-2 border-white/20 hover:border-blue-400 hover:shadow-2xl transition-all duration-300 h-full">
                 <CardContent className="p-6">
                   <div className="flex items-start justify-between mb-4">
@@ -761,12 +740,10 @@ const HomePage = () => {
                   </div>
                 </CardContent>
               </Card>
-              </Link>
-            </CarouselItem>
+            </Link>
 
             {/* Featured Article 5: Healthcare */}
-            <CarouselItem className="pl-4 md:basis-1/2 lg:basis-1/3">
-              <Link to="/blog/voice-ai-healthcare-hipaa-patient-scheduling-guide" className="group block h-full">
+            <Link to="/blog/voice-ai-healthcare-hipaa-patient-scheduling-guide" className="group">
                 <Card className="bg-white/10 backdrop-blur-sm border-2 border-white/20 hover:border-blue-400 hover:shadow-2xl transition-all duration-300 h-full">
                 <CardContent className="p-6">
                   <div className="flex items-start justify-between mb-4">
@@ -787,12 +764,8 @@ const HomePage = () => {
                   </div>
                 </CardContent>
               </Card>
-              </Link>
-            </CarouselItem>
-          </CarouselContent>
-          <CarouselPrevious className="hidden md:flex -left-12 bg-white/20 border-white/40 text-white hover:bg-white/30" />
-          <CarouselNext className="hidden md:flex -right-12 bg-white/20 border-white/40 text-white hover:bg-white/30" />
-        </Carousel>
+            </Link>
+          </div>
 
           <div className="text-center">
             <Button asChild size="lg" className="bg-white text-blue-900 hover:bg-blue-50 px-8 py-4 rounded-lg text-lg font-semibold">
