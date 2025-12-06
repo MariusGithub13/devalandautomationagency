@@ -10,8 +10,9 @@ import { blogPosts } from '../data/mock';
 const BlogPostPage = () => {
   const { slug } = useParams();
   
-  // Find the blog post by slug
+  // Find the blog post by slug (check explicit slug property first, then fall back to title transformation)
   const post = blogPosts.find(p => 
+    p.slug === slug || 
     p.title.toLowerCase()
       .replace(/[^a-z0-9\s]/g, '')
       .replace(/\s+/g, '-') === slug
