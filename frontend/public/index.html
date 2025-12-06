@@ -410,7 +410,10 @@
 
         function injectChatWidget() {
           // don't inject twice
-          if (window.__chatWidgetInjected) return;
+          if (window.__chatWidgetInjected) {
+            console.log("⚠️ Chat widget already injected, skipping");
+            return;
+          }
           window.__chatWidgetInjected = true;
 
           console.log("🤖 Injecting chat widget...");
@@ -436,16 +439,20 @@
           document.body.appendChild(s);
         }
 
+        // CRITICAL: Only inject chat if explicitly granted, not on first visit
         if (marketingValue === "granted") {
-          // user already accepted marketing
+          // user already accepted marketing in a previous session
+          console.log("✅ Marketing consent granted previously, loading chat widget");
           hideBanner();
           injectChatWidget();
         } else if (marketingValue === "denied") {
           // user refused marketing before
+          console.log("🚫 Marketing consent denied previously");
           hideBanner();
           // no widget
         } else {
-          // no choice stored yet -> show banner
+          // no choice stored yet -> show banner, do NOT load chat
+          console.log("⏳ No consent decision yet, showing banner");
           if (banner) banner.style.display = "block";
         }
 
@@ -465,6 +472,7 @@
 
         if (btnReject) {
           btnReject.addEventListener("click", function () {
+            console.log("🚫 User rejected all cookies");
             localStorage.setItem(marketingKey, "denied");
             hideBanner();
             // do NOT inject chat widget
@@ -474,6 +482,7 @@
         if (btnAccept) {
           btnAccept.addEventListener("click", function () {
             const allowed = checkbox && checkbox.checked;
+            console.log("✅ User clicked Accept Selected, checkbox:", allowed);
             if (allowed) {
               localStorage.setItem(marketingKey, "granted");
               hideBanner();
@@ -484,6 +493,21 @@
             }
           });
         }
+
+        // Prevent any external scripts from loading chat widget before consent
+        // This blocks the LeadConnector script from auto-loading
+        window.addEventListener('DOMContentLoaded', function() {
+          // Check if any rogue chat widget scripts are present
+          const rogueScripts = document.querySelectorAll('script[src*="leadconnectorhq.com"]');
+          if (rogueScripts.length > 0 && marketingValue !== "granted") {
+            console.warn("⚠️ Found " + rogueScripts.length + " LeadConnector script(s) without consent, removing...");
+            rogueScripts.forEach(function(script) {
+              if (!window.__chatWidgetInjected) {
+                script.remove();
+              }
+            });
+          }
+        });
       })();
     </script>
 
