@@ -217,11 +217,11 @@ main {
 
 /* Section Spacing */
 .section-padding {
-  padding: 6rem 0;
+  padding: 3.5rem 0;
 }
 
 .section-padding-sm {
-  padding: 4rem 0;
+  padding: 2.5rem 0;
 }
 
 /* Grid Enhancements */
@@ -262,10 +262,10 @@ main {
 /* Responsive Design Helpers */
 @media (max-width: 768px) {
   .section-padding {
-    padding: 3rem 0;
+    padding: 2rem 0;
   }
   
   .section-padding-sm {
-    padding: 2rem 0;
+    padding: 1.5rem 0;
   }
 }
