@@ -211,7 +211,7 @@ const VoiceAIPage = () => {
                       <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                       <span className="text-sm font-semibold text-green-600">Live & Operational Since 2024</span>
                     </div>
-                    <p className="text-gray-600">Successfully handling real customer queries on She A Terra Organics for months with proven results</p>
+                    <p className="text-gray-600">Amy handles customer inquiries 24/7 on She A Terra Organics, successfully managing real customer queries for months with proven results</p>
                   </div>
                 </div>
 
