@@ -207,7 +207,11 @@ const VoiceAIPage = () => {
                   </div>
                   <div>
                     <h3 className="text-2xl font-bold text-gray-900 mb-2">Meet Amy - E-commerce AI</h3>
-                    <p className="text-gray-600">Live on a real Shopify brand handling customer queries</p>
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                      <span className="text-sm font-semibold text-green-600">Live & Operational Since 2024</span>
+                    </div>
+                    <p className="text-gray-600">Successfully handling real customer queries on She A Terra Organics for months with proven results</p>
                   </div>
                 </div>
 
@@ -218,22 +222,26 @@ const VoiceAIPage = () => {
                 >
                   <a href="https://www.sheaterraorganics.com/" target="_blank" rel="noopener noreferrer">
                     <ExternalLink className="w-5 h-5 mr-2" />
-                    Visit Live Demo Site
+                    Visit Live Site
                   </a>
                 </Button>
 
                 <div className="space-y-2 text-sm text-gray-600">
                   <div className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-green-500" />
-                    <span>Real customer interactions</span>
+                    <span>Real customer interactions daily</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-green-500" />
-                    <span>English & Spanish support</span>
+                    <span>Bilingual support (English & Spanish)</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-green-500" />
-                    <span>Product recommendations</span>
+                    <span>Smart product recommendations & order tracking</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-green-500" />
+                    <span>Proven track record of customer satisfaction</span>
                   </div>
                 </div>
               </CardContent>
