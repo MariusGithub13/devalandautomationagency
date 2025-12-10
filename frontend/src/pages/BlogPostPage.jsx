@@ -568,7 +568,15 @@ const BlogPostPage = () => {
                               e.preventDefault();
                               const element = document.getElementById(heading.id);
                               if (element) {
-                                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                // Get element position
+                                const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+                                // Offset for fixed header (80px) + some padding (20px)
+                                const offsetPosition = elementPosition - 100;
+                                
+                                window.scrollTo({
+                                  top: offsetPosition,
+                                  behavior: 'smooth'
+                                });
                               }
                             }}
                             className="group flex items-start gap-3 text-sm text-gray-700 hover:text-blue-600 transition-all duration-200 rounded-lg px-4 py-3 hover:bg-white hover:shadow-sm border-l-3 border-transparent hover:border-l-4 hover:border-blue-600"
