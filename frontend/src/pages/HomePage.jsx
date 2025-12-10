@@ -5,6 +5,7 @@ import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import SEO from '../components/SEO';
+import FAQSection from '../components/FAQSection';
 // TrustpilotWidget removed - using consistent footer-style widget
 import { companyData, heroImages, services, caseStudies, awards } from '../data/mock';
 import robotLadyImage from '../assets/Devaland-robot-lady.jpeg';
@@ -66,8 +67,8 @@ const HomePage = () => {
   return (
     <>
       <SEO 
-        title="Klaviyo Email Marketing & AI Voice Automation Agency | Devaland"
-        description="Expert Klaviyo email marketing agency + AI voice agents & chatbots for e-commerce. 45% revenue increase with proven automation flows, abandoned cart recovery, SMS marketing & 24/7 AI support. Free audit."
+        title="#1 Klaviyo Agency + AI Voice Automation | 50+ E-commerce Clients | Devaland"
+        description="Trusted by 50+ Shopify brands. Boost email revenue by 45% with expert Klaviyo flows, AI voice agents & 24/7 chatbots. Award-winning automation agency. Free audit + consultation → Book now!"
         canonical="https://devaland.com"
         keywords={[
           "klaviyo email marketing agency",
@@ -965,6 +966,45 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+
+      {/* FAQ Section */}
+      <FAQSection 
+        faqs={[
+          {
+            question: "What results can I expect from Klaviyo email marketing automation?",
+            answer: "Our clients typically see 30-45% increase in email revenue within the first 90 days. We implement proven automation flows including welcome series, abandoned cart recovery, browse abandonment, post-purchase sequences, and win-back campaigns. Average ROI is 4,200% for e-commerce brands using our Klaviyo optimization services."
+          },
+          {
+            question: "How do AI voice agents and chatbots improve customer support?",
+            answer: "Our AI voice agents provide 24/7 customer support, handling 80% of routine inquiries automatically. This reduces support costs by 60% while improving response times from hours to seconds. Voice AI can schedule appointments, answer product questions, process orders, and escalate complex issues to human agents seamlessly. Available in 50+ languages."
+          },
+          {
+            question: "What's included in the free automation audit?",
+            answer: "Our free audit includes: complete Klaviyo account review, analysis of existing email flows and campaigns, identification of revenue opportunities, abandoned cart recovery optimization, segmentation strategy review, deliverability check, and a custom roadmap with projected ROI. No obligations, just actionable insights in a 30-minute consultation."
+          },
+          {
+            question: "How long does it take to implement Klaviyo automation flows?",
+            answer: "Essential flows (welcome, abandoned cart, browse abandonment) can be implemented in 1-2 weeks. Complete automation setup including advanced segmentation, predictive analytics, and SMS integration typically takes 4-6 weeks. You'll start seeing results within the first week as flows go live. We provide full training and ongoing optimization."
+          },
+          {
+            question: "Do you work with Shopify stores outside of email marketing?",
+            answer: "Yes! Beyond Klaviyo email marketing, we offer: AI voice agents for customer support, AI chatbots for sales & lead generation, RPA (Robotic Process Automation) for order processing, inventory management automation, custom Shopify app development, and workflow automation for operations. We're a full-service automation agency for e-commerce."
+          },
+          {
+            question: "What is your pricing model for Klaviyo and automation services?",
+            answer: "We offer flexible pricing based on your needs: Klaviyo Setup & Strategy ($2,500-$5,000 one-time), Monthly Management ($1,500-$4,000/month including flow optimization, campaign creation, A/B testing), AI Voice Agent Setup ($3,000-$8,000 one-time + $500-$1,500/month hosting), and Custom Automation Projects (quoted individually). All packages include strategy, implementation, and ongoing support. ROI guarantee available."
+          },
+          {
+            question: "Can you migrate my existing email platform to Klaviyo?",
+            answer: "Absolutely! We specialize in seamless migrations from Mailchimp, Klaviyo, Omnisend, Attentive, and other platforms to Klaviyo. We transfer all subscriber data, historical campaign data, segmentation rules, and recreate your best-performing automations. Migration typically takes 1-2 weeks with zero data loss and minimal downtime. We also provide team training on the new platform."
+          },
+          {
+            question: "Do you provide ongoing support and optimization after setup?",
+            answer: "Yes! All our packages include ongoing support. We provide: monthly performance reports with detailed analytics, continuous A/B testing of subject lines and content, flow optimization based on data insights, seasonal campaign strategy (Black Friday, holiday, etc.), deliverability monitoring, list growth strategies, and quarterly strategy sessions. You'll have a dedicated account manager and direct access to our team via Slack or email."
+          }
+        ]}
+        title="Frequently Asked Questions About Our Automation Services"
+      />
 
       {/* Final CTA */}
       <section className="section-padding bg-gray-900 text-white">
