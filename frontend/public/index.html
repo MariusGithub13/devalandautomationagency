@@ -192,129 +192,7 @@
         letter-spacing: 0.03em;
       }
 
-      /* GDPR banner styles */
-      #gdpr-banner {
-        position: fixed;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 999999;
-        background-color: #0f172a;
-        color: #f8fafc;
-        border-top: 1px solid rgba(255, 255, 255, 0.15);
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-          Roboto, "Helvetica Neue", Arial, sans-serif;
-        box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.8),
-          0 0 60px rgba(0, 112, 243, 0.35);
-      }
-
-      #gdpr-inner {
-        max-width: 1100px;
-        margin: 0 auto;
-        padding: 20px 16px 24px;
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-        line-height: 1.4;
-        font-size: 15px;
-      }
-
-      #gdpr-text {
-        color: #e2e8f0;
-        text-align: center;
-        font-size: 15px;
-        font-weight: 400;
-      }
-
-      #gdpr-text a {
-        color: #4ade80;
-        text-decoration: none;
-        font-weight: 500;
-      }
-
-      #gdpr-text a:hover {
-        text-decoration: underline;
-      }
-
-      #gdpr-controls {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 16px;
-      }
-
-      #gdpr-marketing-row {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        color: #f8fafc;
-        font-size: 14px;
-      }
-
-      #gdpr-buttons {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-        justify-content: center;
-      }
-
-      .gdpr-btn {
-        border-radius: 6px;
-        font-size: 15px;
-        font-weight: 500;
-        line-height: 1.2;
-        padding: 10px 16px;
-        min-width: 150px;
-        border: 1px solid transparent;
-        cursor: pointer;
-      }
-
-      .gdpr-btn.reject {
-        background: transparent;
-        color: #f8fafc;
-        border-color: rgba(248, 250, 252, 0.4);
-      }
-
-      .gdpr-btn.reject:hover {
-        background: rgba(255, 255, 255, 0.07);
-      }
-
-      .gdpr-btn.accept {
-        background: #16a34a;
-        border-color: #16a34a;
-        color: #fff;
-        box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
-      }
-
-      .gdpr-btn.accept:hover {
-        background: #15803d;
-        border-color: #15803d;
-      }
-
-      #marketing-consent-checkbox {
-        width: 16px;
-        height: 16px;
-        accent-color: #16a34a;
-        cursor: pointer;
-      }
-
-      @media (min-width: 640px) {
-        #gdpr-inner {
-          padding-left: 24px;
-          padding-right: 24px;
-        }
-        #gdpr-text {
-          text-align: left;
-        }
-        #gdpr-controls {
-          flex-direction: row;
-          justify-content: space-between;
-          align-items: flex-start;
-        }
-        #gdpr-buttons {
-          justify-content: flex-end;
-        }
-      }
+      /* GDPR banner styles removed - now handled by React CookieConsent component */
     </style>
   </head>
 
@@ -346,66 +224,23 @@
       </div>
     </div>
 
-    <!-- GDPR / marketing consent banner (our only banner) -->
-    <div id="gdpr-banner" style="display: none;">
-      <div id="gdpr-inner">
-        <div id="gdpr-text">
-          We use cookies and similar technologies for essential site
-          functionality and marketing (e.g., our chat widget).
-          See our
-          <a href="/privacy-policy" target="_blank" rel="noopener noreferrer"
-            >Privacy Policy</a
-          >.
-        </div>
-
-        <div id="gdpr-controls">
-          <label id="gdpr-marketing-row">
-            <input
-              type="checkbox"
-              id="marketing-consent-checkbox"
-              checked
-            />
-            <span>Allow marketing (chat widget)</span>
-          </label>
-
-          <div id="gdpr-buttons">
-            <button
-              class="gdpr-btn reject"
-              id="gdpr-reject-all"
-              type="button"
-            >
-              Reject all
-            </button>
-
-            <button
-              class="gdpr-btn accept"
-              id="gdpr-accept-selected"
-              type="button"
-            >
-              Accept selected
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+    <!-- GDPR consent banner now handled by React CookieConsent component in App.js -->
 
     <script>
+      // Chat widget injection logic - integrates with React CookieConsent component
       (function () {
-        const banner = document.getElementById("gdpr-banner");
-        const checkbox = document.getElementById(
-          "marketing-consent-checkbox"
-        );
-        const btnReject = document.getElementById("gdpr-reject-all");
-        const btnAccept = document.getElementById("gdpr-accept-selected");
-
-        const marketingKey = "marketingConsent";
-        const marketingValue = localStorage.getItem(marketingKey);
-        console.log("📋 Marketing consent status:", marketingValue || "not set");
-
-        function hideBanner() {
-          if (banner) {
-            banner.style.display = "none";
+        // Check consent from React CookieConsent component (uses cookiePreferences key)
+        function getMarketingConsent() {
+          try {
+            const prefs = localStorage.getItem("cookiePreferences");
+            if (prefs) {
+              const parsed = JSON.parse(prefs);
+              return parsed.marketing === true;
+            }
+          } catch (e) {
+            console.warn("Could not parse cookie preferences:", e);
           }
+          return false;
         }
 
         function injectChatWidget() {
@@ -418,7 +253,7 @@
 
           console.log("🤖 Injecting chat widget...");
           
-          // Load the new chat widget script
+          // Load the chat widget script
           var s = document.createElement("script");
           s.src = "https://beta.leadconnectorhq.com/loader.js";
           s.setAttribute(
@@ -429,7 +264,6 @@
             "data-widget-id",
             "692c19db36936d434b1c0208"
           );
-          // Don't set async - let the loader control timing
           s.onload = function() {
             console.log("✅ Chat widget script loaded successfully");
           };
@@ -439,73 +273,40 @@
           document.body.appendChild(s);
         }
 
-        // CRITICAL: Only inject chat if explicitly granted, not on first visit
-        if (marketingValue === "granted") {
-          // user already accepted marketing in a previous session
-          console.log("✅ Marketing consent granted previously, loading chat widget");
-          hideBanner();
+        // Check if marketing consent is granted
+        const hasMarketingConsent = getMarketingConsent();
+        console.log("📋 Marketing consent status:", hasMarketingConsent);
+
+        if (hasMarketingConsent) {
+          console.log("✅ Marketing consent granted, loading chat widget");
           injectChatWidget();
-        } else if (marketingValue === "denied") {
-          // user refused marketing before
-          console.log("🚫 Marketing consent denied previously");
-          hideBanner();
-          // no widget
         } else {
-          // no choice stored yet -> show banner, do NOT load chat
-          console.log("⏳ No consent decision yet, showing banner");
-          if (banner) banner.style.display = "block";
+          console.log("🚫 Marketing consent not granted, chat widget will not load");
         }
 
-        // Expose a function so UI elsewhere (footer button) can re-open the banner
-        window.showGdprBanner = function () {
-          try {
-            if (banner) banner.style.display = "block";
-          } catch (e) {}
-        };
-
-        // Listen for a custom event dispatched by the app to open cookie settings
-        window.addEventListener("openCookieSettings", function () {
-          try {
-            if (typeof window.showGdprBanner === "function") window.showGdprBanner();
-          } catch (e) {}
+        // Listen for consent changes from React component
+        window.addEventListener('storage', function(e) {
+          if (e.key === 'cookiePreferences' && !window.__chatWidgetInjected) {
+            const hasConsent = getMarketingConsent();
+            if (hasConsent) {
+              console.log("✅ Consent granted via storage event, loading chat widget");
+              injectChatWidget();
+            }
+          }
         });
 
-        if (btnReject) {
-          btnReject.addEventListener("click", function () {
-            console.log("🚫 User rejected all cookies");
-            localStorage.setItem(marketingKey, "denied");
-            hideBanner();
-            // do NOT inject chat widget
-          });
-        }
-
-        if (btnAccept) {
-          btnAccept.addEventListener("click", function () {
-            const allowed = checkbox && checkbox.checked;
-            console.log("✅ User clicked Accept Selected, checkbox:", allowed);
-            if (allowed) {
-              localStorage.setItem(marketingKey, "granted");
-              hideBanner();
-              injectChatWidget();
-            } else {
-              localStorage.setItem(marketingKey, "denied");
-              hideBanner();
-            }
-          });
-        }
-
         // Prevent any external scripts from loading chat widget before consent
-        // This blocks the LeadConnector script from auto-loading
         window.addEventListener('DOMContentLoaded', function() {
-          // Check if any rogue chat widget scripts are present
-          const rogueScripts = document.querySelectorAll('script[src*="leadconnectorhq.com"]');
-          if (rogueScripts.length > 0 && marketingValue !== "granted") {
-            console.warn("⚠️ Found " + rogueScripts.length + " LeadConnector script(s) without consent, removing...");
-            rogueScripts.forEach(function(script) {
-              if (!window.__chatWidgetInjected) {
-                script.remove();
-              }
-            });
+          if (!hasMarketingConsent) {
+            const rogueScripts = document.querySelectorAll('script[src*="leadconnectorhq.com"]');
+            if (rogueScripts.length > 0) {
+              console.warn("⚠️ Found " + rogueScripts.length + " LeadConnector script(s) without consent, removing...");
+              rogueScripts.forEach(function(script) {
+                if (!window.__chatWidgetInjected) {
+                  script.remove();
+                }
+              });
+            }
           }
         });
       })();
