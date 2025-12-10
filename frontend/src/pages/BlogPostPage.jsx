@@ -600,8 +600,8 @@ const BlogPostPage = () => {
                     font-size: 2rem;
                     font-weight: 700;
                     color: #1f2937;
-                    margin-top: 1.5rem;
-                    margin-bottom: 1rem;
+                    margin-top: 2rem;
+                    margin-bottom: 0.75rem;
                     padding-bottom: 0.75rem;
                     border-bottom: 3px solid #3b82f6;
                     background: linear-gradient(to right, #eff6ff, transparent);
@@ -622,14 +622,14 @@ const BlogPostPage = () => {
                     border-radius: 0.5rem 0 0 0.5rem;
                   }
                   .prose h2:first-of-type {
-                    margin-top: 1rem;
+                    margin-top: 0.5rem;
                   }
                   .prose h3 {
                     font-size: 1.5rem;
                     font-weight: 600;
                     color: #1f2937;
-                    margin-top: 1.25rem;
-                    margin-bottom: 0.75rem;
+                    margin-top: 1.5rem;
+                    margin-bottom: 0.5rem;
                     padding-left: 0.75rem;
                     border-left: 3px solid #3b82f6;
                   }
@@ -637,7 +637,7 @@ const BlogPostPage = () => {
                     font-size: 1.25rem;
                     font-weight: 600;
                     color: #374151;
-                    margin-top: 1rem;
+                    margin-top: 1.25rem;
                     margin-bottom: 0.5rem;
                   }
                   .prose ul {
