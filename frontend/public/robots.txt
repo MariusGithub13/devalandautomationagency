@@ -82,6 +82,23 @@ Disallow: /private/
 Disallow: /.env
 Disallow: /config/
 
+# Block old language paths (site is English-only)
+Disallow: /en/
+Disallow: /en_gb/
+Disallow: /en_au/
+Disallow: /en_ca/
+Disallow: /en_nz/
+Disallow: /de/
+Disallow: /es/
+Disallow: /it/
+Disallow: /fr/
+Disallow: /pl/
+Disallow: /pt/
+Disallow: /ar/
+Disallow: /ja/
+Disallow: /zh_hk/
+Disallow: /ca/
+
 # ============================================
 # Static Assets (Explicitly Allowed)
 # ============================================

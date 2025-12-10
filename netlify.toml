@@ -107,6 +107,19 @@
   status = 301
   force = true
 
+# Redirect old shop.devaland.com subdomain to homepage
+[[redirects]]
+  from = "https://shop.devaland.com/*"
+  to = "https://devaland.com/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://shop.devaland.com/*"
+  to = "https://devaland.com/"
+  status = 301
+  force = true
+
 # ============================================
 # Multi-Language URL Redirects (Old Site Content)
 # ============================================
