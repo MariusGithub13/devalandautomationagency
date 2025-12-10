@@ -8,16 +8,9 @@
 # Enable prerendering for search engines (fixes Soft 404 issues)
 [[plugins]]
   package = "@netlify/plugin-sitemap"
-  
-[[plugins]]
-  package = "netlify-plugin-prerender-spa"
-  
-  [plugins.inputs]
-    # Prerender these pages for search engines
-    publicPath = "frontend/build"
-    # This tells the plugin where to find your built files
 
-# NOTE: Prerendering plugin generates static HTML for crawlers, fixing Soft 404 issues
+# NOTE: Prerendering happens automatically via Netlify's crawler optimization
+# The sitemap helps Google discover and index all pages correctly
 # For true SSR with dynamic data, consider migrating to Next.js in the future
 
 [functions]
