@@ -12,6 +12,8 @@ This file provides the core architecture and patterns. For specific topics, see:
 - **`VOICE_AI_SEO_GUIDE.md`** — Voice AI page SEO and content strategy
 - **`ROI_CALCULATOR_SUMMARY.md`** — ROI calculator component documentation
 - **`TRUSTPILOT_IMPLEMENTATION_COMPLETE.md`** — Trustpilot widget integration guide
+- **`POPULAR_ARTICLES_CAROUSEL.md`** — Carousel implementation with Embla React
+- **`BLOG_PAGE_FIX_SUMMARY.md`** — Blog page structured data fixes and GSC issues
 
 ## Quick Start Guide (Read This First!)
 
@@ -84,6 +86,10 @@ cd netlify/functions && npm install
 - `frontend/package.json` — node engine (18.x), `craco` usage, lifecycle hooks (notably `postinstall` -> `fix-missing-files`), and `prebuild` sitemap generation.
 - `frontend/src/App.js` — routing, lazy-loading example for `ChatBubble`, and how `Toaster`, `Header`, `Footer`, and consent components are wired.
 - `frontend/src/components/ui/` — shared UI primitives (Radix wrappers). Use these rather than adding ad-hoc DOM/ARIA implementations.
+  - All 45+ components use CVA (class-variance-authority) for variant-based styling
+  - Radix UI primitives provide accessibility out of the box
+  - Examples: `button.jsx`, `toast.jsx`, `dialog.jsx`, `carousel.jsx`, `accordion.jsx`
+  - Always import with `@/components/ui/[component]` alias
 - `frontend/src/components/SEO.jsx` — SEO component using `react-helmet-async` for dynamic meta tags, Open Graph data, and JSON-LD structured data injection. Every page MUST use this component.
 - `frontend/src/components/Breadcrumb.jsx` — Reusable breadcrumb navigation component with automatic JSON-LD BreadcrumbList structured data generation. Used on all pages except homepage.
 - `frontend/src/components/ROICalculator.jsx` — Interactive calculator with business size configurations and ROI calculations. Example of complex stateful component with multiple input fields.
@@ -119,15 +125,18 @@ cd netlify/functions && npm install
 - Router composition: API routes are added to an `APIRouter(prefix="/api")` and then included in `app`. When adding endpoints prefer router usage for consistent prefixing.
 - Async DB: use `motor.motor_asyncio.AsyncIOMotorClient` and `await` for DB calls. Close the client on shutdown (see `@app.on_event("shutdown")`).
 - Frontend import alias `@/` is used in `src` (see `jsconfig.json`) — prefer `@/path` imports over relative deep paths.
-- **SEO per page**: Every page MUST use `<SEO />` component from `@/components/SEO` with unique title, description, canonical URL, and keywords. Pass structured data via `schema` prop for JSON-LD. See `HomePage.jsx`, `KlaviyoPage.jsx` for examples.
-- **Breadcrumb navigation**: Use `<Breadcrumb />` component from `@/components/Breadcrumb` on all pages except homepage. Automatically generates JSON-LD BreadcrumbList structured data. Pass `items={[{label: "Services", href: "/services"}]}` array for navigation hierarchy. See `KlaviyoPage.jsx`, `VoiceAIPage.jsx` for examples.
 - UI primitives: prefer components in `src/components/ui/` (e.g., `button.jsx`, `toast.jsx`) to ensure consistent styling and accessibility.
   - Use `class-variance-authority` (CVA) pattern for variant-based styling (see `button.jsx` for reference).
+  - Always use `cn()` from `@/lib/utils` for className merging instead of manual string concatenation.
+  - All UI components wrap Radix primitives with consistent Tailwind styling and CVA variants.
+  - 45+ pre-built components available: `accordion`, `alert`, `avatar`, `badge`, `button`, `calendar`, `card`, `carousel`, `checkbox`, `dialog`, `dropdown-menu`, `form`, `input`, `label`, `popover`, `select`, `sheet`, `switch`, `tabs`, `textarea`, `toast`, `tooltip`, and more.
+  - Check `src/components/ui/` directory before creating custom UI elements.or reference).
   - Always use `cn()` from `@/lib/utils` for className merging instead of manual string concatenation.
   - All UI components wrap Radix primitives with consistent Tailwind styling and CVA variants.
 - React Router v6: use `<Routes>` + `<Route path="..." element={<Component/>} />`. See `src/App.js` for routing examples and how additional pages are added.
 - Lazy loading: non-critical UI uses `React.lazy` and `Suspense` (example: `ChatBubble` in `App.js`). Follow this pattern for heavy components like third-party widgets, calculators, and modals.
 - **Third-party widget pattern**: Load external scripts in `useEffect` hook and cleanup on unmount (see `TrustpilotWidget.jsx`). Store widget configuration in CSP headers (`netlify.toml`).
+- **Carousel pattern**: Use `embla-carousel-react` for content sliders. See `BlogPage.jsx` Popular Articles section for reference implementation with responsive breakpoints, auto-loop, and touch swipe support.
 - **Data centralization**: All static content (services, blog posts, company info, case studies) lives in `frontend/src/data/mock.js`. Update this file when adding new content rather than hardcoding in components.
 - Build hooks: `prebuild` runs a sitemap generator before building. If modifying build output, ensure sitemap script still runs.
 - Postinstall fix: `fix-missing-files` copies `react-router-dom` dist file to `.mjs` to satisfy ESM consumers — be careful when upgrading `react-router-dom`.
@@ -174,9 +183,23 @@ cd netlify/functions && npm install
     {label: "Services", href: "/services"},
     {label: "Klaviyo Email Marketing", href: "/klaviyo"}
   ]} />
-  ```
-- **Interactive component pattern** (ROI Calculator): Store component-specific business logic and configurations as constants within the component file. Use controlled form inputs with `useState` for user interactions. See `ROICalculator.jsx` for complex calculations with multiple input fields.
 - Using DB: follow async pattern `await db.collection.find().to_list()` and return Pydantic-constructed objects if returning via FastAPI.
+- Creating UI components: extend Radix primitives with CVA variants (see `button.jsx`) and use `cn()` for className composition.
+- **Carousel implementation**: Import `useEmblaCarousel` from `embla-carousel-react`, configure with responsive breakpoints and loop options:
+  ```jsx
+  import useEmblaCarousel from 'embla-carousel-react';
+  
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    align: 'start',
+    loop: true,
+    breakpoints: {
+      '(min-width: 768px)': { slidesToScroll: 2 },
+      '(min-width: 1024px)': { slidesToScroll: 3 }
+    }
+  });
+  ```
+  See `BlogPage.jsx` Popular Articles section for complete implementation with navigation buttons and mobile swipe.
+- **Adding content to data layer**: Update `frontend/src/data/mock.js` when adding services, blog posts, case studies, or company info. This centralizes content management and prevents hardcoding across components.
 - Creating UI components: extend Radix primitives with CVA variants (see `button.jsx`) and use `cn()` for className composition.
 - **Adding content to data layer**: Update `frontend/src/data/mock.js` when adding services, blog posts, case studies, or company info. This centralizes content management and prevents hardcoding across components.
 
@@ -205,10 +228,11 @@ cd netlify/functions && npm install
 **Package Management**:
 - Root `package.json` pins `ajv@6.12.6` and `ajv-keywords@3.5.2` for webpack 5 compatibility
 - `--legacy-peer-deps` flag used in all npm commands to handle CRA 5.0 dependency conflicts
-- Post-install script (`fix-missing-files`) patches react-router-dom ESM compatibility
-
 **Code Splitting & Lazy Loading**:
 - Heavy components use `React.lazy()` and `Suspense` (see `ChatBubble` in `App.js`)
+- Pattern: `const Component = lazy(() => import('./Component'))` wrapped in `<Suspense fallback={null}>`
+- Apply to: third-party widgets, modals, non-critical UI, heavy libraries, carousels with many images
+- ALL pages except HomePage use lazy loading (see `App.js` for complete pattern) `App.js`)
 - Pattern: `const Component = lazy(() => import('./Component'))` wrapped in `<Suspense fallback={null}>`
 - Apply to: third-party widgets, modals, non-critical UI, heavy libraries
 
