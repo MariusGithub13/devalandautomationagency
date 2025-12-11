@@ -1,4 +1,4 @@
-import React, { useState, useEffect, memo } from 'react';
+import React, { useState, useEffect, memo, useCallback, useMemo } from 'react';
 import LogoImg from '../assets/Devaland-Logo.jpg';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
@@ -10,22 +10,25 @@ const Header = memo(() => {
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+  // Memoize scroll handler to prevent re-creating function on every render
+  const handleScroll = useCallback(() => {
+    setIsScrolled(window.scrollY > 20);
   }, []);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [handleScroll]);
 
   useEffect(() => {
     // Close mobile menu when route changes
     setIsMenuOpen(false);
     // Scroll to top when route changes
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: 'instant' });
   }, [location.pathname]);
 
-  const navigation = [
+  // Memoize navigation array to prevent re-creating on every render
+  const navigation = useMemo(() => [
     { name: 'Home', href: '/' },
     { name: 'Automation Services', href: '/services' },
     { name: 'Klaviyo Services', href: '/klaviyo' },
@@ -34,9 +37,10 @@ const Header = memo(() => {
     { name: 'About', href: '/about' },
     { name: 'Blog', href: '/blog' },
     { name: 'Contact', href: '/contact' }
-  ];
+  ], []);
 
-  const isActive = (path) => location.pathname === path;
+  // Memoize isActive function
+  const isActive = useCallback((path) => location.pathname === path, [location.pathname]);
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${

@@ -12,17 +12,28 @@ const ChatBubble = () => {
     // Avoid duplicate loads
     if (document.getElementById(SCRIPT_ID)) return;
 
-    const s = document.createElement("script");
-    s.id = SCRIPT_ID;
-    s.src = "https://beta.leadconnectorhq.com/loader.js";
-    s.setAttribute(
-      "data-resources-url",
-      "https://beta.leadconnectorhq.com/chat-widget/loader.js"
-    );
-    s.setAttribute("data-widget-id", WIDGET_ID);
-    s.async = true;
-    s.type = "text/javascript";
-    document.body.appendChild(s);
+    // Load chat widget only when browser is idle to avoid blocking critical rendering
+    const loadChatWidget = () => {
+      const s = document.createElement("script");
+      s.id = SCRIPT_ID;
+      s.src = "https://beta.leadconnectorhq.com/loader.js";
+      s.setAttribute(
+        "data-resources-url",
+        "https://beta.leadconnectorhq.com/chat-widget/loader.js"
+      );
+      s.setAttribute("data-widget-id", WIDGET_ID);
+      s.async = true;
+      s.type = "text/javascript";
+      document.body.appendChild(s);
+    };
+
+    // Use requestIdleCallback for better performance
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(loadChatWidget, { timeout: 3000 });
+    } else {
+      // Fallback: delay load by 2 seconds
+      setTimeout(loadChatWidget, 2000);
+    }
 
     // keep the script across route changes; no cleanup
     // return () => s.remove();
