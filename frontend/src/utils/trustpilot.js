@@ -23,10 +23,13 @@ export const sendTrustpilotInvitation = ({ recipientEmail, recipientName, refere
           // Send invitation with callback
           window.tp('createInvitation', trustpilot_invitation, function(error, response) {
             if (error) {
-              console.error('❌ Trustpilot API error:', error);
+              if (process.env.NODE_ENV === 'development') {
+                console.error('❌ Trustpilot API error:', error);
+              }
               resolve(false);
             } else {
-              console.log('✅ Trustpilot invitation confirmed by API', { 
+              if (process.env.NODE_ENV === 'development') {
+                console.log('✅ Trustpilot invitation confirmed by API', { 
                 recipientEmail, 
                 recipientName,
                 referenceId,
@@ -37,17 +40,23 @@ export const sendTrustpilotInvitation = ({ recipientEmail, recipientName, refere
           });
         } else if (attempts < 20) {
           // Retry up to 20 times (10 seconds total)
-          console.log(`⏳ Waiting for Trustpilot to load... (attempt ${attempts + 1}/20)`);
+          if (process.env.NODE_ENV === 'development') {
+            console.log(`⏳ Waiting for Trustpilot to load... (attempt ${attempts + 1}/20)`);
+          }
           setTimeout(() => checkAndSend(attempts + 1), 500);
         } else {
-          console.error('❌ Trustpilot integration not loaded after 10 seconds');
+          if (process.env.NODE_ENV === 'development') {
+            console.error('❌ Trustpilot integration not loaded after 10 seconds');
+          }
           resolve(false);
         }
       };
 
       checkAndSend();
     } catch (error) {
-      console.error('❌ Failed to send Trustpilot invitation:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('❌ Failed to send Trustpilot invitation:', error);
+      }
       resolve(false);
     }
   });

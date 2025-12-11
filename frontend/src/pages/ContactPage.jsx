@@ -80,7 +80,9 @@ const ContactPage = () => {
       }
 
       const result = await response.json();
-      console.log('✅ Form submitted successfully:', result);
+      if (process.env.NODE_ENV === 'development') {
+        console.log('✅ Form submitted successfully:', result);
+      }
 
       // Show success message
       const successMessage = formData.projectType === 'klaviyo-shopify' 
@@ -91,11 +93,13 @@ const ContactPage = () => {
       
       // Send Trustpilot invitation after successful form submission
       const referenceId = generateReferenceId('Contact');
-      console.log('📧 Sending Trustpilot invitation...', {
-        email: formData.email,
-        name: formData.name,
-        referenceId: referenceId
-      });
+      if (process.env.NODE_ENV === 'development') {
+        console.log('📧 Sending Trustpilot invitation...', {
+          email: formData.email,
+          name: formData.name,
+          referenceId: referenceId
+        });
+      }
       
       try {
         const invitationSent = await sendTrustpilotInvitation({
@@ -105,18 +109,24 @@ const ContactPage = () => {
         });
         
         if (invitationSent) {
-          console.log('✅ Trustpilot invitation sent successfully');
+          if (process.env.NODE_ENV === 'development') {
+            console.log('✅ Trustpilot invitation sent successfully');
+          }
           toast.success('🎉 You\'ll receive a review invitation from Trustpilot via email!', {
             duration: 6000
           });
         } else {
-          console.warn('⚠️ Trustpilot invitation may not have been sent');
+          if (process.env.NODE_ENV === 'development') {
+            console.warn('⚠️ Trustpilot invitation may not have been sent');
+          }
           toast.info('Note: Review invitation is pending. You may receive it shortly.', {
             duration: 5000
           });
         }
       } catch (trustpilotError) {
-        console.error('❌ Trustpilot invitation error:', trustpilotError);
+        if (process.env.NODE_ENV === 'development') {
+          console.error('❌ Trustpilot invitation error:', trustpilotError);
+        }
         // Don't show error to user since form submission was successful
         // Just log it for debugging
       }
@@ -135,7 +145,9 @@ const ContactPage = () => {
       });
       
     } catch (error) {
-      console.error('❌ Form submission error:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('❌ Form submission error:', error);
+      }
       toast.error('Failed to submit form. Please try again or contact us directly at office@devaland.com');
     }
   };

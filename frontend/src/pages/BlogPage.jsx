@@ -82,11 +82,15 @@ const BlogPage = () => {
         setGdprConsent(false);
       } else {
         const errorData = await response.json();
-        console.error('Newsletter error:', errorData);
+        if (process.env.NODE_ENV === 'development') {
+          console.error('Newsletter error:', errorData);
+        }
         setSubmitMessage('Something went wrong. Please try again.');
       }
     } catch (error) {
-      console.error('Newsletter submission error:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Newsletter submission error:', error);
+      }
       setSubmitMessage('Unable to subscribe. Please try again later.');
     } finally {
       setIsSubmitting(false);

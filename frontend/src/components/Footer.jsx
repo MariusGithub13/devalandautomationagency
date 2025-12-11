@@ -149,16 +149,18 @@ const Footer = memo(() => {
           }
         } catch (err) {
           // ignore and retry
-          // eslint-disable-next-line no-console
-          console.warn('Trustpilot init error, will retry', err);
+          if (process.env.NODE_ENV === 'development') {
+            console.warn('Trustpilot init error, will retry', err);
+          }
         }
       }
 
       if (attempts < maxAttempts) {
         setTimeout(tryInit, delay);
       } else {
-        // eslint-disable-next-line no-console
-        console.warn('Trustpilot widget failed to initialize after multiple attempts');
+        if (process.env.NODE_ENV === 'development') {
+          console.warn('Trustpilot widget failed to initialize after multiple attempts');
+        }
       }
     }
 

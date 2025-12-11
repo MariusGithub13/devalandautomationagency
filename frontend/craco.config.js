@@ -56,6 +56,35 @@ module.exports = {
       webpackConfig.performance = {
         hints: false,
       };
+
+      // Production optimizations
+      if (env === 'production') {
+        // Remove console.* calls in production
+        webpackConfig.optimization = {
+          ...webpackConfig.optimization,
+          minimize: true,
+          usedExports: true,
+        };
+
+        // Add TerserPlugin configuration for aggressive minification
+        const TerserPlugin = require('terser-webpack-plugin');
+        webpackConfig.optimization.minimizer = [
+          new TerserPlugin({
+            terserOptions: {
+              compress: {
+                drop_console: false, // We handle via NODE_ENV checks
+                drop_debugger: true,
+                pure_funcs: ['console.log', 'console.info', 'console.debug'],
+              },
+              mangle: true,
+              output: {
+                comments: false,
+              },
+            },
+            extractComments: false,
+          }),
+        ];
+      }
       
       // Disable hot reload completely if environment variable is set
       if (config.disableHotReload) {
