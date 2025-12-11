@@ -476,9 +476,9 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
-# Cache images
+# Cache images with longer max-age
 [[headers]]
-  for = "/*.{jpg,jpeg,png,gif,ico,svg,webp}"
+  for = "/*.{jpg,jpeg,png,gif,ico,svg,webp,avif}"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
@@ -492,6 +492,13 @@
   for = "/static/css/*.css"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+
+# Cache fonts aggressively
+[[headers]]
+  for = "/*.{woff,woff2,ttf,otf,eot}"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Access-Control-Allow-Origin = "*"
 
 # Don't cache HTML (always get fresh for SPA)
 [[headers]]

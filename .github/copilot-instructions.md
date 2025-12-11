@@ -7,6 +7,7 @@ Purpose: Help an AI coding agent become productive quickly in this mono-repo con
 This file provides the core architecture and patterns. For specific topics, see:
 - **`CONTACT_FORM_SETUP.md`** — Detailed SMTP configuration and contact form troubleshooting
 - **`SEO_INDEXING_FIXES.md`** — Complete SEO action plan and Google Search Console fixes
+- **`PAGESPEED_PERFORMANCE_FIXES_DEC_2025.md`** — PageSpeed Insights fixes and performance optimization guide (Dec 2025)
 - **`BREADCRUMB_SEO_STRATEGY.md`** — Breadcrumb implementation and site architecture
 - **`KLAVIYO_PAGE_SEO_OPPORTUNITY.md`** — Specific SEO optimization for Klaviyo content
 - **`VOICE_AI_SEO_GUIDE.md`** — Voice AI page SEO and content strategy
@@ -129,10 +130,8 @@ cd netlify/functions && npm install
   - Use `class-variance-authority` (CVA) pattern for variant-based styling (see `button.jsx` for reference).
   - Always use `cn()` from `@/lib/utils` for className merging instead of manual string concatenation.
   - All UI components wrap Radix primitives with consistent Tailwind styling and CVA variants.
-  - 45+ pre-built components available: `accordion`, `alert`, `avatar`, `badge`, `button`, `calendar`, `card`, `carousel`, `checkbox`, `dialog`, `dropdown-menu`, `form`, `input`, `label`, `popover`, `select`, `sheet`, `switch`, `tabs`, `textarea`, `toast`, `tooltip`, and more.
-  - Check `src/components/ui/` directory before creating custom UI elements.or reference).
-  - Always use `cn()` from `@/lib/utils` for className merging instead of manual string concatenation.
-  - All UI components wrap Radix primitives with consistent Tailwind styling and CVA variants.
+  - 46 pre-built components available: `accordion`, `alert`, `avatar`, `badge`, `button`, `calendar`, `card`, `carousel`, `checkbox`, `collapsible`, `command`, `dialog`, `drawer`, `dropdown-menu`, `form`, `hover-card`, `input`, `label`, `menubar`, `navigation-menu`, `pagination`, `popover`, `progress`, `radio-group`, `resizable`, `scroll-area`, `select`, `separator`, `sheet`, `skeleton`, `slider`, `switch`, `tabs`, `textarea`, `toast`, `toggle`, `tooltip`, and more.
+  - Check `src/components/ui/` directory before creating custom UI elements.
 - React Router v6: use `<Routes>` + `<Route path="..." element={<Component/>} />`. See `src/App.js` for routing examples and how additional pages are added.
 - Lazy loading: non-critical UI uses `React.lazy` and `Suspense` (example: `ChatBubble` in `App.js`). Follow this pattern for heavy components like third-party widgets, calculators, and modals.
 - **Third-party widget pattern**: Load external scripts in `useEffect` hook and cleanup on unmount (see `TrustpilotWidget.jsx`). Store widget configuration in CSP headers (`netlify.toml`).
@@ -199,9 +198,18 @@ cd netlify/functions && npm install
   });
   ```
   See `BlogPage.jsx` Popular Articles section for complete implementation with navigation buttons and mobile swipe.
-- **Adding content to data layer**: Update `frontend/src/data/mock.js` when adding services, blog posts, case studies, or company info. This centralizes content management and prevents hardcoding across components.
-- Creating UI components: extend Radix primitives with CVA variants (see `button.jsx`) and use `cn()` for className composition.
-- **Adding content to data layer**: Update `frontend/src/data/mock.js` when adding services, blog posts, case studies, or company info. This centralizes content management and prevents hardcoding across components.
+- **Adding content to data layer**: Update `frontend/src/data/mock.js` when adding services, blog posts, case studies, or company info. This centralizes content management and prevents hardcoding across components. Data structure includes: `companyData`, `services`, `klaviyoServices`, `blogPosts`, `caseStudies`, `heroImages`, `serviceImages`.
+
+## Data Layer Pattern (Critical)
+
+**Centralized Data Management** (`frontend/src/data/mock.js`):
+- ALL static content lives here - never hardcode in components
+- **Key exports**: `companyData` (contact info, legal, social links), `services` (service listings), `klaviyoServices` (Klaviyo-specific offerings), `blogPosts` (blog metadata), `caseStudies`, `heroImages`, `serviceImages`
+- **Company data structure**: Includes nested objects for `contact` (email, phone, address), `legal` (VAT, registration), `social` (LinkedIn, Trustpilot), `stats` (metrics), `calendly` link
+- **Service data structure**: Each service has `id`, `category`, `title`, `description`, `image`, `tools[]`, `benefits[]`
+- **Blog post data structure**: Each post has `id`, `slug`, `title`, `excerpt`, `content`, `author`, `date`, `category`, `image`, `tags[]`
+- **When adding content**: Update `mock.js` first, then create page component that imports and displays the data
+- **Pattern**: `import { companyData, services } from '@/data/mock'` in components
 
 ## Sitemap Generation Workflow (Important for SEO)
 
@@ -230,16 +238,19 @@ cd netlify/functions && npm install
 - `--legacy-peer-deps` flag used in all npm commands to handle CRA 5.0 dependency conflicts
 **Code Splitting & Lazy Loading**:
 - Heavy components use `React.lazy()` and `Suspense` (see `ChatBubble` in `App.js`)
-- Pattern: `const Component = lazy(() => import('./Component'))` wrapped in `<Suspense fallback={null}>`
+- Pattern: `const Component = lazy(() => import('./Component'))` wrapped in `<Suspense fallback={<LoadingSpinner/>}>`
 - Apply to: third-party widgets, modals, non-critical UI, heavy libraries, carousels with many images
-- ALL pages except HomePage use lazy loading (see `App.js` for complete pattern) `App.js`)
-- Pattern: `const Component = lazy(() => import('./Component'))` wrapped in `<Suspense fallback={null}>`
-- Apply to: third-party widgets, modals, non-critical UI, heavy libraries
+- ALL pages except HomePage use lazy loading (see `App.js` for complete pattern)
+- Loading fallback shows spinner for pages, `null` for non-critical widgets
 
 **Asset Optimization**:
-- Images served from CDN: `customer-assets.emergentagent.com`
+- Images served from CDN: `customer-assets.emergentagent.com` and `images.unsplash.com`
 - Preconnect hints in `index.html` for fonts and external resources
 - DNS prefetch for third-party scripts (Calendly, LeadConnector, Trustpilot)
+- **Google Fonts optimized**: Use `display=swap` parameter to prevent FOIT (Flash of Invisible Text)
+- **Image dimensions required**: Always add `width` and `height` attributes to prevent CLS (Cumulative Layout Shift)
+- **Cache headers**: Static assets cached for 1 year via `netlify.toml` headers (images, fonts, JS, CSS)
+- **Modern formats**: Support for WebP and AVIF images in cache headers
 
 **React Performance Patterns**:
 - Avoid inline function definitions in render (causes re-renders)
@@ -527,6 +538,81 @@ if (marketingConsent === 'granted') {
 - Add new environment keys to `backend/.env.example` and `netlify/functions/.env.example` and mention them in PR notes.
 - Run local build/test commands described above before proposing a change.
 - When adding new pages, remember the **THREE-PLACE RULE**: `src/pages/`, `App.js`, and `generate-sitemap.mjs`.
+
+## Performance Best Practices (PageSpeed Insights)
+
+**Current Performance Status** (Dec 11, 2025):
+- Mobile Score: 63/100 → Target: 90+
+- LCP (Largest Contentful Paint): 10.3s → Target: < 2.5s
+- See `PAGESPEED_PERFORMANCE_FIXES_DEC_2025.md` for complete audit and fixes
+
+**Critical Performance Rules**:
+1. **Images MUST have width/height attributes** to prevent CLS:
+   ```jsx
+   <img src="/images/hero.webp" alt="Hero" width="1200" height="600" />
+   ```
+2. **Use font-display: swap** for all web fonts (already implemented in `index.html`)
+3. **Add loading="lazy"** for below-the-fold images:
+   ```jsx
+   <img src="/images/service.webp" alt="Service" width="400" height="300" loading="lazy" />
+   ```
+4. **Optimize images before upload**:
+   - Convert to WebP: `cwebp input.jpg -q 80 -o output.webp`
+   - Convert to AVIF: `avif --quality 70 input.jpg output.avif`
+   - Store in `/frontend/public/images/optimized/`
+5. **Leverage browser caching** - already configured in `netlify.toml`:
+   - Static assets: 1 year (31536000s)
+   - HTML: No cache (0s, must-revalidate)
+   - Fonts: 1 year + CORS headers
+
+**Testing Performance Locally**:
+```bash
+# Run Lighthouse audit
+npx lighthouse https://devaland.com --view
+
+# Mobile simulation
+npx lighthouse https://devaland.com --preset=mobile --view
+
+# Specific page
+npx lighthouse https://devaland.com/klaviyo --view
+```
+
+**Image Optimization Workflow**:
+1. Download from Unsplash at appropriate size (not full resolution)
+2. Convert to WebP and AVIF formats
+3. Add to `/frontend/public/images/optimized/`
+4. Update `mock.js` with new paths
+5. Add width/height attributes to `<img>` tags
+
+## Quick Reference: Common Tasks
+
+**Adding a new page** (THREE-PLACE RULE):
+1. Create `frontend/src/pages/NewPage.jsx` with SEO + Breadcrumb components
+2. Add route in `frontend/src/App.js`: `const NewPage = lazy(() => import('./pages/NewPage'));` and `<Route path="/new-page" element={<NewPage />} />`
+3. Add to sitemap: `frontend/scripts/generate-sitemap.mjs` ROUTES array: `"/new-page"`
+
+**Adding a blog post**:
+1. Add post data to `frontend/src/data/mock.js` in `blogPosts` array with unique `slug`
+2. Add slug to `frontend/scripts/generate-sitemap.mjs` BLOG_POSTS array: `"/blog/post-slug"`
+3. Post automatically renders via `BlogPostPage.jsx` dynamic route
+4. Optionally add structured data to `frontend/public/structured-data.json`
+
+**Adding a UI component**:
+1. Check if component exists in `frontend/src/components/ui/` first
+2. If creating new: extend Radix primitive, use CVA for variants, export with TypeScript-like prop types
+3. Always use `cn()` utility for className merging: `cn("base-classes", variants, className)`
+
+**Debugging email delivery**:
+1. Check Netlify function logs in Netlify UI (Functions tab)
+2. Verify SMTP env vars set in Netlify: `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASSWORD`, `CONTACT_EMAIL`
+3. Test locally: `cd netlify/functions && npm install && netlify dev` (requires Netlify CLI)
+4. MongoDB failure won't block emails - graceful degradation by design
+
+**Debugging CSP violations**:
+1. Open browser console, look for "Content Security Policy" errors
+2. Identify blocked resource domain (e.g., `https://example.com`)
+3. Add domain to appropriate directive in `netlify.toml` CSP header: `script-src`, `connect-src`, `img-src`, etc.
+4. Redeploy and test
 
 ## Common Development Pain Points
 
