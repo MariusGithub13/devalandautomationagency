@@ -598,12 +598,15 @@ const BlogPostPage = () => {
               {/* Article Body */}
               <div className="prose prose-lg max-w-none">
                 <style>{`
+                  .prose {
+                    line-height: 1.75;
+                  }
                   .prose h2 {
                     font-size: 2rem;
                     font-weight: 700;
                     color: #1f2937;
-                    margin-top: 1.25rem;
-                    margin-bottom: 0.5rem;
+                    margin-top: 2.5rem;
+                    margin-bottom: 1rem;
                     padding-bottom: 0.75rem;
                     border-bottom: 3px solid #3b82f6;
                     background: linear-gradient(to right, #eff6ff, transparent);
@@ -624,14 +627,14 @@ const BlogPostPage = () => {
                     border-radius: 0.5rem 0 0 0.5rem;
                   }
                   .prose h2:first-of-type {
-                    margin-top: 0.25rem;
+                    margin-top: 0;
                   }
                   .prose h3 {
                     font-size: 1.5rem;
                     font-weight: 600;
                     color: #1f2937;
-                    margin-top: 1rem;
-                    margin-bottom: 0.4rem;
+                    margin-top: 2rem;
+                    margin-bottom: 0.75rem;
                     padding-left: 0.75rem;
                     border-left: 3px solid #3b82f6;
                   }
@@ -639,27 +642,36 @@ const BlogPostPage = () => {
                     font-size: 1.25rem;
                     font-weight: 600;
                     color: #374151;
-                    margin-top: 0.85rem;
-                    margin-bottom: 0.4rem;
+                    margin-top: 1.5rem;
+                    margin-bottom: 0.75rem;
+                  }
+                  .prose p {
+                    margin-top: 0;
+                    margin-bottom: 1.25rem;
+                    line-height: 1.75;
                   }
                   .prose ul {
                     list-style-type: disc;
                     padding-left: 1.5rem;
-                    margin-top: 0.5rem;
-                    margin-bottom: 0.5rem;
+                    margin-top: 1rem;
+                    margin-bottom: 1.5rem;
                   }
                   .prose ol {
                     list-style-type: decimal;
                     padding-left: 1.5rem;
-                    margin-top: 0.5rem;
-                    margin-bottom: 0.5rem;
+                    margin-top: 1rem;
+                    margin-bottom: 1.5rem;
                   }
                   .prose li {
-                    margin-bottom: 0.25rem;
-                    line-height: 1.5;
+                    margin-bottom: 0.5rem;
+                    line-height: 1.75;
                   }
                   .prose li:last-child {
                     margin-bottom: 0;
+                  }
+                  .prose strong {
+                    font-weight: 600;
+                    color: #1f2937;
                   }
                   .prose a {
                     color: #2563eb;
@@ -670,6 +682,11 @@ const BlogPostPage = () => {
                   .prose a:hover {
                     color: #1d4ed8;
                     text-decoration: underline;
+                  }
+                  .prose br {
+                    display: block;
+                    content: "";
+                    margin-top: 0.5rem;
                   }
                 `}</style>
                 <div className="leading-relaxed">
@@ -711,8 +728,17 @@ const BlogPostPage = () => {
                       // Convert numbered lists (lines starting with number.)
                       html = html.replace(/^\d+\.\s+(.+)$/gm, '<li>$1</li>');
                       
-                      // Preserve paragraph breaks
-                      html = html.replace(/\n\n/g, '<br/><br/>');
+                      // Convert paragraph breaks to proper <p> tags
+                      // Split by double newlines and wrap non-heading/non-list content in <p>
+                      const lines = html.split(/\n\n+/);
+                      html = lines.map(line => {
+                        line = line.trim();
+                        // Don't wrap if it's already a heading, list, or empty
+                        if (!line || line.startsWith('<h') || line.startsWith('<ul>') || line.startsWith('<ol>') || line.startsWith('<li>')) {
+                          return line;
+                        }
+                        return `<p>${line}</p>`;
+                      }).join('\n');
                       
                       return html;
                     };
