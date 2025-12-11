@@ -30,11 +30,12 @@ export const sendTrustpilotInvitation = ({ recipientEmail, recipientName, refere
             } else {
               if (process.env.NODE_ENV === 'development') {
                 console.log('✅ Trustpilot invitation confirmed by API', { 
-                recipientEmail, 
-                recipientName,
-                referenceId,
-                response 
-              });
+                  recipientEmail, 
+                  recipientName,
+                  referenceId,
+                  response 
+                });
+              }
               resolve(true);
             }
           });
