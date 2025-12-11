@@ -728,11 +728,114 @@ npx lighthouse https://devaland.com --preset=mobile --view
 
 ---
 
-**Optimization Status**: ✅ **COMPLETE** - All critical optimizations implemented
-**Expected Mobile Score**: 🎯 **85-90+** (from 64/100)
-**Expected Desktop Score**: ✅ **99/100** (achieved and maintained)
-**Total Time Investment**: ~4 hours (3 phases)
-**Performance Improvement**: 🚀 **90% faster desktop, 75%+ faster mobile**
+## 🎯 Phase 4: Mobile-Specific Optimizations (Dec 11, 2025 3:00 PM)
+
+**Goal**: Push mobile score from 78/100 to 85+ by addressing mobile-specific bottlenecks
+
+### Optimizations Implemented
+
+#### 1. Mobile-Optimized Font Loading Strategy ✅
+
+**Problem**: 390ms font display time on mobile (vs 150ms on desktop)
+
+**Solution**: Load only essential font weights on mobile
+```html
+<!-- Mobile: Load only Inter 400 & 600 (reduces font payload) -->
+<link href="...Inter:wght@400;600&display=swap" rel="stylesheet" media="(max-width: 768px)" />
+<!-- Desktop: Load all weights (300-900) for richer typography -->
+<link href="...Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" media="(min-width: 769px)" />
+```
+
+**Expected Impact**: 390ms → <150ms font display (60% reduction)
+
+#### 2. Device-Specific Image Preloading ✅
+
+**Problem**: Mobile devices downloading oversized hero images
+
+**Solution**: Media query-based image preload
+```html
+<!-- Mobile: preload 400w version -->
+<link rel="preload" href="hero-primary-400.webp" media="(max-width: 640px)" />
+<!-- Tablet: preload 800w version -->
+<link rel="preload" href="hero-primary-800.webp" media="(min-width: 641px) and (max-width: 1024px)" />
+<!-- Desktop: preload 1200w version -->
+<link rel="preload" href="hero-primary-1200.webp" media="(min-width: 1025px)" />
+```
+
+**Expected Impact**: Mobile LCP 4.0s → <3.0s (25% improvement)
+
+#### 3. Expanded Critical CSS ✅
+
+**Problem**: Minimal critical CSS causing FOUC and layout shift on mobile
+
+**Solution**: Enhanced mobile-first critical styles
+```css
+/* Added: */
+* { box-sizing: border-box; } /* Prevents layout calculation issues */
+img { max-width: 100%; height: auto; display: block; } /* Prevents image overflow */
+body { line-height: 1.5; color: #1f2937; } /* Better readability */
+@media (max-width: 768px) { body { font-size: 16px; } } /* Mobile-first sizing */
+```
+
+**Expected Impact**: Faster first paint, reduced CLS
+
+#### 4. Universal Image Dimensions ✅
+
+**Problem**: Missing width/height on several page images causing CLS
+
+**Solution**: Added explicit dimensions to all images across 5 pages
+
+**Files Updated**:
+- `BlogPostPage.jsx`: Featured image (800x400)
+- `KlaviyoPage.jsx`: Hero image (600x400)
+- `VoiceAIPage.jsx`: Hero + benefits images (600x400 each)
+- `AboutPage.jsx`: Secondary hero, transformation, team images (600x400, 128x128)
+
+**Expected Impact**: CLS 0.014 → 0 (perfect score)
+
+#### 5. Mobile-First Font Preloading ✅
+
+**Problem**: Preloading all font weights on mobile wastes bandwidth
+
+**Solution**: Media query-based font preload
+```html
+<!-- Mobile: Preload only Inter 400 -->
+<link rel="preload" href="...Inter-400.woff2" media="(max-width: 768px)" />
+<!-- Desktop: Preload Inter 400 + 600 -->
+<link rel="preload" href="...Inter-400.woff2" media="(min-width: 769px)" />
+<link rel="preload" href="...Inter-600.woff2" media="(min-width: 769px)" />
+```
+
+**Expected Impact**: Reduced font preload overhead on mobile
+
+### Expected Phase 4 Results
+
+**Mobile Performance** (Target: 85+):
+- Score: 78 → **85-88** (+7-10 points)
+- LCP: 4.0s → **2.5-3.0s** (25-38% improvement)
+- FCP: 3.1s → **2.0-2.5s** (35% improvement)
+- Font Display: 390ms → **<150ms** (60% reduction)
+- CLS: 0.014 → **0** (perfect)
+
+**Desktop Performance** (Maintain: 98+):
+- Score: **98/100** (maintained)
+- LCP: **1.0s** (maintained)
+- No regression expected
+
+### Build Status
+
+- ✅ Build completed successfully
+- ✅ Deployed: Commit `f903241` at ~3:00 PM
+- ⏳ CDN Propagation: 5-10 minutes
+- 🧪 Test After: ~3:10 PM
+
+---
+
+**Optimization Status**: ✅ **4 PHASES COMPLETE** - All mobile-specific optimizations deployed
+**Expected Mobile Score**: 🎯 **85-88** (from 78/100)
+**Expected Desktop Score**: ✅ **98/100** (maintained)
+**Total Time Investment**: ~5 hours (4 phases)
+**Performance Improvement**: 🚀 **90% faster desktop, 61% faster mobile (target: 75%+)**
 
 ---
 
