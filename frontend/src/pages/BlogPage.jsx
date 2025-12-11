@@ -186,7 +186,10 @@ const BlogPage = () => {
                   <img 
                     src={filteredPosts[0].image}
                     alt={filteredPosts[0].title}
+                    width="800"
+                    height="600"
                     loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
@@ -286,6 +289,10 @@ const BlogPage = () => {
                             <img 
                               src={post.image}
                               alt={post.title}
+                              width="800"
+                              height="450"
+                              loading="lazy"
+                              decoding="async"
                               className="w-full h-48 object-cover hover-scale"
                             />
                             <div className="absolute top-4 left-4">
@@ -378,6 +385,10 @@ const BlogPage = () => {
                         <img 
                           src={post.image}
                           alt={post.title}
+                          width="400"
+                          height="300"
+                          loading="lazy"
+                          decoding="async"
                           className="w-full h-48 object-cover hover-scale"
                         />
                         <div className="absolute top-4 left-4">
