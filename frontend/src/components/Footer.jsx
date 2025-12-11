@@ -391,10 +391,10 @@ const Footer = memo(() => {
               <div className="mt-6 flex flex-col items-start">
                 <div className="w-full max-w-md px-4 py-5 rounded-lg border border-gray-200 bg-white shadow-md flex flex-col items-center">
                   <div className="mb-3 text-lg font-semibold text-gray-900 text-center">Client Reviews</div>
-                  {/* Google Reviews Link - Search for "Devaland Marketing" */}
-                  <div className="w-full">
+                  {/* Google Business Profile Link */}
+                  <div className="w-full space-y-3">
                     <a 
-                      href="https://www.google.com/search?q=devaland+marketing" 
+                      href="https://www.google.com/search?q=DEVALAND+MARKETING+SRL&stick=H4sIAAAAAAAA_-NgU1I1qDAxM7RMNTRKNjJLSTJNTUuzMqgwMk9KMkpKTUs1S0lNSjU1XsQq5uIa5ujj6Oei4OsY5O0a4unnrhAc5AMAFBctkEIAAAA&hl=en-GB" 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="flex items-center justify-center gap-3 px-4 py-3 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:border-blue-500 transition-all group"
@@ -406,8 +406,23 @@ const Footer = memo(() => {
                         <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
                       </svg>
                       <div className="text-left">
-                        <div className="text-sm font-semibold text-gray-900 group-hover:text-blue-600">Google Reviews</div>
-                        <div className="text-xs text-gray-600">See our business profile</div>
+                        <div className="text-sm font-semibold text-gray-900 group-hover:text-blue-600">Google Business Profile</div>
+                        <div className="text-xs text-gray-600">View our complete profile</div>
+                      </div>
+                    </a>
+                    {/* Write a Review Link */}
+                    <a 
+                      href="https://g.page/r/CfSNoCv66NgaEBM/review" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-3 px-4 py-3 bg-blue-50 border border-blue-300 rounded-lg hover:bg-blue-100 hover:border-blue-500 transition-all group"
+                    >
+                      <svg className="w-6 h-6" viewBox="0 0 24 24">
+                        <path fill="#FBBC05" d="M12 2l2.4 7.4h7.6l-6 4.6 2.3 7-6.3-4.6-6.3 4.6 2.3-7-6-4.6h7.6z"/>
+                      </svg>
+                      <div className="text-left">
+                        <div className="text-sm font-semibold text-blue-700 group-hover:text-blue-900">Write a Review</div>
+                        <div className="text-xs text-blue-600">Share your experience</div>
                       </div>
                     </a>
                   </div>

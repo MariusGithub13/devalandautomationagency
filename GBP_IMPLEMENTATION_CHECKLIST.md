@@ -44,12 +44,12 @@ Trusted by premium e-commerce brands. Book your free automation audit: https://d
 
 **Steps:**
 
-1. Get your Google review link:
-   - Go to Google Business Profile dashboard
-   - Click "Ask for reviews"
-   - Copy the short review link (e.g., `g.page/devaland/review`)
+1. ✅ Your Google review link is ready: **https://g.page/r/CfSNoCv66NgaEBM/review**
+   - Already added to your website footer
+   - Already in all email templates below
+   - No need to get from dashboard - just use it!
 2. Identify 3 clients with best results
-3. Send personalized emails using templates below
+3. Send personalized emails using templates below (review link already included)
 
 **CLIENT SELECTION CRITERIA:**
 
@@ -72,7 +72,7 @@ I wanted to reach out because we're building our Google presence and would love 
 
 Since we worked together on [specific project - e.g., "your Klaviyo Black Friday flows that generated €45K"], would you mind leaving a quick Google review about your experience?
 
-👉 Review link: [YOUR REVIEW LINK HERE]
+👉 Review link: https://g.page/r/CfSNoCv66NgaEBM/review
 
 Takes 2 minutes and would help us reach more brands like yours. Happy to return the favor anytime!
 
@@ -94,9 +94,7 @@ Hope the Voice AI agent is working great! [Mention specific metric - e.g., "Saw 
 
 Quick ask: Would you leave a Google review about your experience working with us?
 
-👉 Review link: [YOUR REVIEW LINK HERE]
-
-It takes 2 minutes and helps other business owners discover how Voice AI can scale their operations. Would mean a lot!
+👉 Review link: https://g.page/r/CfSNoCv66NgaEBM/review
 
 Thanks,
 Marius
@@ -115,7 +113,7 @@ Hope the automation systems are saving you tons of time! [Mention specific - e.g
 
 Could I ask a quick favor? We're growing our Google presence and would appreciate a review about your experience.
 
-👉 Review link: [YOUR REVIEW LINK HERE]
+👉 Review link: https://g.page/r/CfSNoCv66NgaEBM/review
 
 2 minutes, honest feedback (even if critical - we want to improve!). Happy to return the favor anytime.
 
@@ -128,9 +126,9 @@ Devaland Marketing
 
 **TRACKING:**
 
-- [ ] Client #1: ********\_******** (Email sent: **/**/\_\_)
-- [ ] Client #2: ********\_******** (Email sent: **/**/\_\_)
-- [ ] Client #3: ********\_******** (Email sent: **/**/\_\_)
+- [ ] Client #1: **\*\*\*\***\_**\*\*\*\*** (Email sent: **/**/\_\_)
+- [ ] Client #2: **\*\*\*\***\_**\*\*\*\*** (Email sent: **/**/\_\_)
+- [ ] Client #3: **\*\*\*\***\_**\*\*\*\*** (Email sent: **/**/\_\_)
 
 **Follow-up:** If no response in 3 days, send gentle reminder
 
@@ -605,7 +603,7 @@ Quick follow-up on my request from last week about leaving a Google review.
 
 No pressure at all! If you're too busy or prefer not to, totally understand. But if you have 2 minutes, it would really help us:
 
-👉 [YOUR REVIEW LINK]
+👉 https://g.page/r/CfSNoCv66NgaEBM/review
 
 Thanks for considering,
 Marius
