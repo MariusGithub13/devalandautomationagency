@@ -98,14 +98,30 @@
           "https://www.instagram.com/mariusandronie/",
     <!-- Critical CSS for above-the-fold content -->
     <style>
-      /* Critical rendering path optimization */
+      /* Critical rendering path optimization - Expanded for mobile */
+      * {
+        box-sizing: border-box;
+      }
       body {
         margin: 0;
+        padding: 0;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
           'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
           sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        line-height: 1.5;
+        color: #1f2937;
+      }
+      /* Above-the-fold hero optimization */
+      #root {
+        min-height: 100vh;
+      }
+      /* Prevent layout shift for images */
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
       }
       /* Loading spinner for Suspense fallback */
       .loading-spinner {
@@ -119,6 +135,12 @@
       }
       .animate-spin {
         animation: spin 1s linear infinite;
+      }
+      /* Mobile-first viewport optimization */
+      @media (max-width: 768px) {
+        body {
+          font-size: 16px;
+        }
       }
     </style>
 
@@ -138,15 +160,25 @@
     <!-- Preconnect / perf hints -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://images.unsplash.com" />
-    
-    <!-- Preload critical fonts with CORS for faster text rendering (eliminates 230ms delay) -->
-    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
-    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v12/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <!-- Google Fonts with font-display swap - optimized for mobile -->
+    <!-- Mobile: Load only essential weights (400, 600) to reduce font display time -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" media="(max-width: 768px)" />
+    <!-- Desktop: Load all weights for richer typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='(min-width: 769px)'" />
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" /></noscript>
+    <!-- Mobile-optimized font preload: Inter 400 (most common weight) -->
+    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2" as="font" type="font/woff2" crossorigin="anonymous" media="(max-width: 768px)" />
+    <!-- Desktop font preload: Inter 400 and 600 -->
+    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2" as="font" type="font/woff2" crossorigin="anonymous" media="(min-width: 769px)" />
+    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v12/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7.woff2" as="font" type="font/woff2" crossorigin="anonymous" media="(min-width: 769px)" />
     
     <!-- Preload hero image for faster LCP (Largest Contentful Paint) -->
-    <link rel="preload" as="image" href="/images/optimized/hero/hero-primary.webp" type="image/webp" />
-    <link rel="preload" as="image" href="/images/optimized/hero/hero-primary-1200.webp" imagesrcset="/images/optimized/hero/hero-primary-400.webp 400w, /images/optimized/hero/hero-primary-800.webp 800w, /images/optimized/hero/hero-primary-1200.webp 1200w" />
+    <!-- Mobile: preload 400w version for faster LCP on mobile devices -->
+    <link rel="preload" as="image" href="/images/optimized/hero/hero-primary-400.webp" type="image/webp" media="(max-width: 640px)" />
+    <!-- Tablet: preload 800w version -->
+    <link rel="preload" as="image" href="/images/optimized/hero/hero-primary-800.webp" type="image/webp" media="(min-width: 641px) and (max-width: 1024px)" />
+    <!-- Desktop: preload 1200w version -->
+    <link rel="preload" as="image" href="/images/optimized/hero/hero-primary-1200.webp" type="image/webp" media="(min-width: 1025px)" />
     
     <link
       rel="preconnect"

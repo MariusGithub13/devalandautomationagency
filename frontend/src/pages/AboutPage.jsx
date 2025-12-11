@@ -66,6 +66,8 @@ const AboutPage = () => {
               <img 
                 src={heroImages.secondary} 
                 alt="Modern Office"
+                width="600"
+                height="400"
                 loading="lazy"
                 decoding="async"
                 className="w-full rounded-2xl shadow-2xl hover-scale"
@@ -171,6 +173,8 @@ const AboutPage = () => {
               <img 
                 src={heroImages.transformation} 
                 alt="Team Collaboration"
+                width="600"
+                height="400"
                 loading="lazy"
                 decoding="async"
                 className="w-full rounded-2xl shadow-2xl"
@@ -213,6 +217,8 @@ const AboutPage = () => {
                     <img 
                       src={member.image} 
                       alt={member.name}
+                      width="128"
+                      height="128"
                       loading="lazy"
                       decoding="async"
                       className="w-32 h-32 rounded-full mx-auto object-cover"

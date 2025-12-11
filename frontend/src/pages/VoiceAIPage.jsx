@@ -120,6 +120,8 @@ const VoiceAIPage = () => {
               <img
                 src={voiceAIData.heroImage}
                 alt="Voice AI Agent Dashboard showing real-time conversations"
+                width="600"
+                height="400"
                 className="rounded-2xl shadow-2xl"
                 loading="eager"
                 fetchpriority="high"
@@ -884,6 +886,8 @@ const VoiceAIPage = () => {
               <img
                 src={voiceAIData.benefitsImage}
                 alt="Voice AI Analytics Dashboard"
+                width="600"
+                height="400"
                 className="rounded-2xl shadow-xl"
                 loading="lazy"
                 decoding="async"
