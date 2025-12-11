@@ -92,7 +92,11 @@ const HomePage = () => {
         <div className="absolute inset-0 z-0">
           <img 
             src={heroImages.primary}
+            srcSet={heroImages.primarySrcSet}
+            sizes="100vw"
             alt="Digital Transformation"
+            width="1200"
+            height="593"
             className="w-full h-full object-cover"
             loading="eager"
             fetchpriority="high"
@@ -281,7 +285,7 @@ const HomePage = () => {
                     src={robotLadyImage}
                     alt="AI-Powered Automation Assistant - Devaland's intelligent automation solutions"
                     className="w-full h-auto object-cover"
-                    loading="eager"
+                    loading="lazy"
                     decoding="async"
                     width="600"
                     height="800"
@@ -833,6 +837,8 @@ const HomePage = () => {
               <img 
                 src={heroImages.transformation} 
                 alt="Automation Success"
+                width="800"
+                height="533"
                 loading="lazy"
                 decoding="async"
                 className="w-full rounded-2xl shadow-2xl hover-scale"

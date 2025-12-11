@@ -107,6 +107,8 @@ const ServicesPage = () => {
                       <img 
                         src={service.image} 
                         alt={service.title}
+                        width="800"
+                        height="533"
                         loading="lazy"
                         decoding="async"
                         className="w-full h-64 object-cover hover-scale"

@@ -34,17 +34,19 @@ export const companyData = {
 };
 
 export const heroImages = {
-  primary: "https://images.unsplash.com/photo-1644325349124-d1756b79dd42",
+  primary: "/images/optimized/hero/hero-primary.webp",
+  primaryFallback: "/images/optimized/hero/hero-primary.jpg",
+  primarySrcSet: "/images/optimized/hero/hero-primary-400.webp 400w, /images/optimized/hero/hero-primary-800.webp 800w, /images/optimized/hero/hero-primary-1200.webp 1200w",
   secondary: "/images/Marius The Digital Vampire Dracula Castle.jpg",
-  transformation: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015" // Business growth analytics
+  transformation: "/images/optimized/services/rpa.webp" // Business growth analytics
 };
 
 export const serviceImages = {
-  rpa: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015", // Business analytics dashboard
-  workflow: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070", // Chart growth analytics
-  ai: "https://images.unsplash.com/photo-1535320903710-d993d3d77d29?q=80&w=2070", // Technology innovation growth
-  automation: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070", // Office documents and organization
-  klaviyo: "https://images.unsplash.com/photo-1563013544-824ae1b704d3"
+  rpa: "/images/optimized/services/rpa.webp", // Business analytics dashboard
+  workflow: "/images/optimized/services/workflow.webp", // Chart growth analytics
+  ai: "/images/optimized/services/ai.webp", // Technology innovation growth
+  automation: "/images/optimized/services/automation.webp", // Office documents and organization
+  klaviyo: "/images/optimized/services/klaviyo.webp"
 };
 
 export const services = [
