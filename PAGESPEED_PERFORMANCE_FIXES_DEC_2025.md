@@ -739,11 +739,20 @@ npx lighthouse https://devaland.com --preset=mobile --view
 **Problem**: 390ms font display time on mobile (vs 150ms on desktop)
 
 **Solution**: Load only essential font weights on mobile
+
 ```html
 <!-- Mobile: Load only Inter 400 & 600 (reduces font payload) -->
-<link href="...Inter:wght@400;600&display=swap" rel="stylesheet" media="(max-width: 768px)" />
+<link
+  href="...Inter:wght@400;600&display=swap"
+  rel="stylesheet"
+  media="(max-width: 768px)"
+/>
 <!-- Desktop: Load all weights (300-900) for richer typography -->
-<link href="...Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" media="(min-width: 769px)" />
+<link
+  href="...Inter:wght@300;400;500;600;700;800;900&display=swap"
+  rel="stylesheet"
+  media="(min-width: 769px)"
+/>
 ```
 
 **Expected Impact**: 390ms → <150ms font display (60% reduction)
@@ -753,11 +762,16 @@ npx lighthouse https://devaland.com --preset=mobile --view
 **Problem**: Mobile devices downloading oversized hero images
 
 **Solution**: Media query-based image preload
+
 ```html
 <!-- Mobile: preload 400w version -->
 <link rel="preload" href="hero-primary-400.webp" media="(max-width: 640px)" />
 <!-- Tablet: preload 800w version -->
-<link rel="preload" href="hero-primary-800.webp" media="(min-width: 641px) and (max-width: 1024px)" />
+<link
+  rel="preload"
+  href="hero-primary-800.webp"
+  media="(min-width: 641px) and (max-width: 1024px)"
+/>
 <!-- Desktop: preload 1200w version -->
 <link rel="preload" href="hero-primary-1200.webp" media="(min-width: 1025px)" />
 ```
@@ -769,12 +783,26 @@ npx lighthouse https://devaland.com --preset=mobile --view
 **Problem**: Minimal critical CSS causing FOUC and layout shift on mobile
 
 **Solution**: Enhanced mobile-first critical styles
+
 ```css
 /* Added: */
-* { box-sizing: border-box; } /* Prevents layout calculation issues */
-img { max-width: 100%; height: auto; display: block; } /* Prevents image overflow */
-body { line-height: 1.5; color: #1f2937; } /* Better readability */
-@media (max-width: 768px) { body { font-size: 16px; } } /* Mobile-first sizing */
+* {
+  box-sizing: border-box;
+} /* Prevents layout calculation issues */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+} /* Prevents image overflow */
+body {
+  line-height: 1.5;
+  color: #1f2937;
+} /* Better readability */
+@media (max-width: 768px) {
+  body {
+    font-size: 16px;
+  }
+} /* Mobile-first sizing */
 ```
 
 **Expected Impact**: Faster first paint, reduced CLS
@@ -786,6 +814,7 @@ body { line-height: 1.5; color: #1f2937; } /* Better readability */
 **Solution**: Added explicit dimensions to all images across 5 pages
 
 **Files Updated**:
+
 - `BlogPostPage.jsx`: Featured image (800x400)
 - `KlaviyoPage.jsx`: Hero image (600x400)
 - `VoiceAIPage.jsx`: Hero + benefits images (600x400 each)
@@ -798,6 +827,7 @@ body { line-height: 1.5; color: #1f2937; } /* Better readability */
 **Problem**: Preloading all font weights on mobile wastes bandwidth
 
 **Solution**: Media query-based font preload
+
 ```html
 <!-- Mobile: Preload only Inter 400 -->
 <link rel="preload" href="...Inter-400.woff2" media="(max-width: 768px)" />
@@ -811,6 +841,7 @@ body { line-height: 1.5; color: #1f2937; } /* Better readability */
 ### Expected Phase 4 Results
 
 **Mobile Performance** (Target: 85+):
+
 - Score: 78 → **85-88** (+7-10 points)
 - LCP: 4.0s → **2.5-3.0s** (25-38% improvement)
 - FCP: 3.1s → **2.0-2.5s** (35% improvement)
@@ -818,6 +849,7 @@ body { line-height: 1.5; color: #1f2937; } /* Better readability */
 - CLS: 0.014 → **0** (perfect)
 
 **Desktop Performance** (Maintain: 98+):
+
 - Score: **98/100** (maintained)
 - LCP: **1.0s** (maintained)
 - No regression expected
