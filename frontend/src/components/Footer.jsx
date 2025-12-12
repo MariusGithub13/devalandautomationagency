@@ -218,9 +218,9 @@ const Footer = memo(() => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Visit Klaviyo website"
-                  className="inline-block"
+                  className="inline-block w-full max-w-xs"
                 >
-                  <img src="/images/Klaviyo Agency Partner.webp" alt="Klaviyo Agency Partner" width="200" height="64" className="h-16 object-contain" />
+                  <img src="/images/Klaviyo Agency Partner.webp" alt="Klaviyo Agency Partner" width="320" height="102" className="w-full h-auto object-contain" />
                 </a>
               </div>
             </div>
