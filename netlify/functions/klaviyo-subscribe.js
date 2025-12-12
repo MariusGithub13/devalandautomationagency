@@ -66,28 +66,49 @@ exports.handler = async (event) => {
       };
     }
 
-    // Prepare Klaviyo API request
+    // Prepare Klaviyo API request using v3 API
     const data = JSON.stringify({
-      profiles: [{
-        email: email,
-        subscriptions: {
-          email: {
-            marketing: {
-              consent: 'SUBSCRIBED'
+      data: {
+        type: 'profile-subscription-bulk-create-job',
+        attributes: {
+          profiles: {
+            data: [
+              {
+                type: 'profile',
+                attributes: {
+                  email: email,
+                  subscriptions: {
+                    email: {
+                      marketing: {
+                        consent: 'SUBSCRIBED'
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        relationships: {
+          list: {
+            data: {
+              type: 'list',
+              id: listId
             }
           }
         }
-      }]
+      }
     });
 
     const options = {
       hostname: 'a.klaviyo.com',
-      path: `/api/v2/list/${listId}/subscribe`,
+      path: '/api/profile-subscription-bulk-create-jobs/',
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Content-Length': Buffer.byteLength(data),
-        'Authorization': `Klaviyo-API-Key ${KLAVIYO_API_KEY}`
+        'Authorization': `Klaviyo-API-Key ${KLAVIYO_API_KEY}`,
+        'revision': '2024-10-15'
       }
     };
 
