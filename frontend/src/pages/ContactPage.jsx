@@ -31,8 +31,12 @@ const ContactPage = () => {
     message: '',
     budget: '',
     shopifyStore: '',
-    emailListSize: ''
+    emailListSize: '',
+    website: '', // Honeypot field
+    humanCheck: false // Human verification
   });
+
+  const [submissionTime] = useState(Date.now()); // Track when form loaded
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -52,6 +56,26 @@ const ContactPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
+    // Honeypot check - if filled, it's a bot
+    if (formData.website) {
+      console.log('🤖 Bot detected: honeypot field filled');
+      return; // Silently reject
+    }
+
+    // Human verification check
+    if (!formData.humanCheck) {
+      toast.error('Please confirm you are human');
+      return;
+    }
+
+    // Time-based check - form filled too quickly (< 3 seconds = likely bot)
+    const timeTaken = Date.now() - submissionTime;
+    if (timeTaken < 3000) {
+      console.log('🤖 Bot detected: form filled too quickly');
+      toast.error('Please take your time filling out the form');
+      return;
+    }
+    
     // Basic validation
     if (!formData.name || !formData.email || !formData.company || !formData.message) {
       toast.error('Please fill in all required fields');
@@ -68,12 +92,21 @@ const ContactPage = () => {
       // Submit form to Netlify Function
       // In production, Netlify Functions are available at /.netlify/functions/[function-name]
       const apiUrl = process.env.REACT_APP_API_URL || '/.netlify/functions';
+      
+      // Prepare data (exclude honeypot and humanCheck from backend)
+      const { website, humanCheck, ...submitData } = formData;
+      const dataToSubmit = {
+        ...submitData,
+        submissionTime: submissionTime,
+        timeTaken: Date.now() - submissionTime
+      };
+
       const response = await fetch(`${apiUrl}/contact`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(dataToSubmit),
       });
 
       if (!response.ok) {
@@ -142,7 +175,9 @@ const ContactPage = () => {
         message: '',
         budget: '',
         shopifyStore: '',
-        emailListSize: ''
+        emailListSize: '',
+        website: '',
+        humanCheck: false
       });
       
     } catch (error) {
@@ -400,6 +435,35 @@ const ContactPage = () => {
                         className="mt-1"
                         required
                       />
+                    </div>
+
+                    {/* Honeypot field - hidden from humans, visible to bots */}
+                    <div className="hidden" aria-hidden="true">
+                      <Label htmlFor="website">Website</Label>
+                      <Input
+                        id="website"
+                        name="website"
+                        type="text"
+                        value={formData.website}
+                        onChange={handleInputChange}
+                        tabIndex="-1"
+                        autoComplete="off"
+                      />
+                    </div>
+
+                    {/* Human verification checkbox */}
+                    <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                      <input
+                        type="checkbox"
+                        id="humanCheck"
+                        checked={formData.humanCheck}
+                        onChange={(e) => setFormData(prev => ({ ...prev, humanCheck: e.target.checked }))}
+                        className="mt-0.5 h-5 w-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                        required
+                      />
+                      <label htmlFor="humanCheck" className="text-sm text-gray-700 cursor-pointer">
+                        I confirm I am a human and not a bot. I understand that my submission will be reviewed by the Devaland team.
+                      </label>
                     </div>
 
                     <Button 

@@ -1,5 +1,10 @@
 const nodemailer = require('nodemailer');
 
+// In-memory rate limiting (simple implementation for serverless)
+const submissionCache = new Map();
+const RATE_LIMIT_WINDOW = 10000; // 10 seconds
+const MAX_SUBMISSIONS_PER_EMAIL = 1;
+
 // Helper function to get readable project type label
 function getProjectTypeLabel(value) {
   const projectTypes = {
@@ -12,6 +17,16 @@ function getProjectTypeLabel(value) {
     'other': 'Other'
   };
   return projectTypes[value] || value;
+}
+
+// Clean up old entries from rate limit cache
+function cleanupCache() {
+  const now = Date.now();
+  for (const [key, timestamp] of submissionCache.entries()) {
+    if (now - timestamp > RATE_LIMIT_WINDOW) {
+      submissionCache.delete(key);
+    }
+  }
 }
 
 exports.handler = async (event, context) => {
@@ -43,6 +58,45 @@ exports.handler = async (event, context) => {
   try {
     // Parse request body
     const body = JSON.parse(event.body);
+    
+    // Bot protection: Check if form was filled too quickly
+    if (body.timeTaken && body.timeTaken < 3000) {
+      console.log('🤖 Bot detected: Form filled too quickly', body.timeTaken);
+      return {
+        statusCode: 429,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ error: 'Please take your time filling out the form' })
+      };
+    }
+
+    // Rate limiting: Check if email has submitted recently
+    cleanupCache();
+    const emailKey = body.email.toLowerCase();
+    const lastSubmission = submissionCache.get(emailKey);
+    
+    if (lastSubmission) {
+      const timeSinceLastSubmission = Date.now() - lastSubmission;
+      if (timeSinceLastSubmission < RATE_LIMIT_WINDOW) {
+        console.log('🚫 Rate limit exceeded:', emailKey, 'seconds since last:', Math.round(timeSinceLastSubmission / 1000));
+        return {
+          statusCode: 429,
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ 
+            error: 'Please wait a few moments before submitting again',
+            retryAfter: Math.ceil((RATE_LIMIT_WINDOW - timeSinceLastSubmission) / 1000)
+          })
+        };
+      }
+    }
+    
+    // Record this submission
+    submissionCache.set(emailKey, Date.now());
     
     // Validate required fields
     const requiredFields = ['name', 'email', 'company', 'message'];
