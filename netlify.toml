@@ -9,8 +9,13 @@
 [[plugins]]
   package = "@netlify/plugin-sitemap"
 
-# NOTE: Prerendering happens automatically via Netlify's crawler optimization
-# The sitemap helps Google discover and index all pages correctly
+# Prerender pages for SEO - generates static HTML for crawlers
+[[plugins]]
+  package = "@netlify/plugin-prerendering"
+
+# NOTE: This prerendering plugin crawls your site after build and generates
+# static HTML files for all pages. This solves the "crawled but not indexed" issue
+# by giving Googlebot actual HTML content instead of empty React shell.
 # For true SSR with dynamic data, consider migrating to Next.js in the future
 
 [functions]
