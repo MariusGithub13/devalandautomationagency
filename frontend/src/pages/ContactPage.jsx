@@ -9,6 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card'
 import { toast } from 'sonner';
 import SEO from '../components/SEO';
 import Breadcrumb from '../components/Breadcrumb';
+import InternalLinkBlock from '../components/InternalLinkBlock';
 import { companyData } from '../data/mock';
 import { sendTrustpilotInvitation, generateReferenceId } from '../utils/trustpilot';
 
@@ -552,6 +553,56 @@ const ContactPage = () => {
                   </ul>
                 </CardContent>
               </Card>
+            </div>
+          </div>
+
+          {/* Learn More About Our Services */}
+          <div className="max-w-7xl mx-auto mt-16 mb-16">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-display text-gray-900 mb-4">
+                Learn More About Our Services
+              </h2>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                Explore our proven automation solutions and resources before scheduling your consultation
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <InternalLinkBlock
+                title="Klaviyo Email Marketing"
+                description="Expert Klaviyo implementation to increase email revenue by 30-45%"
+                links={[
+                  { text: "Klaviyo Services", href: "/klaviyo" },
+                  { text: "10 Essential Flows", href: "/blog/best-10-klaviyo-automation-flows-every-ecommerce-store-needs" },
+                  { text: "Segmentation Strategies", href: "/blog/klaviyo-email-segmentation-guide-ecommerce" },
+                  { text: "Black Friday Strategy", href: "/blog/klaviyo-black-friday-cyber-monday-email-strategy-2025" }
+                ]}
+                variant="accent"
+              />
+
+              <InternalLinkBlock
+                title="Voice AI Solutions"
+                description="24/7 AI customer support that reduces costs by 60%"
+                links={[
+                  { text: "Voice AI Services", href: "/voice-ai" },
+                  { text: "Pricing Comparison", href: "/blog/voice-ai-pricing-comparison-2025" },
+                  { text: "Implementation Guide", href: "/blog/voice-ai-implementation-real-business-results-roi-analysis-technical-guide" },
+                  { text: "Small Business Guide", href: "/blog/ai-voice-assistants-small-business-guide-2025" }
+                ]}
+                variant="default"
+              />
+
+              <InternalLinkBlock
+                title="Success Stories & Resources"
+                description="Real results from businesses that transformed with our solutions"
+                links={[
+                  { text: "Case Studies", href: "/case-studies" },
+                  { text: "All Services", href: "/services" },
+                  { text: "About Our Team", href: "/about" },
+                  { text: "Blog & Resources", href: "/blog" }
+                ]}
+                variant="minimal"
+              />
             </div>
           </div>
 

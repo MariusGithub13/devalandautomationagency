@@ -5,6 +5,7 @@ import { Card, CardContent } from '../components/ui/card';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import Breadcrumb from '../components/Breadcrumb';
+import InternalLinkBlock from '../components/InternalLinkBlock';
 import { companyData, team, heroImages, awards } from '../data/mock';
 
 const AboutPage = () => {
