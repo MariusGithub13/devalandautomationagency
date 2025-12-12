@@ -738,7 +738,108 @@ export const generalFAQs = [
 ];
 
 export const voiceAIData = {
+  heroImage: "/images/optimized/voice-ai-dashboard.webp",
+  benefitsImage: "/images/optimized/voice-ai-analytics.webp",
   businessTypes: ["E-commerce", "Healthcare", "Restaurants", "Real Estate", "Professional Services"],
-  features: ["24/7 Availability", "Multi-language Support", "CRM Integration", "Appointment Scheduling", "Order Processing"],
-  benefits: ["Cost Reduction", "Improved Customer Experience", "Increased Sales", "Scalability", "Data Insights"]
+  useCases: [
+    {
+      icon: "Phone",
+      title: "Voice AI Phone Agents",
+      description: "Intelligent phone assistants that handle inbound calls, answer questions, book appointments, and process orders.",
+      features: [
+        "Natural conversational flow",
+        "Multi-language support (50+ languages)",
+        "CRM & calendar integration",
+        "Call routing & escalation"
+      ]
+    },
+    {
+      icon: "MessageSquare",
+      title: "Website Chat Widgets",
+      description: "Smart chatbots embedded on your website to engage visitors, qualify leads, and provide instant support.",
+      features: [
+        "Proactive engagement triggers",
+        "Lead capture & qualification",
+        "Product recommendations",
+        "Seamless human handoff"
+      ]
+    },
+    {
+      icon: "Users",
+      title: "Multi-Channel Support",
+      description: "Unified AI across phone, chat, email, and social media for consistent customer experience.",
+      features: [
+        "Facebook & Instagram integration",
+        "WhatsApp business messaging",
+        "Email automation",
+        "Centralized conversation history"
+      ]
+    },
+    {
+      icon: "Clock",
+      title: "24/7 Automation",
+      description: "Never miss a customer inquiry with round-the-clock AI-powered support across all channels.",
+      features: [
+        "Instant response times",
+        "80% query resolution rate",
+        "After-hours support",
+        "Holiday coverage"
+      ]
+    }
+  ],
+  features: [
+    {
+      icon: "Zap",
+      title: "Lightning Fast Responses",
+      description: "AI agents respond in milliseconds, providing instant answers to customer questions without wait times."
+    },
+    {
+      icon: "Shield",
+      title: "Enterprise Security",
+      description: "HIPAA-compliant, SOC 2 certified infrastructure with end-to-end encryption for sensitive data."
+    },
+    {
+      icon: "BarChart3",
+      title: "Advanced Analytics",
+      description: "Real-time dashboards tracking conversations, resolution rates, customer satisfaction, and ROI metrics."
+    },
+    {
+      icon: "Users",
+      title: "Seamless Handoff",
+      description: "Smart escalation to human agents when needed, with full conversation context automatically transferred."
+    },
+    {
+      icon: "TrendingUp",
+      title: "Continuous Learning",
+      description: "AI models improve over time, learning from interactions to provide better answers and outcomes."
+    },
+    {
+      icon: "Clock",
+      title: "Appointment Scheduling",
+      description: "Integrated calendar management with automated booking, reminders, and rescheduling capabilities."
+    }
+  ],
+  benefits: [
+    {
+      title: "60% Cost Reduction",
+      description: "Reduce customer support costs dramatically by automating routine inquiries while maintaining high satisfaction scores."
+    },
+    {
+      title: "80% Query Resolution",
+      description: "AI agents successfully handle 4 out of 5 customer inquiries without human intervention, freeing up your team."
+    },
+    {
+      title: "Instant Scalability",
+      description: "Handle unlimited simultaneous conversations during peak times without hiring additional staff or compromising quality."
+    },
+    {
+      title: "24/7 Availability",
+      description: "Provide round-the-clock support across all channels, capturing leads and resolving issues even when you sleep."
+    },
+    {
+      title: "Improved Conversion",
+      description: "Engage website visitors instantly, answer product questions, and guide them to purchase—increasing conversion rates by 25-40%."
+    }
+  ],
+  technologies: ["OpenAI GPT-4", "Google Dialogflow", "Microsoft Azure AI", "Amazon Lex", "Twilio Voice", "Vonage", "ElevenLabs", "Deepgram"]
 };
