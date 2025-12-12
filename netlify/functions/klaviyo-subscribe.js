@@ -1,5 +1,19 @@
 const https = require('https');
 
+// Rate limiting cache
+const submissionCache = new Map();
+const RATE_LIMIT_WINDOW = 10000; // 10 seconds
+const MAX_SUBMISSIONS_PER_EMAIL = 1;
+
+function cleanupCache() {
+  const now = Date.now();
+  for (const [key, timestamp] of submissionCache.entries()) {
+    if (now - timestamp > RATE_LIMIT_WINDOW) {
+      submissionCache.delete(key);
+    }
+  }
+}
+
 /**
  * Klaviyo Newsletter Subscription Handler
  * Subscribes email addresses to Klaviyo list via API v2024-10-15
@@ -10,7 +24,8 @@ const https = require('https');
  * Expected Request Body:
  * {
  *   "email": "user@example.com",
- *   "listId": "YOUR_KLAVIYO_LIST_ID"
+ *   "listId": "YOUR_KLAVIYO_LIST_ID",
+ *   "timeTaken": 2500 (optional - milliseconds to fill form)
  * }
  */
 exports.handler = async (event) => {
@@ -36,7 +51,44 @@ exports.handler = async (event) => {
   }
 
   try {
-    const { email, listId } = JSON.parse(event.body);
+    const { email, listId, timeTaken } = JSON.parse(event.body);
+
+    // Bot protection: Timing check (newsletter forms should take at least 2 seconds)
+    if (timeTaken && timeTaken < 2000) {
+      console.log('🤖 Bot detected: Form filled too quickly', timeTaken);
+      return {
+        statusCode: 429,
+        headers: { 'Access-Control-Allow-Origin': '*' },
+        body: JSON.stringify({ 
+          success: false,
+          message: 'Please take a moment to review before subscribing' 
+        })
+      };
+    }
+
+    // Rate limiting check
+    cleanupCache();
+    const emailKey = email.toLowerCase();
+    const lastSubmission = submissionCache.get(emailKey);
+    
+    if (lastSubmission) {
+      const timeSinceLastSubmission = Date.now() - lastSubmission;
+      if (timeSinceLastSubmission < RATE_LIMIT_WINDOW) {
+        console.log('⏱️ Rate limit exceeded:', email);
+        return {
+          statusCode: 429,
+          headers: { 'Access-Control-Allow-Origin': '*' },
+          body: JSON.stringify({ 
+            success: false,
+            message: 'Please wait a few moments before subscribing again',
+            retryAfter: Math.ceil((RATE_LIMIT_WINDOW - timeSinceLastSubmission) / 1000)
+          })
+        };
+      }
+    }
+
+    // Record this submission
+    submissionCache.set(emailKey, Date.now());
 
     // Validation
     if (!email || !email.includes('@')) {

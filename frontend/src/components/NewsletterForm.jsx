@@ -13,12 +13,20 @@ import { Button } from '@/components/ui/button';
  */
 const NewsletterForm = ({ compact = false, className = '' }) => {
   const [email, setEmail] = useState('');
+  const [website, setWebsite] = useState(''); // Honeypot field
   const [gdprConsent, setGdprConsent] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
+  const [submissionTime] = useState(Date.now()); // Track form load time
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Bot protection: Honeypot check (silent rejection)
+    if (website) {
+      console.log('🤖 Bot detected: honeypot field filled');
+      return; // Silently reject, no error message for bot
+    }
     
     if (!email || !email.includes('@')) {
       setSubmitMessage('Please enter a valid email address');
@@ -29,6 +37,14 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
       setSubmitMessage('Please accept the privacy policy to subscribe');
       return;
     }
+
+    // Bot protection: Timing check
+    const timeTaken = Date.now() - submissionTime;
+    if (timeTaken < 2000) { // 2 seconds for newsletter (simpler form)
+      setSubmitMessage('Please take a moment to review before subscribing');
+      return;
+    }, // Website Newsletter list
+          timeTaken: timeTaken // Pass timing to backend for validation
 
     setIsSubmitting(true);
     setSubmitMessage('');
@@ -72,6 +88,19 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
     return (
       <div className={className}>
         <form onSubmit={handleSubmit} className="space-y-3">
+          {/* Honeypot field - hidden from humans, visible to bots */}
+          <div className="hidden" aria-hidden="true">
+            <Input
+              id="website-compact"
+              name="website"
+              type="text"
+              value={website}
+              onChange={(e) => setWebsite(e.target.value)}
+              tabIndex="-1"
+              autoComplete="off"
+            />
+          </div>
+
           <Input
             type="email"
             placeholder="Your email"
@@ -119,7 +148,20 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
   // Full layout for dedicated sections
   return (
     <div className={className}>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-md mx-auto">
+      <f{/* Honeypot field - hidden from humans, visible to bots */}
+        <div className="hidden" aria-hidden="true">
+          <Input
+            id="website"
+            name="website"
+            type="text"
+            value={website}
+            onChange={(e) => setWebsite(e.target.value)}
+            tabIndex="-1"
+            autoComplete="off"
+          />
+        </div>
+
+        orm onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-md mx-auto">
         <div className="flex flex-col sm:flex-row gap-4">
           <Input
             type="email"
