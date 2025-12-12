@@ -129,9 +129,10 @@ const CookieConsent = () => {
       <Card
         className={`
           w-full max-w-xl
-          bg-white shadow-2xl border border-gray-200 rounded-xl
+          bg-white shadow-2xl border-2 border-blue-100 rounded-xl
           text-left
           pointer-events-auto
+          ring-2 ring-blue-50
         `}
       >
         <div className="p-4">
@@ -142,7 +143,7 @@ const CookieConsent = () => {
               <div className="flex items-start gap-3 flex-1">
                 <Cookie
                   size={22}
-                  className="text-orange-500 flex-shrink-0 mt-0.5"
+                  className="text-blue-600 flex-shrink-0 mt-0.5"
                 />
                 <div className="text-sm text-gray-700 leading-relaxed">
                   <p className="font-semibold text-gray-900 mb-1 flex items-center gap-2">
@@ -178,7 +179,7 @@ const CookieConsent = () => {
                 <Button
                   size="sm"
                   onClick={acceptAll}
-                  className="bg-blue-600 text-white hover:bg-blue-700 w-full"
+                  className="bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700 w-full shadow-md"
                 >
                   Accept all
                 </Button>
@@ -190,7 +191,7 @@ const CookieConsent = () => {
               {/* header row */}
               <div className="flex items-start justify-between">
                 <div className="flex items-center gap-2">
-                  <Cookie size={18} className="text-orange-500" />
+                  <Cookie size={18} className="text-blue-600" />
                   <h3 className="font-semibold text-gray-900 text-base">
                     Cookie Preferences
                   </h3>
