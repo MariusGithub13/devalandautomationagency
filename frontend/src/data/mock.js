@@ -2398,36 +2398,6 @@ Typical medical practice results show 73-85% automation rate within 6-8 weeks, 8
       { text: "Voice AI Services", href: "/voice-ai" },
       { text: "Schedule Healthcare Demo", href: "/contact" }
     ]
-
-## Patient Satisfaction and Experience
-
-Voice AI improves patient experience through **instant access** with zero hold times (answering in under 2 seconds), 24/7 availability (nights, weekends, holidays), and simultaneous call handling (no busy signals). **Consistency** delivers accurate information every time, no personality variance, no bad days, and patients remember preferences.
-
-**Convenience features** include appointment booking while driving, prescription refills without waiting on hold, insurance verification without paperwork, and simple language explanations (no medical jargon). **Proactive care** provides appointment reminders reducing no-shows, follow-up care instructions after procedures, medication adherence reminders, and preventive care scheduling.
-
-**Multilingual support** automatically detects language from patient speech, serves 29+ languages with native fluency, maintains consistent quality across languages, and addresses underserved communities. Patient feedback shows 85-92% satisfaction scores (vs. 68-75% traditional phone systems), 40% reduction in complaints about phone system, 60% increase in positive online reviews mentioning ease of contact, and 25% improvement in Net Promoter Scores.
-
-## Getting Started: Next Steps for Your Practice
-
-**Step 1: Calculate Your Potential ROI** by documenting current call volume and breakdown, measuring no-show rate and annual cost, calculating reception labor costs, listing pain points and priorities, and requesting ROI calculator from Devaland.
-
-**Step 2: Review Compliance Requirements** ensuring HIPAA compliance confirmed, malpractice insurance consulted, state telehealth laws reviewed, patient consent process established, and data security audit completed.
-
-**Step 3: Pilot Planning** selecting optimal use case to start (appointment scheduling most common), defining success metrics (automation rate, patient satisfaction, no-show reduction), establishing pilot timeline (typically 30-60 days), and preparing team communication plan.
-
-**Step 4: Implementation Partner Selection** evaluating healthcare-specific experience, EMR integration expertise, HIPAA compliance documentation, clinical protocol development support, ongoing support model, and pricing transparency with guarantees.
-
-**Step 5: Launch and Scale** starting with limited pilot scope, gathering feedback from patients and staff, measuring against baseline metrics, expanding to additional use cases, and optimizing based on data.
-
-Devaland has implemented HIPAA-compliant Voice AI for 15+ healthcare practices achieving average 73% call automation, 61% no-show reduction, 89% patient satisfaction, and 400-600% first-year ROI. Our healthcare packages include everything: HIPAA compliance documentation, EMR/PMS integration, clinical protocol development, staff training, patient communication templates, ongoing optimization, and dedicated healthcare account management.
-
-Book a consultation to see a live demo customized for your specialty, calculate your practice's specific ROI, review EMR integration details, discuss clinical protocols, get implementation timeline, and receive custom pricing. Transform your practice's patient communication from frustration to delight while reducing costs 60% and capturing $100,000+ in otherwise lost revenue.`,
-    internalLinks: [
-      { text: "Voice AI Services", href: "/voice-ai" },
-      { text: "Voice AI Pricing", href: "/blog/voice-ai-pricing-comparison-2025" },
-      { text: "Implementation Guide", href: "/blog/voice-ai-implementation-real-business-results-roi-analysis-technical-guide" },
-      { text: "Schedule Healthcare Demo", href: "/contact" }
-    ]
   }
 ];
 
