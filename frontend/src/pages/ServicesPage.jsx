@@ -229,10 +229,10 @@ const ServicesPage = () => {
               title="Email Marketing Automation"
               description="Complete Klaviyo setup, automation flows, and campaign management for e-commerce."
               links={[
-                { text: "Klaviyo Services", href: "/klaviyo" },
-                { text: "10 Essential Flows", href: "/blog/10-klaviyo-automation-flows-every-e-commerce-store-needs" },
-                { text: "Segmentation Guide", href: "/blog/email-segmentation-strategies-that-actually-work" },
-                { text: "Klaviyo Case Studies", href: "/klaviyo-case-studies" }
+                { label: "Klaviyo Services", to: "/klaviyo" },
+                { label: "10 Essential Flows", to: "/blog/best-10-klaviyo-automation-flows-every-ecommerce-store-needs" },
+                { label: "Segmentation Guide", to: "/klaviyo-segmentation-strategies" },
+                { label: "Klaviyo Case Studies", to: "/case-studies" }
               ]}
               variant="accent"
             />
@@ -241,10 +241,10 @@ const ServicesPage = () => {
               title="Voice AI & Customer Support"
               description="24/7 Voice AI agents, chatbots, and intelligent customer service automation."
               links={[
-                { text: "Voice AI Services", href: "/voice-ai" },
-                { text: "Implementation Guide", href: "/blog/voice-ai-implementation-real-business-results-roi-analysis-technical-guide" },
-                { text: "Pricing Comparison", href: "/blog/voice-ai-pricing-comparison-2025" },
-                { text: "Restaurant Solutions", href: "/blog/voice-ai-restaurants-phone-orders-reservations-guide" }
+                { label: "Voice AI Services", to: "/voice-ai" },
+                { label: "Implementation Guide", to: "/blog/voice-ai-implementation-real-business-results-roi-analysis-technical-guide" },
+                { label: "Pricing Comparison", to: "/blog/voice-ai-pricing-comparison-2025" },
+                { label: "Restaurant Solutions", to: "/blog/voice-ai-restaurants-phone-orders-reservations-guide" }
               ]}
               variant="default"
             />
@@ -253,10 +253,10 @@ const ServicesPage = () => {
               title="Success Stories & Insights"
               description="Real results from our automation implementations across industries."
               links={[
-                { text: "All Case Studies", href: "/case-studies" },
-                { text: "About Our Process", href: "/about" },
-                { text: "Blog & Resources", href: "/blog" },
-                { text: "Get Free Audit", href: "/contact" }
+                { label: "All Case Studies", to: "/case-studies" },
+                { label: "About Our Process", to: "/about" },
+                { label: "Blog & Resources", to: "/blog" },
+                { label: "Get Free Audit", to: "/contact" }
               ]}
               variant="minimal"
             />

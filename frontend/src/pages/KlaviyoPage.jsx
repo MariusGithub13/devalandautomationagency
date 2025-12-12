@@ -1035,9 +1035,9 @@ const KlaviyoPage = () => {
               title="Complete Marketing Automation"
               description="Full-service automation across email, SMS, and customer journey orchestration."
               links={[
-                { text: "All Services", href: "/services" },
-                { text: "Automation Case Studies", href: "/case-studies" },
-                { text: "Our Process", href: "/about" }
+                { label: "All Services", to: "/services" },
+                { label: "Automation Case Studies", to: "/case-studies" },
+                { label: "Our Process", to: "/about" }
               ]}
               variant="default"
             />
@@ -1046,9 +1046,9 @@ const KlaviyoPage = () => {
               title="Voice AI & Chat Solutions"
               description="24/7 customer support with Voice AI agents and intelligent chat widgets."
               links={[
-                { text: "Voice AI Services", href: "/voice-ai" },
-                { text: "Voice AI Pricing", href: "/blog/voice-ai-pricing-comparison-2025" },
-                { text: "Implementation Guide", href: "/blog/voice-ai-implementation-real-business-results-roi-analysis-technical-guide" }
+                { label: "Voice AI Services", to: "/voice-ai" },
+                { label: "Voice AI Pricing", to: "/blog/voice-ai-pricing-comparison-2025" },
+                { label: "Implementation Guide", to: "/blog/voice-ai-implementation-real-business-results-roi-analysis-technical-guide" }
               ]}
               variant="accent"
             />
@@ -1057,10 +1057,10 @@ const KlaviyoPage = () => {
               title="Essential Klaviyo Guides"
               description="In-depth resources for maximizing your Klaviyo performance and ROI."
               links={[
-                { text: "10 Essential Flows", href: "/blog/10-klaviyo-automation-flows-every-e-commerce-store-needs" },
-                { text: "Segmentation Strategies", href: "/blog/email-segmentation-strategies-that-actually-work" },
-                { text: "Black Friday Strategy", href: "/blog/maximizing-black-friday-sales-with-klaviyo" },
-                { text: "Advanced Analytics", href: "/blog/advanced-klaviyo-analytics-beyond-open-and-click-rates" }
+                { label: "10 Essential Flows", to: "/blog/best-10-klaviyo-automation-flows-every-ecommerce-store-needs" },
+                { label: "Segmentation Strategies", to: "/klaviyo-segmentation-strategies" },
+                { label: "Black Friday Strategy", to: "/klaviyo-black-friday-strategy" },
+                { label: "Advanced Analytics", to: "/klaviyo" }
               ]}
               variant="minimal"
             />

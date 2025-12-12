@@ -215,10 +215,10 @@ const CaseStudiesPage = () => {
               title="Klaviyo Email Marketing"
               description="Proven strategies to increase email revenue by 30-45% within 90 days"
               links={[
-                { text: "Klaviyo Services Overview", href: "/klaviyo" },
-                { text: "10 Essential Automation Flows", href: "/blog/best-10-klaviyo-automation-flows-every-ecommerce-store-needs" },
-                { text: "Advanced Segmentation Guide", href: "/blog/klaviyo-email-segmentation-guide-ecommerce" },
-                { text: "Analytics & ROI Tracking", href: "/blog/klaviyo-advanced-analytics-metrics-roi-measurement-guide" }
+                { label: "Klaviyo Services Overview", to: "/klaviyo" },
+                { label: "10 Essential Automation Flows", to: "/blog/best-10-klaviyo-automation-flows-every-ecommerce-store-needs" },
+                { label: "Advanced Segmentation Guide", to: "/klaviyo-segmentation-strategies" },
+                { label: "Analytics & ROI Tracking", to: "/klaviyo" }
               ]}
               variant="default"
             />
@@ -227,10 +227,10 @@ const CaseStudiesPage = () => {
               title="Voice AI Solutions"
               description="Reduce support costs by 60% with 24/7 AI-powered customer service"
               links={[
-                { text: "Voice AI Services", href: "/voice-ai" },
-                { text: "Complete Implementation Guide", href: "/blog/voice-ai-implementation-real-business-results-roi-analysis-technical-guide" },
-                { text: "Pricing & ROI Comparison", href: "/blog/voice-ai-pricing-comparison-2025" },
-                { text: "Industry-Specific Solutions", href: "/blog/voice-ai-restaurants-phone-orders-reservations-guide" }
+                { label: "Voice AI Services", to: "/voice-ai" },
+                { label: "Complete Implementation Guide", to: "/blog/voice-ai-implementation-real-business-results-roi-analysis-technical-guide" },
+                { label: "Pricing & ROI Comparison", to: "/blog/voice-ai-pricing-comparison-2025" },
+                { label: "Industry-Specific Solutions", to: "/blog/voice-ai-restaurants-phone-orders-reservations-guide" }
               ]}
               variant="accent"
             />
@@ -239,10 +239,10 @@ const CaseStudiesPage = () => {
               title="Get Started Today"
               description="Join 50+ businesses that have transformed their operations with Devaland"
               links={[
-                { text: "View All Services", href: "/services" },
-                { text: "About Our Process", href: "/about" },
-                { text: "Blog & Resources", href: "/blog" },
-                { text: "Free Consultation", href: "/contact" }
+                { label: "View All Services", to: "/services" },
+                { label: "About Our Process", to: "/about" },
+                { label: "Blog & Resources", to: "/blog" },
+                { label: "Free Consultation", to: "/contact" }
               ]}
               variant="minimal"
             />

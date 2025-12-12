@@ -572,10 +572,10 @@ const ContactPage = () => {
                 title="Klaviyo Email Marketing"
                 description="Expert Klaviyo implementation to increase email revenue by 30-45%"
                 links={[
-                  { text: "Klaviyo Services", href: "/klaviyo" },
-                  { text: "10 Essential Flows", href: "/blog/best-10-klaviyo-automation-flows-every-ecommerce-store-needs" },
-                  { text: "Segmentation Strategies", href: "/blog/klaviyo-email-segmentation-guide-ecommerce" },
-                  { text: "Black Friday Strategy", href: "/blog/klaviyo-black-friday-cyber-monday-email-strategy-2025" }
+                  { label: "Klaviyo Services", to: "/klaviyo" },
+                  { label: "10 Essential Flows", to: "/blog/best-10-klaviyo-automation-flows-every-ecommerce-store-needs" },
+                  { label: "Segmentation Strategies", to: "/klaviyo-segmentation-strategies" },
+                  { label: "Black Friday Strategy", to: "/klaviyo-black-friday-strategy" }
                 ]}
                 variant="accent"
               />
@@ -584,10 +584,10 @@ const ContactPage = () => {
                 title="Voice AI Solutions"
                 description="24/7 AI customer support that reduces costs by 60%"
                 links={[
-                  { text: "Voice AI Services", href: "/voice-ai" },
-                  { text: "Pricing Comparison", href: "/blog/voice-ai-pricing-comparison-2025" },
-                  { text: "Implementation Guide", href: "/blog/voice-ai-implementation-real-business-results-roi-analysis-technical-guide" },
-                  { text: "Small Business Guide", href: "/blog/ai-voice-assistants-small-business-guide-2025" }
+                  { label: "Voice AI Services", to: "/voice-ai" },
+                  { label: "Pricing Comparison", to: "/blog/voice-ai-pricing-comparison-2025" },
+                  { label: "Implementation Guide", to: "/blog/voice-ai-implementation-real-business-results-roi-analysis-technical-guide" },
+                  { label: "Small Business Guide", to: "/blog/ai-voice-assistants-small-business-guide-2025" }
                 ]}
                 variant="default"
               />
@@ -596,10 +596,10 @@ const ContactPage = () => {
                 title="Success Stories & Resources"
                 description="Real results from businesses that transformed with our solutions"
                 links={[
-                  { text: "Case Studies", href: "/case-studies" },
-                  { text: "All Services", href: "/services" },
-                  { text: "About Our Team", href: "/about" },
-                  { text: "Blog & Resources", href: "/blog" }
+                  { label: "Case Studies", to: "/case-studies" },
+                  { label: "All Services", to: "/services" },
+                  { label: "About Our Team", to: "/about" },
+                  { label: "Blog & Resources", to: "/blog" }
                 ]}
                 variant="minimal"
               />
