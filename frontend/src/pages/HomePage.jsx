@@ -663,10 +663,10 @@ const HomePage = () => {
                   <h3 className="text-xl font-bold mb-3 text-white group-hover:text-blue-300 transition-colors duration-200">
                     Voice AI Pricing Guide 2025
                   </h3>
-                  <p className="text-blue-100 mb-4 line-clamp-3">
+                  <p className="text-white/90 mb-4 line-clamp-3">
                     Compare pricing models across platforms ($0.05-$0.60/minute). Calculate ROI and find the best plan for your call volume.
                   </p>
-                  <div className="flex items-center text-blue-300 font-medium group-hover:text-blue-200">
+                  <div className="flex items-center text-white font-medium group-hover:text-blue-100">
                     <span>Read Full Guide</span>
                     <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
                   </div>
@@ -687,10 +687,10 @@ const HomePage = () => {
                   <h3 className="text-xl font-bold mb-3 text-white group-hover:text-blue-300 transition-colors duration-200">
                     Small Business Voice AI
                   </h3>
-                  <p className="text-blue-100 mb-4 line-clamp-3">
+                  <p className="text-white/90 mb-4 line-clamp-3">
                     Budget-friendly guide with 60-point vendor scorecard, 4-week roadmap, and common mistakes to avoid.
                   </p>
-                  <div className="flex items-center text-blue-300 font-medium group-hover:text-blue-200">
+                  <div className="flex items-center text-white font-medium group-hover:text-blue-100">
                     <span>Read Full Guide</span>
                     <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
                   </div>
@@ -711,10 +711,10 @@ const HomePage = () => {
                   <h3 className="text-xl font-bold mb-3 text-white group-hover:text-blue-300 transition-colors duration-200">
                     Voice AI vs Call Centers
                   </h3>
-                  <p className="text-blue-100 mb-4 line-clamp-3">
+                  <p className="text-white/90 mb-4 line-clamp-3">
                     Cost comparison: $5,267/month vs $997/month (81% savings). 3-year TCO analysis and hybrid model recommendations.
                   </p>
-                  <div className="flex items-center text-blue-300 font-medium group-hover:text-blue-200">
+                  <div className="flex items-center text-white font-medium group-hover:text-blue-100">
                     <span>Read Analysis</span>
                     <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
                   </div>
@@ -735,10 +735,10 @@ const HomePage = () => {
                   <h3 className="text-xl font-bold mb-3 text-white group-hover:text-blue-300 transition-colors duration-200">
                     Voice AI for Restaurants
                   </h3>
-                  <p className="text-blue-100 mb-4 line-clamp-3">
+                  <p className="text-white/90 mb-4 line-clamp-3">
                     Menu training, POS integration (Toast/Square/Clover), multilingual orders (29+ languages), peak hour management.
                   </p>
-                  <div className="flex items-center text-blue-300 font-medium group-hover:text-blue-200">
+                  <div className="flex items-center text-white font-medium group-hover:text-blue-100">
                     <span>Restaurant Guide</span>
                     <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
                   </div>
@@ -759,10 +759,10 @@ const HomePage = () => {
                   <h3 className="text-xl font-bold mb-3 text-white group-hover:text-blue-300 transition-colors duration-200">
                     Voice AI for Healthcare
                   </h3>
-                  <p className="text-blue-100 mb-4 line-clamp-3">
+                  <p className="text-white/90 mb-4 line-clamp-3">
                     HIPAA-compliant patient scheduling, no-show reduction (18% → 7%), insurance verification, prescription refills.
                   </p>
-                  <div className="flex items-center text-blue-300 font-medium group-hover:text-blue-200">
+                  <div className="flex items-center text-white font-medium group-hover:text-blue-100">
                     <span>Healthcare Guide</span>
                     <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
                   </div>
@@ -783,10 +783,10 @@ const HomePage = () => {
                   <h3 className="text-xl font-bold mb-3 text-white group-hover:text-blue-300 transition-colors duration-200">
                     Voice AI for Shopify Brands
                   </h3>
-                  <p className="text-blue-100 mb-4 line-clamp-3">
+                  <p className="text-white/90 mb-4 line-clamp-3">
                     Meet Amy at Shea Terra Organics: 29+ languages, 24/7 customer service, order tracking, product recommendations. Live demo available.
                   </p>
-                  <div className="flex items-center text-blue-300 font-medium group-hover:text-blue-200">
+                  <div className="flex items-center text-white font-medium group-hover:text-blue-100">
                     <span>Shopify Guide</span>
                     <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
                   </div>
