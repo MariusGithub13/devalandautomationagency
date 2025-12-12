@@ -18,6 +18,7 @@ import { cn } from '../lib/utils';
  */
 const InternalLinkBlock = ({ 
   title = "Related Resources",
+  description,
   links = [],
   ctaText,
   ctaLink,
@@ -64,6 +65,12 @@ const InternalLinkBlock = ({
       )}>
         {title}
       </h3>
+      
+      {description && (
+        <p className="text-sm text-gray-600 mb-4">
+          {description}
+        </p>
+      )}
       
       <ul className="space-y-3">
         {links.map((link, index) => {

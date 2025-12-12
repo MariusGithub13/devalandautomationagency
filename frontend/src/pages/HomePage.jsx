@@ -992,10 +992,10 @@ const HomePage = () => {
               title="Klaviyo Email Marketing"
               description="Transform your e-commerce email strategy with expert Klaviyo implementation and optimization"
               links={[
-                { text: "Klaviyo Services Overview", href: "/klaviyo" },
-                { text: "Klaviyo Flow Examples", href: "/klaviyo-flows-examples" },
-                { text: "Klaviyo Automation Guide", href: "/klaviyo-automation-guide" },
-                { text: "Email Segmentation Strategies", href: "/klaviyo-segmentation-strategies" }
+                { label: "Klaviyo Services Overview", to: "/klaviyo" },
+                { label: "Klaviyo Flow Examples", to: "/klaviyo-flows-examples" },
+                { label: "Klaviyo Automation Guide", to: "/klaviyo-automation-guide" },
+                { label: "Email Segmentation Strategies", to: "/klaviyo-segmentation-strategies" }
               ]}
               variant="accent"
             />
@@ -1004,10 +1004,10 @@ const HomePage = () => {
               title="Voice AI Solutions"
               description="24/7 AI-powered customer support that reduces costs and improves satisfaction"
               links={[
-                { text: "Voice AI Services", href: "/voice-ai" },
-                { text: "Voice AI Pricing Guide", href: "/blog/voice-ai-pricing-comparison-2025" },
-                { text: "Implementation ROI Analysis", href: "/blog/voice-ai-implementation-real-business-results-roi-analysis-technical-guide" },
-                { text: "Voice AI for Restaurants", href: "/blog/voice-ai-restaurants-phone-orders-reservations-guide" }
+                { label: "Voice AI Services", to: "/voice-ai" },
+                { label: "Voice AI Pricing Guide", to: "/blog/voice-ai-pricing-comparison-2025" },
+                { label: "Implementation ROI Analysis", to: "/blog/voice-ai-implementation-real-business-results-roi-analysis-technical-guide" },
+                { label: "Voice AI for Restaurants", to: "/blog/voice-ai-restaurants-phone-orders-reservations-guide" }
               ]}
               variant="default"
             />
@@ -1016,11 +1016,11 @@ const HomePage = () => {
               title="Industry Solutions & Insights"
               description="Proven strategies and success stories from businesses like yours"
               links={[
-                { text: "All Automation Services", href: "/services" },
-                { text: "Case Studies & Results", href: "/case-studies" },
-                { text: "About Devaland", href: "/about" },
-                { text: "Blog & Resource Center", href: "/blog" },
-                { text: "Contact & Free Consultation", href: "/contact" }
+                { label: "All Automation Services", to: "/services" },
+                { label: "Case Studies & Results", to: "/case-studies" },
+                { label: "About Devaland", to: "/about" },
+                { label: "Blog & Resource Center", to: "/blog" },
+                { label: "Contact & Free Consultation", to: "/contact" }
               ]}
               variant="minimal"
             />
