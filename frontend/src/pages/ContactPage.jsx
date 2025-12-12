@@ -462,12 +462,29 @@ const ContactPage = () => {
                       <MapPin size={24} className="text-orange-600" />
                     </div>
                     <div>
-                      <div className="font-medium text-gray-900">Office</div>
+                      <div className="font-medium text-gray-900">Headquarters</div>
                       <address className="text-gray-600 not-italic">
                         Sântandrei 13, Simeria 335903,<br />
                         Hunedoara County, Transylvania, Romania<br />
                         <span className="text-sm italic">{companyData.contact.addressNote}</span>
                       </address>
+                      
+                      {/* Dracula Castle Image */}
+                      <div className="mt-4 rounded-lg overflow-hidden shadow-md">
+                        <img 
+                          src="/images/Marius The Digital Vampire Dracula Castle.jpg"
+                          alt="Devaland Headquarters - Near Dracula's Castle in Transylvania, Romania"
+                          width="400"
+                          height="300"
+                          loading="lazy"
+                          decoding="async"
+                          className="w-full h-auto hover-scale"
+                        />
+                        <div className="bg-gradient-to-r from-red-900 to-purple-900 text-white px-3 py-2 text-center">
+                          <p className="text-sm font-medium">🏰 Near Dracula's Castle</p>
+                          <p className="text-xs opacity-90">Bran Castle, Transylvania</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
 
