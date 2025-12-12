@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import Breadcrumb from '../components/Breadcrumb';
 import InternalLinkBlock from '../components/InternalLinkBlock';
-import { caseStudies } from '../data/mock';
+import { caseStudies, serviceImages } from '../data/mock';
 
 const CaseStudiesPage = () => {
   const [selectedIndustry, setSelectedIndustry] = useState('All');
@@ -53,35 +53,59 @@ const CaseStudiesPage = () => {
         />
       </div>
       
-      {/* Hero Section */}
+      {/* Hero Section with Image */}
       <section className="section-padding bg-gradient-subtle">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-5xl md:text-6xl font-display text-gray-900 mb-6">
-              Proven Success Stories
-            </h1>
-            <p className="text-xl text-gray-600 mb-8">
-              See how we've helped enterprises across industries achieve remarkable results through 
-              strategic automation implementation and intelligent process optimization.
-            </p>
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left: Text Content */}
+            <div>
+              <h1 className="text-5xl md:text-6xl font-display text-gray-900 mb-6">
+                Proven Success Stories
+              </h1>
+              <p className="text-xl text-gray-600 mb-8">
+                See how we've helped enterprises across industries achieve remarkable results through 
+                strategic automation implementation and intelligent process optimization.
+              </p>
+              
+              {/* Results Summary */}
+              <div className="grid grid-cols-2 gap-6 mt-8">
+                <div>
+                  <div className="text-4xl font-bold text-blue-600 mb-2">85%</div>
+                  <div className="text-gray-600 font-medium">Average Time Reduction</div>
+                </div>
+                <div>
+                  <div className="text-4xl font-bold text-green-600 mb-2">$630k</div>
+                  <div className="text-gray-600 font-medium">Average Annual Savings</div>
+                </div>
+                <div>
+                  <div className="text-4xl font-bold text-purple-600 mb-2">99%</div>
+                  <div className="text-gray-600 font-medium">Average Accuracy Rate</div>
+                </div>
+                <div>
+                  <div className="text-4xl font-bold text-orange-600 mb-2">340%</div>
+                  <div className="text-gray-600 font-medium">Average ROI</div>
+                </div>
+              </div>
+            </div>
             
-            {/* Results Summary */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
-              <div className="text-center">
-                <div className="text-4xl font-bold text-blue-600 mb-2">85%</div>
-                <div className="text-gray-600 font-medium">Average Time Reduction</div>
+            {/* Right: Hero Image */}
+            <div className="relative">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                <img
+                  src={serviceImages.rpa}
+                  alt="Business analytics dashboard showing automation results and ROI metrics"
+                  width={600}
+                  height={400}
+                  className="w-full h-auto object-cover"
+                  loading="eager"
+                />
+                <div className="absolute inset-0 bg-gradient-to-tr from-blue-600/20 to-purple-600/20"></div>
               </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-green-600 mb-2">$630k</div>
-                <div className="text-gray-600 font-medium">Average Annual Savings</div>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-purple-600 mb-2">99%</div>
-                <div className="text-gray-600 font-medium">Average Accuracy Rate</div>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-orange-600 mb-2">340%</div>
-                <div className="text-gray-600 font-medium">Average ROI</div>
+              
+              {/* Floating Stats Card */}
+              <div className="absolute -bottom-6 -left-6 bg-white rounded-xl shadow-xl p-6 max-w-[200px]">
+                <div className="text-3xl font-bold text-blue-600 mb-1">200+</div>
+                <div className="text-sm text-gray-600 font-medium">Projects Delivered</div>
               </div>
             </div>
           </div>
