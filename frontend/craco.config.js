@@ -59,6 +59,16 @@ module.exports = {
 
       // Production optimizations
       if (env === 'production') {
+        // CRITICAL: Disable HTML minification to bypass parse error from cached broken HTML
+        const HtmlWebpackPlugin = require('html-webpack-plugin');
+        webpackConfig.plugins = webpackConfig.plugins.map(plugin => {
+          if (plugin.constructor.name === 'HtmlWebpackPlugin') {
+            plugin.userOptions = plugin.userOptions || {};
+            plugin.userOptions.minify = false;
+          }
+          return plugin;
+        });
+        
         // Remove console.* calls in production
         webpackConfig.optimization = {
           ...webpackConfig.optimization,
