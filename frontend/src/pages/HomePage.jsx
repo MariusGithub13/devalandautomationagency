@@ -291,6 +291,7 @@ const HomePage = () => {
                     decoding="async"
                     width="600"
                     height="800"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 600px"
                   />
                   {/* Overlay gradient for better text readability if needed */}
                   <div className="absolute inset-0 bg-gradient-to-t from-blue-900/20 via-transparent to-transparent"></div>
@@ -844,6 +845,7 @@ const HomePage = () => {
                 height="533"
                 loading="lazy"
                 decoding="async"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 800px"
                 className="w-full rounded-2xl shadow-2xl hover-scale"
               />
               <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-lg">
