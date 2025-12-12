@@ -184,7 +184,7 @@ const Footer = memo(() => {
               <FooterLogo />
               <div>
                 <div className="font-semibold text-gray-900">{brand.name}</div>
-                <div className="text-sm text-gray-600">{brand.tagline}</div>
+                <div className="text-base text-gray-600">{brand.tagline}</div>
               </div>
             </div>
             {/* Trustpilot Review Collector widget (TrustBox) - visually prominent */}
@@ -227,8 +227,8 @@ const Footer = memo(() => {
 
           {/* Explore */}
           <div>
-            <div className="text-sm font-semibold text-gray-900 mb-3">Explore</div>
-            <nav className="grid grid-cols-1 gap-2 text-sm">
+            <div className="text-base font-semibold text-gray-900 mb-3">Explore</div>
+            <nav className="grid grid-cols-1 gap-2 text-base">
               {links.explore.map((l) => (
                 <a key={l.to} href={l.to} className="text-gray-600 hover:text-blue-700 underline-offset-4 hover:underline">
                   {l.label}
@@ -239,8 +239,8 @@ const Footer = memo(() => {
 
           {/* Legal */}
           <div>
-            <div className="text-sm font-semibold text-gray-900 mb-3">Legal</div>
-            <nav className="grid grid-cols-1 gap-2 text-sm">
+            <div className="text-base font-semibold text-gray-900 mb-3">Legal</div>
+            <nav className="grid grid-cols-1 gap-2 text-base">
               <a href="/privacy" className="text-gray-600 hover:text-blue-700 underline-offset-4 hover:underline">Privacy Policy</a>
               <a href="/terms" className="text-gray-600 hover:text-blue-700 underline-offset-4 hover:underline">Terms & Conditions</a>
               <a href="/cookies" className="text-gray-600 hover:text-blue-700 underline-offset-4 hover:underline">Cookie Policy</a>
@@ -253,8 +253,8 @@ const Footer = memo(() => {
 
           {/* Contact */}
           <div>
-            <div className="text-sm font-semibold text-gray-900 mb-3">Contact</div>
-            <ul className="space-y-2 text-sm text-gray-700">
+            <div className="text-base font-semibold text-gray-900 mb-3">Contact</div>
+            <ul className="space-y-2 text-base text-gray-700">
               <li className="flex items-start gap-2">
                 <div className="text-gray-900 font-medium">
                   {LEGAL.company}
@@ -293,12 +293,12 @@ const Footer = memo(() => {
               <li className="flex items-start gap-2">
                 <Link size={16} className="text-blue-600 flex-shrink-0 mt-0.5" />
                 <div>
-                  <div className="text-sm font-bold text-gray-700 mb-1">VIES VAT number validation:</div>
+                  <div className="text-base font-bold text-gray-700 mb-1">VIES VAT number validation:</div>
                   <a 
                     href="https://ec.europa.eu/taxation_customs/vies/#/vat-validation" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-blue-600 hover:text-blue-700 underline text-sm break-all"
+                    className="text-blue-600 hover:text-blue-700 underline text-base break-all"
                   >
                     ec.europa.eu/taxation_customs/vies
                   </a>
@@ -310,17 +310,17 @@ const Footer = memo(() => {
                 </span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-gray-600 text-sm">
+                <span className="text-gray-600 text-base">
                   Romanian Commercial Trade Registry ID Code: J2024039063003
                 </span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-gray-600 text-sm">
+                <span className="text-gray-600 text-base">
                   European Union Trade Registry Unique ID Code (EUID): ROONRC.J2024039063003
                 </span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-gray-600 text-sm">
+                <span className="text-gray-600 text-base">
                   NACE Code: 7311 – Advertising Agencies
                 </span>
               </li>
