@@ -59,6 +59,21 @@ module.exports = {
 
       // Production optimizations
       if (env === 'production') {
+        // CRITICAL: Disable HTML minification completely - set to false not an empty object
+        webpackConfig.plugins = webpackConfig.plugins.map(plugin => {
+          if (plugin.constructor && plugin.constructor.name === 'HtmlWebpackPlugin') {
+            // Force minify to false - not undefined, not {}, but explicitly false
+            plugin.options = plugin.options || {};
+            plugin.options.minify = false;
+            
+            // Also try userOptions for different webpack versions
+            if (plugin.userOptions) {
+              plugin.userOptions.minify = false;
+            }
+          }
+          return plugin;
+        });
+        
         // Remove console.* calls in production
         webpackConfig.optimization = {
           ...webpackConfig.optimization,

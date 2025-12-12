@@ -28,6 +28,10 @@
   # Force cache clear - increment this number to invalidate Netlify build cache
   CACHE_VERSION = "3"
   
+  # Disable source maps and HTML minification to bypass cache issues
+  GENERATE_SOURCEMAP = "false"
+  HTML_MINIFY = "false"
+  
   # AWS Lambda compatibility for functions
   AWS_LAMBDA_JS_RUNTIME = "nodejs18.x"
 
