@@ -202,7 +202,7 @@ export const team = [
 export const blogPosts = [
   {
     id: 1,
-    slug: "10-klaviyo-automation-flows-every-e-commerce-store-needs",
+    slug: "best-10-klaviyo-automation-flows-every-ecommerce-store-needs",
     title: "10 Best Klaviyo Flows That Increase Revenue 320% (2025)",
     excerpt: "Master the 10 best Klaviyo automation flows: abandoned cart (30% recovery rate), welcome series (50-60% opens), win-back campaigns. Increase email revenue 320% with our proven setup guide, benchmarks & templates. Complete implementation roadmap included.",
     category: "Klaviyo Tips", 

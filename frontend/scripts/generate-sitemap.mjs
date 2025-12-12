@@ -40,7 +40,7 @@ const ROUTES = [
 // Blog post slugs from mock.js
 // Generated using: title.toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, '-')
 const BLOG_POSTS = [
-  "/blog/10-klaviyo-automation-flows-every-e-commerce-store-needs",
+  "/blog/best-10-klaviyo-automation-flows-every-ecommerce-store-needs",
   "/blog/email-segmentation-strategies-that-actually-work",
   "/blog/maximizing-black-friday-sales-with-klaviyo",
   "/blog/sms-marketing-the-perfect-complement-to-email",
