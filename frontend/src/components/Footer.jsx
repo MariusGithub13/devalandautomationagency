@@ -310,17 +310,17 @@ const Footer = memo(() => {
                 </span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-gray-600 text-xs">
+                <span className="text-gray-600 text-sm">
                   Romanian Commercial Trade Registry ID Code: J2024039063003
                 </span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-gray-600 text-xs">
+                <span className="text-gray-600 text-sm">
                   European Union Trade Registry Unique ID Code (EUID): ROONRC.J2024039063003
                 </span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-gray-600 text-xs">
+                <span className="text-gray-600 text-sm">
                   NACE Code: 7311 – Advertising Agencies
                 </span>
               </li>
@@ -411,7 +411,7 @@ const Footer = memo(() => {
                       </svg>
                       <div className="text-left">
                         <div className="text-sm font-semibold text-gray-900 group-hover:text-blue-600">Google Business Profile</div>
-                        <div className="text-xs text-gray-600">View our complete profile</div>
+                        <div className="text-sm text-gray-600">View our complete profile</div>
                       </div>
                     </a>
                     {/* Write a Review Link */}
@@ -426,7 +426,7 @@ const Footer = memo(() => {
                       </svg>
                       <div className="text-left">
                         <div className="text-sm font-semibold text-blue-700 group-hover:text-blue-900">Write a Review</div>
-                        <div className="text-xs text-blue-600">Share your experience</div>
+                        <div className="text-sm text-blue-600">Share your experience</div>
                       </div>
                     </a>
                   </div>
