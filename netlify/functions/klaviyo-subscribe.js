@@ -212,7 +212,7 @@ exports.handler = async (event) => {
         });
       });
 
-      req.write(data);
+      req.write(subscriptionData);
       req.end();
     });
 
