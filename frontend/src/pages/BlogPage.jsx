@@ -62,8 +62,6 @@ const BlogPage = () => {
     setSubmitMessage('');
 
     try {
-      // TODO: Replace 'YOUR_KLAVIYO_LIST_ID' with your actual Klaviyo List ID
-      // Get this from Klaviyo: Lists & Segments > Your List > List ID in URL or settings
       const response = await fetch('/.netlify/functions/klaviyo-subscribe', {
         method: 'POST',
         headers: {
@@ -71,7 +69,7 @@ const BlogPage = () => {
         },
         body: JSON.stringify({
           email: email,
-          listId: 'YOUR_KLAVIYO_LIST_ID' // Replace with actual List ID from Klaviyo
+          listId: 'RCLE38' // Website Newsletter list
         }),
       });
 
