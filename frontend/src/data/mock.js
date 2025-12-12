@@ -738,8 +738,8 @@ export const generalFAQs = [
 ];
 
 export const voiceAIData = {
-  heroImage: "/images/optimized/voice-ai-dashboard.webp",
-  benefitsImage: "/images/optimized/voice-ai-analytics.webp",
+  heroImage: "/images/optimized/services/ai.webp",
+  benefitsImage: "/images/optimized/services/automation.webp",
   businessTypes: ["E-commerce", "Healthcare", "Restaurants", "Real Estate", "Professional Services"],
   useCases: [
     {
