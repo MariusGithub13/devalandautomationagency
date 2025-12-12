@@ -355,8 +355,9 @@ const HomePage = () => {
                     <Link 
                       to={`/services#${service.title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}`}
                       className="flex items-center justify-center text-blue-600 font-medium hover:text-blue-800 transition-colors duration-200 mt-auto"
+                      aria-label={`Learn more about ${service.title}`}
                     >
-                      <span>Learn More</span>
+                      <span>Learn More About {service.title}</span>
                       <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform duration-200" />
                     </Link>
                   </CardContent>
