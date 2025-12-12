@@ -6,6 +6,7 @@ import { Badge } from '../components/ui/badge';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import Breadcrumb from '../components/Breadcrumb';
+import InternalLinkBlock from '../components/InternalLinkBlock';
 import { services } from '../data/mock';
 
 const ServicesPage = () => {
@@ -211,6 +212,54 @@ const ServicesPage = () => {
                 </CardContent>
               </Card>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Solutions */}
+      <section className="section-padding bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-display mb-4">Featured Solutions & Resources</h2>
+            <p className="text-xl text-gray-600">Explore our specialized automation services and implementation guides</p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-6">
+            <InternalLinkBlock
+              title="Email Marketing Automation"
+              description="Complete Klaviyo setup, automation flows, and campaign management for e-commerce."
+              links={[
+                { text: "Klaviyo Services", href: "/klaviyo" },
+                { text: "10 Essential Flows", href: "/blog/10-klaviyo-automation-flows-every-e-commerce-store-needs" },
+                { text: "Segmentation Guide", href: "/blog/email-segmentation-strategies-that-actually-work" },
+                { text: "Klaviyo Case Studies", href: "/klaviyo-case-studies" }
+              ]}
+              variant="accent"
+            />
+            
+            <InternalLinkBlock
+              title="Voice AI & Customer Support"
+              description="24/7 Voice AI agents, chatbots, and intelligent customer service automation."
+              links={[
+                { text: "Voice AI Services", href: "/voice-ai" },
+                { text: "Implementation Guide", href: "/blog/voice-ai-implementation-real-business-results-roi-analysis-technical-guide" },
+                { text: "Pricing Comparison", href: "/blog/voice-ai-pricing-comparison-2025" },
+                { text: "Restaurant Solutions", href: "/blog/voice-ai-restaurants-phone-orders-reservations-guide" }
+              ]}
+              variant="default"
+            />
+            
+            <InternalLinkBlock
+              title="Success Stories & Insights"
+              description="Real results from our automation implementations across industries."
+              links={[
+                { text: "All Case Studies", href: "/case-studies" },
+                { text: "About Our Process", href: "/about" },
+                { text: "Blog & Resources", href: "/blog" },
+                { text: "Get Free Audit", href: "/contact" }
+              ]}
+              variant="minimal"
+            />
           </div>
         </div>
       </section>

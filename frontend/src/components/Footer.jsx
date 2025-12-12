@@ -34,14 +34,18 @@ const links = {
     { to: "/contact", label: "Contact" },
     { to: "/sitemap.html", label: "Sitemap (HTML)" },
   ],
-  socialIcons: [
+  // Primary social networks (always visible)
+  primarySocialIcons: [
     { href: "https://www.linkedin.com/in/marius-andronie/", Icon: Linkedin, label: "LinkedIn", color: "bg-[#0A66C2]/10 text-[#0A66C2] border-[#0A66C2]/20 hover:bg-[#0A66C2] hover:text-white hover:border-[#0A66C2] hover:scale-110" },
     { href: "https://www.facebook.com/Devaland13", Icon: Facebook, label: "Facebook", color: "bg-[#1877F2]/10 text-[#1877F2] border-[#1877F2]/20 hover:bg-[#1877F2] hover:text-white hover:border-[#1877F2] hover:scale-110" },
     { href: "https://www.instagram.com/digitalvampire13/", Icon: Instagram, label: "Instagram", color: "bg-gradient-to-br from-[#833AB4]/10 via-[#FD1D1D]/10 to-[#FCAF45]/10 text-[#E1306C] border-[#E1306C]/20 hover:from-[#833AB4] hover:via-[#FD1D1D] hover:to-[#FCAF45] hover:text-white hover:border-transparent hover:scale-110" },
     { href: "https://www.youtube.com/@devaland13", Icon: Youtube, label: "YouTube", color: "bg-[#FF0000]/10 text-[#FF0000] border-[#FF0000]/20 hover:bg-[#FF0000] hover:text-white hover:border-[#FF0000] hover:scale-110" },
+    { href: "https://x.com/Carlosman1313", Icon: Megaphone, label: "X (Twitter)", color: "bg-black/10 text-black border-black/20 hover:bg-black hover:text-white hover:border-black hover:scale-110" }
+  ],
+  // Secondary profiles (collapsed by default to prevent PageRank dilution)
+  secondarySocialIcons: [
     { href: "https://github.com/MariusGithub13", Icon: Github, label: "GitHub", color: "bg-[#181717]/10 text-[#181717] border-[#181717]/20 hover:bg-[#181717] hover:text-white hover:border-[#181717] hover:scale-110" },
     { href: "https://www.twitch.tv/devaland13", Icon: Twitch, label: "Twitch", color: "bg-[#9146FF]/10 text-[#9146FF] border-[#9146FF]/20 hover:bg-[#9146FF] hover:text-white hover:border-[#9146FF] hover:scale-110" },
-    { href: "https://x.com/Carlosman1313", Icon: Megaphone, label: "X (Twitter)", color: "bg-black/10 text-black border-black/20 hover:bg-black hover:text-white hover:border-black hover:scale-110" },
     { href: "https://www.threads.com/@digitalvampire13", Icon: MessageSquare, label: "Threads", color: "bg-black/10 text-black border-black/20 hover:bg-black hover:text-white hover:border-black hover:scale-110" },
     { href: "https://www.reddit.com/user/Devaland13/", Icon: MessageCircle, label: "Reddit", color: "bg-[#FF4500]/10 text-[#FF4500] border-[#FF4500]/20 hover:bg-[#FF4500] hover:text-white hover:border-[#FF4500] hover:scale-110" },
     { href: "https://devaland.net/", Icon: Globe, label: "devaland.net", color: "bg-blue-600/10 text-blue-600 border-blue-600/20 hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:scale-110" },
@@ -431,31 +435,57 @@ const Footer = memo(() => {
           </div>
         </div>
 
-        {/* Icons */}
+        {/* Primary Social Icons (Always Visible) */}
         <div className="mt-12 text-center">
           <div className="text-gray-700 font-semibold mb-4 text-base">Connect With Us</div>
           <div className="flex flex-wrap items-center justify-center gap-3">
-            {links.socialIcons.map(({ href, Icon, label, color }) => (
-              <a key={href} href={href} aria-label={label} target="_blank" rel="noopener noreferrer"
+            {links.primarySocialIcons.map(({ href, Icon, label, color }) => (
+              <a key={href} href={href} aria-label={label} target="_blank" rel="noopener noreferrer nofollow"
                  className={`rounded-full border-2 p-2.5 transition-all duration-300 ${color || 'bg-gray-100 text-gray-700 border-gray-200 hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:scale-110'}`}>
                 <Icon size={20} />
               </a>
             ))}
           </div>
+          
+          {/* Collapsible Secondary Profiles */}
+          <details className="mt-6 mx-auto max-w-2xl">
+            <summary className="cursor-pointer text-sm text-blue-600 hover:text-blue-700 font-medium inline-flex items-center gap-2 mx-auto">
+              <span>See All Social Profiles</span>
+              <svg className="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
+              {links.secondarySocialIcons.map(({ href, Icon, label, color }) => (
+                <a key={href} href={href} aria-label={label} target="_blank" rel="noopener noreferrer nofollow"
+                   className={`rounded-full border-2 p-2.5 transition-all duration-300 ${color || 'bg-gray-100 text-gray-700 border-gray-200 hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:scale-110'}`}>
+                  <Icon size={20} />
+                </a>
+              ))}
+            </div>
+          </details>
         </div>
 
-        {/* SEO text links */}
-        <div className="mt-6 text-center text-sm">
-          <div className="text-gray-700 font-medium mb-1">Follow Devaland on:</div>
-          <div className="flex flex-wrap justify-center gap-x-3 gap-y-1 text-gray-600">
-            {links.seoTextLinks.map(([label, href]) => (
-              <a key={href} href={href} target="_blank" rel="noopener noreferrer"
-                 className="underline underline-offset-4 hover:text-blue-700">
-                {label}
-              </a>
-            ))}
+        {/* SEO Text Links (Collapsed) */}
+        <details className="mt-6 mx-auto max-w-4xl text-center">
+          <summary className="cursor-pointer text-sm text-gray-600 hover:text-blue-700 font-medium inline-flex items-center gap-2 mx-auto">
+            <span>Complete Platform Directory</span>
+            <svg className="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </summary>
+          <div className="mt-4 text-sm">
+            <div className="text-gray-700 font-medium mb-2">Follow Devaland on:</div>
+            <div className="flex flex-wrap justify-center gap-x-3 gap-y-1 text-gray-600">
+              {links.seoTextLinks.map(([label, href]) => (
+                <a key={href} href={href} target="_blank" rel="noopener noreferrer nofollow"
+                   className="underline underline-offset-4 hover:text-blue-700">
+                  {label}
+                </a>
+              ))}
+            </div>
           </div>
-        </div>
+        </details>
 
         {/* Copyright - at the very bottom, centered */}
         <div className="mt-12 text-center text-sm text-gray-600 w-full">

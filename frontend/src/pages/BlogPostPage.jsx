@@ -7,6 +7,7 @@ import SEO from '../components/SEO';
 import Breadcrumb from '../components/Breadcrumb';
 import VoiceAIAdvantages from '../components/VoiceAIAdvantages';
 import PhoneAICallout from '../components/PhoneAICallout';
+import RelatedPosts from '../components/RelatedPosts';
 import { blogPosts } from '../data/mock';
 
 const BlogPostPage = () => {
@@ -848,6 +849,14 @@ const BlogPostPage = () => {
                   </Button>
                 </div>
               </div>
+
+              {/* Related Posts */}
+              <RelatedPosts 
+                currentSlug={slug}
+                category={post.category}
+                tags={post.tags || []}
+                limit={3}
+              />
 
               {/* Author Bio */}
               <div className="bg-gray-50 rounded-xl p-6 mt-8">

@@ -6,6 +6,7 @@ import { Card, CardContent } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import SEO from '../components/SEO';
 import FAQSection from '../components/FAQSection';
+import InternalLinkBlock from '../components/InternalLinkBlock';
 // TrustpilotWidget removed - using consistent footer-style widget
 import { companyData, heroImages, services, caseStudies, awards } from '../data/mock';
 import robotLadyImage from '../assets/Devaland-robot-lady.jpeg';
@@ -969,6 +970,60 @@ const HomePage = () => {
                 <ArrowRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Strategic Navigation - Explore Our Services & Resources */}
+      <section className="section-padding bg-white border-t border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <Badge className="mb-4 bg-blue-600 text-white">Explore Our Services</Badge>
+            <h2 className="text-3xl md:text-4xl font-display text-gray-900 mb-4">
+              Everything You Need to Grow Your Business
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              From email marketing automation to AI-powered customer support, discover how our solutions drive measurable results
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            <InternalLinkBlock
+              title="Klaviyo Email Marketing"
+              description="Transform your e-commerce email strategy with expert Klaviyo implementation and optimization"
+              links={[
+                { text: "Klaviyo Services Overview", href: "/klaviyo" },
+                { text: "Klaviyo Flow Examples", href: "/klaviyo-flows-examples" },
+                { text: "Klaviyo Automation Guide", href: "/klaviyo-automation-guide" },
+                { text: "Email Segmentation Strategies", href: "/klaviyo-segmentation-strategies" }
+              ]}
+              variant="accent"
+            />
+
+            <InternalLinkBlock
+              title="Voice AI Solutions"
+              description="24/7 AI-powered customer support that reduces costs and improves satisfaction"
+              links={[
+                { text: "Voice AI Services", href: "/voice-ai" },
+                { text: "Voice AI Pricing Guide", href: "/blog/voice-ai-pricing-comparison-2025" },
+                { text: "Implementation ROI Analysis", href: "/blog/voice-ai-implementation-real-business-results-roi-analysis-technical-guide" },
+                { text: "Voice AI for Restaurants", href: "/blog/voice-ai-restaurants-phone-orders-reservations-guide" }
+              ]}
+              variant="default"
+            />
+
+            <InternalLinkBlock
+              title="Industry Solutions & Insights"
+              description="Proven strategies and success stories from businesses like yours"
+              links={[
+                { text: "All Automation Services", href: "/services" },
+                { text: "Case Studies & Results", href: "/case-studies" },
+                { text: "About Devaland", href: "/about" },
+                { text: "Blog & Resource Center", href: "/blog" },
+                { text: "Contact & Free Consultation", href: "/contact" }
+              ]}
+              variant="minimal"
+            />
           </div>
         </div>
       </section>

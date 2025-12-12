@@ -6,6 +6,7 @@ import { Badge } from '../components/ui/badge';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import Breadcrumb from '../components/Breadcrumb';
+import InternalLinkBlock from '../components/InternalLinkBlock';
 import { companyData, klaviyoServices, serviceImages, awards, klaviyoSuccessStories, klaviyoStats } from '../data/mock';
 
 const KlaviyoPage = () => {
@@ -1017,6 +1018,52 @@ const KlaviyoPage = () => {
                 </Link>
               </CardContent>
             </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Related Services & Resources */}
+      <section className="section-padding bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-display mb-4">Related Services & Resources</h2>
+            <p className="text-xl text-gray-600">Explore more automation and marketing solutions</p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-6">
+            <InternalLinkBlock
+              title="Complete Marketing Automation"
+              description="Full-service automation across email, SMS, and customer journey orchestration."
+              links={[
+                { text: "All Services", href: "/services" },
+                { text: "Automation Case Studies", href: "/case-studies" },
+                { text: "Our Process", href: "/about" }
+              ]}
+              variant="default"
+            />
+            
+            <InternalLinkBlock
+              title="Voice AI & Chat Solutions"
+              description="24/7 customer support with Voice AI agents and intelligent chat widgets."
+              links={[
+                { text: "Voice AI Services", href: "/voice-ai" },
+                { text: "Voice AI Pricing", href: "/blog/voice-ai-pricing-comparison-2025" },
+                { text: "Implementation Guide", href: "/blog/voice-ai-implementation-real-business-results-roi-analysis-technical-guide" }
+              ]}
+              variant="accent"
+            />
+            
+            <InternalLinkBlock
+              title="Essential Klaviyo Guides"
+              description="In-depth resources for maximizing your Klaviyo performance and ROI."
+              links={[
+                { text: "10 Essential Flows", href: "/blog/10-klaviyo-automation-flows-every-e-commerce-store-needs" },
+                { text: "Segmentation Strategies", href: "/blog/email-segmentation-strategies-that-actually-work" },
+                { text: "Black Friday Strategy", href: "/blog/maximizing-black-friday-sales-with-klaviyo" },
+                { text: "Advanced Analytics", href: "/blog/advanced-klaviyo-analytics-beyond-open-and-click-rates" }
+              ]}
+              variant="minimal"
+            />
           </div>
         </div>
       </section>
