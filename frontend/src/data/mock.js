@@ -203,8 +203,8 @@ export const blogPosts = [
   {
     id: 1,
     slug: "10-klaviyo-automation-flows-every-e-commerce-store-needs",
-    title: "Best 10 Klaviyo Automation Flows Every E-commerce Store Needs",
-    excerpt: "Complete guide to the 10 best Klaviyo flows including abandoned cart, welcome series, and win-back campaigns. Learn how to build a Klaviyo sales funnel with automation workflows that increase revenue 320%. Step-by-step setup, benchmarks, and proven email tips for e-commerce success.",
+    title: "10 Best Klaviyo Flows That Increase Revenue 320% (2025)",
+    excerpt: "Master the 10 best Klaviyo automation flows: abandoned cart (30% recovery rate), welcome series (50-60% opens), win-back campaigns. Increase email revenue 320% with our proven setup guide, benchmarks & templates. Complete implementation roadmap included.",
     category: "Klaviyo Tips", 
     readTime: "25 min read",
     date: "2024-07-24",
@@ -462,8 +462,8 @@ Ready to implement these flows for your e-commerce store? Contact our Klaviyo ex
   {
     id: 2,
     slug: "email-segmentation-strategies-that-actually-work",
-    title: "Best Email Segmentation Strategies That Actually Work",
-    excerpt: "Learn advanced segmentation techniques to improve your email relevance and conversion rates. We'll cover behavioral segmentation, demographic targeting, and predictive analytics to help you send the right message to the right person.",
+    title: "Email Segmentation: 39% Higher Opens, 38% More Conversions",
+    excerpt: "Master email segmentation strategies that increase opens by 39% and conversions by 38%. Learn behavioral, demographic & psychographic segmentation with Klaviyo. Includes 15+ segment examples, RFM analysis, and predictive targeting tactics for e-commerce.",
     category: "Email Marketing",
     readTime: "9 min read",
     date: "2024-07-24",
@@ -652,8 +652,8 @@ Book a consultation to audit your current segmentation approach, calculate impro
   {
     id: 3,
     slug: "maximizing-black-friday-sales-with-klaviyo",
-    title: "Maximizing Black Friday Sales with Klaviyo",
-    excerpt: "Prepare your e-commerce store for the biggest shopping event of the year. Learn how to create urgency, segment your audience, and optimize your campaigns for maximum Black Friday and Cyber Monday revenue.",
+    title: "Klaviyo Black Friday Strategy: 3-5x Revenue in 48 Hours",
+    excerpt: "Generate 25-40% of Q4 revenue during Black Friday with proven Klaviyo BFCM email strategies. Complete 90-day timeline with segmentation tactics, urgency triggers, and campaign sequences that drive 3-5x normal daily revenue. Includes templates & examples.",
     category: "E-commerce",
     readTime: "8 min read",
     date: "2024-07-24",
