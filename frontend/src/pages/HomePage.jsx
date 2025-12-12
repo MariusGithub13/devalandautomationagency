@@ -95,7 +95,7 @@ const HomePage = () => {
           <img 
             src={heroImages.primary}
             srcSet={heroImages.primarySrcSet}
-            sizes="100vw"
+            sizes="(max-width: 640px) 400px, (max-width: 1024px) 800px, 1200px"
             alt="Digital Transformation"
             width="1200"
             height="593"
