@@ -1,6 +1,6 @@
 [build]
-  # Then run this to build
-  command = "cd netlify/functions && npm install && cd ../../frontend && npm ci --legacy-peer-deps && npm run build"
+  # Then run this to build - clear build cache first to avoid stale HTML artifacts
+  command = "cd netlify/functions && npm install && cd ../../frontend && rm -rf build node_modules/.cache && npm ci --legacy-peer-deps && npm run build"
 
   # And publish the CRA build output
   publish = "frontend/build"
