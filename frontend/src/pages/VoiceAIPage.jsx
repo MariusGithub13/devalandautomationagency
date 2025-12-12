@@ -8,6 +8,7 @@ import Breadcrumb from '../components/Breadcrumb';
 import InternalLinkBlock from '../components/InternalLinkBlock';
 import { voiceAIData, companyData } from '../data/mock';
 import ROICalculator from '../components/ROICalculator';
+import robotLadyImage from '../assets/Devaland-robot-lady.jpeg';
 
 const VoiceAIPage = () => {
   return (
@@ -119,11 +120,11 @@ const VoiceAIPage = () => {
             {/* Hero Image */}
             <div className="relative">
               <img
-                src={voiceAIData.heroImage}
-                alt="Voice AI Agent Dashboard showing real-time conversations"
+                src={robotLadyImage}
+                alt="AI-Powered Voice Agent Assistant - Devaland's intelligent automation"
                 width="600"
-                height="400"
-                className="rounded-2xl shadow-2xl"
+                height="800"
+                className="rounded-2xl shadow-2xl transform scale-x-[-1]"
                 loading="eager"
                 fetchpriority="high"
               />
