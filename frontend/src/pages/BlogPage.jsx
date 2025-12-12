@@ -62,30 +62,30 @@ const BlogPage = () => {
     setSubmitMessage('');
 
     try {
-      const response = await fetch('/.netlify/functions/contact', {
+      // TODO: Replace 'YOUR_KLAVIYO_LIST_ID' with your actual Klaviyo List ID
+      // Get this from Klaviyo: Lists & Segments > Your List > List ID in URL or settings
+      const response = await fetch('/.netlify/functions/klaviyo-subscribe', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          name: 'Newsletter Subscriber',
           email: email,
-          company: 'Newsletter Subscription',
-          message: 'Please add me to the newsletter mailing list for automation insights and updates.',
-          projectType: 'newsletter'
+          listId: 'YOUR_KLAVIYO_LIST_ID' // Replace with actual List ID from Klaviyo
         }),
       });
 
-      if (response.ok) {
+      const data = await response.json();
+
+      if (response.ok && data.success) {
         setSubmitMessage('✓ Successfully subscribed! Check your email for confirmation.');
         setEmail('');
         setGdprConsent(false);
       } else {
-        const errorData = await response.json();
         if (process.env.NODE_ENV === 'development') {
-          console.error('Newsletter error:', errorData);
+          console.error('Newsletter error:', data);
         }
-        setSubmitMessage('Something went wrong. Please try again.');
+        setSubmitMessage(data.message || 'Something went wrong. Please try again.');
       }
     } catch (error) {
       if (process.env.NODE_ENV === 'development') {
