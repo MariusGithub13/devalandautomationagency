@@ -5,18 +5,15 @@
   # And publish the CRA build output
   publish = "frontend/build"
 
-# Enable prerendering for search engines (fixes Soft 404 issues)
+# Enable sitemap generation for better SEO
 [[plugins]]
   package = "@netlify/plugin-sitemap"
 
-# Prerender pages for SEO - generates static HTML for crawlers
-[[plugins]]
-  package = "@netlify/plugin-prerendering"
-
-# NOTE: This prerendering plugin crawls your site after build and generates
-# static HTML files for all pages. This solves the "crawled but not indexed" issue
-# by giving Googlebot actual HTML content instead of empty React shell.
-# For true SSR with dynamic data, consider migrating to Next.js in the future
+# NOTE: For prerendering (fixing "crawled but not indexed" issue), we have options:
+# 1. Install @netlify/plugin-prerendering (requires npm install -D in package.json)
+# 2. Use React Snap for static prerendering (add to frontend package.json)
+# 3. Migrate to Next.js for native SSR/SSG (long-term solution)
+# The sitemap helps Google discover and index all pages correctly
 
 [functions]
   # Serverless functions directory (relative to repo root)
