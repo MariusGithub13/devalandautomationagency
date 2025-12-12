@@ -181,7 +181,7 @@ const Footer = memo(() => {
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1.2fr_2fr] md:gap-12 lg:gap-16">
           {/* Brand */}
           <div>
-            <div className="flex flex-col items-start gap-3">
+            <div className="flex flex-col items-center gap-3 text-center">
               <FooterLogo />
               <div>
                 <div className="font-semibold text-gray-900">{brand.name}</div>
