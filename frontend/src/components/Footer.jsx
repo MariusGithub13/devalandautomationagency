@@ -4,6 +4,7 @@ import {
   Linkedin, Facebook, Instagram, Youtube, Github, Twitch,
   Globe, Phone, Mail, MapPin, MessageCircle, MessageSquare, Megaphone, Link
 } from "lucide-react";
+import NewsletterForm from './NewsletterForm';
 
 const brand = {
   name: "Devaland Automation Agency",
@@ -249,6 +250,15 @@ const Footer = memo(() => {
               <a href="https://ec.europa.eu/consumers/odr/main/index.cfm?event=main.home2.show&lng=RO" className="text-gray-600 hover:text-blue-700 underline-offset-4 hover:underline" target="_blank" rel="noopener noreferrer">ANPC SOL</a>
               <a href="https://reclamatiisal.anpc.ro/" className="text-gray-600 hover:text-blue-700 underline-offset-4 hover:underline" target="_blank" rel="noopener noreferrer">ANPC SAL</a>
             </nav>
+          </div>
+
+          {/* Newsletter Signup */}
+          <div>
+            <div className="text-base font-semibold text-gray-900 mb-3">Newsletter</div>
+            <p className="text-sm text-gray-600 mb-4">
+              Get automation insights, case studies, and Klaviyo tips delivered monthly.
+            </p>
+            <NewsletterForm compact={true} />
           </div>
 
           {/* Contact */}

@@ -8,6 +8,7 @@ import Breadcrumb from '../components/Breadcrumb';
 import VoiceAIAdvantages from '../components/VoiceAIAdvantages';
 import PhoneAICallout from '../components/PhoneAICallout';
 import RelatedPosts from '../components/RelatedPosts';
+import NewsletterForm from '../components/NewsletterForm';
 import { blogPosts } from '../data/mock';
 
 const BlogPostPage = () => {
@@ -848,6 +849,15 @@ const BlogPostPage = () => {
                     <span>Twitter</span>
                   </Button>
                 </div>
+              </div>
+
+              {/* Newsletter Signup */}
+              <div className="bg-blue-600 text-white rounded-xl p-8 my-8">
+                <h3 className="text-2xl font-display mb-3">Stay Updated</h3>
+                <p className="text-blue-100 mb-6">
+                  Get automation insights and Klaviyo tips delivered monthly.
+                </p>
+                <NewsletterForm />
               </div>
 
               {/* Related Posts */}
