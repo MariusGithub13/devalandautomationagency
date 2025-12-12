@@ -410,8 +410,8 @@ const BlogPostPage = () => {
     },
     "keywords": post.tags?.join(", ") || post.category,
     "articleSection": post.category,
-    "wordCount": post.content?.length || 1000,
-    "timeRequired": post.readTime
+    "wordCount": Math.round((post.content?.length || 1000) / 5), // Approximate word count (avg 5 chars/word)
+    "timeRequired": `PT${post.readTime?.match(/\d+/)?.[0] || '5'}M` // ISO 8601 duration format
   };
 
   // Combine Article schema with FAQ schema if available
