@@ -2198,18 +2198,6 @@ Typical Shopify brand results show 70-85% automation rate within 4 weeks, 85-92%
       { text: "Voice AI Services", href: "/voice-ai" },
       { text: "Schedule Shopify Demo", href: "/contact" }
     ]
-
-**Step 5: Launch and optimize** through beta testing with select customers, monitoring initial performance closely, gathering feedback from team and customers, iterating based on data, and scaling gradually to full deployment.
-
-Devaland specializes in Shopify Voice AI implementation with 30+ successful deployments achieving average 70-85% automation, 85-92% CSAT scores, and 300-600% first-year ROI. Our all-inclusive packages ($1,497-2,497/month) include setup, Shopify integration, knowledge base development, multilingual support, ongoing optimization, and dedicated success management.
-
-Book a consultation to see Amy's live demo, calculate your specific ROI, and get a custom implementation plan. Transform your Shopify store's customer service from a cost center to a profit center while delighting customers in their native language, 24/7.`,
-    internalLinks: [
-      { text: "Voice AI Services", href: "/voice-ai" },
-      { text: "Voice AI Pricing", href: "/blog/voice-ai-pricing-comparison-2025" },
-      { text: "Implementation Guide", href: "/blog/voice-ai-implementation-real-business-results-roi-analysis-technical-guide" },
-      { text: "Schedule Demo", href: "/contact" }
-    ]
   },
   {
     id: 15,
