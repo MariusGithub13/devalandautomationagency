@@ -72,24 +72,22 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
     return (
       <div className={className}>
         <form onSubmit={handleSubmit} className="space-y-3">
-          <div className="flex flex-col sm:flex-row gap-2">
-            <Input
-              type="email"
-              placeholder="Your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              disabled={isSubmitting}
-              required
-              className="flex-1 bg-white text-gray-900 border-gray-300"
-            />
-            <Button 
-              type="submit"
-              disabled={isSubmitting}
-              className="bg-blue-600 hover:bg-blue-700 text-white whitespace-nowrap"
-            >
-              {isSubmitting ? 'Subscribing...' : 'Subscribe'}
-            </Button>
-          </div>
+          <Input
+            type="email"
+            placeholder="Your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            disabled={isSubmitting}
+            required
+            className="w-full bg-white text-gray-900 border-gray-300"
+          />
+          <Button 
+            type="submit"
+            disabled={isSubmitting}
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+          >
+            {isSubmitting ? 'Subscribing...' : 'Subscribe'}
+          </Button>
           
           <div className="flex items-start gap-2">
             <input

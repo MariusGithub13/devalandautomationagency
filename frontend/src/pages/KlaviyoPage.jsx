@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import Breadcrumb from '../components/Breadcrumb';
 import InternalLinkBlock from '../components/InternalLinkBlock';
+import NewsletterForm from '../components/NewsletterForm';
 import { companyData, klaviyoServices, serviceImages, awards, klaviyoSuccessStories, klaviyoStats } from '../data/mock';
 
 const KlaviyoPage = () => {
@@ -1068,8 +1069,22 @@ const KlaviyoPage = () => {
         </div>
       </section>
 
+      {/* Newsletter Signup */}
+      <section className="section-padding bg-blue-600 text-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-4xl font-display mb-4">
+            Stay Updated on Klaviyo Best Practices
+          </h2>
+          <p className="text-xl mb-8 opacity-90">
+            Get Klaviyo tips, automation strategies, and e-commerce insights delivered monthly.
+          </p>
+          
+          <NewsletterForm />
+        </div>
+      </section>
+
       {/* CTA Section */}
-      <section className="section-padding bg-gray-900 text-white">
+      <section className="section-padding bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl md:text-5xl font-display mb-6">
             Ready to Become Our Next Success Story?

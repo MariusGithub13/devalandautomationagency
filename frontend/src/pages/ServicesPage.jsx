@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import Breadcrumb from '../components/Breadcrumb';
 import InternalLinkBlock from '../components/InternalLinkBlock';
+import NewsletterForm from '../components/NewsletterForm';
 import { services } from '../data/mock';
 
 const ServicesPage = () => {
@@ -264,8 +265,22 @@ const ServicesPage = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* Newsletter Signup */}
       <section className="section-padding bg-blue-600 text-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-4xl font-display mb-4">
+            Stay Updated on Automation Trends
+          </h2>
+          <p className="text-xl mb-8 opacity-90">
+            Get the latest insights, case studies, and automation strategies delivered to your inbox monthly.
+          </p>
+          
+          <NewsletterForm />
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="section-padding bg-gradient-to-br from-blue-600 via-blue-700 to-purple-800 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl md:text-5xl font-display mb-6">
             Ready to Transform Your Operations?
