@@ -6,6 +6,7 @@ import { Badge } from '../components/ui/badge';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import Breadcrumb from '../components/Breadcrumb';
+import InternalLinkBlock from '../components/InternalLinkBlock';
 import { caseStudies } from '../data/mock';
 
 const CaseStudiesPage = () => {
@@ -193,6 +194,58 @@ const CaseStudiesPage = () => {
                 </div>
               </Card>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Explore Our Solutions */}
+      <section className="section-padding bg-gradient-subtle">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-display text-gray-900 mb-4">
+              Explore Our Solutions
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Ready to achieve similar results? Discover how our automation solutions can transform your business
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <InternalLinkBlock
+              title="Klaviyo Email Marketing"
+              description="Proven strategies to increase email revenue by 30-45% within 90 days"
+              links={[
+                { text: "Klaviyo Services Overview", href: "/klaviyo" },
+                { text: "10 Essential Automation Flows", href: "/blog/best-10-klaviyo-automation-flows-every-ecommerce-store-needs" },
+                { text: "Advanced Segmentation Guide", href: "/blog/klaviyo-email-segmentation-guide-ecommerce" },
+                { text: "Analytics & ROI Tracking", href: "/blog/klaviyo-advanced-analytics-metrics-roi-measurement-guide" }
+              ]}
+              variant="default"
+            />
+
+            <InternalLinkBlock
+              title="Voice AI Solutions"
+              description="Reduce support costs by 60% with 24/7 AI-powered customer service"
+              links={[
+                { text: "Voice AI Services", href: "/voice-ai" },
+                { text: "Complete Implementation Guide", href: "/blog/voice-ai-implementation-real-business-results-roi-analysis-technical-guide" },
+                { text: "Pricing & ROI Comparison", href: "/blog/voice-ai-pricing-comparison-2025" },
+                { text: "Industry-Specific Solutions", href: "/blog/voice-ai-restaurants-phone-orders-reservations-guide" }
+              ]}
+              variant="accent"
+            />
+
+            <InternalLinkBlock
+              title="Get Started Today"
+              description="Join 50+ businesses that have transformed their operations with Devaland"
+              links={[
+                { text: "View All Services", href: "/services" },
+                { text: "About Our Process", href: "/about" },
+                { text: "Blog & Resources", href: "/blog" },
+                { text: "Free Consultation", href: "/contact" }
+              ]}
+              variant="minimal"
+            />
           </div>
         </div>
       </section>
