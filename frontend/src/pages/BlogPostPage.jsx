@@ -9,6 +9,7 @@ import VoiceAIAdvantages from '../components/VoiceAIAdvantages';
 import PhoneAICallout from '../components/PhoneAICallout';
 import RelatedPosts from '../components/RelatedPosts';
 import NewsletterForm from '../components/NewsletterForm';
+import InternalLinkBlock from '../components/InternalLinkBlock';
 import { blogPosts } from '../data/mock';
 
 const BlogPostPage = () => {
@@ -850,7 +851,21 @@ const BlogPostPage = () => {
                   </Button>
                 </div>
               </div>
+Internal Links Block */}
+              {post.internalLinks && post.internalLinks.length > 0 && (
+                <InternalLinkBlock
+                  title="Related Resources"
+                  description="Continue learning with these helpful articles and guides"
+                  links={post.internalLinks.map(link => ({
+                    label: link.text,
+                    to: link.href
+                  }))}
+                  variant="accent"
+                  className="my-8"
+                />
+              )}
 
+              {/* 
               {/* Newsletter Signup */}
               <div className="bg-blue-600 text-white rounded-xl p-8 my-8">
                 <h3 className="text-2xl font-display mb-3">Stay Updated</h3>
