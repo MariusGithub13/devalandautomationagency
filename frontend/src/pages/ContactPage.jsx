@@ -482,7 +482,7 @@ const ContactPage = () => {
                         />
                         <div className="bg-gradient-to-r from-red-900 to-purple-900 text-white px-3 py-2 text-center">
                           <p className="text-sm font-medium">🏰 Near Dracula's Castle</p>
-                          <p className="text-xs opacity-90">Bran Castle, Transylvania</p>
+                          <p className="text-xs opacity-90">Corvin Castle, Transylvania</p>
                         </div>
                       </div>
                     </div>
