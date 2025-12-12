@@ -1544,10 +1544,10 @@ const VoiceAIPage = () => {
               title="Voice AI Implementation Guides"
               description="Complete guides for implementing Voice AI across different industries and use cases."
               links={[
-                { text: "Implementation & ROI Guide", href: "/blog/voice-ai-implementation-real-business-results-roi-analysis-technical-guide" },
-                { text: "Pricing Comparison 2025", href: "/blog/voice-ai-pricing-comparison-2025" },
-                { text: "Small Business Guide", href: "/blog/ai-voice-assistants-small-business-guide-2025" },
-                { text: "Voice AI vs Call Centers", href: "/blog/voice-ai-vs-call-centers-cost-benefit-analysis" }
+                { label: "Implementation & ROI Guide", to: "/blog/voice-ai-implementation-real-business-results-roi-analysis-technical-guide" },
+                { label: "Pricing Comparison 2025", to: "/blog/voice-ai-pricing-comparison-2025" },
+                { label: "Small Business Guide", to: "/blog/ai-voice-assistants-small-business-guide-2025" },
+                { label: "Voice AI vs Call Centers", to: "/blog/voice-ai-vs-call-centers-cost-benefit-analysis" }
               ]}
               variant="accent"
             />
@@ -1556,10 +1556,10 @@ const VoiceAIPage = () => {
               title="Industry-Specific Solutions"
               description="Tailored Voice AI strategies for restaurants, Shopify stores, and healthcare."
               links={[
-                { text: "Restaurant Phone Orders", href: "/blog/voice-ai-restaurants-phone-orders-reservations-guide" },
-                { text: "Shopify Customer Service", href: "/blog/voice-ai-shopify-brands-customer-service-guide" },
-                { text: "Healthcare Scheduling", href: "/blog/voice-ai-healthcare-hipaa-patient-scheduling-guide" },
-                { text: "RAG Technology", href: "/blog/voice-ai-agents-future-business-communication" }
+                { label: "Restaurant Phone Orders", to: "/blog/voice-ai-restaurants-phone-orders-reservations-guide" },
+                { label: "Shopify Customer Service", to: "/blog/voice-ai-shopify-brands-customer-service-guide" },
+                { label: "Healthcare Scheduling", to: "/blog/voice-ai-healthcare-hipaa-patient-scheduling-guide" },
+                { label: "RAG Technology", to: "/blog/voice-ai-agents-future-business-communication" }
               ]}
               variant="default"
             />
@@ -1568,10 +1568,10 @@ const VoiceAIPage = () => {
               title="Complete Automation Stack"
               description="Combine Voice AI with email automation and marketing services."
               links={[
-                { text: "Klaviyo Email Automation", href: "/klaviyo" },
-                { text: "All Services", href: "/services" },
-                { text: "Case Studies", href: "/case-studies" },
-                { text: "About Us", href: "/about" }
+                { label: "Klaviyo Email Automation", to: "/klaviyo" },
+                { label: "All Services", to: "/services" },
+                { label: "Case Studies", to: "/case-studies" },
+                { label: "About Us", to: "/about" }
               ]}
               variant="minimal"
             />
