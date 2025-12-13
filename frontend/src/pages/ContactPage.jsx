@@ -553,7 +553,7 @@ const ContactPage = () => {
                       {/* Google Maps Embed */}
                       <div className="mt-6 rounded-lg overflow-hidden shadow-md border border-gray-200">
                         <iframe
-                          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2771.8!2d23.0!3d45.85!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDXCsDUxJzAwLjAiTiAyM8KwMDAnMDAuMCJF!5e0!3m2!1sen!2sro!4v1234567890123!5m2!1sen!2sro&q=Santandrei+13,+Simeria+335903,+Romania"
+                          src="https://maps.google.com/maps?q=Santandrei+13,+335903+Simeria,+Romania&t=&z=15&ie=UTF8&iwloc=&output=embed"
                           width="400"
                           height="300"
                           style={{ border: 0 }}
@@ -566,7 +566,7 @@ const ContactPage = () => {
                         <div className="bg-gray-50 px-3 py-2 text-center border-t border-gray-200">
                           <p className="text-sm font-medium text-gray-700">📍 Find Us on Google Maps</p>
                           <a 
-                            href="https://www.google.com/maps/search/?api=1&query=Santandrei+13,+Simeria+335903,+Hunedoara+County,+Romania"
+                            href="https://www.google.com/maps/search/?api=1&query=Santandrei+13,+335903+Simeria,+Romania"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-xs text-blue-600 hover:text-blue-800 hover:underline"
