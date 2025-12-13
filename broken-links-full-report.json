@@ -1,0 +1,421 @@
+{
+  "timestamp": "2025-12-13T13:32:12.551Z",
+  "summary": {
+    "totalLinks": 55,
+    "workingLinks": 37,
+    "brokenLinks": 18,
+    "skippedLinks": 0,
+    "warnings": 0
+  },
+  "internalRoutes": [
+    {
+      "href": "/",
+      "type": "Link",
+      "foundIn": "Header.jsx",
+      "status": "working",
+      "routeType": "exact"
+    },
+    {
+      "href": "/privacy",
+      "type": "anchor",
+      "foundIn": "NewsletterForm.jsx",
+      "status": "working",
+      "routeType": "exact"
+    },
+    {
+      "href": "/terms",
+      "type": "anchor",
+      "foundIn": "Footer.jsx",
+      "status": "working",
+      "routeType": "exact"
+    },
+    {
+      "href": "/cookies",
+      "type": "anchor",
+      "foundIn": "Footer.jsx",
+      "status": "working",
+      "routeType": "exact"
+    },
+    {
+      "href": "/gdpr",
+      "type": "anchor",
+      "foundIn": "NewsletterForm.jsx",
+      "status": "working",
+      "routeType": "exact"
+    },
+    {
+      "href": "/images/Klaviyo Agency Partner.webp",
+      "type": "image",
+      "foundIn": "Footer.jsx",
+      "status": "working",
+      "routeType": "image"
+    },
+    {
+      "href": "/images/sol.png",
+      "type": "image",
+      "foundIn": "Footer.jsx",
+      "status": "working",
+      "routeType": "image"
+    },
+    {
+      "href": "/images/sal.png",
+      "type": "image",
+      "foundIn": "Footer.jsx",
+      "status": "working",
+      "routeType": "image"
+    },
+    {
+      "href": "/images/EU Consumer Redress.svg",
+      "type": "image",
+      "foundIn": "Footer.jsx",
+      "status": "working",
+      "routeType": "image"
+    },
+    {
+      "href": "/contact",
+      "type": "Link",
+      "foundIn": "VoiceAIPage.jsx",
+      "status": "working",
+      "routeType": "exact"
+    },
+    {
+      "href": "/blog",
+      "type": "Link",
+      "foundIn": "HomePage.jsx",
+      "status": "working",
+      "routeType": "exact"
+    },
+    {
+      "href": "/services",
+      "type": "Link",
+      "foundIn": "HomePage.jsx",
+      "status": "working",
+      "routeType": "exact"
+    },
+    {
+      "href": "/about",
+      "type": "Link",
+      "foundIn": "HomePage.jsx",
+      "status": "working",
+      "routeType": "exact"
+    },
+    {
+      "href": "/images/Marius The Digital Vampire Dracula Castle.jpg",
+      "type": "image",
+      "foundIn": "ContactPage.jsx",
+      "status": "working",
+      "routeType": "image"
+    },
+    {
+      "href": "/case-studies",
+      "type": "Link",
+      "foundIn": "VoiceAIPage.jsx",
+      "status": "working",
+      "routeType": "exact"
+    },
+    {
+      "href": "/voice-ai",
+      "type": "Link",
+      "foundIn": "HomePage.jsx",
+      "status": "working",
+      "routeType": "exact"
+    },
+    {
+      "href": "/klaviyo",
+      "type": "Link",
+      "foundIn": "KlaviyoSegmentationPage.jsx",
+      "status": "working",
+      "routeType": "exact"
+    },
+    {
+      "href": "/klaviyo-flows-examples",
+      "type": "Link",
+      "foundIn": "KlaviyoPage.jsx",
+      "status": "working",
+      "routeType": "exact"
+    },
+    {
+      "href": "/klaviyo-automation-guide",
+      "type": "Link",
+      "foundIn": "HomePage.jsx",
+      "status": "working",
+      "routeType": "exact"
+    },
+    {
+      "href": "/klaviyo-gdpr-compliance",
+      "type": "Link",
+      "foundIn": "KlaviyoPage.jsx",
+      "status": "working",
+      "routeType": "exact"
+    },
+    {
+      "href": "/klaviyo-black-friday-strategy",
+      "type": "Link",
+      "foundIn": "KlaviyoPage.jsx",
+      "status": "working",
+      "routeType": "exact"
+    },
+    {
+      "href": "/klaviyo-predicted-next-order",
+      "type": "Link",
+      "foundIn": "HomePage.jsx",
+      "status": "working",
+      "routeType": "exact"
+    },
+    {
+      "href": "/klaviyo-placed-order-rate",
+      "type": "Link",
+      "foundIn": "HomePage.jsx",
+      "status": "working",
+      "routeType": "exact"
+    },
+    {
+      "href": "/klaviyo-segmentation-strategies",
+      "type": "Link",
+      "foundIn": "HomePage.jsx",
+      "status": "working",
+      "routeType": "exact"
+    },
+    {
+      "href": "/klaviyo-email-templates",
+      "type": "Link",
+      "foundIn": "HomePage.jsx",
+      "status": "working",
+      "routeType": "exact"
+    },
+    {
+      "href": "/blog/voice-ai-pricing-comparison-2025",
+      "type": "Link",
+      "foundIn": "HomePage.jsx",
+      "status": "working",
+      "routeType": "dynamic"
+    },
+    {
+      "href": "/blog/ai-voice-assistants-small-business-guide-2025",
+      "type": "Link",
+      "foundIn": "HomePage.jsx",
+      "status": "working",
+      "routeType": "dynamic"
+    },
+    {
+      "href": "/blog/voice-ai-vs-call-centers-cost-benefit-analysis",
+      "type": "Link",
+      "foundIn": "HomePage.jsx",
+      "status": "working",
+      "routeType": "dynamic"
+    },
+    {
+      "href": "/blog/voice-ai-restaurants-phone-orders-reservations-guide",
+      "type": "Link",
+      "foundIn": "HomePage.jsx",
+      "status": "working",
+      "routeType": "dynamic"
+    },
+    {
+      "href": "/blog/voice-ai-healthcare-hipaa-patient-scheduling-guide",
+      "type": "Link",
+      "foundIn": "HomePage.jsx",
+      "status": "working",
+      "routeType": "dynamic"
+    },
+    {
+      "href": "/blog/voice-ai-shopify-brands-customer-service-guide",
+      "type": "Link",
+      "foundIn": "HomePage.jsx",
+      "status": "working",
+      "routeType": "dynamic"
+    },
+    {
+      "href": "/blog/best-10-klaviyo-automation-flows-every-ecommerce-store-needs",
+      "type": "Link",
+      "foundIn": "KlaviyoPage.jsx",
+      "status": "working",
+      "routeType": "dynamic"
+    },
+    {
+      "href": "/blog/voice-ai-implementation-real-business-results-roi-analysis-technical-guide",
+      "type": "Link",
+      "foundIn": "HomePage.jsx",
+      "status": "working",
+      "routeType": "dynamic"
+    },
+    {
+      "href": "/blog/maximizing-black-friday-sales-with-klaviyo",
+      "type": "Link",
+      "foundIn": "KlaviyoBlackFridayPage.jsx",
+      "status": "working",
+      "routeType": "dynamic"
+    },
+    {
+      "href": "/klaviyo-case-studies",
+      "type": "Link",
+      "foundIn": "KlaviyoPredictedNextOrderPage.jsx",
+      "status": "working",
+      "routeType": "exact"
+    },
+    {
+      "href": "/blog/advanced-klaviyo-analytics-beyond-open-and-click-rates",
+      "type": "Link",
+      "foundIn": "KlaviyoPlacedOrderRatePage.jsx",
+      "status": "working",
+      "routeType": "dynamic"
+    },
+    {
+      "href": "/blog/best-email-segmentation-strategies-that-actually-work",
+      "type": "Link",
+      "foundIn": "KlaviyoSegmentationPage.jsx",
+      "status": "working",
+      "routeType": "dynamic"
+    }
+  ],
+  "externalLinks": [
+    {
+      "url": "https://portal.devaland.com/login",
+      "status": "broken",
+      "error": "getaddrinfo ENOTFOUND portal.devaland.com",
+      "foundIn": "ClientPortalNavItem.jsx",
+      "type": "anchor"
+    },
+    {
+      "url": "https://www.trustpilot.com/review/devaland.com",
+      "status": "broken",
+      "error": "getaddrinfo ENOTFOUND www.trustpilot.com",
+      "foundIn": "Footer.jsx",
+      "type": "anchor"
+    },
+    {
+      "url": "https://www.klaviyo.com/partners/signup?utm_source=001Nu00000HqbJVIAZ&utm_medium=partner",
+      "status": "broken",
+      "error": "getaddrinfo ENOTFOUND www.klaviyo.com",
+      "foundIn": "Footer.jsx",
+      "type": "anchor"
+    },
+    {
+      "url": "http://www.anpc.gov.ro/",
+      "status": "broken",
+      "error": "getaddrinfo ENOTFOUND www.anpc.gov.ro",
+      "foundIn": "Footer.jsx",
+      "type": "anchor"
+    },
+    {
+      "url": "https://ec.europa.eu/consumers/odr/main/index.cfm?event=main.home2.show&lng=RO",
+      "status": "broken",
+      "error": "getaddrinfo ENOTFOUND ec.europa.eu",
+      "foundIn": "Footer.jsx",
+      "type": "anchor"
+    },
+    {
+      "url": "https://reclamatiisal.anpc.ro/",
+      "status": "broken",
+      "error": "getaddrinfo ENOTFOUND reclamatiisal.anpc.ro",
+      "foundIn": "Footer.jsx",
+      "type": "anchor"
+    },
+    {
+      "url": "https://ec.europa.eu/taxation_customs/vies/#/vat-validation",
+      "status": "broken",
+      "error": "getaddrinfo ENOTFOUND ec.europa.eu",
+      "foundIn": "Footer.jsx",
+      "type": "anchor"
+    },
+    {
+      "url": "https://consumer-redress.ec.europa.eu/index_en",
+      "status": "broken",
+      "error": "getaddrinfo ENOTFOUND consumer-redress.ec.europa.eu",
+      "foundIn": "Footer.jsx",
+      "type": "anchor"
+    },
+    {
+      "url": "https://www.google.com/search?q=DEVALAND+MARKETING+SRL&stick=H4sIAAAAAAAA_-NgU1I1qDAxM7RMNTRKNjJLSTJNTUuzMqgwMk9KMkpKTUs1S0lNSjU1XsQq5uIa5ujj6Oei4OsY5O0a4unnrhAc5AMAFBctkEIAAAA&hl=en-GB",
+      "status": "broken",
+      "error": "getaddrinfo ENOTFOUND www.google.com",
+      "foundIn": "Footer.jsx",
+      "type": "anchor"
+    },
+    {
+      "url": "https://g.page/r/CfSNoCv66NgaEBM/review",
+      "status": "broken",
+      "error": "getaddrinfo ENOTFOUND g.page",
+      "foundIn": "Footer.jsx",
+      "type": "anchor"
+    },
+    {
+      "url": "https://calendly.com/devaland/30min",
+      "status": "broken",
+      "error": "getaddrinfo ENOTFOUND calendly.com",
+      "foundIn": "BlogPostPage.jsx",
+      "type": "anchor"
+    },
+    {
+      "url": "https://www.google.com/maps/search/?api=1&query=Santandrei+13,+335903+Simeria,+Romania",
+      "status": "broken",
+      "error": "getaddrinfo ENOTFOUND www.google.com",
+      "foundIn": "ContactPage.jsx",
+      "type": "anchor"
+    },
+    {
+      "url": "https://www.sheaterraorganics.com/",
+      "status": "broken",
+      "error": "getaddrinfo ENOTFOUND www.sheaterraorganics.com",
+      "foundIn": "VoiceAIPage.jsx",
+      "type": "anchor"
+    },
+    {
+      "url": "https://ai.devaland.net/hotels",
+      "status": "broken",
+      "error": "getaddrinfo ENOTFOUND ai.devaland.net",
+      "foundIn": "VoiceAIPage.jsx",
+      "type": "anchor"
+    },
+    {
+      "url": "https://ai.devaland.net/londoncitydentists",
+      "status": "broken",
+      "error": "getaddrinfo ENOTFOUND ai.devaland.net",
+      "foundIn": "VoiceAIPage.jsx",
+      "type": "anchor"
+    },
+    {
+      "url": "https://ai.devaland.net/Pizzeria",
+      "status": "broken",
+      "error": "getaddrinfo ENOTFOUND ai.devaland.net",
+      "foundIn": "VoiceAIPage.jsx",
+      "type": "anchor"
+    },
+    {
+      "url": "https://ai.devaland.net/banking",
+      "status": "broken",
+      "error": "getaddrinfo ENOTFOUND ai.devaland.net",
+      "foundIn": "VoiceAIPage.jsx",
+      "type": "anchor"
+    },
+    {
+      "url": "https://www.linkedin.com/feed/update/urn:li:activity:7397501012212850688/",
+      "status": "broken",
+      "error": "getaddrinfo ENOTFOUND www.linkedin.com",
+      "foundIn": "VoiceAIPage.jsx",
+      "type": "anchor"
+    }
+  ],
+  "imageAssets": [],
+  "errors": [
+    "External URL broken: https://portal.devaland.com/login - getaddrinfo ENOTFOUND portal.devaland.com",
+    "External URL broken: https://www.trustpilot.com/review/devaland.com - getaddrinfo ENOTFOUND www.trustpilot.com",
+    "External URL broken: https://www.klaviyo.com/partners/signup?utm_source=001Nu00000HqbJVIAZ&utm_medium=partner - getaddrinfo ENOTFOUND www.klaviyo.com",
+    "External URL broken: http://www.anpc.gov.ro/ - getaddrinfo ENOTFOUND www.anpc.gov.ro",
+    "External URL broken: https://ec.europa.eu/consumers/odr/main/index.cfm?event=main.home2.show&lng=RO - getaddrinfo ENOTFOUND ec.europa.eu",
+    "External URL broken: https://reclamatiisal.anpc.ro/ - getaddrinfo ENOTFOUND reclamatiisal.anpc.ro",
+    "External URL broken: https://ec.europa.eu/taxation_customs/vies/#/vat-validation - getaddrinfo ENOTFOUND ec.europa.eu",
+    "External URL broken: https://consumer-redress.ec.europa.eu/index_en - getaddrinfo ENOTFOUND consumer-redress.ec.europa.eu",
+    "External URL broken: https://www.google.com/search?q=DEVALAND+MARKETING+SRL&stick=H4sIAAAAAAAA_-NgU1I1qDAxM7RMNTRKNjJLSTJNTUuzMqgwMk9KMkpKTUs1S0lNSjU1XsQq5uIa5ujj6Oei4OsY5O0a4unnrhAc5AMAFBctkEIAAAA&hl=en-GB - getaddrinfo ENOTFOUND www.google.com",
+    "External URL broken: https://g.page/r/CfSNoCv66NgaEBM/review - getaddrinfo ENOTFOUND g.page",
+    "External URL broken: https://calendly.com/devaland/30min - getaddrinfo ENOTFOUND calendly.com",
+    "External URL broken: https://www.google.com/maps/search/?api=1&query=Santandrei+13,+335903+Simeria,+Romania - getaddrinfo ENOTFOUND www.google.com",
+    "External URL broken: https://www.sheaterraorganics.com/ - getaddrinfo ENOTFOUND www.sheaterraorganics.com",
+    "External URL broken: https://ai.devaland.net/hotels - getaddrinfo ENOTFOUND ai.devaland.net",
+    "External URL broken: https://ai.devaland.net/londoncitydentists - getaddrinfo ENOTFOUND ai.devaland.net",
+    "External URL broken: https://ai.devaland.net/Pizzeria - getaddrinfo ENOTFOUND ai.devaland.net",
+    "External URL broken: https://ai.devaland.net/banking - getaddrinfo ENOTFOUND ai.devaland.net",
+    "External URL broken: https://www.linkedin.com/feed/update/urn:li:activity:7397501012212850688/ - getaddrinfo ENOTFOUND www.linkedin.com"
+  ],
+  "warnings": []
+}

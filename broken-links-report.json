@@ -1,0 +1,275 @@
+{
+  "timestamp": "2025-12-13T13:32:04.212Z",
+  "summary": {
+    "totalLinks": 37,
+    "workingLinks": 37,
+    "brokenLinks": 0,
+    "skippedLinks": 25,
+    "warnings": 0
+  },
+  "internalRoutes": [
+    {
+      "href": "/",
+      "type": "Link",
+      "foundIn": "Header.jsx",
+      "status": "working",
+      "routeType": "exact"
+    },
+    {
+      "href": "/privacy",
+      "type": "anchor",
+      "foundIn": "NewsletterForm.jsx",
+      "status": "working",
+      "routeType": "exact"
+    },
+    {
+      "href": "/terms",
+      "type": "anchor",
+      "foundIn": "Footer.jsx",
+      "status": "working",
+      "routeType": "exact"
+    },
+    {
+      "href": "/cookies",
+      "type": "anchor",
+      "foundIn": "Footer.jsx",
+      "status": "working",
+      "routeType": "exact"
+    },
+    {
+      "href": "/gdpr",
+      "type": "anchor",
+      "foundIn": "NewsletterForm.jsx",
+      "status": "working",
+      "routeType": "exact"
+    },
+    {
+      "href": "/images/Klaviyo Agency Partner.webp",
+      "type": "image",
+      "foundIn": "Footer.jsx",
+      "status": "working",
+      "routeType": "image"
+    },
+    {
+      "href": "/images/sol.png",
+      "type": "image",
+      "foundIn": "Footer.jsx",
+      "status": "working",
+      "routeType": "image"
+    },
+    {
+      "href": "/images/sal.png",
+      "type": "image",
+      "foundIn": "Footer.jsx",
+      "status": "working",
+      "routeType": "image"
+    },
+    {
+      "href": "/images/EU Consumer Redress.svg",
+      "type": "image",
+      "foundIn": "Footer.jsx",
+      "status": "working",
+      "routeType": "image"
+    },
+    {
+      "href": "/contact",
+      "type": "Link",
+      "foundIn": "VoiceAIPage.jsx",
+      "status": "working",
+      "routeType": "exact"
+    },
+    {
+      "href": "/blog",
+      "type": "Link",
+      "foundIn": "HomePage.jsx",
+      "status": "working",
+      "routeType": "exact"
+    },
+    {
+      "href": "/services",
+      "type": "Link",
+      "foundIn": "HomePage.jsx",
+      "status": "working",
+      "routeType": "exact"
+    },
+    {
+      "href": "/about",
+      "type": "Link",
+      "foundIn": "HomePage.jsx",
+      "status": "working",
+      "routeType": "exact"
+    },
+    {
+      "href": "/images/Marius The Digital Vampire Dracula Castle.jpg",
+      "type": "image",
+      "foundIn": "ContactPage.jsx",
+      "status": "working",
+      "routeType": "image"
+    },
+    {
+      "href": "/case-studies",
+      "type": "Link",
+      "foundIn": "VoiceAIPage.jsx",
+      "status": "working",
+      "routeType": "exact"
+    },
+    {
+      "href": "/voice-ai",
+      "type": "Link",
+      "foundIn": "HomePage.jsx",
+      "status": "working",
+      "routeType": "exact"
+    },
+    {
+      "href": "/klaviyo",
+      "type": "Link",
+      "foundIn": "KlaviyoSegmentationPage.jsx",
+      "status": "working",
+      "routeType": "exact"
+    },
+    {
+      "href": "/klaviyo-flows-examples",
+      "type": "Link",
+      "foundIn": "KlaviyoPage.jsx",
+      "status": "working",
+      "routeType": "exact"
+    },
+    {
+      "href": "/klaviyo-automation-guide",
+      "type": "Link",
+      "foundIn": "HomePage.jsx",
+      "status": "working",
+      "routeType": "exact"
+    },
+    {
+      "href": "/klaviyo-gdpr-compliance",
+      "type": "Link",
+      "foundIn": "KlaviyoPage.jsx",
+      "status": "working",
+      "routeType": "exact"
+    },
+    {
+      "href": "/klaviyo-black-friday-strategy",
+      "type": "Link",
+      "foundIn": "KlaviyoPage.jsx",
+      "status": "working",
+      "routeType": "exact"
+    },
+    {
+      "href": "/klaviyo-predicted-next-order",
+      "type": "Link",
+      "foundIn": "HomePage.jsx",
+      "status": "working",
+      "routeType": "exact"
+    },
+    {
+      "href": "/klaviyo-placed-order-rate",
+      "type": "Link",
+      "foundIn": "HomePage.jsx",
+      "status": "working",
+      "routeType": "exact"
+    },
+    {
+      "href": "/klaviyo-segmentation-strategies",
+      "type": "Link",
+      "foundIn": "HomePage.jsx",
+      "status": "working",
+      "routeType": "exact"
+    },
+    {
+      "href": "/klaviyo-email-templates",
+      "type": "Link",
+      "foundIn": "HomePage.jsx",
+      "status": "working",
+      "routeType": "exact"
+    },
+    {
+      "href": "/blog/voice-ai-pricing-comparison-2025",
+      "type": "Link",
+      "foundIn": "HomePage.jsx",
+      "status": "working",
+      "routeType": "dynamic"
+    },
+    {
+      "href": "/blog/ai-voice-assistants-small-business-guide-2025",
+      "type": "Link",
+      "foundIn": "HomePage.jsx",
+      "status": "working",
+      "routeType": "dynamic"
+    },
+    {
+      "href": "/blog/voice-ai-vs-call-centers-cost-benefit-analysis",
+      "type": "Link",
+      "foundIn": "HomePage.jsx",
+      "status": "working",
+      "routeType": "dynamic"
+    },
+    {
+      "href": "/blog/voice-ai-restaurants-phone-orders-reservations-guide",
+      "type": "Link",
+      "foundIn": "HomePage.jsx",
+      "status": "working",
+      "routeType": "dynamic"
+    },
+    {
+      "href": "/blog/voice-ai-healthcare-hipaa-patient-scheduling-guide",
+      "type": "Link",
+      "foundIn": "HomePage.jsx",
+      "status": "working",
+      "routeType": "dynamic"
+    },
+    {
+      "href": "/blog/voice-ai-shopify-brands-customer-service-guide",
+      "type": "Link",
+      "foundIn": "HomePage.jsx",
+      "status": "working",
+      "routeType": "dynamic"
+    },
+    {
+      "href": "/blog/best-10-klaviyo-automation-flows-every-ecommerce-store-needs",
+      "type": "Link",
+      "foundIn": "KlaviyoPage.jsx",
+      "status": "working",
+      "routeType": "dynamic"
+    },
+    {
+      "href": "/blog/voice-ai-implementation-real-business-results-roi-analysis-technical-guide",
+      "type": "Link",
+      "foundIn": "HomePage.jsx",
+      "status": "working",
+      "routeType": "dynamic"
+    },
+    {
+      "href": "/blog/maximizing-black-friday-sales-with-klaviyo",
+      "type": "Link",
+      "foundIn": "KlaviyoBlackFridayPage.jsx",
+      "status": "working",
+      "routeType": "dynamic"
+    },
+    {
+      "href": "/klaviyo-case-studies",
+      "type": "Link",
+      "foundIn": "KlaviyoPredictedNextOrderPage.jsx",
+      "status": "working",
+      "routeType": "exact"
+    },
+    {
+      "href": "/blog/advanced-klaviyo-analytics-beyond-open-and-click-rates",
+      "type": "Link",
+      "foundIn": "KlaviyoPlacedOrderRatePage.jsx",
+      "status": "working",
+      "routeType": "dynamic"
+    },
+    {
+      "href": "/blog/best-email-segmentation-strategies-that-actually-work",
+      "type": "Link",
+      "foundIn": "KlaviyoSegmentationPage.jsx",
+      "status": "working",
+      "routeType": "dynamic"
+    }
+  ],
+  "externalLinks": [],
+  "imageAssets": [],
+  "errors": [],
+  "warnings": []
+}
