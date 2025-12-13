@@ -494,8 +494,8 @@ Ready to implement these flows for your e-commerce store? Contact our Klaviyo ex
       { text: "Klaviyo Marketing Services", href: "/klaviyo" },
       { text: "Shopify Klaviyo Integration", href: "/shopify-klaviyo" },
       { text: "Email Segmentation Strategies", href: "/blog/email-segmentation-strategies-that-actually-work" },
-      { text: "Klaviyo Black Friday Strategy", href: "/blog/klaviyo-black-friday-strategy" },
-      { text: "SMS Marketing Integration", href: "/blog/klaviyo-sms-marketing-integration" },
+      { text: "Klaviyo Black Friday Strategy", href: "/blog/maximizing-black-friday-sales-with-klaviyo" },
+      { text: "SMS Marketing Integration", href: "/blog/sms-marketing-the-perfect-complement-to-email" },
       { text: "Klaviyo Case Studies", href: "/case-studies" },
       { text: "Contact Us for Implementation", href: "/contact" }
     ]
@@ -687,8 +687,8 @@ Book a consultation to audit your current segmentation approach, calculate impro
       { text: "Best 10 Klaviyo Flows", href: "/blog/best-10-klaviyo-automation-flows-every-ecommerce-store-needs" },
       { text: "Advanced Klaviyo Analytics", href: "/blog/advanced-klaviyo-analytics-beyond-open-and-click-rates" },
       { text: "Email Personalization Strategies", href: "/blog/building-customer-loyalty-through-email-personalization" },
-      { text: "Black Friday Klaviyo Campaign", href: "/blog/klaviyo-black-friday-strategy" },
-      { text: "Shopify Klaviyo Integration", href: "/shopify-klaviyo" },
+      { text: "Black Friday Klaviyo Campaign", href: "/blog/maximizing-black-friday-sales-with-klaviyo" },
+      { text: "Shopify Klaviyo Integration", href: "/klaviyo" },
       { text: "Contact Us for Segmentation Audit", href: "/contact" }
     ]
   },
@@ -822,8 +822,8 @@ Book BFCM planning consultation to review last year's performance and identify o
       { text: "Klaviyo Marketing Services", href: "/klaviyo" },
       { text: "Best 10 Klaviyo Automation Flows", href: "/blog/best-10-klaviyo-automation-flows-every-ecommerce-store-needs" },
       { text: "Email Segmentation Guide", href: "/blog/email-segmentation-strategies-that-actually-work" },
-      { text: "SMS Marketing Integration", href: "/blog/klaviyo-sms-marketing-integration" },
-      { text: "Shopify Klaviyo Setup", href: "/shopify-klaviyo" },
+      { text: "SMS Marketing Integration", href: "/blog/sms-marketing-the-perfect-complement-to-email" },
+      { text: "Shopify Klaviyo Setup", href: "/klaviyo" },
       { text: "Case Studies", href: "/case-studies" },
       { text: "Book BFCM Strategy Call", href: "/contact" }
     ]
@@ -960,8 +960,8 @@ Book your SMS + email strategy consultation to audit current email program, calc
       { text: "Klaviyo Marketing Services", href: "/klaviyo" },
       { text: "Best 10 Klaviyo Flows with SMS", href: "/blog/best-10-klaviyo-automation-flows-every-ecommerce-store-needs" },
       { text: "Email Segmentation for SMS", href: "/blog/email-segmentation-strategies-that-actually-work" },
-      { text: "Black Friday SMS Strategy", href: "/blog/klaviyo-black-friday-strategy" },
-      { text: "Shopify + Klaviyo Integration", href: "/shopify-klaviyo" },
+      { text: "Black Friday SMS Strategy", href: "/blog/maximizing-black-friday-sales-with-klaviyo" },
+      { text: "Shopify + Klaviyo Integration", href: "/klaviyo" },
       { text: "SMS Compliance Case Studies", href: "/case-studies" },
       { text: "Book SMS Strategy Call", href: "/contact" }
     ]
@@ -1091,7 +1091,7 @@ Book a consultation to audit your current analytics, calculate improvement poten
       { text: "Email Segmentation with RFM Analysis", href: "/blog/email-segmentation-strategies-that-actually-work" },
       { text: "Best 10 Klaviyo Flows for Revenue", href: "/blog/best-10-klaviyo-automation-flows-every-ecommerce-store-needs" },
       { text: "Customer Loyalty & Personalization", href: "/blog/building-customer-loyalty-through-email-personalization" },
-      { text: "Shopify Analytics Integration", href: "/shopify-klaviyo" },
+      { text: "Shopify Analytics Integration", href: "/klaviyo" },
       { text: "Analytics Case Studies", href: "/case-studies" },
       { text: "Book Analytics Audit", href: "/contact" }
     ]
@@ -1221,7 +1221,7 @@ Book a consultation to audit your current personalization level, calculate impro
       { text: "Best 10 Klaviyo Automation Flows", href: "/blog/best-10-klaviyo-automation-flows-every-ecommerce-store-needs" },
       { text: "Advanced Klaviyo Analytics", href: "/blog/advanced-klaviyo-analytics-beyond-open-and-click-rates" },
       { text: "Klaviyo Marketing Services", href: "/klaviyo" },
-      { text: "Shopify Personalization Setup", href: "/shopify-klaviyo" },
+      { text: "Shopify Personalization Setup", href: "/klaviyo" },
       { text: "Personalization Case Studies", href: "/case-studies" },
       { text: "Book Personalization Audit", href: "/contact" }
     ]
@@ -2294,7 +2294,7 @@ Typical Shopify brand results show 70-85% automation rate within 4 weeks, 85-92%
       { text: "Voice AI Implementation Guide", href: "/blog/voice-ai-implementation-real-business-results-roi-analysis-technical-guide" },
       { text: "Voice AI Pricing Comparison", href: "/blog/voice-ai-pricing-comparison-2025" },
       { text: "Small Business Voice AI", href: "/blog/ai-voice-assistants-small-business-guide-2025" },
-      { text: "Shopify Klaviyo Automation", href: "/shopify-klaviyo" },
+      { text: "Shopify Klaviyo Automation", href: "/klaviyo" },
       { text: "Restaurant Voice AI", href: "/blog/voice-ai-restaurants-phone-orders-reservations-guide" },
       { text: "Voice AI Services", href: "/voice-ai" },
       { text: "Schedule Shopify Demo", href: "/contact" }
