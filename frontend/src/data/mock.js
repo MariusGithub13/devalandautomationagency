@@ -1638,7 +1638,7 @@ Book Voice AI Assessment to review your current call patterns and volumes, calcu
       { text: "Small Business Voice AI Guide", href: "/blog/ai-voice-assistants-small-business-guide-2025" },
       { text: "Restaurant Voice AI Solutions", href: "/blog/restaurant-voice-ai-phone-ordering-2025" },
       { text: "ROI Calculator", href: "/roi-calculator" },
-      { text: "Book Voice AI Assessment", href: "/contact" }
+      { text: "Book Voice AI Assessment", href: "/contact" },
       { text: "Restaurant Voice AI", href: "/blog/voice-ai-restaurants-phone-orders-reservations-guide" },
       { text: "Schedule Assessment", href: "/contact" }
     ]
