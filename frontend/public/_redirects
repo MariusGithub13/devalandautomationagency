@@ -18,6 +18,9 @@ https://www.devaland.com/*  https://devaland.com/:splat  301!
 /terms-of-service  /terms  301
 /cookie-policy  /cookies  301
 
+# Blog post URL corrections (301 permanent redirects)
+/blog/10-klaviyo-automation-flows-every-ecommerce-store-needs  /blog/best-10-klaviyo-automation-flows-every-ecommerce-store-needs  301
+
 # SPA fallback - MUST BE LAST
 # All other routes go to index.html (React Router handles them)
 /*  /index.html  200
