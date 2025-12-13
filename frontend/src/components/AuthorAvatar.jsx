@@ -1,5 +1,6 @@
 import React from 'react';
 import { Avatar, AvatarImage, AvatarFallback } from './ui/avatar';
+import { companyData } from '../data/mock';
 
 /**
  * AuthorAvatar Component
@@ -23,7 +24,7 @@ const AuthorAvatar = ({ author, className = '', size = 64 }) => {
       };
     } else if (author === 'Devaland Team') {
       return {
-        src: 'https://customer-assets.emergentagent.com/job_process-genius-5/artifacts/kau0y3tw_Devaland-Logo.jpg',
+        src: companyData.logo, // Use centralized logo URL from mock data
         alt: 'Devaland Marketing Logo'
       };
     }
@@ -34,7 +35,24 @@ const AuthorAvatar = ({ author, className = '', size = 64 }) => {
   
   // Generate initials for fallback
   const getInitials = () => {
-    return author.split(' ').map(name => name[0]).join('');
+    if (!author || typeof author !== 'string') return '?';
+    
+    const words = author.trim().split(/\s+/).filter(word => word.length > 0);
+    if (words.length === 0) return '?';
+    
+    return words
+      .map(word => word[0])
+      .join('')
+      .toUpperCase()
+      .slice(0, 2); // Limit to 2 characters for better appearance
+  };
+
+  // Calculate font size based on avatar size
+  const getFontSize = () => {
+    if (size <= 24) return 'text-xs';
+    if (size <= 32) return 'text-sm';
+    if (size <= 40) return 'text-base';
+    return 'text-xl';
   };
 
   const avatarStyle = {
@@ -51,7 +69,7 @@ const AuthorAvatar = ({ author, className = '', size = 64 }) => {
           className="object-cover"
         />
       )}
-      <AvatarFallback className="bg-gradient-to-br from-blue-500 to-purple-600 text-white font-semibold text-xl">
+      <AvatarFallback className={`bg-gradient-to-br from-blue-500 to-purple-600 text-white font-semibold ${getFontSize()}`}>
         {getInitials()}
       </AvatarFallback>
     </Avatar>
