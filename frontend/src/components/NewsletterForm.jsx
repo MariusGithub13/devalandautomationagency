@@ -43,8 +43,7 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
     if (timeTaken < 2000) { // 2 seconds for newsletter (simpler form)
       setSubmitMessage('Please take a moment to review before subscribing');
       return;
-    }, // Website Newsletter list
-          timeTaken: timeTaken // Pass timing to backend for validation
+    }
 
     setIsSubmitting(true);
     setSubmitMessage('');
