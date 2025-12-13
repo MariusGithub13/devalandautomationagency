@@ -53,7 +53,7 @@ const HomePage = () => {
       "addressLocality": "Simeria",
       "postalCode": "335903",
       "addressRegion": "Hunedoara County",
-      "addressCountry": "Romania"
+      "addressCountry": "RO"
     },
     "sameAs": [
       "https://www.linkedin.com/company/devaland/",
