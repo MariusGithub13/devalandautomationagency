@@ -1403,7 +1403,8 @@ const BlogPostPage = () => {
                   </Button>
                 </div>
               </div>
-Internal Links Block */}
+
+              {/* Internal Links Block */}
               {post.internalLinks && post.internalLinks.length > 0 && (
                 <InternalLinkBlock
                   title="Related Resources"
