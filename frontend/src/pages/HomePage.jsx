@@ -45,7 +45,7 @@ const HomePage = () => {
       "@type": "ContactPoint",
       "telephone": "+40-721-269-312",
       "contactType": "customer service",
-      "availableLanguage": ["English", "Romanian"]
+      "availableLanguage": "English"
     },
     "address": {
       "@type": "PostalAddress",
