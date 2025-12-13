@@ -1984,6 +1984,8 @@ Book migration assessment to review current call center costs and contract terms
       { text: "Voice AI Pricing", href: "/blog/voice-ai-pricing-comparison-2025" },
       { text: "Implementation Guide", href: "/blog/voice-ai-implementation-real-business-results-roi-analysis-technical-guide" },
       { text: "Small Business Voice AI", href: "/blog/ai-voice-assistants-small-business-guide-2025" },
+      { text: "Restaurant Voice AI Guide", href: "/blog/voice-ai-restaurants-phone-orders-reservations-guide" },
+      { text: "Healthcare Voice AI", href: "/blog/voice-ai-healthcare-hipaa-patient-scheduling-guide" },
       { text: "Voice AI Services", href: "/voice-ai" },
       { text: "Request Assessment", href: "/contact" }
     ]
@@ -2102,6 +2104,8 @@ Book restaurant Voice AI demo to see live demonstration with your actual menu, h
       { text: "Voice AI Pricing", href: "/blog/voice-ai-pricing-comparison-2025" },
       { text: "Implementation Guide", href: "/blog/voice-ai-implementation-real-business-results-roi-analysis-technical-guide" },
       { text: "Small Business Voice AI", href: "/blog/ai-voice-assistants-small-business-guide-2025" },
+      { text: "Voice AI vs Call Centers", href: "/blog/voice-ai-vs-call-centers-cost-benefit-analysis" },
+      { text: "Healthcare Voice AI", href: "/blog/voice-ai-healthcare-hipaa-patient-scheduling-guide" },
       { text: "Voice AI Services", href: "/voice-ai" },
       { text: "Schedule Restaurant Demo", href: "/contact" }
     ]
@@ -2290,6 +2294,8 @@ Typical Shopify brand results show 70-85% automation rate within 4 weeks, 85-92%
       { text: "Voice AI Implementation Guide", href: "/blog/voice-ai-implementation-real-business-results-roi-analysis-technical-guide" },
       { text: "Voice AI Pricing Comparison", href: "/blog/voice-ai-pricing-comparison-2025" },
       { text: "Small Business Voice AI", href: "/blog/ai-voice-assistants-small-business-guide-2025" },
+      { text: "Shopify Klaviyo Automation", href: "/shopify-klaviyo" },
+      { text: "Restaurant Voice AI", href: "/blog/voice-ai-restaurants-phone-orders-reservations-guide" },
       { text: "Voice AI Services", href: "/voice-ai" },
       { text: "Schedule Shopify Demo", href: "/contact" }
     ]
@@ -2490,6 +2496,8 @@ Typical medical practice results show 73-85% automation rate within 6-8 weeks, 8
       { text: "Voice AI Implementation Guide", href: "/blog/voice-ai-implementation-real-business-results-roi-analysis-technical-guide" },
       { text: "Voice AI Pricing Comparison", href: "/blog/voice-ai-pricing-comparison-2025" },
       { text: "Small Business Voice AI", href: "/blog/ai-voice-assistants-small-business-guide-2025" },
+      { text: "Voice AI vs Call Centers", href: "/blog/voice-ai-vs-call-centers-cost-benefit-analysis" },
+      { text: "Shopify Customer Service AI", href: "/blog/voice-ai-shopify-brands-customer-service-guide" },
       { text: "Voice AI Services", href: "/voice-ai" },
       { text: "Schedule Healthcare Demo", href: "/contact" }
     ]
