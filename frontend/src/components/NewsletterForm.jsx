@@ -147,20 +147,20 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
   // Full layout for dedicated sections
   return (
     <div className={className}>
-      <f{/* Honeypot field - hidden from humans, visible to bots */}
-        <div className="hidden" aria-hidden="true">
-          <Input
-            id="website"
-            name="website"
-            type="text"
-            value={website}
-            onChange={(e) => setWebsite(e.target.value)}
-            tabIndex="-1"
-            autoComplete="off"
-          />
-        </div>
+      {/* Honeypot field - hidden from humans, visible to bots */}
+      <div className="hidden" aria-hidden="true">
+        <Input
+          id="website"
+          name="website"
+          type="text"
+          value={website}
+          onChange={(e) => setWebsite(e.target.value)}
+          tabIndex="-1"
+          autoComplete="off"
+        />
+      </div>
 
-        orm onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-md mx-auto">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-md mx-auto">
         <div className="flex flex-col sm:flex-row gap-4">
           <Input
             type="email"
