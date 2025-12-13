@@ -15,6 +15,7 @@ import {
 import SEO from '../components/SEO';
 import Breadcrumb from '../components/Breadcrumb';
 import NewsletterForm from '../components/NewsletterForm';
+import AuthorAvatar from '../components/AuthorAvatar';
 import { blogPosts } from '../data/mock';
 
 const BlogPage = () => {
@@ -182,7 +183,10 @@ const BlogPage = () => {
                   </div>
                   
                   <div className="flex items-center justify-between">
-                    <span className="text-gray-600">By {filteredPosts[0].author}</span>
+                    <div className="flex items-center space-x-3">
+                      <AuthorAvatar author={filteredPosts[0].author} size={40} />
+                      <span className="text-gray-600">By {filteredPosts[0].author}</span>
+                    </div>
                     <Link 
                       to={`/blog/${filteredPosts[0].title.toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, '-')}`}
                     >
@@ -379,7 +383,10 @@ const BlogPage = () => {
                       </div>
                       
                       <div className="flex items-center justify-between">
-                        <span className="text-sm text-gray-600">{post.author}</span>
+                        <div className="flex items-center space-x-2">
+                          <AuthorAvatar author={post.author} size={32} />
+                          <span className="text-sm text-gray-600">{post.author}</span>
+                        </div>
                         <Link 
                           to={`/blog/${post.title.toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, '-')}`}
                           className="text-blue-600 hover:text-blue-800 flex items-center group"

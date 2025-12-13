@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import AuthorAvatar from './AuthorAvatar';
 import { blogPosts } from '../data/mock';
 
 /**
@@ -83,7 +84,10 @@ const RelatedPosts = ({ currentSlug, category, tags = [], limit = 3 }) => {
                 {post.author && (
                   <>
                     <span>•</span>
-                    <span>{post.author}</span>
+                    <div className="flex items-center gap-2">
+                      <AuthorAvatar author={post.author} size={24} />
+                      <span>{post.author}</span>
+                    </div>
                   </>
                 )}
               </div>

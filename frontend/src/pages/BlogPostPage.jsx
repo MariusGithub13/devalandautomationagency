@@ -10,6 +10,7 @@ import PhoneAICallout from '../components/PhoneAICallout';
 import RelatedPosts from '../components/RelatedPosts';
 import NewsletterForm from '../components/NewsletterForm';
 import InternalLinkBlock from '../components/InternalLinkBlock';
+import AuthorAvatar from '../components/AuthorAvatar';
 import { blogPosts } from '../data/mock';
 
 const BlogPostPage = () => {
@@ -1440,9 +1441,7 @@ const BlogPostPage = () => {
               <div className="bg-gray-50 rounded-xl p-6 mt-8">
                 <h3 className="text-lg font-semibold text-gray-900 mb-3">About the Author</h3>
                 <div className="flex items-start space-x-4">
-                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-semibold text-xl">
-                    {post.author.split(' ').map(name => name[0]).join('')}
-                  </div>
+                  <AuthorAvatar author={post.author} size={64} />
                   <div>
                     <h4 className="font-semibold text-gray-900">{post.author}</h4>
                     <p className="text-gray-600 text-sm mb-2">
