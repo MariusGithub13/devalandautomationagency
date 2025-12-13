@@ -335,6 +335,23 @@ const Footer = memo(() => {
                 </span>
               </li>
             </ul>
+
+            {/* Company Location with subtle personality */}
+            <div className="mt-6 pt-6 border-t border-gray-200">
+              <div className="flex items-start gap-2 mb-2">
+                <MapPin size={18} className="text-blue-600 flex-shrink-0 mt-0.5" />
+                <div className="text-sm">
+                  <div className="font-semibold text-gray-900 mb-1">Company Headquarters</div>
+                  <div className="text-gray-700">
+                    Transylvania, Romania 🏰 | Serving Clients Worldwide 🌍
+                  </div>
+                  <div className="text-gray-600 mt-1 text-xs">
+                    Sântandrei 13, Simeria 335903, Hunedoara County
+                  </div>
+                </div>
+              </div>
+            </div>
+
               {/* ANPC/SOL/SAL logos - stack SAL below SOL for clearer visual order */}
               <div className="mt-6 flex flex-col items-start space-y-3">
                 <a
