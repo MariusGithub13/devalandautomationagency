@@ -338,10 +338,27 @@
   to = "/blog/sms-marketing-the-perfect-complement-to-email"
   status = 301
 
+[[redirects]]
+  from = "/blog/restaurant-voice-ai-phone-ordering-2025"
+  to = "/blog/voice-ai-restaurants-phone-orders-reservations-guide"
+  status = 301
+
 # Redirect shopify-klaviyo to main klaviyo page
 [[redirects]]
   from = "/shopify-klaviyo"
   to = "/klaviyo"
+  status = 301
+
+# Redirect shopify-voice-ai to main voice-ai page
+[[redirects]]
+  from = "/shopify-voice-ai"
+  to = "/voice-ai"
+  status = 301
+
+# Redirect roi-calculator to voice-ai page with anchor
+[[redirects]]
+  from = "/roi-calculator"
+  to = "/voice-ai#roi-calculator"
   status = 301
 
 # Fix for the mismatched blog URL structure

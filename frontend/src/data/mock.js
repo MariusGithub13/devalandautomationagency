@@ -1373,9 +1373,9 @@ Book a consultation to see live demo customized for your industry, calculate you
     internalLinks: [
       { text: "Voice AI Pricing Comparison 2025", href: "/blog/voice-ai-pricing-comparison-2025" },
       { text: "Small Business Voice AI Guide", href: "/blog/ai-voice-assistants-small-business-guide-2025" },
-      { text: "Restaurant Voice AI Solutions", href: "/blog/restaurant-voice-ai-phone-ordering-2025" },
+      { text: "Restaurant Voice AI Solutions", href: "/blog/voice-ai-restaurants-phone-orders-reservations-guide" },
       { text: "Voice AI Services & Solutions", href: "/voice-ai" },
-      { text: "Shopify Voice AI Integration", href: "/shopify-voice-ai" },
+      { text: "Shopify Voice AI Integration", href: "/voice-ai" },
       { text: "Voice AI Case Studies", href: "/case-studies" },
       { text: "Book Voice AI Demo", href: "/contact" }
     ]
@@ -1636,8 +1636,8 @@ Book Voice AI Assessment to review your current call patterns and volumes, calcu
       { text: "Voice AI Pricing Comparison 2025", href: "/blog/voice-ai-pricing-comparison-2025" },
       { text: "Voice AI Agents for Business", href: "/blog/voice-ai-agents-future-business-communication" },
       { text: "Small Business Voice AI Guide", href: "/blog/ai-voice-assistants-small-business-guide-2025" },
-      { text: "Restaurant Voice AI Solutions", href: "/blog/restaurant-voice-ai-phone-ordering-2025" },
-      { text: "ROI Calculator", href: "/roi-calculator" },
+      { text: "Restaurant Voice AI Solutions", href: "/blog/voice-ai-restaurants-phone-orders-reservations-guide" },
+      { text: "ROI Calculator", href: "/voice-ai#roi-calculator" },
       { text: "Book Voice AI Assessment", href: "/contact" },
       { text: "Restaurant Voice AI", href: "/blog/voice-ai-restaurants-phone-orders-reservations-guide" },
       { text: "Schedule Assessment", href: "/contact" }
@@ -1873,8 +1873,8 @@ Book small business Voice AI consultation to discuss your specific call patterns
       { text: "Voice AI Implementation Technical Guide", href: "/blog/voice-ai-implementation-real-business-results-roi-analysis-technical-guide" },
       { text: "Voice AI vs Call Centers Analysis", href: "/blog/voice-ai-vs-call-centers-cost-benefit-analysis" },
       { text: "Voice AI for Small Business", href: "/voice-ai" },
-      { text: "Restaurant Voice AI Case Study", href: "/blog/restaurant-voice-ai-phone-ordering-2025" },
-      { text: "ROI Calculator", href: "/roi-calculator" },
+      { text: "Restaurant Voice AI Case Study", href: "/blog/voice-ai-restaurants-phone-orders-reservations-guide" },
+      { text: "ROI Calculator", href: "/voice-ai#roi-calculator" },
       { text: "Schedule Free Demo", href: "/contact" }
     ]
   },
