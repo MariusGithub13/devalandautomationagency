@@ -80,14 +80,14 @@ function extractLinksFromFile(filePath) {
       links.internal.push({ href, file: path.basename(filePath), type: 'anchor' });
     } else if (href.startsWith('#')) {
       links.anchors.push({ href, file: path.basename(filePath), type: 'anchor' });
-    } else if (href.startsWith('tel:') || href.startsWith('mailto:')) {
-      // Skip tel: and mailto: links
+    } else if (href.startsWith('tel:') || href.startsWith('mailto:') || href.startsWith('ftp:') || href.startsWith('file:')) {
+      // Skip special protocol links (tel, mailto, ftp, file)
       continue;
     }
   }
 
-  // Match image src attributes
-  const imgMatches = content.matchAll(/src=["']([^"']+\.(?:jpg|jpeg|png|gif|webp|svg))["']/gi);
+  // Match image src attributes (case-insensitive for extensions)
+  const imgMatches = content.matchAll(/src=["']([^"']+\.(jpg|jpeg|png|gif|webp|svg|JPG|JPEG|PNG|GIF|WEBP|SVG))["']/g);
   for (const match of imgMatches) {
     const src = match[1];
     if (src.startsWith('/images')) {
@@ -169,8 +169,8 @@ function validateInternalRoute(route, definedRoutes) {
     }
   }
 
-  // Check if it's a static file in public folder
-  if (cleanRoute.match(/\.(html|pdf|xml|txt|json)$/)) {
+  // Check if it's a static file in public folder (case-insensitive)
+  if (cleanRoute.match(/\.(html|pdf|xml|txt|json|ico|css|js)$/i)) {
     const publicPath = path.join(__dirname, '../public', cleanRoute);
     if (fs.existsSync(publicPath)) {
       return { valid: true, type: 'static' };
@@ -198,7 +198,18 @@ function testExternalUrl(url, maxRetries = 2) {
     function attemptRequest() {
       attempts++;
       
-      const urlObj = new URL(url);
+      // Validate URL format
+      let urlObj;
+      try {
+        urlObj = new URL(url);
+      } catch (error) {
+        resolve({ 
+          url, 
+          status: 'broken', 
+          error: `Invalid URL format: ${error.message}` 
+        });
+        return;
+      }
       const protocol = urlObj.protocol === 'https:' ? https : http;
       
       const options = {
