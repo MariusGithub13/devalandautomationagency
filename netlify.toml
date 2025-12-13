@@ -5,9 +5,8 @@
   # And publish the CRA build output
   publish = "frontend/build"
 
-# Enable sitemap generation for better SEO
-[[plugins]]
-  package = "@netlify/plugin-sitemap"
+# Custom sitemap generated via prebuild script (frontend/scripts/generate-sitemap.mjs)
+# REMOVED @netlify/plugin-sitemap to prevent overwriting custom sitemap.xml with only 2 URLs
 
 # NOTE: For prerendering (fixing "crawled but not indexed" issue), we have options:
 # 1. Install @netlify/plugin-prerendering (requires npm install -D in package.json)
