@@ -372,6 +372,12 @@
   to = "/blog/best-10-klaviyo-automation-flows-every-ecommerce-store-needs"
   status = 301
 
+# Redirect outdated blog URL to new canonical URL
+[[redirects]]
+  from = "/blog/10-klaviyo-automation-flows-every-ecommerce-store-needs"
+  to = "/blog/10-best-klaviyo-flows-that-increase-revenue-320-2025"
+  status = 301
+
 # ============================================
 # Old Page Structure Redirects
 # ============================================
