@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Mail, Phone, MapPin, Clock, ArrowRight, CheckCircle } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
@@ -7,7 +7,6 @@ import { Textarea } from '../components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../components/ui/select';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { toast } from 'sonner';
-import ReCAPTCHA from 'react-google-recaptcha';
 import SEO from '../components/SEO';
 import Breadcrumb from '../components/Breadcrumb';
 import InternalLinkBlock from '../components/InternalLinkBlock';
@@ -39,12 +38,28 @@ const ContactPage = () => {
 
   const [submissionTime] = useState(Date.now()); // Track when form loaded
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [recaptchaToken, setRecaptchaToken] = useState(null);
-  const recaptchaRef = useRef(null);
+  const [recaptchaLoaded, setRecaptchaLoaded] = useState(false);
   
-  // reCAPTCHA site key - use environment variable or placeholder for development
-  // To get your keys, visit: https://www.google.com/recaptcha/admin
-  const RECAPTCHA_SITE_KEY = process.env.REACT_APP_RECAPTCHA_SITE_KEY || '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'; // Test key
+  // reCAPTCHA v3 site key
+  // Site keys are public by design and safe to embed in frontend code
+  // For production: Set REACT_APP_RECAPTCHA_SITE_KEY in .env or build environment
+  // Fallback uses production key for devaland.com (this is intentional and secure)
+  const RECAPTCHA_SITE_KEY = process.env.REACT_APP_RECAPTCHA_SITE_KEY || '6LcT-SssAAAAAB3jCBIRdqmXHH2bplWaSGXVqnlI';
+
+  // Load reCAPTCHA v3 script
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = `https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`;
+    script.async = true;
+    script.defer = true;
+    script.onload = () => setRecaptchaLoaded(true);
+    document.head.appendChild(script);
+
+    // Don't remove script on unmount - it may be used by other components
+    return () => {
+      // Cleanup if needed
+    };
+  }, [RECAPTCHA_SITE_KEY]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -81,12 +96,6 @@ const ContactPage = () => {
       return;
     }
 
-    // reCAPTCHA verification
-    if (!recaptchaToken) {
-      toast.error('Please complete the reCAPTCHA verification');
-      return;
-    }
-
     // Time-based check - form filled too quickly (< 3 seconds = likely bot)
     const timeTaken = Date.now() - submissionTime;
     if (timeTaken < 3000) {
@@ -110,6 +119,21 @@ const ContactPage = () => {
     setIsSubmitting(true);
 
     try {
+      // Execute reCAPTCHA v3 with 'contact' action
+      let recaptchaToken = null;
+      if (recaptchaLoaded && window.grecaptcha) {
+        try {
+          recaptchaToken = await window.grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'contact' });
+        } catch (error) {
+          console.error('reCAPTCHA execution error:', error);
+          toast.error('reCAPTCHA verification failed. Please try again.');
+          setIsSubmitting(false);
+          return;
+        }
+      } else {
+        console.warn('reCAPTCHA not loaded');
+      }
+
       // Submit form to Netlify Function
       // In production, Netlify Functions are available at /.netlify/functions/[function-name]
       const apiUrl = process.env.REACT_APP_API_URL || '/.netlify/functions';
@@ -202,12 +226,6 @@ const ContactPage = () => {
         'bot-field': '',
         humanCheck: false
       });
-      
-      // Reset reCAPTCHA
-      setRecaptchaToken(null);
-      if (recaptchaRef.current) {
-        recaptchaRef.current.reset();
-      }
       
     } catch (error) {
       if (process.env.NODE_ENV === 'development') {
@@ -482,17 +500,6 @@ const ContactPage = () => {
                       />
                     </div>
 
-                    {/* reCAPTCHA verification */}
-                    <div className="flex justify-center">
-                      <ReCAPTCHA
-                        ref={recaptchaRef}
-                        sitekey={RECAPTCHA_SITE_KEY}
-                        onChange={(token) => setRecaptchaToken(token)}
-                        onExpired={() => setRecaptchaToken(null)}
-                        onErrored={() => setRecaptchaToken(null)}
-                      />
-                    </div>
-
                     {/* Human verification checkbox */}
                     <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-lg border border-gray-200">
                       <input
@@ -506,6 +513,14 @@ const ContactPage = () => {
                       <label htmlFor="humanCheck" className="text-sm text-gray-700 cursor-pointer">
                         I confirm I am a human and not a bot. I understand that my submission will be reviewed by the Devaland team.
                       </label>
+                    </div>
+
+                    <div className="text-xs text-gray-500 text-center">
+                      This site is protected by reCAPTCHA v3 and the Google{' '}
+                      <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="underline">Privacy Policy</a>
+                      {' '}and{' '}
+                      <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer" className="underline">Terms of Service</a>
+                      {' '}apply.
                     </div>
 
                     <Button 
