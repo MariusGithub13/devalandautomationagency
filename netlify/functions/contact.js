@@ -193,10 +193,10 @@ exports.handler = async (event, context) => {
         };
       }
       
-      // Check score threshold for v3 (0.5 is recommended, higher = more human-like)
-      const scoreThreshold = 0.5;
+      // Check score threshold for v3 (configurable via env var, default 0.5)
+      const scoreThreshold = parseFloat(process.env.RECAPTCHA_SCORE_THRESHOLD) || 0.5;
       if (recaptchaResult.score !== undefined && recaptchaResult.score < scoreThreshold) {
-        console.log('🤖 Bot detected: reCAPTCHA score too low', recaptchaResult.score);
+        console.log('🤖 Bot detected: reCAPTCHA score too low', recaptchaResult.score, 'threshold:', scoreThreshold);
         return {
           statusCode: 403,
           headers: {

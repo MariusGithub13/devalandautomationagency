@@ -52,12 +52,9 @@ const ContactPage = () => {
     script.onload = () => setRecaptchaLoaded(true);
     document.head.appendChild(script);
 
+    // Don't remove script on unmount - it may be used by other components
     return () => {
-      // Cleanup script on unmount
-      const existingScript = document.querySelector(`script[src*="recaptcha/api.js"]`);
-      if (existingScript) {
-        document.head.removeChild(existingScript);
-      }
+      // Cleanup if needed
     };
   }, [RECAPTCHA_SITE_KEY]);
 
