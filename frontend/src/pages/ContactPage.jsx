@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Mail, Phone, MapPin, Clock, ArrowRight, CheckCircle } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
@@ -7,6 +7,7 @@ import { Textarea } from '../components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../components/ui/select';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { toast } from 'sonner';
+import ReCAPTCHA from 'react-google-recaptcha';
 import SEO from '../components/SEO';
 import Breadcrumb from '../components/Breadcrumb';
 import InternalLinkBlock from '../components/InternalLinkBlock';
@@ -32,11 +33,18 @@ const ContactPage = () => {
     budget: '',
     shopifyStore: '',
     emailListSize: '',
-    website: '', // Honeypot field
+    'bot-field': '', // Honeypot field (standardized name)
     humanCheck: false // Human verification
   });
 
   const [submissionTime] = useState(Date.now()); // Track when form loaded
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [recaptchaToken, setRecaptchaToken] = useState(null);
+  const recaptchaRef = useRef(null);
+  
+  // reCAPTCHA site key - use environment variable or placeholder for development
+  // To get your keys, visit: https://www.google.com/recaptcha/admin
+  const RECAPTCHA_SITE_KEY = process.env.REACT_APP_RECAPTCHA_SITE_KEY || '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'; // Test key
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -56,8 +64,13 @@ const ContactPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
+    // Prevent double submission
+    if (isSubmitting) {
+      return;
+    }
+    
     // Honeypot check - if filled, it's a bot
-    if (formData.website) {
+    if (formData['bot-field']) {
       console.log('🤖 Bot detected: honeypot field filled');
       return; // Silently reject
     }
@@ -65,6 +78,12 @@ const ContactPage = () => {
     // Human verification check
     if (!formData.humanCheck) {
       toast.error('Please confirm you are human');
+      return;
+    }
+
+    // reCAPTCHA verification
+    if (!recaptchaToken) {
+      toast.error('Please complete the reCAPTCHA verification');
       return;
     }
 
@@ -88,15 +107,19 @@ const ContactPage = () => {
       return;
     }
 
+    setIsSubmitting(true);
+
     try {
       // Submit form to Netlify Function
       // In production, Netlify Functions are available at /.netlify/functions/[function-name]
       const apiUrl = process.env.REACT_APP_API_URL || '/.netlify/functions';
       
       // Prepare data (exclude honeypot and humanCheck from backend)
-      const { website, humanCheck, ...submitData } = formData;
+      const { 'bot-field': botField, humanCheck, ...submitData } = formData;
       const dataToSubmit = {
         ...submitData,
+        'bot-field': botField, // Send honeypot for backend verification
+        recaptchaToken: recaptchaToken,
         submissionTime: submissionTime,
         timeTaken: Date.now() - submissionTime
       };
@@ -176,15 +199,23 @@ const ContactPage = () => {
         budget: '',
         shopifyStore: '',
         emailListSize: '',
-        website: '',
+        'bot-field': '',
         humanCheck: false
       });
+      
+      // Reset reCAPTCHA
+      setRecaptchaToken(null);
+      if (recaptchaRef.current) {
+        recaptchaRef.current.reset();
+      }
       
     } catch (error) {
       if (process.env.NODE_ENV === 'development') {
         console.error('❌ Form submission error:', error);
       }
       toast.error('Failed to submit form. Please try again or contact us directly at office@devaland.com');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -439,15 +470,26 @@ const ContactPage = () => {
 
                     {/* Honeypot field - hidden from humans, visible to bots */}
                     <div className="hidden" aria-hidden="true">
-                      <Label htmlFor="website">Website</Label>
+                      <Label htmlFor="bot-field">Don't fill this out if you're human</Label>
                       <Input
-                        id="website"
-                        name="website"
+                        id="bot-field"
+                        name="bot-field"
                         type="text"
-                        value={formData.website}
+                        value={formData['bot-field']}
                         onChange={handleInputChange}
                         tabIndex="-1"
                         autoComplete="off"
+                      />
+                    </div>
+
+                    {/* reCAPTCHA verification */}
+                    <div className="flex justify-center">
+                      <ReCAPTCHA
+                        ref={recaptchaRef}
+                        sitekey={RECAPTCHA_SITE_KEY}
+                        onChange={(token) => setRecaptchaToken(token)}
+                        onExpired={() => setRecaptchaToken(null)}
+                        onErrored={() => setRecaptchaToken(null)}
                       />
                     </div>
 
@@ -469,10 +511,19 @@ const ContactPage = () => {
                     <Button 
                       type="submit"
                       size="lg"
-                      className="w-full btn-primary text-white font-semibold py-4 text-lg rounded-lg group"
+                      disabled={isSubmitting}
+                      className="w-full btn-primary text-white font-semibold py-4 text-lg rounded-lg group disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      <span>Schedule Free Consultation</span>
-                      <ArrowRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform duration-200" />
+                      {isSubmitting ? (
+                        <>
+                          <span>Submitting...</span>
+                        </>
+                      ) : (
+                        <>
+                          <span>Schedule Free Consultation</span>
+                          <ArrowRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform duration-200" />
+                        </>
+                      )}
                     </Button>
 
                     <p className="text-sm text-gray-500 text-center">

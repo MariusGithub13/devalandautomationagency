@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 /**
  * Newsletter Subscription Form Component
@@ -13,17 +14,27 @@ import { Button } from '@/components/ui/button';
  */
 const NewsletterForm = ({ compact = false, className = '' }) => {
   const [email, setEmail] = useState('');
-  const [website, setWebsite] = useState(''); // Honeypot field
+  const [botField, setBotField] = useState(''); // Honeypot field (standardized name)
   const [gdprConsent, setGdprConsent] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
   const [submissionTime] = useState(Date.now()); // Track form load time
+  const [recaptchaToken, setRecaptchaToken] = useState(null);
+  const recaptchaRef = useRef(null);
+  
+  // reCAPTCHA site key - use environment variable or placeholder for development
+  const RECAPTCHA_SITE_KEY = process.env.REACT_APP_RECAPTCHA_SITE_KEY || '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'; // Test key
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     
+    // Prevent double submission
+    if (isSubmitting) {
+      return;
+    }
+    
     // Bot protection: Honeypot check (silent rejection)
-    if (website) {
+    if (botField) {
       console.log('🤖 Bot detected: honeypot field filled');
       return; // Silently reject, no error message for bot
     }
@@ -35,6 +46,12 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
 
     if (!gdprConsent) {
       setSubmitMessage('Please accept the privacy policy to subscribe');
+      return;
+    }
+
+    // reCAPTCHA verification
+    if (!recaptchaToken) {
+      setSubmitMessage('Please complete the reCAPTCHA verification');
       return;
     }
 
@@ -56,6 +73,9 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
         },
         body: JSON.stringify({
           email: email,
+          'bot-field': botField, // Send honeypot for backend verification
+          recaptchaToken: recaptchaToken,
+          timeTaken: timeTaken,
           listId: 'RCLE38' // Website Newsletter list
         }),
       });
@@ -66,6 +86,13 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
         setSubmitMessage('✓ Successfully subscribed! Check your email.');
         setEmail('');
         setGdprConsent(false);
+        setBotField('');
+        
+        // Reset reCAPTCHA
+        setRecaptchaToken(null);
+        if (recaptchaRef.current) {
+          recaptchaRef.current.reset();
+        }
       } else {
         if (process.env.NODE_ENV === 'development') {
           console.error('Newsletter error:', data);
@@ -90,11 +117,11 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
           {/* Honeypot field - hidden from humans, visible to bots */}
           <div className="hidden" aria-hidden="true">
             <Input
-              id="website-compact"
-              name="website"
+              id="bot-field-compact"
+              name="bot-field"
               type="text"
-              value={website}
-              onChange={(e) => setWebsite(e.target.value)}
+              value={botField}
+              onChange={(e) => setBotField(e.target.value)}
               tabIndex="-1"
               autoComplete="off"
             />
@@ -109,10 +136,23 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
             required
             className="w-full bg-white text-gray-900 border-gray-300"
           />
+          
+          {/* reCAPTCHA - Compact version */}
+          <div className="flex justify-center">
+            <ReCAPTCHA
+              ref={recaptchaRef}
+              sitekey={RECAPTCHA_SITE_KEY}
+              size="compact"
+              onChange={(token) => setRecaptchaToken(token)}
+              onExpired={() => setRecaptchaToken(null)}
+              onErrored={() => setRecaptchaToken(null)}
+            />
+          </div>
+          
           <Button 
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isSubmitting ? 'Subscribing...' : 'Subscribe'}
           </Button>
@@ -150,11 +190,11 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
       {/* Honeypot field - hidden from humans, visible to bots */}
       <div className="hidden" aria-hidden="true">
         <Input
-          id="website"
-          name="website"
+          id="bot-field"
+          name="bot-field"
           type="text"
-          value={website}
-          onChange={(e) => setWebsite(e.target.value)}
+          value={botField}
+          onChange={(e) => setBotField(e.target.value)}
           tabIndex="-1"
           autoComplete="off"
         />
@@ -174,10 +214,21 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
           <Button 
             type="submit"
             disabled={isSubmitting}
-            className="btn-accent text-white px-6 py-3"
+            className="btn-accent text-white px-6 py-3 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isSubmitting ? 'Subscribing...' : 'Subscribe'}
           </Button>
+        </div>
+        
+        {/* reCAPTCHA */}
+        <div className="flex justify-center">
+          <ReCAPTCHA
+            ref={recaptchaRef}
+            sitekey={RECAPTCHA_SITE_KEY}
+            onChange={(token) => setRecaptchaToken(token)}
+            onExpired={() => setRecaptchaToken(null)}
+            onErrored={() => setRecaptchaToken(null)}
+          />
         </div>
         
         <div className="flex items-start gap-2 text-left">

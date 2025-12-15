@@ -1,9 +1,19 @@
 const nodemailer = require('nodemailer');
+const https = require('https');
 
-// In-memory rate limiting (simple implementation for serverless)
+// In-memory rate limiting (extended for better protection)
 const submissionCache = new Map();
-const RATE_LIMIT_WINDOW = 10000; // 10 seconds
+const RATE_LIMIT_WINDOW = 600000; // 10 minutes (5-10 min recommended)
 const MAX_SUBMISSIONS_PER_EMAIL = 1;
+
+// Spam detection patterns
+const SPAM_PATTERNS = {
+  nonsenseNames: /^[aeiou]{4,}|^[bcdfghjklmnpqrstvwxyz]{5,}|test|asdf|qwerty|admin|null|undefined/i,
+  suspiciousContent: /viagra|cialis|casino|lottery|winner|congratulations|click here|buy now|limited time|act now/i,
+  excessiveLinks: /https?:\/\/[^\s]+/g,
+  repeatedChars: /(.)\1{4,}/,
+  allCaps: /^[A-Z\s]{20,}$/
+};
 
 // Helper function to get readable project type label
 function getProjectTypeLabel(value) {
@@ -27,6 +37,96 @@ function cleanupCache() {
       submissionCache.delete(key);
     }
   }
+}
+
+// Verify reCAPTCHA token with Google
+async function verifyRecaptcha(token) {
+  const secretKey = process.env.RECAPTCHA_SECRET_KEY;
+  
+  // If no secret key configured, log warning and allow submission (graceful degradation)
+  if (!secretKey) {
+    console.warn('⚠️ RECAPTCHA_SECRET_KEY not configured - skipping verification');
+    return { success: true, message: 'reCAPTCHA not configured' };
+  }
+
+  return new Promise((resolve) => {
+    const postData = `secret=${secretKey}&response=${token}`;
+    
+    const options = {
+      hostname: 'www.google.com',
+      path: '/recaptcha/api/siteverify',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Content-Length': Buffer.byteLength(postData)
+      }
+    };
+
+    const req = https.request(options, (res) => {
+      let body = '';
+      res.on('data', (chunk) => { body += chunk; });
+      res.on('end', () => {
+        try {
+          const result = JSON.parse(body);
+          resolve(result);
+        } catch (error) {
+          console.error('❌ reCAPTCHA verification parse error:', error);
+          resolve({ success: false, message: 'Verification failed' });
+        }
+      });
+    });
+
+    req.on('error', (error) => {
+      console.error('❌ reCAPTCHA verification request error:', error);
+      resolve({ success: false, message: 'Network error' });
+    });
+
+    req.write(postData);
+    req.end();
+  });
+}
+
+// Validate content for spam patterns
+function detectSpam(name, message) {
+  const issues = [];
+  
+  // Check name for nonsense
+  if (SPAM_PATTERNS.nonsenseNames.test(name)) {
+    issues.push('suspicious_name');
+  }
+  
+  // Check message for spam keywords
+  if (SPAM_PATTERNS.suspiciousContent.test(message)) {
+    issues.push('suspicious_content');
+  }
+  
+  // Check for excessive links
+  const linkMatches = message.match(SPAM_PATTERNS.excessiveLinks);
+  if (linkMatches && linkMatches.length > 2) {
+    issues.push('excessive_links');
+  }
+  
+  // Check for repeated characters
+  if (SPAM_PATTERNS.repeatedChars.test(message)) {
+    issues.push('repeated_chars');
+  }
+  
+  // Check for all caps
+  if (SPAM_PATTERNS.allCaps.test(message)) {
+    issues.push('all_caps');
+  }
+  
+  // Check message length (too short or suspiciously long)
+  if (message.length < 10) {
+    issues.push('message_too_short');
+  } else if (message.length > 5000) {
+    issues.push('message_too_long');
+  }
+  
+  return {
+    isSpam: issues.length > 0,
+    issues: issues
+  };
 }
 
 exports.handler = async (event, context) => {
@@ -59,6 +159,50 @@ exports.handler = async (event, context) => {
     // Parse request body
     const body = JSON.parse(event.body);
     
+    // HONEYPOT CHECK: If bot-field is filled, silently accept and skip processing
+    if (body['bot-field']) {
+      console.log('🤖 Bot detected: honeypot field filled - silently rejecting');
+      // Return 200 OK to fool bots, but don't send emails
+      return {
+        statusCode: 200,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ 
+          message: 'Thank you for your submission',
+          id: 'honeypot-' + Date.now()
+        })
+      };
+    }
+
+    // reCAPTCHA VERIFICATION
+    if (body.recaptchaToken) {
+      const recaptchaResult = await verifyRecaptcha(body.recaptchaToken);
+      if (!recaptchaResult.success) {
+        console.log('🤖 Bot detected: reCAPTCHA verification failed', recaptchaResult);
+        return {
+          statusCode: 403,
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ error: 'reCAPTCHA verification failed' })
+        };
+      }
+    } else if (process.env.RECAPTCHA_SECRET_KEY) {
+      // If reCAPTCHA is configured but no token provided
+      console.log('⚠️ reCAPTCHA token missing');
+      return {
+        statusCode: 400,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ error: 'reCAPTCHA verification required' })
+      };
+    }
+    
     // Bot protection: Check if form was filled too quickly
     if (body.timeTaken && body.timeTaken < 3000) {
       console.log('🤖 Bot detected: Form filled too quickly', body.timeTaken);
@@ -80,7 +224,7 @@ exports.handler = async (event, context) => {
     if (lastSubmission) {
       const timeSinceLastSubmission = Date.now() - lastSubmission;
       if (timeSinceLastSubmission < RATE_LIMIT_WINDOW) {
-        console.log('🚫 Rate limit exceeded:', emailKey, 'seconds since last:', Math.round(timeSinceLastSubmission / 1000));
+        console.log('🚫 Rate limit exceeded:', emailKey, 'minutes since last:', Math.round(timeSinceLastSubmission / 60000));
         return {
           statusCode: 429,
           headers: {
@@ -88,15 +232,12 @@ exports.handler = async (event, context) => {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({ 
-            error: 'Please wait a few moments before submitting again',
-            retryAfter: Math.ceil((RATE_LIMIT_WINDOW - timeSinceLastSubmission) / 1000)
+            error: 'You have recently submitted a form. Please wait before submitting again.',
+            retryAfter: Math.ceil((RATE_LIMIT_WINDOW - timeSinceLastSubmission) / 60000) // in minutes
           })
         };
       }
     }
-    
-    // Record this submission
-    submissionCache.set(emailKey, Date.now());
     
     // Validate required fields
     const requiredFields = ['name', 'email', 'company', 'message'];
@@ -112,6 +253,26 @@ exports.handler = async (event, context) => {
         };
       }
     }
+
+    // SPAM DETECTION: Check for spammy content
+    const spamCheck = detectSpam(body.name, body.message);
+    if (spamCheck.isSpam) {
+      console.log('🚫 Spam detected:', emailKey, 'issues:', spamCheck.issues);
+      return {
+        statusCode: 400,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ 
+          error: 'Your submission appears to contain invalid content. Please review and try again.',
+          issues: process.env.NODE_ENV === 'development' ? spamCheck.issues : undefined
+        })
+      };
+    }
+    
+    // Record this submission
+    submissionCache.set(emailKey, Date.now());
 
     // Create submission object
     const submission = {
