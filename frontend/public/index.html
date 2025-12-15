@@ -177,7 +177,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     
-    <!-- Preload critical fonts FIRST (Inter 400 only for fastest render) -->
+    <!-- Preload critical fonts FIRST (Inter 400 and 600 for better coverage) -->
     <link rel="preload" href="https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
     
     <!-- Preload hero image for faster LCP (Largest Contentful Paint) -->
@@ -194,8 +194,9 @@
     />
     
     <!-- Google Fonts with font-display swap - async load to prevent render blocking -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" /></noscript>
+    <!-- Optimized: Load only essential weights (400, 600, 700) for better mobile performance -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" /></noscript>
     <link rel="dns-prefetch" href="//calendly.com" />
     <link
       rel="dns-prefetch"
