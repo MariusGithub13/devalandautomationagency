@@ -1,7 +1,6 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import ReCAPTCHA from 'react-google-recaptcha';
 
 /**
  * Newsletter Subscription Form Component
@@ -19,11 +18,31 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
   const [submissionTime] = useState(Date.now()); // Track form load time
-  const [recaptchaToken, setRecaptchaToken] = useState(null);
-  const recaptchaRef = useRef(null);
+  const [recaptchaLoaded, setRecaptchaLoaded] = useState(false);
   
-  // reCAPTCHA site key - use environment variable or placeholder for development
-  const RECAPTCHA_SITE_KEY = process.env.REACT_APP_RECAPTCHA_SITE_KEY || '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'; // Test key
+  // reCAPTCHA v3 site key - use environment variable
+  const RECAPTCHA_SITE_KEY = process.env.REACT_APP_RECAPTCHA_SITE_KEY || '6LcT-SssAAAAAB3jCBIRdqmXHH2bplWaSGXVqnlI';
+
+  // Load reCAPTCHA v3 script
+  useEffect(() => {
+    // Check if script is already loaded
+    const existingScript = document.querySelector(`script[src*="recaptcha/api.js"]`);
+    if (existingScript) {
+      setRecaptchaLoaded(true);
+      return;
+    }
+
+    const script = document.createElement('script');
+    script.src = `https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`;
+    script.async = true;
+    script.defer = true;
+    script.onload = () => setRecaptchaLoaded(true);
+    document.head.appendChild(script);
+
+    return () => {
+      // Don't remove script as it may be used by other components
+    };
+  }, [RECAPTCHA_SITE_KEY]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -49,12 +68,6 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
       return;
     }
 
-    // reCAPTCHA verification
-    if (!recaptchaToken) {
-      setSubmitMessage('Please complete the reCAPTCHA verification');
-      return;
-    }
-
     // Bot protection: Timing check
     const timeTaken = Date.now() - submissionTime;
     if (timeTaken < 2000) { // 2 seconds for newsletter (simpler form)
@@ -66,6 +79,21 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
     setSubmitMessage('');
 
     try {
+      // Execute reCAPTCHA v3 with 'newsletter' action
+      let recaptchaToken = null;
+      if (recaptchaLoaded && window.grecaptcha) {
+        try {
+          recaptchaToken = await window.grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'newsletter' });
+        } catch (error) {
+          console.error('reCAPTCHA execution error:', error);
+          setSubmitMessage('reCAPTCHA verification failed. Please try again.');
+          setIsSubmitting(false);
+          return;
+        }
+      } else {
+        console.warn('reCAPTCHA not loaded');
+      }
+
       const response = await fetch('/.netlify/functions/klaviyo-subscribe', {
         method: 'POST',
         headers: {
@@ -87,12 +115,6 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
         setEmail('');
         setGdprConsent(false);
         setBotField('');
-        
-        // Reset reCAPTCHA
-        setRecaptchaToken(null);
-        if (recaptchaRef.current) {
-          recaptchaRef.current.reset();
-        }
       } else {
         if (process.env.NODE_ENV === 'development') {
           console.error('Newsletter error:', data);
@@ -137,18 +159,6 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
             className="w-full bg-white text-gray-900 border-gray-300"
           />
           
-          {/* reCAPTCHA - Compact version */}
-          <div className="flex justify-center">
-            <ReCAPTCHA
-              ref={recaptchaRef}
-              sitekey={RECAPTCHA_SITE_KEY}
-              size="compact"
-              onChange={(token) => setRecaptchaToken(token)}
-              onExpired={() => setRecaptchaToken(null)}
-              onErrored={() => setRecaptchaToken(null)}
-            />
-          </div>
-          
           <Button 
             type="submit"
             disabled={isSubmitting}
@@ -170,6 +180,10 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
               I agree to receive email updates and accept the{' '}
               <a href="/privacy" className="underline hover:text-blue-600">Privacy Policy</a>
             </label>
+          </div>
+
+          <div className="text-xs text-gray-500 text-center">
+            Protected by reCAPTCHA v3
           </div>
 
           {submitMessage && (
@@ -220,17 +234,6 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
           </Button>
         </div>
         
-        {/* reCAPTCHA */}
-        <div className="flex justify-center">
-          <ReCAPTCHA
-            ref={recaptchaRef}
-            sitekey={RECAPTCHA_SITE_KEY}
-            onChange={(token) => setRecaptchaToken(token)}
-            onExpired={() => setRecaptchaToken(null)}
-            onErrored={() => setRecaptchaToken(null)}
-          />
-        </div>
-        
         <div className="flex items-start gap-2 text-left">
           <input
             type="checkbox"
@@ -251,6 +254,10 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
             </a>
             .
           </label>
+        </div>
+
+        <div className="text-xs text-white opacity-75 text-center">
+          Protected by reCAPTCHA v3
         </div>
       </form>
       

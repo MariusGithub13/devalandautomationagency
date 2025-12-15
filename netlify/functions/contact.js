@@ -39,14 +39,14 @@ function cleanupCache() {
   }
 }
 
-// Verify reCAPTCHA token with Google
+// Verify reCAPTCHA v3 token with Google
 async function verifyRecaptcha(token) {
   const secretKey = process.env.RECAPTCHA_SECRET_KEY;
   
   // If no secret key configured, log warning and allow submission (graceful degradation)
   if (!secretKey) {
     console.warn('⚠️ RECAPTCHA_SECRET_KEY not configured - skipping verification');
-    return { success: true, message: 'reCAPTCHA not configured' };
+    return { success: true, score: 1.0, message: 'reCAPTCHA not configured' };
   }
 
   return new Promise((resolve) => {
@@ -68,17 +68,19 @@ async function verifyRecaptcha(token) {
       res.on('end', () => {
         try {
           const result = JSON.parse(body);
+          // reCAPTCHA v3 returns a score from 0.0 to 1.0
+          // 0.0 is very likely a bot, 1.0 is very likely a human
           resolve(result);
         } catch (error) {
           console.error('❌ reCAPTCHA verification parse error:', error);
-          resolve({ success: false, message: 'Verification failed' });
+          resolve({ success: false, score: 0.0, message: 'Verification failed' });
         }
       });
     });
 
     req.on('error', (error) => {
       console.error('❌ reCAPTCHA verification request error:', error);
-      resolve({ success: false, message: 'Network error' });
+      resolve({ success: false, score: 0.0, message: 'Network error' });
     });
 
     req.write(postData);
@@ -176,7 +178,7 @@ exports.handler = async (event, context) => {
       };
     }
 
-    // reCAPTCHA VERIFICATION
+    // reCAPTCHA VERIFICATION (v3 with score check)
     if (body.recaptchaToken) {
       const recaptchaResult = await verifyRecaptcha(body.recaptchaToken);
       if (!recaptchaResult.success) {
@@ -189,6 +191,28 @@ exports.handler = async (event, context) => {
           },
           body: JSON.stringify({ error: 'reCAPTCHA verification failed' })
         };
+      }
+      
+      // Check score threshold for v3 (0.5 is recommended, higher = more human-like)
+      const scoreThreshold = 0.5;
+      if (recaptchaResult.score !== undefined && recaptchaResult.score < scoreThreshold) {
+        console.log('🤖 Bot detected: reCAPTCHA score too low', recaptchaResult.score);
+        return {
+          statusCode: 403,
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ 
+            error: 'Bot-like behavior detected. Please try again.',
+            score: recaptchaResult.score 
+          })
+        };
+      }
+      
+      // Log score for monitoring (optional)
+      if (process.env.NODE_ENV === 'development' && recaptchaResult.score !== undefined) {
+        console.log('✅ reCAPTCHA v3 score:', recaptchaResult.score);
       }
     } else if (process.env.RECAPTCHA_SECRET_KEY) {
       // If reCAPTCHA is configured but no token provided
