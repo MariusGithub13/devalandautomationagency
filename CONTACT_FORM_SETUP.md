@@ -78,27 +78,34 @@ CONTACT_EMAIL=office@devaland.com
 
 **Important**: reCAPTCHA keys are required for anti-bot protection.
 
-1. Visit https://www.google.com/recaptcha/admin
-2. Register your site with reCAPTCHA v2 ("I'm not a robot" checkbox)
-3. Add your domains (e.g., `devaland.com`, `localhost` for testing)
-4. Copy your Site Key and Secret Key
+✅ **Production Keys Already Configured** for Devaland site!
+
+The reCAPTCHA v2 keys are already registered for `devaland.com`:
+- **Site Key** (public): `6LcT-SssAAAAAB3jCBIRdqmXHH2bplWaSGXVqnlI`
+- **Secret Key** (private): `6LcT-SssAAAAAObqfIPeOJM7Gmvxne4HL4Hd3cOe`
 
 **Frontend Configuration** (`frontend/.env`):
-```env
-REACT_APP_RECAPTCHA_SITE_KEY=your-site-key-here
+```bash
+# Copy frontend/.env.example to frontend/.env
+cp frontend/.env.example frontend/.env
+
+# The site key is already set in frontend/.env:
+REACT_APP_RECAPTCHA_SITE_KEY=6LcT-SssAAAAAB3jCBIRdqmXHH2bplWaSGXVqnlI
 ```
 
 **Backend Configuration** (Netlify Environment Variables):
-Set in Netlify UI (Site settings → Environment variables):
-```env
-RECAPTCHA_SECRET_KEY=your-secret-key-here
+Set the secret key in Netlify UI (Site settings → Environment variables → Add variable):
+```
+Variable name: RECAPTCHA_SECRET_KEY
+Value: 6LcT-SssAAAAAObqfIPeOJM7Gmvxne4HL4Hd3cOe
 ```
 
-**Testing with Google Test Keys** (Development Only):
-- Site Key: `6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI`
-- Secret Key: `6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe`
+**For Local Development/Testing**:
+If you need to test locally, you can use Google's test keys in your local `.env`:
+- Test Site Key: `6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI`
+- Test Secret Key: `6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe`
 
-⚠️ **Note**: Test keys always pass validation. Use real keys in production!
+⚠️ **Note**: Test keys always pass validation. The production keys above are for the live site.
 
 ### 5. Graceful Degradation
 
