@@ -10,7 +10,7 @@ const MAX_SUBMISSIONS_PER_EMAIL = 1;
 const SPAM_PATTERNS = {
   nonsenseNames: /^[aeiou]{4,}|^[bcdfghjklmnpqrstvwxyz]{5,}|test|asdf|qwerty|admin|null|undefined/i,
   suspiciousContent: /viagra|cialis|casino|lottery|winner|congratulations|click here|buy now|limited time|act now/i,
-  excessiveLinks: /(https?:\/\/[^\s]+){3,}/g,
+  excessiveLinks: /https?:\/\/[^\s]+/g,
   repeatedChars: /(.)\1{4,}/,
   allCaps: /^[A-Z\s]{20,}$/
 };
