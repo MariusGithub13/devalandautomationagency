@@ -79,6 +79,33 @@ module.exports = {
           ...webpackConfig.optimization,
           minimize: true,
           usedExports: true,
+          // Improve code splitting
+          splitChunks: {
+            chunks: 'all',
+            cacheGroups: {
+              // Vendor chunk for node_modules
+              defaultVendors: {
+                test: /[\\/]node_modules[\\/]/,
+                priority: -10,
+                reuseExistingChunk: true,
+                name(module) {
+                  // Get the package name, e.g. node_modules/packageName/not/this/part.js
+                  // or node_modules/packageName
+                  const packageName = module.context.match(
+                    /[\\/]node_modules[\\/](.*?)([\\/]|$)/
+                  )?.[1];
+                  // npm package names are URL-safe, but some servers don't like @ symbols
+                  return `vendor.${packageName?.replace('@', '')}`;
+                },
+              },
+              // Common chunk for shared code
+              common: {
+                minChunks: 2,
+                priority: -20,
+                reuseExistingChunk: true,
+              },
+            },
+          },
         };
 
         // Add TerserPlugin configuration for aggressive minification
@@ -90,13 +117,28 @@ module.exports = {
                 drop_console: false, // We handle via NODE_ENV checks
                 drop_debugger: true,
                 pure_funcs: ['console.log', 'console.info', 'console.debug'],
+                passes: 2, // Run compress twice for better results
+                dead_code: true,
+                unused: true,
+                // Additional aggressive optimizations
+                comparisons: true,
+                conditionals: true,
+                evaluate: true,
+                booleans: true,
+                loops: true,
+                if_return: true,
+                join_vars: true,
               },
-              mangle: true,
+              mangle: {
+                safari10: true, // Fix Safari 10 bugs
+              },
               output: {
                 comments: false,
+                ascii_only: true, // Better compatibility
               },
             },
             extractComments: false,
+            parallel: true, // Use multiple processes for faster build
           }),
         ];
       }

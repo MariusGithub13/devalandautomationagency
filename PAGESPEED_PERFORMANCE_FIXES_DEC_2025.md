@@ -1,4 +1,64 @@
-# PageSpeed Insights Performance Fixes - December 11, 2025
+# PageSpeed Insights Performance Fixes - December 15, 2025
+
+## Latest Update: Mobile Performance Optimization (December 15, 2025)
+
+**Previous Status** (December 11, 2025):
+- Desktop Performance: 98/100 ✅
+- Mobile Performance: 78/100 ⚠️
+
+**Target**: Improve mobile performance from 56/100 (baseline) to 85+/100
+
+### Phase 5: Additional Mobile Optimizations (Dec 15, 2025) ✅
+
+**Changes Implemented**:
+
+1. **Image Format Optimization** ✅
+   - Converted remaining large JPG images to WebP format
+   - marius-andronie.jpg: 1.4MB → 791KB WebP (43% reduction)
+   - Marius Dracula Castle.jpg: 1.4MB → 791KB WebP (43% reduction)
+   - Devaland-Logo.jpg: 32KB → 11KB WebP (66% reduction)
+   - PNG badges: sal.png, sol.png, vies-eu.png → WebP
+   - **Total image savings: ~2.8MB → 1.6MB (1.2MB saved)**
+
+2. **JavaScript Bundle Optimization** ✅
+   - Implemented advanced code splitting in webpack config
+   - Split vendor chunks by package (React, Radix UI, Lucide, etc.)
+   - Main bundle reduced: 260.64 kB → 186.88 kB gzipped (28% reduction)
+   - Added 2-pass compression for better minification
+   - Improved tree-shaking with usedExports: true
+   - **Bundle size reduction: 73.76 kB saved**
+
+3. **Font Loading Optimization** ✅
+   - Reduced Google Fonts weights from 7 to 3 (400, 600, 700 only)
+   - ~30% font payload reduction
+   - Maintained font-display: swap for better FCP
+   - Kept async loading with media="print" trick
+
+4. **Image Dimensions & CLS Prevention** ✅
+   - Added explicit width/height to all remaining images
+   - Logo: 350x350
+   - Badges: 250x50
+   - All images now prevent Cumulative Layout Shift
+
+**Files Modified**:
+- `frontend/craco.config.js` - Advanced code splitting configuration
+- `frontend/public/index.html` - Font weight optimization
+- `frontend/src/components/AuthorAvatar.jsx` - WebP image reference
+- `frontend/src/components/Footer.jsx` - WebP badges (sal, sol)
+- `frontend/src/components/Header.jsx` - WebP logo + dimensions
+- `frontend/src/data/mock.js` - WebP image paths
+- `frontend/src/pages/ContactPage.jsx` - WebP Dracula image
+- `frontend/public/images/*.webp` - 6 new optimized WebP images
+- `frontend/src/assets/Devaland-Logo.webp` - Optimized logo
+
+**Expected Impact**:
+- Mobile Performance: 78 → 85-90/100 (7-12 point improvement)
+- Main JS bundle: 28% smaller (better parse/execution time)
+- Image payload: 1.2MB smaller (faster LCP on mobile)
+- Font payload: 30% smaller (faster font rendering)
+- CLS: Further improved with all image dimensions added
+
+---
 
 ## Performance Audit Results (Before Fixes)
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, memo, useCallback, useMemo } from 'react';
-import LogoImg from '../assets/Devaland-Logo.jpg';
+import LogoImg from '../assets/Devaland-Logo.webp';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { Button } from './ui/button';
@@ -144,6 +144,8 @@ function HeaderLogo() {
     <img
       src={LogoImg}
       alt="Devaland logo"
+      width="350"
+      height="350"
       className="h-12 sm:h-16 lg:h-20 w-auto object-contain"
       onError={() => setFailed(true)}
     />
