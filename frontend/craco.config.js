@@ -118,13 +118,27 @@ module.exports = {
                 drop_debugger: true,
                 pure_funcs: ['console.log', 'console.info', 'console.debug'],
                 passes: 2, // Run compress twice for better results
+                dead_code: true,
+                unused: true,
+                // Additional aggressive optimizations
+                comparisons: true,
+                conditionals: true,
+                evaluate: true,
+                booleans: true,
+                loops: true,
+                if_return: true,
+                join_vars: true,
               },
-              mangle: true,
+              mangle: {
+                safari10: true, // Fix Safari 10 bugs
+              },
               output: {
                 comments: false,
+                ascii_only: true, // Better compatibility
               },
             },
             extractComments: false,
+            parallel: true, // Use multiple processes for faster build
           }),
         ];
       }

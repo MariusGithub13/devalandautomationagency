@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-PRXZ3797');</script>
+    <meta charset="utf-8" />
+    
+    <!-- Google Tag Manager - Deferred for better FCP/LCP -->
+    <script>
+      // Defer GTM loading until after page is interactive
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer','GTM-PRXZ3797');
+        }, 1000); // Delay by 1 second after load
+      });
+    </script>
     <!-- End Google Tag Manager -->
     
-    <meta charset="utf-8" />
     <link
       rel="icon"
       href="https://customer-assets.emergentagent.com/job_process-genius-5/artifacts/kau0y3tw_Devaland-Logo.jpg"
@@ -128,6 +136,7 @@
         -moz-osx-font-smoothing: grayscale;
         line-height: 1.5;
         color: #1f2937;
+        background-color: #fff;
       }
       /* Above-the-fold hero optimization */
       #root {
@@ -158,6 +167,31 @@
           font-size: 16px;
         }
       }
+      /* Header critical styles to prevent layout shift */
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background-color: #fff;
+        border-bottom: 1px solid #e5e7eb;
+      }
+      /* Hero section critical styles */
+      .hero-section {
+        min-height: 500px;
+        background: linear-gradient(to bottom right, #dbeafe, #eff6ff);
+      }
+      /* Button styles to prevent FOUC */
+      button, .btn {
+        cursor: pointer;
+        border-radius: 0.375rem;
+        padding: 0.5rem 1rem;
+        font-weight: 600;
+        transition: all 0.2s;
+      }
+      /* Hide elements until JS loads */
+      .js-only {
+        display: none;
+      }
     </style>
 
     <link
@@ -177,16 +211,19 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     
+    <!-- Preload critical CSS for faster rendering -->
+    <link rel="preload" href="%PUBLIC_URL%/static/css/main.css" as="style" />
+    
     <!-- Preload critical fonts FIRST (Inter 400 and 600 for better coverage) -->
-    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2" as="font" type="font/woff2" crossorigin="anonymous" fetchpriority="high" />
     
     <!-- Preload hero image for faster LCP (Largest Contentful Paint) -->
     <!-- Mobile: preload 400w version for faster LCP on mobile devices -->
-    <link rel="preload" as="image" href="/images/optimized/hero/hero-primary-400.webp" type="image/webp" media="(max-width: 640px)" />
+    <link rel="preload" as="image" href="/images/optimized/hero/hero-primary-400.webp" type="image/webp" media="(max-width: 640px)" fetchpriority="high" />
     <!-- Tablet: preload 800w version -->
-    <link rel="preload" as="image" href="/images/optimized/hero/hero-primary-800.webp" type="image/webp" media="(min-width: 641px) and (max-width: 1024px)" />
+    <link rel="preload" as="image" href="/images/optimized/hero/hero-primary-800.webp" type="image/webp" media="(min-width: 641px) and (max-width: 1024px)" fetchpriority="high" />
     <!-- Desktop: preload 1200w version -->
-    <link rel="preload" as="image" href="/images/optimized/hero/hero-primary-1200.webp" type="image/webp" media="(min-width: 1025px)" />
+    <link rel="preload" as="image" href="/images/optimized/hero/hero-primary-1200.webp" type="image/webp" media="(min-width: 1025px)" fetchpriority="high" />
     
     <link
       rel="preconnect"
