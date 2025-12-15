@@ -20,7 +20,10 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
   const [submissionTime] = useState(Date.now()); // Track form load time
   const [recaptchaLoaded, setRecaptchaLoaded] = useState(false);
   
-  // reCAPTCHA v3 site key - use environment variable
+  // reCAPTCHA v3 site key
+  // Site keys are public by design and safe to embed in frontend code
+  // For production: Set REACT_APP_RECAPTCHA_SITE_KEY in .env or build environment
+  // Fallback uses production key for devaland.com (this is intentional and secure)
   const RECAPTCHA_SITE_KEY = process.env.REACT_APP_RECAPTCHA_SITE_KEY || '6LcT-SssAAAAAB3jCBIRdqmXHH2bplWaSGXVqnlI';
 
   // Load reCAPTCHA v3 script
