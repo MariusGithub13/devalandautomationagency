@@ -602,10 +602,10 @@ const ContactPage = () => {
                       {/* Dracula Castle Image */}
                       <div className="mt-4 rounded-lg overflow-hidden shadow-md">
                         <img 
-                          src="/images/Marius The Digital Vampire Dracula Castle.jpg"
+                          src="/images/marius-dracula.webp"
                           alt="Devaland Headquarters - Near Dracula's Castle in Transylvania, Romania"
-                          width="400"
-                          height="300"
+                          width="2902"
+                          height="1444"
                           loading="lazy"
                           decoding="async"
                           className="w-full h-auto hover-scale"

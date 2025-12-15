@@ -19,7 +19,7 @@ const AuthorAvatar = ({ author, className = '', size = 64 }) => {
   const getAuthorImage = () => {
     if (author === 'Marius Andronie') {
       return {
-        src: '/images/marius-andronie.jpg',
+        src: '/images/marius-andronie.webp',
         alt: 'Marius Andronie - Founder of Devaland Marketing'
       };
     } else if (author === 'Devaland Team') {

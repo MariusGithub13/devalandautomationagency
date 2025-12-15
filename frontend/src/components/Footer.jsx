@@ -361,7 +361,7 @@ const Footer = memo(() => {
                   aria-label="Open ODR (SOL) in new tab"
                   className="inline-block"
                 >
-                  <img src="/images/sol.png" alt="SOL" width="96" height="96" className="h-24 w-auto object-contain rounded-sm shadow border border-gray-200 bg-white p-1" />
+                  <img src="/images/sol.webp" alt="SOL" width="250" height="50" className="h-24 w-auto object-contain rounded-sm shadow border border-gray-200 bg-white p-1" />
                   <span className="sr-only">European Online Dispute Resolution (ODR) — opens in a new tab</span>
                 </a>
                 <a
@@ -371,7 +371,7 @@ const Footer = memo(() => {
                   aria-label="Open ANPC reclamations (SAL) in new tab"
                   className="inline-block"
                 >
-                  <img src="/images/sal.png" alt="SAL" width="96" height="96" className="h-24 w-auto object-contain rounded-sm shadow border border-gray-200 bg-white p-1" />
+                  <img src="/images/sal.webp" alt="SAL" width="250" height="50" className="h-24 w-auto object-contain rounded-sm shadow border border-gray-200 bg-white p-1" />
                   <span className="sr-only">ANPC reclamations portal — opens in a new tab</span>
                 </a>
                 <div className="flex flex-col items-start space-y-2">
