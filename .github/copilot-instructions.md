@@ -131,7 +131,8 @@ CONTACT_EMAIL=office@devaland.com
 - Lazy load heavy components: `const Component = lazy(() => import('./Component'))` + `<Suspense>`
 - Images require `width`/`height` attributes to prevent CLS
 - Below-fold images: add `loading="lazy"`
-- Third-party widgets: load in `useEffect`, cleanup on unmount (see `TrustpilotWidget.jsx`)
+- Third-party scripts: use `loadScriptOnInteraction` from `@/utils/lazyScriptLoader` (see examples below)
+- Chat widgets, analytics: defer until user interaction or timeout
 
 **Security** (CSP/CORS):
 - CSP configured in `netlify.toml` headers — test changes with `Content-Security-Policy-Report-Only` first
@@ -191,7 +192,25 @@ async def my_endpoint(request: MyRequest):
     return {"status": "success"}
 ```
 
-**Third-Party Widget Pattern** (see `TrustpilotWidget.jsx`):
+**Lazy Load Third-Party Scripts** (RECOMMENDED for better mobile performance):
+```jsx
+import { loadScriptOnInteraction } from '@/utils/lazyScriptLoader';
+
+useEffect(() => {
+  const cleanup = loadScriptOnInteraction({
+    src: 'https://example.com/widget.js',
+    id: 'my-widget',
+    timeout: 5000, // Load after 5s if no user interaction
+    attributes: { 'data-key': 'value' },
+    onLoad: () => console.log('Widget loaded'),
+    onError: () => console.error('Widget failed')
+  });
+  
+  return cleanup; // Always cleanup event listeners
+}, []);
+```
+
+**Traditional Third-Party Widget Pattern** (use only if immediate load required):
 ```jsx
 useEffect(() => {
   const script = document.createElement('script');
@@ -468,7 +487,7 @@ Every blog post must have COMPLETE, SUBSTANTIAL content ready for publication.`,
 - [ ] All `internalLinks` array populated with 4+ links
 - [ ] Article reads smoothly from start to finish (no truncation)
 
-## �📚 Additional Resources
+## 📚 Additional Resources
 
 For detailed information on specific topics:
 - **`CONTACT_FORM_SETUP.md`** — SMTP configuration walkthrough
@@ -476,6 +495,7 @@ For detailed information on specific topics:
 - **`INTERNAL_LINKING_STRATEGY.md`** — Internal linking best practices (GSC shows only 36 links - critical issue)
 - **`GSC_SETUP_GUIDE.md`** — Google Search Console setup and monitoring
 - **`PAGESPEED_PERFORMANCE_FIXES_DEC_2025.md`** — Performance optimization guide
+- **`MOBILE_PAGESPEED_IMPROVEMENTS_DEC_2025.md`** — Interaction-based lazy loading guide
 - **`BREADCRUMB_SEO_STRATEGY.md`** — Site architecture & navigation
 - **`KLAVIYO_PAGE_SEO_OPPORTUNITY.md`** — Klaviyo content strategy
 - **`VOICE_AI_SEO_GUIDE.md`** — Voice AI page optimization
