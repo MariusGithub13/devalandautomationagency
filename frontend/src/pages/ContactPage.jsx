@@ -46,18 +46,49 @@ const ContactPage = () => {
   // Fallback uses production key for devaland.com (this is intentional and secure)
   const RECAPTCHA_SITE_KEY = process.env.REACT_APP_RECAPTCHA_SITE_KEY || '6LcT-SssAAAAAB3jCBIRdqmXHH2bplWaSGXVqnlI';
 
-  // Load reCAPTCHA v3 script
+  // Load reCAPTCHA v3 script only on user interaction with form
   useEffect(() => {
-    const script = document.createElement('script');
-    script.src = `https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`;
-    script.async = true;
-    script.defer = true;
-    script.onload = () => setRecaptchaLoaded(true);
-    document.head.appendChild(script);
-
-    // Don't remove script on unmount - it may be used by other components
+    let loaded = false;
+    const events = ['focus', 'input', 'click'];
+    
+    const loadRecaptcha = () => {
+      if (loaded) return;
+      loaded = true;
+      
+      // Remove event listeners
+      events.forEach(event => {
+        document.removeEventListener(event, loadRecaptcha, true);
+      });
+      
+      // Check if already loaded
+      if (document.querySelector(`script[src*="recaptcha/api.js"]`)) {
+        setRecaptchaLoaded(true);
+        return;
+      }
+      
+      const script = document.createElement('script');
+      script.src = `https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`;
+      script.async = true;
+      script.defer = true;
+      script.onload = () => {
+        setRecaptchaLoaded(true);
+        if (process.env.NODE_ENV === 'development') {
+          console.log('✅ reCAPTCHA loaded on user interaction');
+        }
+      };
+      document.head.appendChild(script);
+    };
+    
+    // Add event listeners on form container
+    events.forEach(event => {
+      document.addEventListener(event, loadRecaptcha, { capture: true, once: true, passive: true });
+    });
+    
+    // Cleanup
     return () => {
-      // Cleanup if needed
+      events.forEach(event => {
+        document.removeEventListener(event, loadRecaptcha, true);
+      });
     };
   }, [RECAPTCHA_SITE_KEY]);
 

@@ -1,22 +1,23 @@
 import React, { useEffect } from 'react';
 import { Star } from 'lucide-react';
 import { Card, CardContent } from './ui/card';
+import { loadScriptOnInteraction } from '../utils/lazyScriptLoader';
 
 const TrustpilotWidget = ({ variant = 'compact' }) => {
   useEffect(() => {
-    // Load Trustpilot script
-    const script = document.createElement('script');
-    script.src = 'https://widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js';
-    script.async = true;
-    document.head.appendChild(script);
-
-    return () => {
-      // Cleanup
-      const existingScript = document.querySelector('script[src*="trustpilot"]');
-      if (existingScript) {
-        existingScript.remove();
+    // Load Trustpilot script after user interaction or 3s timeout
+    const cleanup = loadScriptOnInteraction({
+      src: 'https://widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js',
+      id: 'trustpilot-widget-script',
+      timeout: 3000,
+      onLoad: () => {
+        if (process.env.NODE_ENV === 'development') {
+          console.log('✅ Trustpilot widget loaded');
+        }
       }
-    };
+    });
+
+    return cleanup;
   }, []);
 
   if (variant === 'compact') {
