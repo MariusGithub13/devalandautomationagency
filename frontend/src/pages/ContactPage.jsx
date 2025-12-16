@@ -57,7 +57,7 @@ const ContactPage = () => {
       
       // Remove event listeners
       events.forEach(event => {
-        document.removeEventListener(event, loadRecaptcha, true);
+        document.removeEventListener(event, loadRecaptcha, { capture: true });
       });
       
       // Check if already loaded
@@ -69,7 +69,6 @@ const ContactPage = () => {
       const script = document.createElement('script');
       script.src = `https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`;
       script.async = true;
-      script.defer = true;
       script.onload = () => {
         setRecaptchaLoaded(true);
         if (process.env.NODE_ENV === 'development') {
@@ -87,7 +86,7 @@ const ContactPage = () => {
     // Cleanup
     return () => {
       events.forEach(event => {
-        document.removeEventListener(event, loadRecaptcha, true);
+        document.removeEventListener(event, loadRecaptcha, { capture: true });
       });
     };
   }, [RECAPTCHA_SITE_KEY]);

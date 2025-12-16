@@ -64,7 +64,6 @@ export function loadScriptOnInteraction({
     if (id) script.id = id;
     script.src = src;
     script.async = true;
-    script.defer = true;
 
     // Add custom attributes
     Object.keys(attributes).forEach(key => {
@@ -99,7 +98,7 @@ export function loadScriptOnInteraction({
   return () => {
     if (timeoutId) clearTimeout(timeoutId);
     events.forEach(event => {
-      window.removeEventListener(event, loadScript);
+      window.removeEventListener(event, loadScript, { passive: true });
     });
   };
 }

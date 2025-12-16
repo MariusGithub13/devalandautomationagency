@@ -44,13 +44,12 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
       
       // Remove event listeners
       events.forEach(event => {
-        document.removeEventListener(event, loadRecaptcha, true);
+        document.removeEventListener(event, loadRecaptcha, { capture: true });
       });
       
       const script = document.createElement('script');
       script.src = `https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`;
       script.async = true;
-      script.defer = true;
       script.onload = () => {
         setRecaptchaLoaded(true);
         if (process.env.NODE_ENV === 'development') {
@@ -67,7 +66,7 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
     
     return () => {
       events.forEach(event => {
-        document.removeEventListener(event, loadRecaptcha, true);
+        document.removeEventListener(event, loadRecaptcha, { capture: true });
       });
     };
   }, [RECAPTCHA_SITE_KEY]);

@@ -37,6 +37,9 @@ const ChatBubble = () => {
     });
 
     // Keep the script across route changes; no cleanup needed
+    // The loadScriptOnInteraction utility already cleans up event listeners
+    // after the script loads, so no memory leak occurs.
+    // The script itself should persist across route changes for chat continuity.
     // return cleanup;
   }, []);
 
