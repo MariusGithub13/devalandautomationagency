@@ -3,18 +3,37 @@
   <head>
     <meta charset="utf-8" />
     
-    <!-- Google Tag Manager - Deferred for better FCP/LCP -->
+    <!-- Google Tag Manager - Interaction-based loading for better mobile performance -->
     <script>
-      // Defer GTM loading until after page is interactive
-      window.addEventListener('load', function() {
-        setTimeout(function() {
+      (function() {
+        var gtmLoaded = false;
+        var events = ['scroll', 'touchstart', 'mousedown', 'keydown'];
+        
+        function loadGTM() {
+          if (gtmLoaded) return;
+          gtmLoaded = true;
+          
+          // Remove event listeners
+          events.forEach(function(event) {
+            window.removeEventListener(event, loadGTM);
+          });
+          
+          // Load GTM
           (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
           new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
           j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
           })(window,document,'script','dataLayer','GTM-PRXZ3797');
-        }, 1000); // Delay by 1 second after load
-      });
+        }
+        
+        // Add event listeners for user interaction
+        events.forEach(function(event) {
+          window.addEventListener(event, loadGTM, { passive: true, once: true });
+        });
+        
+        // Fallback timeout - load after 5 seconds if no interaction
+        setTimeout(loadGTM, 5000);
+      })();
     </script>
     <!-- End Google Tag Manager -->
     
@@ -248,46 +267,47 @@
       href="//gs-extension-embeds-final.vercel.app"
     />
 
-    <!-- Trustpilot widget script - load after idle for better performance -->
+    <!-- Trustpilot widget script - Interaction-based loading for better mobile performance -->
     <script>
-      // Load Trustpilot scripts only when browser is idle
-      if ('requestIdleCallback' in window) {
-        requestIdleCallback(function() {
-          var script1 = document.createElement('script');
-          script1.src = 'https://widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js';
-          script1.async = true;
-          document.body.appendChild(script1);
-        });
-      } else {
-        // Fallback for browsers without requestIdleCallback
-        setTimeout(function() {
-          var script1 = document.createElement('script');
-          script1.src = 'https://widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js';
-          script1.async = true;
-          document.body.appendChild(script1);
-        }, 2000);
-      }
-    </script>
-
-    <!-- Trustpilot JavaScript Integration - load after idle -->
-    <script>
-      window.addEventListener('load', function() {
-        if ('requestIdleCallback' in window) {
-          requestIdleCallback(function() {
-            (function(w,d,s,r,n){w.TrustpilotObject=n;w[n]=w[n]||function(){(w[n].q=w[n].q||[]).push(arguments)};
-              a=d.createElement(s);a.async=1;a.src=r;a.type='text/java'+s;f=d.getElementsByTagName(s)[0];
-              f.parentNode.insertBefore(a,f)})(window,document,'script', 'https://invitejs.trustpilot.com/tp.min.js', 'tp');
-            tp('register', 'e9BCOjPleCArlV92');
+      (function() {
+        var trustpilotLoaded = false;
+        var events = ['scroll', 'touchstart', 'mousedown'];
+        
+        function loadTrustpilot() {
+          if (trustpilotLoaded) return;
+          trustpilotLoaded = true;
+          
+          // Remove event listeners
+          events.forEach(function(event) {
+            window.removeEventListener(event, loadTrustpilot);
           });
-        } else {
-          setTimeout(function() {
-            (function(w,d,s,r,n){w.TrustpilotObject=n;w[n]=w[n]||function(){(w[n].q=w[n].q||[]).push(arguments)};
-              a=d.createElement(s);a.async=1;a.src=r;a.type='text/java'+s;f=d.getElementsByTagName(s)[0];
-              f.parentNode.insertBefore(a,f)})(window,document,'script', 'https://invitejs.trustpilot.com/tp.min.js', 'tp');
-            tp('register', 'e9BCOjPleCArlV92');
-          }, 2000);
+          
+          // Load Trustpilot widget script
+          var script1 = document.createElement('script');
+          script1.src = 'https://widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js';
+          script1.async = true;
+          document.body.appendChild(script1);
+          
+          // Load Trustpilot invite script
+          var script2 = document.createElement('script');
+          script2.src = 'https://invitejs.trustpilot.com/tp.min.js';
+          script2.async = true;
+          script2.onload = function() {
+            if (window.tp) {
+              window.tp('register', 'e9BCOjPleCArlV92');
+            }
+          };
+          document.body.appendChild(script2);
         }
-      });
+        
+        // Add event listeners for user interaction
+        events.forEach(function(event) {
+          window.addEventListener(event, loadTrustpilot, { passive: true, once: true });
+        });
+        
+        // Fallback timeout - load after 4 seconds if no interaction
+        setTimeout(loadTrustpilot, 4000);
+      })();
     </script>
 
     <!-- Critical minimal styles so first paint isn't ugly -->

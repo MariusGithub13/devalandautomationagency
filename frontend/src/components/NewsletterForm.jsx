@@ -26,7 +26,7 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
   // Fallback uses production key for devaland.com (this is intentional and secure)
   const RECAPTCHA_SITE_KEY = process.env.REACT_APP_RECAPTCHA_SITE_KEY || '6LcT-SssAAAAAB3jCBIRdqmXHH2bplWaSGXVqnlI';
 
-  // Load reCAPTCHA v3 script
+  // Load reCAPTCHA v3 script only on user interaction with form
   useEffect(() => {
     // Check if script is already loaded
     const existingScript = document.querySelector(`script[src*="recaptcha/api.js"]`);
@@ -35,15 +35,39 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
       return;
     }
 
-    const script = document.createElement('script');
-    script.src = `https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`;
-    script.async = true;
-    script.defer = true;
-    script.onload = () => setRecaptchaLoaded(true);
-    document.head.appendChild(script);
-
+    let loaded = false;
+    const events = ['focus', 'input'];
+    
+    const loadRecaptcha = () => {
+      if (loaded) return;
+      loaded = true;
+      
+      // Remove event listeners
+      events.forEach(event => {
+        document.removeEventListener(event, loadRecaptcha, { capture: true });
+      });
+      
+      const script = document.createElement('script');
+      script.src = `https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`;
+      script.async = true;
+      script.onload = () => {
+        setRecaptchaLoaded(true);
+        if (process.env.NODE_ENV === 'development') {
+          console.log('✅ reCAPTCHA loaded on newsletter form interaction');
+        }
+      };
+      document.head.appendChild(script);
+    };
+    
+    // Add event listeners
+    events.forEach(event => {
+      document.addEventListener(event, loadRecaptcha, { capture: true, once: true, passive: true });
+    });
+    
     return () => {
-      // Don't remove script as it may be used by other components
+      events.forEach(event => {
+        document.removeEventListener(event, loadRecaptcha, { capture: true });
+      });
     };
   }, [RECAPTCHA_SITE_KEY]);
 
