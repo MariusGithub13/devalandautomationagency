@@ -39,6 +39,7 @@ const ContactPage = () => {
   const [submissionTime] = useState(Date.now()); // Track when form loaded
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [recaptchaLoaded, setRecaptchaLoaded] = useState(false);
+  const [formInteracted, setFormInteracted] = useState(false); // Track if user interacted with form
   
   // reCAPTCHA v3 site key
   // Site keys are public by design and safe to embed in frontend code
@@ -46,20 +47,45 @@ const ContactPage = () => {
   // Fallback uses production key for devaland.com (this is intentional and secure)
   const RECAPTCHA_SITE_KEY = process.env.REACT_APP_RECAPTCHA_SITE_KEY || '6LcT-SssAAAAAB3jCBIRdqmXHH2bplWaSGXVqnlI';
 
-  // Load reCAPTCHA v3 script
+  // Load reCAPTCHA v3 script ONLY when user focuses on form (lazy load for performance)
   useEffect(() => {
+    // Only load reCAPTCHA after user starts interacting with form
+    if (!formInteracted) return;
+    
+    // Check if already loaded
+    if (recaptchaLoaded || document.querySelector('script[src*="recaptcha"]')) {
+      setRecaptchaLoaded(true);
+      return;
+    }
+
+    if (process.env.NODE_ENV === 'development') {
+      console.log('🔐 Loading reCAPTCHA (deferred until form interaction)...');
+    }
+
     const script = document.createElement('script');
     script.src = `https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`;
     script.async = true;
     script.defer = true;
-    script.onload = () => setRecaptchaLoaded(true);
+    script.onload = () => {
+      setRecaptchaLoaded(true);
+      if (process.env.NODE_ENV === 'development') {
+        console.log('✅ reCAPTCHA loaded successfully');
+      }
+    };
+    script.onerror = () => {
+      console.error('❌ Failed to load reCAPTCHA');
+    };
     document.head.appendChild(script);
 
     // Don't remove script on unmount - it may be used by other components
-    return () => {
-      // Cleanup if needed
-    };
-  }, [RECAPTCHA_SITE_KEY]);
+  }, [formInteracted, recaptchaLoaded, RECAPTCHA_SITE_KEY]);
+
+  // Handler to trigger reCAPTCHA loading on first form interaction
+  const handleFormFocus = () => {
+    if (!formInteracted) {
+      setFormInteracted(true);
+    }
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -312,7 +338,7 @@ const ContactPage = () => {
                   </p>
                 </CardHeader>
                 <CardContent>
-                  <form onSubmit={handleSubmit} className="space-y-6">
+                  <form onSubmit={handleSubmit} className="space-y-6" onFocus={handleFormFocus}>
                     <div className="grid md:grid-cols-2 gap-4">
                       <div>
                         <Label htmlFor="name" className="text-sm font-medium text-gray-700">
@@ -323,6 +349,7 @@ const ContactPage = () => {
                           name="name"
                           value={formData.name}
                           onChange={handleInputChange}
+                          onFocus={handleFormFocus}
                           placeholder="John Smith"
                           className="mt-1"
                           required
@@ -338,6 +365,7 @@ const ContactPage = () => {
                           type="email"
                           value={formData.email}
                           onChange={handleInputChange}
+                          onFocus={handleFormFocus}
                           placeholder="john@company.com"
                           className="mt-1"
                           required
@@ -355,6 +383,7 @@ const ContactPage = () => {
                           name="company"
                           value={formData.company}
                           onChange={handleInputChange}
+                          onFocus={handleFormFocus}
                           placeholder="Your Company Inc."
                           className="mt-1"
                           required
@@ -370,6 +399,7 @@ const ContactPage = () => {
                           type="tel"
                           value={formData.phone}
                           onChange={handleInputChange}
+                          onFocus={handleFormFocus}
                           placeholder="+1 (555) 123-4567"
                           className="mt-1"
                         />
