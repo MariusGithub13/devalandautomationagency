@@ -85,6 +85,7 @@
     "test:links:external": "node scripts/test-broken-links.js --external",
     "test:links:report": "node scripts/test-broken-links.js --output broken-links-report.json",
     "test:links:full": "node scripts/test-broken-links.js --external --output broken-links-full-report.json",
+    "test:lazy-loading": "node scripts/test-lazy-loading.js",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "npm run build",
