@@ -248,47 +248,8 @@
       href="//gs-extension-embeds-final.vercel.app"
     />
 
-    <!-- Trustpilot widget script - load after idle for better performance -->
-    <script>
-      // Load Trustpilot scripts only when browser is idle
-      if ('requestIdleCallback' in window) {
-        requestIdleCallback(function() {
-          var script1 = document.createElement('script');
-          script1.src = 'https://widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js';
-          script1.async = true;
-          document.body.appendChild(script1);
-        });
-      } else {
-        // Fallback for browsers without requestIdleCallback
-        setTimeout(function() {
-          var script1 = document.createElement('script');
-          script1.src = 'https://widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js';
-          script1.async = true;
-          document.body.appendChild(script1);
-        }, 2000);
-      }
-    </script>
-
-    <!-- Trustpilot JavaScript Integration - load after idle -->
-    <script>
-      window.addEventListener('load', function() {
-        if ('requestIdleCallback' in window) {
-          requestIdleCallback(function() {
-            (function(w,d,s,r,n){w.TrustpilotObject=n;w[n]=w[n]||function(){(w[n].q=w[n].q||[]).push(arguments)};
-              a=d.createElement(s);a.async=1;a.src=r;a.type='text/java'+s;f=d.getElementsByTagName(s)[0];
-              f.parentNode.insertBefore(a,f)})(window,document,'script', 'https://invitejs.trustpilot.com/tp.min.js', 'tp');
-            tp('register', 'e9BCOjPleCArlV92');
-          });
-        } else {
-          setTimeout(function() {
-            (function(w,d,s,r,n){w.TrustpilotObject=n;w[n]=w[n]||function(){(w[n].q=w[n].q||[]).push(arguments)};
-              a=d.createElement(s);a.async=1;a.src=r;a.type='text/java'+s;f=d.getElementsByTagName(s)[0];
-              f.parentNode.insertBefore(a,f)})(window,document,'script', 'https://invitejs.trustpilot.com/tp.min.js', 'tp');
-            tp('register', 'e9BCOjPleCArlV92');
-          }, 2000);
-        }
-      });
-    </script>
+    <!-- Trustpilot scripts now loaded via React component (DeferredTrustpilot.jsx) -->
+    <!-- This improves FCP and LCP by deferring until user interaction -->
 
     <!-- Critical minimal styles so first paint isn't ugly -->
     <style>

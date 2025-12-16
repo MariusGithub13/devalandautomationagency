@@ -30,6 +30,7 @@ const CookiesPage = lazy(() => import("./pages/CookiesPage"));
 const GDPRPage = lazy(() => import("./pages/GDPRPage"));
 const KlaviyoCaseStudies = lazy(() => import("./pages/KlaviyoCaseStudies"));
 const ChatBubble = lazy(() => import("./components/ChatBubble"));
+const DeferredTrustpilot = lazy(() => import("./components/DeferredTrustpilot"));
 
 import "./App.css";
 
@@ -75,9 +76,14 @@ function App() {
         <CookieConsent />
         <Toaster position="bottom-right" />
 
-        {/* ✅ Lazy-loaded chat bubble */}
+        {/* ✅ Lazy-loaded chat bubble - defers until user interaction or 6s */}
         <Suspense fallback={null}>
           <ChatBubble />
+        </Suspense>
+
+        {/* ✅ Lazy-loaded Trustpilot - defers until user interaction or 5s */}
+        <Suspense fallback={null}>
+          <DeferredTrustpilot />
         </Suspense>
       </BrowserRouter>
     </div>
