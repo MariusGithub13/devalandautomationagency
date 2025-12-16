@@ -1,8 +1,10 @@
 # Copilot / AI Agent Instructions
 
-**Last updated**: December 12, 2025
+**Last updated**: December 16, 2024
 
 This mono-repo contains: FastAPI backend, React SPA frontend (CRA + craco), and Netlify serverless functions.
+
+**📖 Additional Context**: See `AGENTS.md` in the repository root for comprehensive guidelines on git workflow, code review standards, testing procedures, API conventions, and troubleshooting.
 
 ## 🚀 Quick Start (30 seconds)
 
@@ -483,9 +485,82 @@ For detailed information on specific topics:
 - **`TRUSTPILOT_IMPLEMENTATION_COMPLETE.md`** — Widget integration
 - **`POPULAR_ARTICLES_CAROUSEL.md`** — Embla carousel implementation
 
+## 🔄 Git Workflow & Standards
+
+### Branch Naming Conventions
+- `feature/feature-name` — New features
+- `fix/bug-description` — Bug fixes
+- `hotfix/critical-issue` — Production hotfixes
+- `refactor/component-name` — Code refactoring
+- `docs/documentation-update` — Documentation changes
+- `test/test-description` — Test additions
+- `perf/performance-improvement` — Performance optimizations
+- `copilot/task-description` — Copilot-created branches
+
+### Commit Message Standards
+Follow conventional commits format:
+```
+<type>(<scope>): <subject>
+```
+
+**Types**: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `chore`, `ci`
+
+**Examples**:
+- `feat(blog): add popular articles carousel`
+- `fix(contact): resolve email validation error`
+- `docs(readme): update environment setup instructions`
+- `perf(images): implement lazy loading for hero images`
+
+**Rules**:
+- Keep subject under 72 characters
+- Use present tense ("add" not "added")
+- Use imperative mood ("change" not "changes")
+- Reference issues when relevant: `fixes #123`
+
+### Code Review Guidelines
+Every PR must include:
+- Clear title following commit conventions
+- Description with what changed, why, and how to test
+- Checklist with completed items marked
+- Screenshots for UI changes (mandatory)
+- Related issues linked
+- Evidence of testing (manual or CI)
+
+## 🧪 Testing Infrastructure
+
+### Available Tests
+1. **Broken Link Testing** (GitHub Actions):
+   - `npm run test:links` — Internal links only
+   - `npm run test:links:external` — Includes external links
+   - `npm run test:links:report` — JSON report
+   - Runs on PRs and weekly schedule
+
+2. **Build Test**: `npm run build` — Must succeed before merging
+
+### Testing Checklist
+Before submitting PR:
+- [ ] `npm run build` succeeds
+- [ ] `npm run test:links` passes
+- [ ] No console errors in browser
+- [ ] Forms work correctly
+- [ ] Responsive design tested
+- [ ] Images have proper dimensions
+- [ ] SEO components included
+- [ ] Manual testing completed
+
+### CI/CD Workflows
+**Broken Link Testing** (`.github/workflows/broken-link-testing.yml`):
+- Tests internal links on every PR
+- Tests external links weekly (Mondays 9 AM UTC)
+- Creates issues for broken links automatically
+- Uploads reports as artifacts
+
 ## When Making Changes
 
 - Edit files minimally; keep public APIs stable (don't rename routes without updating frontend/backend)
 - Add new env keys to `.env.example` files and document in PR
 - Remember THREE-PLACE RULE for new pages
 - Run build/test commands locally before proposing changes
+- Follow git workflow and commit message standards
+- Include all PR checklist items
+- Test thoroughly before submitting
