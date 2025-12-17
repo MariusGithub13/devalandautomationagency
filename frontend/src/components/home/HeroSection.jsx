@@ -60,7 +60,6 @@ const HeroSection = ({ companyData, heroImages }) => {
      INLINE CALENDLY MODAL
   ============================ */
   const [showCalendly, setShowCalendly] = useState(false);
-  const modalRef = useRef(null);
 
   const closeCalendly = () => setShowCalendly(false);
 
@@ -80,11 +79,11 @@ const HeroSection = ({ companyData, heroImages }) => {
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
-    // ESC to close
+    // ESC to close (attach to window, capture)
     const onKeyDown = (e) => {
       if (e.key === "Escape") closeCalendly();
     };
-    document.addEventListener("keydown", onKeyDown);
+    window.addEventListener("keydown", onKeyDown, true);
 
     // Track open (GTM)
     if (window.dataLayer && Array.isArray(window.dataLayer)) {
@@ -95,14 +94,9 @@ const HeroSection = ({ companyData, heroImages }) => {
       });
     }
 
-    // Focus the modal container for accessibility
-    setTimeout(() => {
-      if (modalRef.current) modalRef.current.focus();
-    }, 0);
-
     return () => {
       document.body.style.overflow = prevOverflow;
-      document.removeEventListener("keydown", onKeyDown);
+      window.removeEventListener("keydown", onKeyDown, true);
     };
   }, [showCalendly, ctaColor]);
 
@@ -193,7 +187,7 @@ const HeroSection = ({ companyData, heroImages }) => {
               </ul>
             </div>
 
-            {/* RIGHT: Visual Card (restored) */}
+            {/* RIGHT: Visual Card */}
             <div className="hidden lg:flex justify-center">
               <div className="relative bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6 shadow-2xl w-full max-w-md">
                 <div className="absolute -top-4 -left-4 bg-blue-500 text-white text-sm px-4 py-1 rounded-full shadow">
@@ -229,35 +223,33 @@ const HeroSection = ({ companyData, heroImages }) => {
       {/* CALENDLY MODAL */}
       {showCalendly && (
         <div
-          className="fixed inset-0 z-[9999] bg-black/70 flex items-center justify-center px-4"
+          className="fixed inset-0 z-[9999] bg-black/70"
+          aria-modal="true"
+          role="dialog"
           onMouseDown={(e) => {
             // click outside to close
             if (e.target === e.currentTarget) closeCalendly();
           }}
-          aria-modal="true"
-          role="dialog"
         >
-          <div
-            ref={modalRef}
-            tabIndex={-1}
-            className="relative w-full max-w-3xl bg-white rounded-xl shadow-2xl overflow-hidden"
+          {/* Close button is OUTSIDE the embed container so it cannot be covered by the iframe */}
+          <button
+            type="button"
+            onClick={closeCalendly}
+            className="fixed top-4 right-4 z-[10000] inline-flex items-center justify-center h-11 w-11 rounded-full bg-white text-gray-800 hover:text-black shadow-xl"
+            aria-label="Close"
           >
-            {/* Close button (visible + clickable) */}
-            <button
-              type="button"
-              onClick={closeCalendly}
-              className="absolute top-3 right-3 z-10 inline-flex items-center justify-center h-10 w-10 rounded-full bg-white/90 hover:bg-white text-gray-700 hover:text-black shadow"
-              aria-label="Close"
-            >
-              <X size={20} />
-            </button>
+            <X size={22} />
+          </button>
 
-            {/* Calendly embed */}
-            <div
-              className="calendly-inline-widget"
-              data-url={companyData?.calendly}
-              style={{ minWidth: "320px", height: "700px" }}
-            />
+          {/* Modal container */}
+          <div className="fixed inset-0 z-[9999] flex items-center justify-center px-4 py-8 pointer-events-none">
+            <div className="w-full max-w-3xl bg-white rounded-xl shadow-2xl overflow-hidden pointer-events-auto">
+              <div
+                className="calendly-inline-widget"
+                data-url={companyData?.calendly}
+                style={{ minWidth: "320px", height: "700px" }}
+              />
+            </div>
           </div>
         </div>
       )}
