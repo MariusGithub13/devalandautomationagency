@@ -34,12 +34,24 @@ export const companyData = {
 };
 
 export const heroImages = {
+  // Desktop hero (unchanged)
   primary: "/images/optimized/hero/hero-primary.webp",
   primaryFallback: "/images/optimized/hero/hero-primary.jpg",
-  primarySrcSet: "/images/optimized/hero/hero-primary-400.webp 400w, /images/optimized/hero/hero-primary-800.webp 800w, /images/optimized/hero/hero-primary-1200.webp 1200w",
+
+  // ✅ Mobile hero (NEW – used only on small screens)
+  mobile: "/images/optimized/hero/hero-primary-400.webp",
+
+  // Responsive srcSet (unchanged)
+  primarySrcSet:
+    "/images/optimized/hero/hero-primary-400.webp 400w, " +
+    "/images/optimized/hero/hero-primary-800.webp 800w, " +
+    "/images/optimized/hero/hero-primary-1200.webp 1200w",
+
+  // Other images (unchanged)
   secondary: "/images/marius-dracula.webp",
   transformation: "/images/optimized/services/rpa.webp" // Business growth analytics
 };
+
 
 export const serviceImages = {
   rpa: "/images/optimized/services/rpa.webp", // Business analytics dashboard
