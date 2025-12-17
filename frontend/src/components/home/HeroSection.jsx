@@ -26,7 +26,7 @@ const HeroSection = ({ companyData, heroImages }) => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 py-24">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 py-16 md:py-24">
         <div className="max-w-3xl">
           {/* Trust Badges */}
           <div className="flex flex-wrap gap-2 mb-6">
@@ -36,19 +36,20 @@ const HeroSection = ({ companyData, heroImages }) => {
           </div>
 
           {/* Headline */}
-          <h1 className="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-6">
-            Turn Automation Into Your <span className="text-blue-400">#1 Revenue Channel</span>
+          <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold text-white leading-tight mb-6">
+            Turn Automation Into Your{" "}
+            <span className="text-blue-400">#1 Revenue Channel</span>
           </h1>
 
           {/* Subheadline */}
-          <p className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl">
+          <p className="text-base sm:text-lg md:text-xl text-white/90 mb-8 max-w-2xl">
             We help Shopify brands and service businesses increase revenue and cut
             costs using Klaviyo email automation and AI-powered Voice Agents —
             without hiring more staff.
           </p>
 
           {/* CTAs */}
-          <div className="flex flex-col sm:flex-row gap-4 mb-10">
+          <div className="flex flex-col sm:flex-row gap-4 mb-8">
             <Button asChild size="lg" className="px-8 py-6 text-base">
               <a
                 href={companyData?.calendly}
@@ -66,14 +67,18 @@ const HeroSection = ({ companyData, heroImages }) => {
               variant="outline"
               className="px-8 py-6 text-base text-white border-white/50 hover:bg-white/10"
             >
-              <a href="/voice-ai">
-                See Live Voice AI Demo (24/7)
-              </a>
+              <a href="/voice-ai">See Live Voice AI Demo</a>
             </Button>
           </div>
 
+          {/* Micro-trust line */}
+          <p className="text-white/70 text-sm mb-6">
+            Trusted by Shopify & service businesses across the US, UK, Canada &
+            EU
+          </p>
+
           {/* Proof Points */}
-          <ul className="flex flex-wrap gap-x-8 gap-y-3 text-white/90 text-sm md:text-base">
+          <ul className="flex flex-wrap gap-x-6 gap-y-3 text-white/90 text-sm md:text-base">
             <li>• 45–85% Revenue Growth</li>
             <li>• 50,000+ Hours Automated</li>
             <li>• Proven with 50+ Shopify & DTC Clients</li>
