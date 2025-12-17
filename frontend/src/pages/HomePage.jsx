@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle, Award, Sparkles, Zap, Brain, Mail, Rocket, Settings, Bot, Briefcase, TrendingUp, ExternalLink, Target, BarChart3, Users, Clock } from 'lucide-react';
 import { Button } from '../components/ui/button';
@@ -10,6 +10,8 @@ import InternalLinkBlock from '../components/InternalLinkBlock';
 // TrustpilotWidget removed - using consistent footer-style widget
 import { companyData, heroImages, services, caseStudies, awards } from '../data/mock';
 import robotLadyImage from '../assets/Devaland-robot-lady.jpeg';
+import HeroSection from '../components/home/HeroSection';
+
 
 const HomePage = () => {
   // Optimized service icon and related services mapping
@@ -86,87 +88,12 @@ const HomePage = () => {
         schema={homeSchema}
       />
       
-      <div className="pt-16">
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Background */}
-        <div className="absolute inset-0 z-0">
-          <img 
-            src={heroImages.primary}
-            srcSet={heroImages.primarySrcSet}
-            sizes="100vw"
-            alt="Digital Transformation"
-            width="1200"
-            height="593"
-            className="w-full h-full object-cover"
-            loading="eager"
-            fetchpriority="high"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-gray-900/90 via-gray-900/70 to-blue-900/80"></div>
-        </div>
+<div className="pt-16">
+<HeroSection
+  companyData={companyData}
+  heroImages={heroImages}
+/>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="animate-fade-in-up">
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-display text-white mb-6 leading-tight">
-                {companyData.tagline}
-              </h1>
-              <p className="text-xl md:text-2xl text-gray-200 mb-8 leading-relaxed max-w-2xl">
-                {companyData.description}
-              </p>
-              
-              {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 mb-12">
-                <Button 
-                  asChild
-                  size="lg"
-                  className="btn-accent text-white font-semibold px-8 py-4 text-lg rounded-lg hover-lift animate-pulse-glow"
-                >
-                  <a href={companyData.calendly} target="_blank" rel="noopener noreferrer" className="inline-flex items-center space-x-2">
-                    <span>Book Free Automation Audit</span>
-                    <ArrowRight size={20} />
-                  </a>
-                </Button>
-                <Button 
-                  asChild
-                  variant="outline"
-                  size="lg"
-                  className="glass text-white border-white/30 font-semibold px-8 py-4 text-lg rounded-lg hover:bg-white/10"
-                >
-                  <Link to="/case-studies">View Success Stories</Link>
-                </Button>
-              </div>
-            </div>
-
-            {/* Stats Card */}
-            <div className="animate-fade-in-up delay-300">
-              <Card className="glass border-white/20 p-8">
-                <CardContent className="p-0">
-                  <h3 className="text-2xl font-bold text-white mb-6">Proven Results</h3>
-                  <div className="grid grid-cols-2 gap-6">
-                    <div className="text-center">
-                      <div className="text-3xl font-bold text-yellow-400 mb-2">{companyData.stats.hoursAutomated}</div>
-                      <div className="text-white/80 font-medium">Hours Automated</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-3xl font-bold text-green-400 mb-2">{companyData.stats.clientsSaved}</div>
-                      <div className="text-white/80 font-medium">Client Savings</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-3xl font-bold text-blue-400 mb-2">{companyData.stats.projectsDelivered}</div>
-                      <div className="text-white/80 font-medium">Projects Delivered</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-3xl font-bold text-orange-400 mb-2">{companyData.stats.yearsExperience}</div>
-                      <div className="text-white/80 font-medium">Years Experience</div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Industry Recognition Section */}
       <section className="section-padding bg-gradient-primary text-white">
