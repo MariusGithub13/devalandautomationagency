@@ -1,10 +1,60 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
 
+const CTA_COLOR_KEY = "devaland_cta_color_v1";
+
 const HeroSection = ({ companyData, heroImages }) => {
   if (!heroImages?.primary) return null;
+
+  /* ============================
+     CTA COLOR A/B TEST
+  ============================ */
+  const [ctaColor, setCtaColor] = useState("dark");
+
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem(CTA_COLOR_KEY);
+      if (stored === "dark" || stored === "accent") {
+        setCtaColor(stored);
+      } else {
+        const v = Math.random() < 0.5 ? "dark" : "accent";
+        localStorage.setItem(CTA_COLOR_KEY, v);
+        setCtaColor(v);
+      }
+    } catch {
+      // fallback to dark
+    }
+  }, []);
+
+  /* ============================
+     SCROLL MICRO-ANIMATION
+  ============================ */
+  const ctaRef = useRef(null);
+  const [ctaVisible, setCtaVisible] = useState(false);
+
+  useEffect(() => {
+    if (!ctaRef.current) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setCtaVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.25 }
+    );
+
+    observer.observe(ctaRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  const primaryCtaClass =
+    ctaColor === "accent"
+      ? "bg-blue-600 hover:bg-blue-700 text-white"
+      : "bg-black hover:bg-black/90 text-white";
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
@@ -35,7 +85,7 @@ const HeroSection = ({ companyData, heroImages }) => {
             <Badge variant="secondary">ROI-Driven Automation</Badge>
           </div>
 
-          {/* Headline – locked winning variant */}
+          {/* Headline */}
           <h1 className="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-6">
             Scale Revenue Without Hiring More People Using{" "}
             <span className="text-blue-400">Automation</span>
@@ -49,21 +99,30 @@ const HeroSection = ({ companyData, heroImages }) => {
           </p>
 
           {/* CTAs */}
-          <div className="flex flex-col sm:flex-row gap-4 mb-4 w-full">
-            {/* Primary CTA – always visible */}
-            <Button asChild size="lg" className="px-8 py-6 text-base w-full sm:w-auto">
+          <div
+            ref={ctaRef}
+            className={`flex flex-col sm:flex-row gap-4 mb-4 w-full transition-all duration-700 ease-out ${
+              ctaVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            }`}
+          >
+            {/* Primary CTA – mobile only CTA */}
+            <Button
+              asChild
+              size="lg"
+              className={`px-8 py-6 text-base w-full sm:w-auto shadow-lg hover:shadow-xl transition-all ${primaryCtaClass}`}
+            >
               <a
                 href={companyData?.calendly}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center w-full"
               >
-                Book a Free Revenue &amp; Automation Audit
+                Get a Free Revenue &amp; Automation Audit
                 <ArrowRight className="ml-2 w-5 h-5" />
               </a>
             </Button>
 
-            {/* Secondary CTA – desktop/tablet only */}
+            {/* Secondary CTA – desktop only */}
             <Button
               asChild
               size="lg"
