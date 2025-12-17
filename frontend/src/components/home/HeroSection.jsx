@@ -19,7 +19,7 @@ const HeroSection = ({ companyData, heroImages }) => {
           height={600}
           className="w-full h-full object-cover object-center"
           loading="eager"
-          fetchPriority="high"
+          fetchpriority="high"
           draggable={false}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-gray-900/90 via-gray-900/70 to-blue-900/80" />
