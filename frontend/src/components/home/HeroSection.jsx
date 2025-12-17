@@ -16,8 +16,6 @@ const CTA_COLORS = {
 };
 
 const HeroSection = ({ companyData, heroImages }) => {
-  if (!heroImages?.primary) return null;
-
   const [headlineVariant, setHeadlineVariant] = useState("A");
   const [ctaVariant, setCtaVariant] = useState("A");
   const [showCalendly, setShowCalendly] = useState(false);
@@ -58,44 +56,55 @@ const HeroSection = ({ companyData, heroImages }) => {
 
   // Scroll micro-animation
   useEffect(() => {
+    const el = document.getElementById("hero");
+    if (!el) return;
+
     const observer = new IntersectionObserver(
-      ([entry]) => entry.isIntersecting && setVisible(true),
+      ([entry]) => {
+        if (entry.isIntersecting) setVisible(true);
+      },
       { threshold: 0.3 }
     );
-    const el = document.getElementById("hero");
-    if (el) observer.observe(el);
+
+    observer.observe(el);
     return () => observer.disconnect();
   }, []);
 
   // Close Calendly with ESC
   useEffect(() => {
     if (!showCalendly) return;
-    const esc = (e) => e.key === "Escape" && setShowCalendly(false);
+    const esc = (e) => {
+      if (e.key === "Escape") setShowCalendly(false);
+    };
     document.addEventListener("keydown", esc);
     return () => document.removeEventListener("keydown", esc);
   }, [showCalendly]);
 
   const heroSrc = useMemo(() => {
-    return isMobile ? heroImages.mobile : heroImages.primary;
+    if (!heroImages) return "";
+    return isMobile ? heroImages.mobile || heroImages.primary : heroImages.primary;
   }, [isMobile, heroImages]);
 
+  const hasHero = Boolean(heroImages?.primary);
+  const calendlyUrl = companyData?.calendly;
+
+  // IMPORTANT: conditional return AFTER hooks (Rules of Hooks)
+  if (!hasHero) return null;
+
   return (
-    <section
-      id="hero"
-      className="relative min-h-screen flex items-center overflow-hidden"
-    >
+    <section id="hero" className="relative min-h-screen flex items-center overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 z-0">
         <img
           src={heroSrc}
-          srcSet={heroImages.primarySrcSet}
+          srcSet={heroImages?.primarySrcSet}
           sizes="(max-width: 360px) 100vw, (max-width: 768px) 90vw, 1200px"
           alt="Marketing Automation & AI Voice Agents"
           width="1200"
           height="600"
           className="w-full h-full object-cover object-center"
           loading="eager"
-          fetchpriority="high"
+          fetchPriority="high"
           decoding="async"
           draggable={false}
         />
@@ -122,9 +131,8 @@ const HeroSection = ({ companyData, heroImages }) => {
             </h1>
 
             <p className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl">
-              We help Shopify brands and service businesses increase revenue and
-              cut costs using Klaviyo automation and AI Voice Agents — without
-              hiring more staff.
+              We help Shopify brands and service businesses increase revenue and cut costs using
+              Klaviyo automation and AI Voice Agents — without hiring more staff.
             </p>
 
             {/* CTA */}
@@ -132,7 +140,9 @@ const HeroSection = ({ companyData, heroImages }) => {
               <Button
                 size="lg"
                 className={`px-8 py-6 text-base text-white ${CTA_COLORS[ctaVariant]}`}
-                onClick={() => setShowCalendly(true)}
+                onClick={() => {
+                  if (calendlyUrl) setShowCalendly(true);
+                }}
               >
                 Book a Free Revenue Audit
                 <ArrowRight className="ml-2 w-5 h-5" />
@@ -169,7 +179,7 @@ const HeroSection = ({ companyData, heroImages }) => {
       </div>
 
       {/* Calendly Modal */}
-      {showCalendly && (
+      {showCalendly && calendlyUrl && (
         <div
           className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center"
           onClick={() => setShowCalendly(false)}
@@ -182,11 +192,12 @@ const HeroSection = ({ companyData, heroImages }) => {
               onClick={() => setShowCalendly(false)}
               className="absolute top-3 right-3 z-10 text-black text-xl font-bold"
               aria-label="Close"
+              type="button"
             >
               ×
             </button>
             <iframe
-              src={companyData.calendly}
+              src={calendlyUrl}
               title="Calendly"
               className="w-full h-full border-0"
               loading="lazy"
