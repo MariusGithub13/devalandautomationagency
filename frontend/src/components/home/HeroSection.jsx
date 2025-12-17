@@ -107,15 +107,23 @@ const HeroSection = ({ companyData, heroImages }) => {
         {/* Background */}
         <div className="absolute inset-0 z-0">
           <img
-            src={heroImages.primary}
-            srcSet={heroImages.primarySrcSet}
-            sizes="100vw"
+            /* ✅ Mobile LCP optimization: use heroImages.mobile if present */
+            src={heroImages?.mobile || heroImages.primary}
+            /* ✅ Mobile-first srcSet (safe even if mobile is missing) */
+            srcSet={
+              heroImages?.mobile
+                ? `${heroImages.mobile} 720w, ${heroImages.primary} 1200w`
+                : heroImages.primarySrcSet
+            }
+            /* ✅ Proper sizes so mobile doesn't download 1200px unnecessarily */
+            sizes="(max-width: 768px) 100vw, 1200px"
             alt="Marketing Automation & AI Voice Agents"
             width={1200}
             height={600}
             className="w-full h-full object-cover object-center"
             loading="eager"
             fetchpriority="high"
+            decoding="async"
             draggable={false}
           />
           <div className="absolute inset-0 bg-gradient-to-r from-gray-900/90 via-gray-900/70 to-blue-900/80" />
@@ -227,11 +235,10 @@ const HeroSection = ({ companyData, heroImages }) => {
           aria-modal="true"
           role="dialog"
           onMouseDown={(e) => {
-            // click outside to close
             if (e.target === e.currentTarget) closeCalendly();
           }}
         >
-          {/* Close button is OUTSIDE the embed container so it cannot be covered by the iframe */}
+          {/* Close button (always visible, above iframe) */}
           <button
             type="button"
             onClick={closeCalendly}
@@ -241,7 +248,6 @@ const HeroSection = ({ companyData, heroImages }) => {
             <X size={22} />
           </button>
 
-          {/* Modal container */}
           <div className="fixed inset-0 z-[9999] flex items-center justify-center px-4 py-8 pointer-events-none">
             <div className="w-full max-w-3xl bg-white rounded-xl shadow-2xl overflow-hidden pointer-events-auto">
               <div
