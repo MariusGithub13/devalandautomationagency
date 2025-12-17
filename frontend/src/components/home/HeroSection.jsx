@@ -27,63 +27,95 @@ const HeroSection = ({ companyData, heroImages }) => {
 
       {/* Content */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 py-24">
-        <div className="max-w-3xl">
-          {/* Trust Badges */}
-          <div className="flex flex-wrap gap-2 mb-6">
-            <Badge variant="secondary">Certified Klaviyo Partner</Badge>
-            <Badge variant="secondary">50+ Clients</Badge>
-            <Badge variant="secondary">ROI-Driven Automation</Badge>
-          </div>
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          {/* LEFT: Copy */}
+          <div className="max-w-3xl">
+            {/* Trust Badges */}
+            <div className="flex flex-wrap gap-2 mb-6">
+              <Badge variant="secondary">Certified Klaviyo Partner</Badge>
+              <Badge variant="secondary">50+ Clients</Badge>
+              <Badge variant="secondary">ROI-Driven Automation</Badge>
+            </div>
 
-          {/* Headline */}
-          <h1 className="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-6">
-            Scale Revenue Without Hiring More People Using{" "}
-            <span className="text-blue-400">Automation</span>
-          </h1>
+            {/* Headline (LOCKED WINNER) */}
+            <h1 className="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-6">
+              Scale Revenue Without Hiring More People Using{" "}
+              <span className="text-blue-400">Automation</span>
+            </h1>
 
-          {/* Subheadline */}
-          <p className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl">
-            We help Shopify brands and service businesses increase revenue and cut
-            costs using Klaviyo email automation and AI-powered Voice Agents —
-            without hiring more staff.
-          </p>
+            {/* Subheadline */}
+            <p className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl">
+              We help Shopify brands and service businesses increase revenue and
+              cut costs using Klaviyo email automation and AI-powered Voice
+              Agents — without hiring more staff.
+            </p>
 
-          {/* CTAs */}
-          <div className="flex flex-col sm:flex-row gap-4 mb-4">
-            <Button asChild size="lg" className="px-8 py-6 text-base">
-              <a
-                href={companyData?.calendly}
-                target="_blank"
-                rel="noopener noreferrer"
+            {/* CTAs as Dynamic Cards */}
+            <div className="flex flex-col sm:flex-row gap-4 mb-2">
+              <Button
+                asChild
+                size="lg"
+                className="px-8 py-6 text-base bg-black text-white hover:bg-black/90 shadow-lg hover:shadow-xl transition-all hover:-translate-y-0.5"
               >
-                Book a Free Revenue & Automation Audit
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </a>
-            </Button>
+                <a
+                  href={companyData?.calendly}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Get a Free Revenue & Automation Audit
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </a>
+              </Button>
 
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="px-8 py-6 text-base text-white border-white/50 hover:bg-white/10"
-            >
-              <a href="/voice-ai">See Live Voice AI Demo (24/7)</a>
-            </Button>
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="px-8 py-6 text-base text-white border-white/40 backdrop-blur-md hover:bg-white/10 shadow-md hover:shadow-lg transition-all hover:-translate-y-0.5"
+              >
+                <a href="/voice-ai">See Live Voice AI Demo (24/7)</a>
+              </Button>
+            </div>
+
+            {/* Micro Risk Reducer */}
+            <p className="text-sm text-white/70 mb-8">
+              No obligation · Free strategy call · Takes 15 minutes
+            </p>
+
+            {/* Social Proof */}
+            <p className="text-sm md:text-base text-white/70 mb-6">
+              Used by Shopify brands doing{" "}
+              <span className="font-semibold text-white">$1M–$50M/year</span>{" "}
+              across the US, UK & EU
+            </p>
+
+            {/* Proof Points */}
+            <ul className="flex flex-wrap gap-x-8 gap-y-3 text-white/90 text-sm md:text-base">
+              <li>• 45–85% Revenue Growth</li>
+              <li>• 50,000+ Hours Automated</li>
+              <li>• Proven with 50+ Shopify & DTC Clients</li>
+            </ul>
           </div>
 
-          {/* NEW: Social Proof Line */}
-          <p className="text-sm md:text-base text-white/70 mb-8">
-            Used by Shopify brands doing{" "}
-            <span className="font-semibold text-white">$1M–$50M/year</span> across
-            the US, UK & EU
-          </p>
-
-          {/* Proof Points */}
-          <ul className="flex flex-wrap gap-x-8 gap-y-3 text-white/90 text-sm md:text-base">
-            <li>• 45–85% Revenue Growth</li>
-            <li>• 50,000+ Hours Automated</li>
-            <li>• Proven with 50+ Shopify & DTC Clients</li>
-          </ul>
+          {/* RIGHT: Visual Card (Desktop only) */}
+          <div className="hidden lg:flex justify-center">
+            <div className="relative bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6 shadow-2xl w-full max-w-md">
+              <div className="absolute -top-4 -left-4 bg-blue-500 text-white text-sm px-4 py-1 rounded-full shadow">
+                AI-Powered
+              </div>
+              <h3 className="text-white text-xl font-semibold mb-2">
+                24/7 Revenue Automation
+              </h3>
+              <p className="text-white/80 text-sm mb-4">
+                Email, SMS & Voice AI working together to capture, convert and
+                retain customers — automatically.
+              </p>
+              <div className="flex justify-between text-sm text-white/70">
+                <span>Always-on</span>
+                <span>Scales with you</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
