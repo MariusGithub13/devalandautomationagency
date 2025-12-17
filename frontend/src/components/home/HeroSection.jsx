@@ -6,12 +6,14 @@ import { Badge } from "../ui/badge";
 const HeroSection = ({ companyData, heroImages }) => {
   if (!heroImages?.primary) return null;
 
-  // ---------- Headline A/B Test (copy only) ----------
+  // ---------- Headline A/B/C Test (copy only) ----------
   const headlineVariant =
     typeof window !== "undefined"
       ? localStorage.getItem("hero_headline_variant") ||
         (() => {
-          const v = Math.random() < 0.5 ? "A" : "B";
+          // A/B/C split: 34/33/33 (close enough, deterministic per user)
+          const r = Math.random();
+          const v = r < 0.34 ? "A" : r < 0.67 ? "B" : "C";
           localStorage.setItem("hero_headline_variant", v);
           return v;
         })()
@@ -24,6 +26,25 @@ const HeroSection = ({ companyData, heroImages }) => {
       variant: headlineVariant,
     });
   }
+
+  const headline =
+    headlineVariant === "A" ? (
+      <>
+        Turn Automation Into Your{" "}
+        <span className="text-blue-400">#1 Revenue Channel</span>
+      </>
+    ) : headlineVariant === "B" ? (
+      <>
+        Scale Revenue Without Hiring More People Using{" "}
+        <span className="text-blue-400">Automation</span>
+      </>
+    ) : (
+      // Variant C (higher-risk, higher-reward)
+      <>
+        Add <span className="text-blue-400">10–30%</span> More Revenue in{" "}
+        <span className="text-blue-400">90 Days</span> with Automation
+      </>
+    );
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
@@ -57,17 +78,7 @@ const HeroSection = ({ companyData, heroImages }) => {
 
           {/* Headline */}
           <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold text-white leading-tight mb-6">
-            {headlineVariant === "A" ? (
-              <>
-                Turn Automation Into Your{" "}
-                <span className="text-blue-400">#1 Revenue Channel</span>
-              </>
-            ) : (
-              <>
-                Scale Revenue Without Hiring More People Using{" "}
-                <span className="text-blue-400">Automation</span>
-              </>
-            )}
+            {headline}
           </h1>
 
           {/* Subheadline */}
