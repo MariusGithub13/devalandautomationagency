@@ -2,396 +2,62 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    
 
-    
-    <link
-      rel="icon"
-      href="https://customer-assets.emergentagent.com/job_process-genius-5/artifacts/kau0y3tw_Devaland-Logo.jpg"
-    />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#1e40af" />
+    <meta name="theme-color" content="#0f172a" />
 
-    <!-- DNS Prefetch for third-party domains -->
-    <link rel="dns-prefetch" href="https://customer-assets.emergentagent.com" />
-    <link rel="dns-prefetch" href="https://widgets.leadconnectorhq.com" />
-    <link rel="dns-prefetch" href="https://widget.trustpilot.com" />
-    <link rel="dns-prefetch" href="https://api.trustpilot.com" />
-    <link rel="dns-prefetch" href="https://www.google.com" />
-    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-
-    <!-- Primary Meta Tags -->
     <title>Devaland Automation Agency</title>
     <meta
-      name="title"
-      content="Devaland - Enterprise Automation & Klaviyo Email Marketing Agency"
-    />
-    <meta
       name="description"
-      content="Leading automation agency specializing in RPA, workflow automation, and Klaviyo email marketing for Shopify brands. Transform your operations with intelligent automation solutions."
-    />
-    <meta
-      name="keywords"
-      content="automation agency, RPA development, Klaviyo email marketing, Shopify email automation, enterprise automation, workflow automation, business process automation"
-    />
-    <meta name="robots" content="index, follow" />
-    <meta name="language" content="English" />
-    <meta name="author" content="Devaland Marketing S.R.L." />
-    <link rel="canonical" href="https://devaland.com" />
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://devaland.com/" />
-    <meta
-      property="og:title"
-      content="Devaland - Enterprise Automation & Klaviyo Email Marketing Agency"
-    />
-    <meta
-      property="og:description"
-      content="Leading automation agency specializing in RPA, workflow automation, and Klaviyo email marketing for Shopify brands. Transform your operations with intelligent automation solutions."
-    />
-    <meta
-      property="og:image"
-      content="https://customer-assets.emergentagent.com/job_process-genius-5/artifacts/kau0y3tw_Devaland-Logo.jpg"
-    />
-    <meta property="og:site_name" content="Devaland" />
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://devaland.com/" />
-    <meta
-      property="twitter:title"
-      content="Devaland - Enterprise Automation & Klaviyo Email Marketing Agency"
-    />
-    <meta
-      property="twitter:description"
-      content="Leading automation agency specializing in RPA, workflow automation, and Klaviyo email marketing for Shopify brands. Transform your operations with intelligent automation solutions."
-    />
-    <meta
-      property="twitter:image"
-      content="https://customer-assets.emergentagent.com/job_process-genius-5/artifacts/kau0y3tw_Devaland-Logo.jpg"
+      content="Leading automation agency specializing in AI automation, RPA, and Klaviyo email marketing for Shopify and service businesses."
     />
 
-    <!-- Schema.org / Structured data -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Devaland Marketing S.R.L.",
-        "alternateName": "Devaland",
-        "url": "https://devaland.com",
-        "logo": "https://customer-assets.emergentagent.com/job_process-genius-5/artifacts/kau0y3tw_Devaland-Logo.jpg",
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "telephone": "+40-721-269-312",
-          "contactType": "customer service",
-          "availableLanguage": ["English", "Romanian"]
-        },
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Sântandrei 13",
-          "addressLocality": "Simeria",
-          "postalCode": "335903",
-          "addressRegion": "Hunedoara County",
-          "addressCountry": "Romania"
-        },
-        "sameAs": [
-          "https://www.linkedin.com/company/devaland/",
-          "https://www.linkedin.com/in/marius-andronie/",
-          "https://www.facebook.com/marius.andronie/",
-          "https://www.instagram.com/mariusandronie/",
-          "https://www.youtube.com/@devaland13",
-          "https://www.trustpilot.com/review/devaland.com"
-        ],
-        "description": "Leading automation agency specializing in RPA, workflow automation, and Klaviyo email marketing for Shopify brands."
-      }
-    </script>
-
-    <!-- Critical CSS for above-the-fold content -->
-    <style>
-      /* Critical rendering path optimization - Expanded for mobile */
-      * {
-        box-sizing: border-box;
-      }
-      body {
-        margin: 0;
-        padding: 0;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-          'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-          sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        line-height: 1.5;
-        color: #1f2937;
-        background-color: #fff;
-      }
-      /* Above-the-fold hero optimization */
-      #root {
-        min-height: 100vh;
-      }
-      /* Prevent layout shift for images */
-      img {
-        max-width: 100%;
-        height: auto;
-        display: block;
-      }
-      /* Loading spinner for Suspense fallback */
-      .loading-spinner {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 100vh;
-      }
-      @keyframes spin {
-        to { transform: rotate(360deg); }
-      }
-      .animate-spin {
-        animation: spin 1s linear infinite;
-      }
-      /* Mobile-first viewport optimization */
-      @media (max-width: 768px) {
-        body {
-          font-size: 16px;
-        }
-      }
-      /* Header critical styles to prevent layout shift */
-      header {
-        position: sticky;
-        top: 0;
-        z-index: 50;
-        background-color: #fff;
-        border-bottom: 1px solid #e5e7eb;
-      }
-      /* Hero section critical styles */
-      .hero-section {
-        min-height: 500px;
-        background: linear-gradient(to bottom right, #dbeafe, #eff6ff);
-      }
-      /* Button styles to prevent FOUC */
-      button, .btn {
-        cursor: pointer;
-        border-radius: 0.375rem;
-        padding: 0.5rem 1rem;
-        font-weight: 600;
-        transition: all 0.2s;
-      }
-      /* Hide elements until JS loads */
-      .js-only {
-        display: none;
-      }
-    </style>
-
-    <link
-      rel="apple-touch-icon"pilot.com/review/devaland.com"
-        ],
-        "description": "Leading automation agency specializing in RPA, workflow automation, and Klaviyo email marketing for Shopify brands."
-      }
-    </script>
-
+    <!-- Apple / PWA -->
     <link
       rel="apple-touch-icon"
       href="https://customer-assets.emergentagent.com/job_process-genius-5/artifacts/kau0y3tw_Devaland-Logo.jpg"
     />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
 
-    <!-- Preconnect / perf hints -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    
-    <!-- Preload critical CSS for faster rendering -->
-    <link rel="preload" href="%PUBLIC_URL%/static/css/main.css" as="style" />
-    
-    <!-- Preload critical fonts FIRST (Inter 400 and 600 for better coverage) -->
-    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2" as="font" type="font/woff2" crossorigin="anonymous" fetchpriority="high" />
-    
-    <!-- Preload hero image for faster LCP (Largest Contentful Paint) -->
-    <!-- Mobile: preload 400w version for faster LCP on mobile devices -->
-    <link rel="preload" as="image" href="/images/optimized/hero/hero-primary-400.webp" type="image/webp" media="(max-width: 640px)" fetchpriority="high" />
-    <!-- Tablet: preload 800w version -->
-    <link rel="preload" as="image" href="/images/optimized/hero/hero-primary-800.webp" type="image/webp" media="(min-width: 641px) and (max-width: 1024px)" fetchpriority="high" />
-    <!-- Desktop: preload 1200w version -->
-    <link rel="preload" as="image" href="/images/optimized/hero/hero-primary-1200.webp" type="image/webp" media="(min-width: 1025px)" fetchpriority="high" />
-    
+    <!-- LCP Hero Image Preload (Responsive, Mobile-First) -->
     <link
-      rel="preconnect"
-      href="https://customer-assets.emergentagent.com"
-    />
-    
-    <!-- Google Fonts with font-display swap - async load to prevent render blocking -->
-    <!-- Optimized: Load only essential weights (400, 600, 700) for better mobile performance -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" /></noscript>
-    <link rel="dns-prefetch" href="//calendly.com" />
-    <link
-      rel="dns-prefetch"
-      href="//widgets.leadconnectorhq.com"
-    />
-    <link
-      rel="dns-prefetch"
-      href="//services.leadconnectorhq.com"
-    />
-    <link
-      rel="dns-prefetch"
-      href="//gs-extension-embeds-final.vercel.app"
+      rel="preload"
+      as="image"
+      href="/images/optimized/hero/hero-primary-640.webp"
+      imagesrcset="
+        /images/optimized/hero/hero-primary-320.webp 320w,
+        /images/optimized/hero/hero-primary-640.webp 640w,
+        /images/optimized/hero/hero-primary-800.webp 800w,
+        /images/optimized/hero/hero-primary-1200.webp 1200w
+      "
+      imagesizes="100vw"
+      fetchpriority="high"
     />
 
-    <!-- Trustpilot scripts now loaded via React component (DeferredTrustpilot.jsx) -->
-    <!-- This improves FCP and LCP by deferring until user interaction -->
-
-    <!-- Critical minimal styles so first paint isn't ugly -->
+    <!-- Critical CSS (keep minimal) -->
     <style>
+      html,
       body {
         margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-          system-ui, sans-serif;
-        -webkit-font-smoothing: antialiased;
-        background-color: #0a0f1c;
-        color: #fff;
+        padding: 0;
+        background-color: #0f172a;
+        color: #ffffff;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+          sans-serif;
       }
 
-      .loading {
-        display: flex;
+      #root {
         min-height: 100vh;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        background: radial-gradient(
-            circle at 20% 20%,
-            rgba(46, 0, 101, 0.6) 0%,
-            rgba(10, 15, 28, 0) 60%
-          ),
-          radial-gradient(
-            circle at 80% 30%,
-            rgba(0, 87, 255, 0.4) 0%,
-            rgba(10, 15, 28, 0) 60%
-          ),
-          #0a0f1c;
-        background-size: cover;
-        text-align: center;
-        padding: 2rem;
       }
-
-      .loading img {
-        width: 80px;
-        height: 80px;
-        border-radius: 16px;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8),
-          0 0 40px rgba(0, 112, 243, 0.5);
-        margin-bottom: 16px;
-      }
-
-      .loading-text {
-        color: #9ca3af;
-        font-size: 14px;
-        letter-spacing: 0.03em;
-      }
-
-      /* GDPR banner styles removed - now handled by React CookieConsent component */
     </style>
+
+    <!-- Optional, lightweight -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   </head>
 
   <body>
-
-    
-    <noscript>
-      <div
-        style="
-          text-align: center;
-          padding: 50px;
-          font-family: Arial, sans-serif;
-          background: #fff;
-          color: #000;
-        "
-      >
-        <h2>JavaScript Required</h2>
-        <p>You need to enable JavaScript to run this application.</p>
-        <p>Please enable JavaScript in your browser settings and reload.</p>
-      </div>
-    </noscript>
-
-    <!-- React root -->
-    <div id="root">
-      <div class="loading">
-        <img
-          src="https://customer-assets.emergentagent.com/job_process-genius-5/artifacts/kau0y3tw_Devaland-Logo.jpg"
-          alt="Devaland"
-        />
-        <div class="loading-text">Loading Devaland...</div>
-      </div>
-    </div>
-
-    <!-- GDPR consent banner now handled by React CookieConsent component in App.js -->
-
-
-<script>
-  // Chat widget injection logic — DISABLED on homepage for performance
-  (function () {
-    // ❌ Do NOT load chat widget on homepage
-    if (window.location.pathname === "/") {
-      console.log("🚫 Chat widget disabled on homepage for performance");
-      return;
-    }
-
-    function getMarketingConsent() {
-      try {
-        const prefs = localStorage.getItem("cookiePreferences");
-        if (prefs) {
-          const parsed = JSON.parse(prefs);
-          return parsed.marketing === true;
-        }
-      } catch (e) {
-        console.warn("Could not parse cookie preferences:", e);
-      }
-      return false;
-    }
-
-    function injectChatWidget() {
-      if (window.__chatWidgetInjected) {
-        return;
-      }
-
-      window.__chatWidgetInjected = true;
-      console.log("🤖 Injecting chat widget...");
-
-      var s = document.createElement("script");
-      s.src = "https://beta.leadconnectorhq.com/loader.js";
-      s.async = true;
-      s.setAttribute(
-        "data-resources-url",
-        "https://beta.leadconnectorhq.com/chat-widget/loader.js"
-      );
-      s.setAttribute("data-widget-id", "692c19db36936d434b1c0208");
-
-      document.body.appendChild(s);
-    }
-
-    const hasMarketingConsent = getMarketingConsent();
-    console.log("📋 Marketing consent:", hasMarketingConsent);
-
-    if (hasMarketingConsent) {
-      injectChatWidget();
-    }
-
-    window.addEventListener("storage", function (e) {
-      if (
-        e.key === "cookiePreferences" &&
-        !window.__chatWidgetInjected &&
-        getMarketingConsent()
-      ) {
-        injectChatWidget();
-      }
-    });
-  })();
-</script>
-
-    
-
-    <!-- Review Widget Script - TEMPORARILY DISABLED due to invalid structured data
-         See: https://search.google.com/search-console
-         Issues: "Rating is outside the specified or default range" and "Value in property 'reviewCount' must be positive"
-         This script injects invalid Review snippets structured data that causes Google Search Console errors.
-         TODO: Contact api.devaland.com provider to fix structured data or replace with Trustpilot native widget
-    -->
-    <!-- <script src='https://api.devaland.com/reputation/assets/review-widget.js'></script> -->
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
   </body>
 </html>
