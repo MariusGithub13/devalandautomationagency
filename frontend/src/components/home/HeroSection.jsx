@@ -6,6 +6,25 @@ import { Badge } from "../ui/badge";
 const HeroSection = ({ companyData, heroImages }) => {
   if (!heroImages?.primary) return null;
 
+  // ---------- Headline A/B Test (copy only) ----------
+  const headlineVariant =
+    typeof window !== "undefined"
+      ? localStorage.getItem("hero_headline_variant") ||
+        (() => {
+          const v = Math.random() < 0.5 ? "A" : "B";
+          localStorage.setItem("hero_headline_variant", v);
+          return v;
+        })()
+      : "A";
+
+  // Track headline view once per session
+  if (typeof window !== "undefined" && window.dataLayer) {
+    window.dataLayer.push({
+      event: "hero_headline_view",
+      variant: headlineVariant,
+    });
+  }
+
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
       {/* Background */}
@@ -13,13 +32,14 @@ const HeroSection = ({ companyData, heroImages }) => {
         <img
           src={heroImages.primary}
           srcSet={heroImages.primarySrcSet}
-          sizes="100vw"
+          sizes="(max-width: 768px) 100vw, 1200px"
           alt="Marketing Automation & AI Voice Agents"
           width={1200}
           height={600}
           className="w-full h-full object-cover object-center"
           loading="eager"
           fetchpriority="high"
+          decoding="async"
           draggable={false}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-gray-900/90 via-gray-900/70 to-blue-900/80" />
@@ -37,8 +57,17 @@ const HeroSection = ({ companyData, heroImages }) => {
 
           {/* Headline */}
           <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold text-white leading-tight mb-6">
-            Turn Automation Into Your{" "}
-            <span className="text-blue-400">#1 Revenue Channel</span>
+            {headlineVariant === "A" ? (
+              <>
+                Turn Automation Into Your{" "}
+                <span className="text-blue-400">#1 Revenue Channel</span>
+              </>
+            ) : (
+              <>
+                Scale Revenue Without Hiring More People Using{" "}
+                <span className="text-blue-400">Automation</span>
+              </>
+            )}
           </h1>
 
           {/* Subheadline */}
@@ -55,6 +84,16 @@ const HeroSection = ({ companyData, heroImages }) => {
                 href={companyData?.calendly}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => {
+                  if (window.dataLayer) {
+                    window.dataLayer.push({
+                      event: "hero_primary_cta_click",
+                      cta_text: "Book Free Revenue & Automation Audit",
+                      variant: headlineVariant,
+                      location: "hero",
+                    });
+                  }
+                }}
               >
                 Book a Free Revenue & Automation Audit
                 <ArrowRight className="ml-2 w-5 h-5" />
@@ -67,7 +106,21 @@ const HeroSection = ({ companyData, heroImages }) => {
               variant="outline"
               className="px-8 py-6 text-base text-white border-white/50 hover:bg-white/10"
             >
-              <a href="/voice-ai">See Live Voice AI Demo</a>
+              <a
+                href="/voice-ai"
+                onClick={() => {
+                  if (window.dataLayer) {
+                    window.dataLayer.push({
+                      event: "hero_secondary_cta_click",
+                      cta_text: "See Live Voice AI Demo",
+                      variant: headlineVariant,
+                      location: "hero",
+                    });
+                  }
+                }}
+              >
+                See Live Voice AI Demo
+              </a>
             </Button>
           </div>
 
