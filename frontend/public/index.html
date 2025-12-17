@@ -322,91 +322,69 @@
 
     <!-- GDPR consent banner now handled by React CookieConsent component in App.js -->
 
-    <script>
-      // Chat widget injection logic - integrates with React CookieConsent component
-      (function () {
-        // Check consent from React CookieConsent component (uses cookiePreferences key)
-        function getMarketingConsent() {
-          try {
-            const prefs = localStorage.getItem("cookiePreferences");
-            if (prefs) {
-              const parsed = JSON.parse(prefs);
-              return parsed.marketing === true;
-            }
-          } catch (e) {
-            console.warn("Could not parse cookie preferences:", e);
-          }
-          return false;
+
+<script>
+  // Chat widget injection logic — DISABLED on homepage for performance
+  (function () {
+    // ❌ Do NOT load chat widget on homepage
+    if (window.location.pathname === "/") {
+      console.log("🚫 Chat widget disabled on homepage for performance");
+      return;
+    }
+
+    function getMarketingConsent() {
+      try {
+        const prefs = localStorage.getItem("cookiePreferences");
+        if (prefs) {
+          const parsed = JSON.parse(prefs);
+          return parsed.marketing === true;
         }
+      } catch (e) {
+        console.warn("Could not parse cookie preferences:", e);
+      }
+      return false;
+    }
 
-        function injectChatWidget() {
-          // don't inject twice
-          if (window.__chatWidgetInjected) {
-            console.log("⚠️ Chat widget already injected, skipping");
-            return;
-          }
-          window.__chatWidgetInjected = true;
+    function injectChatWidget() {
+      if (window.__chatWidgetInjected) {
+        return;
+      }
 
-          console.log("🤖 Injecting chat widget...");
-          
-          // Load the chat widget script
-          var s = document.createElement("script");
-          s.src = "https://beta.leadconnectorhq.com/loader.js";
-          s.setAttribute(
-            "data-resources-url",
-            "https://beta.leadconnectorhq.com/chat-widget/loader.js"
-          );
-          s.setAttribute(
-            "data-widget-id",
-            "692c19db36936d434b1c0208"
-          );
-          s.onload = function() {
-            console.log("✅ Chat widget script loaded successfully");
-          };
-          s.onerror = function() {
-            console.error("❌ Failed to load chat widget script");
-          };
-          document.body.appendChild(s);
-        }
+      window.__chatWidgetInjected = true;
+      console.log("🤖 Injecting chat widget...");
 
-        // Check if marketing consent is granted
-        const hasMarketingConsent = getMarketingConsent();
-        console.log("📋 Marketing consent status:", hasMarketingConsent);
+      var s = document.createElement("script");
+      s.src = "https://beta.leadconnectorhq.com/loader.js";
+      s.async = true;
+      s.setAttribute(
+        "data-resources-url",
+        "https://beta.leadconnectorhq.com/chat-widget/loader.js"
+      );
+      s.setAttribute("data-widget-id", "692c19db36936d434b1c0208");
 
-        if (hasMarketingConsent) {
-          console.log("✅ Marketing consent granted, loading chat widget");
-          injectChatWidget();
-        } else {
-          console.log("🚫 Marketing consent not granted, chat widget will not load");
-        }
+      document.body.appendChild(s);
+    }
 
-        // Listen for consent changes from React component
-        window.addEventListener('storage', function(e) {
-          if (e.key === 'cookiePreferences' && !window.__chatWidgetInjected) {
-            const hasConsent = getMarketingConsent();
-            if (hasConsent) {
-              console.log("✅ Consent granted via storage event, loading chat widget");
-              injectChatWidget();
-            }
-          }
-        });
+    const hasMarketingConsent = getMarketingConsent();
+    console.log("📋 Marketing consent:", hasMarketingConsent);
 
-        // Prevent any external scripts from loading chat widget before consent
-        window.addEventListener('DOMContentLoaded', function() {
-          if (!hasMarketingConsent) {
-            const rogueScripts = document.querySelectorAll('script[src*="leadconnectorhq.com"]');
-            if (rogueScripts.length > 0) {
-              console.warn("⚠️ Found " + rogueScripts.length + " LeadConnector script(s) without consent, removing...");
-              rogueScripts.forEach(function(script) {
-                if (!window.__chatWidgetInjected) {
-                  script.remove();
-                }
-              });
-            }
-          }
-        });
-      })();
-    </script>
+    if (hasMarketingConsent) {
+      injectChatWidget();
+    }
+
+    window.addEventListener("storage", function (e) {
+      if (
+        e.key === "cookiePreferences" &&
+        !window.__chatWidgetInjected &&
+        getMarketingConsent()
+      ) {
+        injectChatWidget();
+      }
+    });
+  })();
+</script>
+
+    
 
     <!-- Review Widget Script - TEMPORARILY DISABLED due to invalid structured data
          See: https://search.google.com/search-console
