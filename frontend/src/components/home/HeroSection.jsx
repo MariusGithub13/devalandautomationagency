@@ -7,19 +7,20 @@ const HeroSection = ({ companyData }) => {
     <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-20">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          
-          {/* LEFT CONTENT */}
+
+          {/* ================= LEFT CONTENT ================= */}
           <div className="text-white">
             <h1 className="text-4xl md:text-5xl xl:text-6xl font-bold leading-tight mb-6">
-              Klaviyo & AI Automation  
+              Klaviyo & AI Automation
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-purple-300">
                 That Scales Revenue
               </span>
             </h1>
 
             <p className="text-lg md:text-xl text-blue-100 max-w-xl mb-8">
-              Trusted by Shopify brands to increase email revenue by 30–45% using
-              Klaviyo flows, AI voice agents & automation systems.
+              Trusted by Shopify brands to increase email revenue by{" "}
+              <strong>30–45%</strong> using Klaviyo flows, AI voice agents, and
+              automation systems.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
@@ -32,6 +33,7 @@ const HeroSection = ({ companyData }) => {
                   href={companyData?.calendly}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="Book a free automation audit"
                 >
                   Book Free Audit
                   <ArrowRight className="ml-2" size={20} />
@@ -44,10 +46,10 @@ const HeroSection = ({ companyData }) => {
             </div>
           </div>
 
-          {/* RIGHT IMAGE — LCP OPTIMIZED */}
+          {/* ================= RIGHT IMAGE (LCP OPTIMIZED) ================= */}
           <div className="relative">
             <picture>
-              {/* AVIF (best) */}
+              {/* AVIF — best compression */}
               <source
                 type="image/avif"
                 srcSet="/images/optimized/hero/hero-primary.avif"
@@ -68,12 +70,12 @@ const HeroSection = ({ companyData }) => {
 
               {/* Fallback */}
               <img
-                src="/images/optimized/hero/hero-primary.webp"
-                alt="Devaland automation dashboard and AI systems"
+                src="/images/optimized/hero/hero-primary-640.webp"
+                alt="AI-powered marketing automation dashboard and voice agents"
                 width="600"
                 height="600"
-                fetchpriority="high"
                 loading="eager"
+                fetchPriority="high"
                 decoding="async"
                 className="w-full h-auto rounded-2xl shadow-2xl"
               />
