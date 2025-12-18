@@ -21,6 +21,7 @@ If Cloudflare shows **"Failed to create PR"**, a blocked build, or deploy errors
 ## 3) Build fails immediately? Quick fixes
 - **Cache/node-modules conflicts**: retry with a clean install (`npm ci`) already configured above. If you changed dependencies locally, push the lockfile.
 - **Legacy peer deps**: already handled by `--legacy-peer-deps`. Keep this flag unless you resolve peer warnings upstream.
+- **Yarn immutable lock errors (YN0028/"lockfile would be modified")**: Pages auto-picks Yarn when `yarn.lock` exists. We standardized on npm; delete the root `yarn.lock` (done), ensure `packageManager: "npm@10.x"` is set in `package.json` (done), and retry so Pages runs `npm ci` instead of Yarn.
 - **Missing env vars**: functions that call external APIs will fail at runtime without keys—set them in Pages **Environment Variables** for Production (and Preview if you use PR previews).
 - **Functions routing**: Pages looks for `functions/` at repo root. If you migrate Netlify Functions, place them there and update frontend fetch URLs (or add redirects from `/.netlify/functions/*`).
 

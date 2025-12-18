@@ -12,6 +12,7 @@ Cloudflare Pages is a good fit for this repo:
 2. Build configuration:
    - **Root directory**: `frontend`
    - **Build command**: `npm ci --legacy-peer-deps && npm run build`
+   - **Package manager**: npm (delete `yarn.lock` so Pages doesn't force Yarn immutable installs; `packageManager: "npm@10.x"` is set in `package.json`).
    - **Output directory**: `build`
    - **Node version**: 18 (default is fine). Set env vars (`RECAPTCHA_SECRET_KEY`, `RECAPTCHA_SCORE_THRESHOLD`, SMTP creds, etc.) in the Pages project settings.
 3. Redirects + headers: Pages will read the new `frontend/public/_redirects` and `frontend/public/_headers` we added, so the SPA routing, canonicalization, HSTS, CSP, caching, and SEO files mirror Netlify.
