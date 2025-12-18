@@ -220,7 +220,15 @@ const Footer = memo(() => {
                   aria-label="Visit Klaviyo website"
                   className="inline-block w-full max-w-xs"
                 >
-                  <img src="/images/Klaviyo Agency Partner.webp" alt="Klaviyo Agency Partner" width="320" height="102" className="w-full h-auto object-contain" />
+                  <img
+                    src="/images/Klaviyo Agency Partner.webp"
+                    alt="Klaviyo Agency Partner"
+                    width="320"
+                    height="102"
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-auto object-contain"
+                  />
                 </a>
               </div>
             </div>
@@ -361,7 +369,15 @@ const Footer = memo(() => {
                   aria-label="Open ODR (SOL) in new tab"
                   className="inline-block"
                 >
-                  <img src="/images/sol.webp" alt="SOL" width="250" height="50" className="h-24 w-auto object-contain rounded-sm shadow border border-gray-200 bg-white p-1" />
+                  <img
+                    src="/images/sol.webp"
+                    alt="SOL"
+                    width="250"
+                    height="50"
+                    loading="lazy"
+                    decoding="async"
+                    className="h-24 w-auto object-contain rounded-sm shadow border border-gray-200 bg-white p-1"
+                  />
                   <span className="sr-only">European Online Dispute Resolution (ODR) — opens in a new tab</span>
                 </a>
                 <a
@@ -371,7 +387,15 @@ const Footer = memo(() => {
                   aria-label="Open ANPC reclamations (SAL) in new tab"
                   className="inline-block"
                 >
-                  <img src="/images/sal.webp" alt="SAL" width="250" height="50" className="h-24 w-auto object-contain rounded-sm shadow border border-gray-200 bg-white p-1" />
+                  <img
+                    src="/images/sal.webp"
+                    alt="SAL"
+                    width="250"
+                    height="50"
+                    loading="lazy"
+                    decoding="async"
+                    className="h-24 w-auto object-contain rounded-sm shadow border border-gray-200 bg-white p-1"
+                  />
                   <span className="sr-only">ANPC reclamations portal — opens in a new tab</span>
                 </a>
                 <div className="flex flex-col items-start space-y-2">
@@ -390,7 +414,15 @@ const Footer = memo(() => {
                     aria-label="Open EU Consumer Redress in new tab"
                     className="inline-block"
                   >
-                    <img src="/images/EU Consumer Redress.svg" alt="Consumer Redress in the EU" width="96" height="96" className="h-24 w-auto object-contain rounded-sm shadow border border-gray-200 bg-white p-1" />
+                    <img
+                      src="/images/EU Consumer Redress.svg"
+                      alt="Consumer Redress in the EU"
+                      width="96"
+                      height="96"
+                      loading="lazy"
+                      decoding="async"
+                      className="h-24 w-auto object-contain rounded-sm shadow border border-gray-200 bg-white p-1"
+                    />
                     <span className="sr-only">EU Consumer Redress — opens in a new tab</span>
                   </a>
                 </div>
@@ -410,7 +442,15 @@ const Footer = memo(() => {
                     aria-label="EU VIES VAT Validation"
                     className="inline-block"
                   >
-                    <img src="/images/EU Consumer Redress.svg" alt="VIES VAT number validation - European Commission" width="96" height="96" className="h-24 w-auto object-contain rounded-sm shadow border border-gray-200 bg-white p-1" />
+                    <img
+                      src="/images/EU Consumer Redress.svg"
+                      alt="VIES VAT number validation - European Commission"
+                      width="96"
+                      height="96"
+                      loading="lazy"
+                      decoding="async"
+                      className="h-24 w-auto object-contain rounded-sm shadow border border-gray-200 bg-white p-1"
+                    />
                   </a>
                 </div>
               </div>

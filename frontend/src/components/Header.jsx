@@ -146,6 +146,9 @@ function HeaderLogo() {
       alt="Devaland logo"
       width="350"
       height="350"
+      loading="eager"
+      decoding="async"
+      fetchpriority="high"
       className="h-12 sm:h-16 lg:h-20 w-auto object-contain"
       onError={() => setFailed(true)}
     />
