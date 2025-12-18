@@ -57,5 +57,52 @@
       - No analytics
       These will be loaded conditionally later
     -->
+
+<script>
+  (function () {
+    let chatLoaded = false;
+
+    function loadChatWidget() {
+      if (chatLoaded) return;
+      chatLoaded = true;
+
+      console.log("🤖 Loading chat widget after interaction");
+
+      const script = document.createElement("script");
+      script.src = "https://beta.leadconnectorhq.com/loader.js";
+      script.async = true;
+      script.setAttribute(
+        "data-resources-url",
+        "https://beta.leadconnectorhq.com/chat-widget/loader.js"
+      );
+      script.setAttribute(
+        "data-widget-id",
+        "692c19db36936d434b1c0208"
+      );
+
+      document.body.appendChild(script);
+
+      // Remove listeners after load
+      window.removeEventListener("scroll", triggerLoad);
+      window.removeEventListener("mousemove", triggerLoad);
+      window.removeEventListener("touchstart", triggerLoad);
+      window.removeEventListener("keydown", triggerLoad);
+    }
+
+    function triggerLoad() {
+      // Delay slightly to avoid blocking interaction
+      setTimeout(loadChatWidget, 300);
+    }
+
+    // Interaction listeners
+    window.addEventListener("scroll", triggerLoad, { once: true, passive: true });
+    window.addEventListener("mousemove", triggerLoad, { once: true });
+    window.addEventListener("touchstart", triggerLoad, { once: true, passive: true });
+    window.addEventListener("keydown", triggerLoad, { once: true });
+  })();
+</script>
+    
+    
+    
   </body>
 </html>
