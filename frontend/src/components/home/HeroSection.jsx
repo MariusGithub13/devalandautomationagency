@@ -1,107 +1,84 @@
 import React from "react";
 import { ArrowRight } from "lucide-react";
-import { Button } from "../ui/button";
-import { Badge } from "../ui/badge";
+import { Button } from "@/components/ui/button";
 
 const HeroSection = ({ companyData }) => {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 z-0">
-        <picture>
-          {/* Mobile first */}
-          <source
-            type="image/webp"
-            media="(max-width: 640px)"
-            srcSet="
-              /images/optimized/hero/hero-primary-320.webp 320w,
-              /images/optimized/hero/hero-primary-640.webp 640w
-            "
-            sizes="100vw"
-          />
+    <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-20">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          
+          {/* LEFT CONTENT */}
+          <div className="text-white">
+            <h1 className="text-4xl md:text-5xl xl:text-6xl font-bold leading-tight mb-6">
+              Klaviyo & AI Automation  
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-purple-300">
+                That Scales Revenue
+              </span>
+            </h1>
 
-          {/* Tablet */}
-          <source
-            type="image/webp"
-            media="(max-width: 1024px)"
-            srcSet="
-              /images/optimized/hero/hero-primary-640.webp 640w,
-              /images/optimized/hero/hero-primary-800.webp 800w
-            "
-            sizes="100vw"
-          />
+            <p className="text-lg md:text-xl text-blue-100 max-w-xl mb-8">
+              Trusted by Shopify brands to increase email revenue by 30–45% using
+              Klaviyo flows, AI voice agents & automation systems.
+            </p>
 
-          {/* Desktop */}
-          <source
-            type="image/webp"
-            media="(min-width: 1025px)"
-            srcSet="
-              /images/optimized/hero/hero-primary-800.webp 800w,
-              /images/optimized/hero/hero-primary-1200.webp 1200w
-            "
-            sizes="100vw"
-          />
-
-          {/* Fallback */}
-          <img
-            src="/images/optimized/hero/hero-primary-800.webp"
-            alt="Marketing Automation & AI Voice Agents"
-            width="1200"
-            height="600"
-            className="w-full h-full object-cover object-center"
-            loading="eager"
-            fetchpriority="high"
-            decoding="async"
-            draggable={false}
-          />
-        </picture>
-
-        <div className="absolute inset-0 bg-gradient-to-r from-gray-950/95 via-gray-900/85 to-blue-950/90" />
-      </div>
-
-      {/* Content */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 py-24">
-        <div className="max-w-3xl">
-          {/* Trust Badges */}
-          <div className="flex flex-wrap gap-2 mb-6">
-            <Badge variant="secondary">Certified Klaviyo Partner</Badge>
-            <Badge variant="secondary">50+ Clients</Badge>
-            <Badge variant="secondary">ROI-Driven Automation</Badge>
-          </div>
-
-          {/* Headline */}
-          <h1 className="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-6">
-            Turn Automation Into Your{" "}
-            <span className="text-blue-300">#1 Revenue Channel</span>
-          </h1>
-
-          {/* Subheadline */}
-          <p className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl">
-            We help Shopify brands and service businesses increase revenue and cut
-            costs using Klaviyo email automation and AI-powered Voice Agents —
-            without hiring more staff.
-          </p>
-
-          {/* CTA */}
-          <div className="flex flex-col sm:flex-row gap-4 mb-10">
-            <Button asChild size="lg" className="px-8 py-6 text-base">
-              <a
-                href={companyData?.calendly}
-                target="_blank"
-                rel="noopener noreferrer"
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button
+                asChild
+                size="lg"
+                className="bg-white text-blue-900 hover:bg-blue-50 font-semibold px-8 py-4 text-lg"
               >
-                Book a Free Revenue & Automation Audit
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </a>
-            </Button>
+                <a
+                  href={companyData?.calendly}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Book Free Audit
+                  <ArrowRight className="ml-2" size={20} />
+                </a>
+              </Button>
+
+              <p className="text-sm text-blue-200 self-center">
+                No obligation · Free strategy call
+              </p>
+            </div>
           </div>
 
-          {/* Proof */}
-          <ul className="flex flex-wrap gap-x-8 gap-y-3 text-white/90 text-sm md:text-base">
-            <li>• 45–85% Revenue Growth</li>
-            <li>• 50,000+ Hours Automated</li>
-            <li>• Used by Shopify brands doing $1M–$50M/year</li>
-          </ul>
+          {/* RIGHT IMAGE — LCP OPTIMIZED */}
+          <div className="relative">
+            <picture>
+              {/* AVIF (best) */}
+              <source
+                type="image/avif"
+                srcSet="/images/optimized/hero/hero-primary.avif"
+              />
+
+              {/* WebP responsive */}
+              <source
+                type="image/webp"
+                srcSet="
+                  /images/optimized/hero/hero-primary-320.webp 320w,
+                  /images/optimized/hero/hero-primary-400.webp 400w,
+                  /images/optimized/hero/hero-primary-640.webp 640w,
+                  /images/optimized/hero/hero-primary-800.webp 800w,
+                  /images/optimized/hero/hero-primary-1200.webp 1200w
+                "
+                sizes="(max-width: 640px) 90vw, (max-width: 1024px) 50vw, 600px"
+              />
+
+              {/* Fallback */}
+              <img
+                src="/images/optimized/hero/hero-primary.webp"
+                alt="Devaland automation dashboard and AI systems"
+                width="600"
+                height="600"
+                fetchpriority="high"
+                loading="eager"
+                decoding="async"
+                className="w-full h-auto rounded-2xl shadow-2xl"
+              />
+            </picture>
+          </div>
         </div>
       </div>
     </section>
