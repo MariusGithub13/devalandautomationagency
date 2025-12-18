@@ -11,6 +11,8 @@ import InternalLinkBlock from '../components/InternalLinkBlock';
 import { companyData, heroImages, services, caseStudies, awards } from '../data/mock';
 import robotLadyImage from '../assets/Devaland-robot-lady.jpeg';
 import HeroSection from '../components/home/HeroSection';
+import CaseStudySection from "../components/home/CaseStudySection";
+
 
 
 const HomePage = () => {
@@ -94,6 +96,8 @@ const HomePage = () => {
   heroImages={heroImages}
 />
 
+<CaseStudySection />  
+  
 
       {/* Industry Recognition Section */}
       <section className="section-padding bg-gradient-primary text-white">
