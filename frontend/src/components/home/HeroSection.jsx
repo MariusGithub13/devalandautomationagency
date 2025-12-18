@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useEffect, useState } from "react";
 import {
   ArrowRight,
   TrendingUp,
@@ -8,100 +8,150 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-/**
- * GEO DETECTION (lightweight, no API)
- * Uses browser language as a proxy (fast + privacy-safe)
- */
+/* -----------------------------
+   GEO DETECTION (lightweight)
+------------------------------ */
 function getGeoVariant() {
   if (typeof navigator === "undefined") return "DEFAULT";
   const lang = navigator.language || "";
   if (lang.startsWith("en-US")) return "US";
-  if (lang.startsWith("en-GB") || lang.startsWith("de") || lang.startsWith("fr") || lang.startsWith("it") || lang.startsWith("es"))
+  if (
+    lang.startsWith("en-GB") ||
+    lang.startsWith("de") ||
+    lang.startsWith("fr") ||
+    lang.startsWith("it") ||
+    lang.startsWith("es")
+  ) {
     return "EU";
+  }
   return "DEFAULT";
 }
 
-/**
- * WEEKLY ROTATING STAT (deterministic)
- * Changes once per week, same for all users
- */
-function getWeeklyStatIndex() {
-  const weekNumber = Math.floor(Date.now() / (7 * 24 * 60 * 60 * 1000));
-  return weekNumber % 4;
+/* -----------------------------
+   WEEK INDEX (deterministic)
+------------------------------ */
+function getWeekIndex() {
+  return Math.floor(Date.now() / (7 * 24 * 60 * 60 * 1000));
 }
 
+/* -----------------------------
+   STAT PERFORMANCE TRACKING
+------------------------------ */
+function getStatWeights() {
+  try {
+    return JSON.parse(localStorage.getItem("heroStatWeights")) || {};
+  } catch {
+    return {};
+  }
+}
+
+function saveStatWeights(weights) {
+  localStorage.setItem("heroStatWeights", JSON.stringify(weights));
+}
+
+function getLastRotation() {
+  return Number(localStorage.getItem("heroStatRotationTs") || 0);
+}
+
+function setRotationNow() {
+  localStorage.setItem("heroStatRotationTs", Date.now().toString());
+}
+
+const ROTATION_WINDOW = 30 * 24 * 60 * 60 * 1000; // 30 days
+
+/* =============================
+   HERO SECTION
+============================= */
 const HeroSection = ({ companyData }) => {
   const geo = useMemo(getGeoVariant, []);
-  const rotatingIndex = useMemo(getWeeklyStatIndex, []);
+  const [highlightIndex, setHighlightIndex] = useState(0);
 
-  /**
-   * GEO-PERSONALIZED STATS
-   */
+  /* -----------------------------
+     GEO-PERSONALIZED COPY
+  ------------------------------ */
+  const ctaCopyByGeo = {
+    US: "Book Free Revenue Audit",
+    EU: "Book Free Automation Strategy",
+    DEFAULT: "Book Free Automation & Revenue Audit"
+  };
+
+  /* -----------------------------
+     GEO-PERSONALIZED STATS
+  ------------------------------ */
   const statsByGeo = {
-    US: {
-      revenueLift: "+38%",
-      automationRevenue: "$1.6M+",
-      hoursSaved: "52,000+",
-      brands: "55+"
-    },
-    EU: {
-      revenueLift: "+29%",
-      automationRevenue: "€1.1M+",
-      hoursSaved: "41,000+",
-      brands: "40+"
-    },
-    DEFAULT: {
-      revenueLift: "+34%",
-      automationRevenue: "$1.2M+",
-      hoursSaved: "45,000+",
-      brands: "50+"
-    }
+    US: [
+      { id: "rev", icon: TrendingUp, value: "+38%", label: "Email Revenue Lift" },
+      { id: "cash", icon: DollarSign, value: "$1.6M+", label: "Automation Revenue" },
+      { id: "time", icon: Clock, value: "52,000+", label: "Hours Saved" },
+      { id: "brands", icon: Users, value: "55+", label: "Brands Scaled" }
+    ],
+    EU: [
+      { id: "rev", icon: TrendingUp, value: "+29%", label: "Revenue Growth" },
+      { id: "cash", icon: DollarSign, value: "€1.1M+", label: "Automation Impact" },
+      { id: "time", icon: Clock, value: "41,000+", label: "Hours Automated" },
+      { id: "brands", icon: Users, value: "40+", label: "EU Brands Supported" }
+    ],
+    DEFAULT: [
+      { id: "rev", icon: TrendingUp, value: "+34%", label: "Revenue Growth" },
+      { id: "cash", icon: DollarSign, value: "$1.2M+", label: "Automation Revenue" },
+      { id: "time", icon: Clock, value: "45,000+", label: "Hours Automated" },
+      { id: "brands", icon: Users, value: "50+", label: "Brands Scaled" }
+    ]
   };
 
   const stats = statsByGeo[geo];
 
-  /**
-   * ROTATING CREDIBILITY STAT
-   */
-  const rotatingStats = [
-    {
-      icon: <TrendingUp size={28} className="text-blue-300 mb-3" />,
-      value: stats.revenueLift,
-      label: "Email Revenue Growth"
-    },
-    {
-      icon: <DollarSign size={28} className="text-green-300 mb-3" />,
-      value: stats.automationRevenue,
-      label: "Attributed to Automation"
-    },
-    {
-      icon: <Clock size={28} className="text-purple-300 mb-3" />,
-      value: stats.hoursSaved,
-      label: "Hours Automated"
-    },
-    {
-      icon: <Users size={28} className="text-yellow-300 mb-3" />,
-      value: stats.brands,
-      label: "Brands Scaled"
+  /* -----------------------------
+     AUTO-ROTATE WEAK STAT (30d)
+  ------------------------------ */
+  useEffect(() => {
+    const now = Date.now();
+    const lastRotation = getLastRotation();
+
+    const weights = getStatWeights();
+
+    // Initialize weights if missing
+    stats.forEach((s, idx) => {
+      if (weights[s.id] === undefined) {
+        weights[s.id] = idx;
+      }
+    });
+
+    // Rotate after 30 days
+    if (now - lastRotation > ROTATION_WINDOW) {
+      const weakest = Object.entries(weights).sort((a, b) => a[1] - b[1])[0];
+      const weakestIndex = stats.findIndex(s => s.id === weakest[0]);
+      setHighlightIndex(weakestIndex === -1 ? 0 : weakestIndex);
+      setRotationNow();
+    } else {
+      setHighlightIndex(getWeekIndex() % stats.length);
     }
-  ];
+
+    saveStatWeights(weights);
+  }, [stats]);
+
+  /* -----------------------------
+     TRACK STAT VISIBILITY
+  ------------------------------ */
+  useEffect(() => {
+    const weights = getStatWeights();
+    const stat = stats[highlightIndex];
+    if (stat) {
+      weights[stat.id] = (weights[stat.id] || 0) + 1;
+      saveStatWeights(weights);
+    }
+  }, [highlightIndex, stats]);
 
   return (
     <>
       {/* HERO */}
-      <section
-        className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900"
-        aria-labelledby="hero-heading"
-      >
+      <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-20">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
 
-            {/* LEFT CONTENT */}
+            {/* LEFT */}
             <div className="text-white">
-              <h1
-                id="hero-heading"
-                className="text-4xl md:text-5xl xl:text-6xl font-bold leading-tight mb-6"
-              >
+              <h1 className="text-4xl md:text-5xl xl:text-6xl font-bold leading-tight mb-6">
                 Klaviyo & AI Automation
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-purple-300">
                   That Scales Revenue
@@ -109,12 +159,12 @@ const HeroSection = ({ companyData }) => {
               </h1>
 
               <p className="text-lg md:text-xl text-blue-100 max-w-xl mb-8">
-                We help Shopify brands and service businesses increase revenue
-                and reduce costs using Klaviyo automation and AI voice systems —
-                without hiring more staff.
+                We help Shopify brands and service businesses grow revenue
+                and reduce operational load using Klaviyo automation
+                and AI voice systems.
               </p>
 
-              {/* PRIMARY CTA */}
+              {/* CTA */}
               <div className="flex flex-col gap-3 max-w-sm">
                 <Button
                   asChild
@@ -125,9 +175,9 @@ const HeroSection = ({ companyData }) => {
                     href={companyData?.calendly}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label="Book a free automation and revenue audit call"
+                    aria-label="Book a free automation strategy call"
                   >
-                    Book Free Automation & Revenue Audit
+                    {ctaCopyByGeo[geo]}
                     <ArrowRight className="ml-2" size={20} />
                   </a>
                 </Button>
@@ -137,46 +187,41 @@ const HeroSection = ({ companyData }) => {
                 </p>
               </div>
 
-              {/* SOCIAL PROOF */}
               <p className="mt-6 text-sm text-blue-300">
                 Used by Shopify brands doing <strong>$1M–$50M/year</strong>
               </p>
             </div>
 
-            {/* RIGHT — RESULTS CARDS */}
-            <div className="relative">
-              <div className="grid grid-cols-2 gap-4">
+            {/* RIGHT — RESULTS */}
+            <div className="grid grid-cols-2 gap-4">
+              {stats.map((stat, idx) => {
+                const Icon = stat.icon;
+                const isActive = idx === highlightIndex;
 
-                {rotatingStats.map((stat, index) => {
-                  // Rotate ONE highlighted stat weekly
-                  const isHighlighted = index === rotatingIndex;
-                  return (
-                    <div
-                      key={index}
-                      className={`rounded-2xl p-6 text-white border backdrop-blur transition
-                        ${
-                          isHighlighted
-                            ? "bg-white/20 border-white/30 scale-[1.02]"
-                            : "bg-white/10 border-white/15"
-                        }`}
-                    >
-                      {stat.icon}
-                      <p className="text-3xl font-bold">{stat.value}</p>
-                      <p className="text-sm text-blue-100 mt-1">
-                        {stat.label}
-                      </p>
-                    </div>
-                  );
-                })}
-
-              </div>
+                return (
+                  <div
+                    key={stat.id}
+                    className={`
+                      rounded-2xl p-6 text-white border backdrop-blur
+                      transition-all duration-700 ease-out
+                      ${isActive
+                        ? "bg-white/25 border-white/40 scale-[1.04] animate-[pulse_2s_ease-out_1]"
+                        : "bg-white/10 border-white/15"}
+                    `}
+                  >
+                    <Icon size={28} className="mb-3 text-blue-200" />
+                    <p className="text-3xl font-bold">{stat.value}</p>
+                    <p className="text-sm text-blue-100 mt-1">{stat.label}</p>
+                  </div>
+                );
+              })}
             </div>
 
           </div>
         </div>
       </section>
 
-      {/* CASE STUDY LINK — BELOW HERO */}
+      {/* CASE STUDY LINK */}
       <section className="bg-slate-950 py-10">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <p className="text-blue-200 text-sm mb-3">
