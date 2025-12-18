@@ -56,7 +56,7 @@ const HeroSection = ({ companyData }) => {
           />
         </picture>
 
-        <div className="absolute inset-0 bg-gradient-to-r from-gray-900/90 via-gray-900/70 to-blue-900/80" />
+        <div className="absolute inset-0 bg-gradient-to-r from-gray-950/95 via-gray-900/85 to-blue-950/90" />
       </div>
 
       {/* Content */}
@@ -72,7 +72,7 @@ const HeroSection = ({ companyData }) => {
           {/* Headline */}
           <h1 className="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-6">
             Turn Automation Into Your{" "}
-            <span className="text-blue-400">#1 Revenue Channel</span>
+            <span className="text-blue-300">#1 Revenue Channel</span>
           </h1>
 
           {/* Subheadline */}
