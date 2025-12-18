@@ -13,6 +13,11 @@ import InternalLinkBlock from '../components/InternalLinkBlock';
 import { companyData } from '../data/mock';
 import { sendTrustpilotInvitation, generateReferenceId } from '../utils/trustpilot';
 
+const googleMapsAddress = 'Sântandrei 13, 335903 Simeria, Romania';
+const encodedGoogleMapsAddress = encodeURIComponent(googleMapsAddress);
+const googleMapsEmbedUrl = `https://www.google.com/maps?output=embed&q=${encodedGoogleMapsAddress}`;
+const googleMapsLink = `https://www.google.com/maps/search/?api=1&query=${encodedGoogleMapsAddress}`;
+
 const ContactPage = () => {
   const contactSchema = {
     "@context": "https://schema.org",
@@ -40,6 +45,7 @@ const ContactPage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [recaptchaLoaded, setRecaptchaLoaded] = useState(false);
   const [formInteracted, setFormInteracted] = useState(false); // Track if user interacted with form
+  const [mapError, setMapError] = useState(false);
   
   // reCAPTCHA v3 site key
   // Site keys are public by design and safe to embed in frontend code
@@ -649,23 +655,32 @@ const ContactPage = () => {
                       {/* Google Maps Embed */}
                       <div className="mt-6 rounded-lg overflow-hidden shadow-md border border-gray-200">
                         <iframe
-                          src="https://maps.google.com/maps?q=Santandrei+13,+335903+Simeria,+Romania&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                          src={googleMapsEmbedUrl}
                           width="400"
                           height="300"
                           style={{ border: 0 }}
-                          allowFullScreen=""
+                          allowFullScreen
                           loading="lazy"
                           referrerPolicy="no-referrer-when-downgrade"
                           title="Devaland Marketing S.R.L. - Company Headquarters in Transylvania, Romania"
+                          aria-label="Google Maps location for Devaland Marketing S.R.L."
                           className="w-full"
+                          onError={() => setMapError(true)}
+                          onLoad={() => setMapError(false)}
                         ></iframe>
+                        {mapError && (
+                          <div className="bg-red-50 text-red-700 text-sm px-3 py-2 border-t border-red-200">
+                            Map preview is unavailable right now. Please open the location directly in Google Maps instead.
+                          </div>
+                        )}
                         <div className="bg-gray-50 px-3 py-2 text-center border-t border-gray-200">
                           <p className="text-sm font-medium text-gray-700">📍 Find Us on Google Maps</p>
-                          <a 
-                            href="https://www.google.com/maps/search/?api=1&query=Santandrei+13,+335903+Simeria,+Romania"
+                          <a
+                            href={googleMapsLink}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-xs text-blue-600 hover:text-blue-800 hover:underline"
+                            aria-label="Open Devaland Marketing S.R.L. location in Google Maps"
                           >
                             Open in Google Maps →
                           </a>
