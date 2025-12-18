@@ -41,3 +41,13 @@ If Cloudflare shows **"Failed to create PR"**, a blocked build, or deploy errors
 - Collect the failed deployment log from Pages → Deployments and note the step that fails (clone, install, build, or upload).
 - If GitHub permissions still error, remove and re-install the Cloudflare Pages GitHub app, then re-link the project.
 - As a fallback, you can deploy via `wrangler pages deploy frontend/build` after running the build locally with the same command above.
+
+## 7) Bypass the GitHub app with a GitHub Action (guaranteed deploys)
+If the Pages GitHub App keeps failing to create PR previews, use the bundled workflow `.github/workflows/cloudflare-pages.yml`:
+- Add repository secrets in GitHub → Settings → Secrets and variables → Actions:
+  - `CLOUDFLARE_API_TOKEN` with Pages scope (`Account.Resources.Edit`, `Account.WorkersScripts.Edit`).
+  - `CLOUDFLARE_ACCOUNT_ID` for your account.
+  - `CLOUDFLARE_PROJECT_NAME` set to the Pages project slug (e.g., `devalandautomationagency`).
+- The workflow builds `frontend/` with Node 18 (`npm ci --legacy-peer-deps && npm run build`) and publishes `frontend/build` to Pages.
+- It runs on pushes to `main`, on PRs (using the head branch as the preview branch), and via **Run workflow**. This keeps preview URLs working even if Cloudflare cannot post PR comments itself.
+- You can keep the native Pages integration enabled; this workflow serves as a reliable fallback/primary path and avoids the “Failed to create PR” blocker.
