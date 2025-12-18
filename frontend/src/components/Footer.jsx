@@ -441,21 +441,6 @@ const Footer = memo(() => {
                         <div className="text-sm text-gray-600">View our complete profile</div>
                       </div>
                     </a>
-                    {/* Write a Review Link */}
-                    <a 
-                      href="https://g.page/r/CfSNoCv66NgaEBM/review" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-3 px-4 py-3 bg-blue-50 border border-blue-300 rounded-lg hover:bg-blue-100 hover:border-blue-500 transition-all group"
-                    >
-                      <svg className="w-6 h-6" viewBox="0 0 24 24">
-                        <path fill="#FBBC05" d="M12 2l2.4 7.4h7.6l-6 4.6 2.3 7-6.3-4.6-6.3 4.6 2.3-7-6-4.6h7.6z"/>
-                      </svg>
-                      <div className="text-left">
-                        <div className="text-sm font-semibold text-blue-700 group-hover:text-blue-900">Write a Review</div>
-                        <div className="text-sm text-blue-600">Share your experience</div>
-                      </div>
-                    </a>
                   </div>
                 </div>
               </div>
