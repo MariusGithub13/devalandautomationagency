@@ -1,4 +1,18 @@
 {
+  "name": "devalandautomationagency",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Root configuration for Devaland automation agency monorepo with Cloudflare Pages build helpers.",
+  "engines": {
+    "node": ">=18",
+    "npm": ">=10"
+  },
+  "scripts": {
+    "install:frontend": "npm ci --prefix frontend --legacy-peer-deps",
+    "build": "npm run install:frontend && npm run build --prefix frontend",
+    "start": "npm run install:frontend && npm run start --prefix frontend",
+    "test": "npm run install:frontend && npm run test --prefix frontend --watch=false"
+  },
   "dependencies": {
     "ajv": "6.12.6",
     "ajv-keywords": "3.5.2"
