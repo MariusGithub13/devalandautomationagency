@@ -1,0 +1,3 @@
+name = "devalandautomationagency"
+pages_build_output_dir = "frontend/build"
+compatibility_date = "2025-01-01"
