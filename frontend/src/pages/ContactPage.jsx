@@ -649,20 +649,20 @@ const ContactPage = () => {
                       {/* Google Maps Embed */}
                       <div className="mt-6 rounded-lg overflow-hidden shadow-md border border-gray-200">
                         <iframe
-                          src="https://maps.google.com/maps?q=Santandrei+13,+335903+Simeria,+Romania&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                          src="https://maps.google.com/maps?q=Sântandrei+13,+335903+Simeria,+Hunedoara+County,+Transylvania,+Romania&t=&z=15&ie=UTF8&iwloc=&output=embed"
                           width="400"
                           height="300"
                           style={{ border: 0 }}
                           allowFullScreen=""
                           loading="lazy"
                           referrerPolicy="no-referrer-when-downgrade"
-                          title="Devaland Marketing S.R.L. - Company Headquarters in Transylvania, Romania"
+                          title="Devaland Marketing S.R.L. - Sântandrei 13, Simeria 335903, Hunedoara County, Transylvania, Romania"
                           className="w-full"
                         ></iframe>
                         <div className="bg-gray-50 px-3 py-2 text-center border-t border-gray-200">
                           <p className="text-sm font-medium text-gray-700">📍 Find Us on Google Maps</p>
                           <a 
-                            href="https://www.google.com/maps/search/?api=1&query=Santandrei+13,+335903+Simeria,+Romania"
+                            href="https://www.google.com/maps/search/?api=1&query=Sântandrei+13,+335903+Simeria,+Hunedoara+County,+Transylvania,+Romania"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-xs text-blue-600 hover:text-blue-800 hover:underline"
