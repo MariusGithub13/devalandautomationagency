@@ -222,7 +222,7 @@ const KlaviyoPlacedOrderRatePage = () => {
               </div>
               
               <div className="grid md:grid-cols-2 gap-6">
-                <div className="bg-white rounded-lg p-6 border-2 border-green-200">
+                <div className="bg-white rounded-lg p-6 border-2 border-green-600">
                   <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
                     <CheckCircle className="text-green-500" size={20} />
                     Example: High Performance
@@ -235,7 +235,7 @@ const KlaviyoPlacedOrderRatePage = () => {
                   </div>
                 </div>
 
-                <div className="bg-white rounded-lg p-6 border-2 border-orange-200">
+                <div className="bg-white rounded-lg p-6 border-2 border-orange-600">
                   <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
                     <AlertCircle className="text-orange-500" size={20} />
                     Example: Needs Optimization
@@ -266,7 +266,7 @@ const KlaviyoPlacedOrderRatePage = () => {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="bg-white rounded-xl p-6 border-2 border-green-200 shadow-sm">
+            <div className="bg-white rounded-xl p-6 border-2 border-green-600 shadow-sm">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-lg font-bold text-gray-900">Abandoned Cart Flows</h3>
                 <LineChart className="text-green-600" size={24} />
@@ -335,7 +335,7 @@ const KlaviyoPlacedOrderRatePage = () => {
               </div>
             </div>
 
-            <div className="bg-white rounded-xl p-6 border-2 border-orange-200 shadow-sm">
+            <div className="bg-white rounded-xl p-6 border-2 border-orange-600 shadow-sm">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-lg font-bold text-gray-900">Win-Back Campaigns</h3>
                 <TrendingUp className="text-orange-600" size={24} />

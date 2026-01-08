@@ -267,7 +267,7 @@ const KlaviyoSegmentationPage = () => {
               </CardContent>
             </Card>
 
-            <Card className="border-2 border-green-200">
+            <Card className="border-2 border-green-600">
               <CardContent className="p-6">
                 <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
                   <TrendingUp className="w-6 h-6 text-green-600" />

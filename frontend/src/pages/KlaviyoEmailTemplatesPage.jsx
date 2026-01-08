@@ -428,7 +428,7 @@ const KlaviyoEmailTemplatesPage = () => {
               </CardContent>
             </Card>
 
-            <Card className="border-2 border-green-200 hover:border-green-500 transition-colors">
+            <Card className="border-2 border-green-600 hover:border-green-700 transition-colors">
               <CardContent className="p-6">
                 <Badge className="bg-green-100 text-green-700 mb-4">Engagement Templates</Badge>
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">Post-Purchase</h3>
@@ -445,7 +445,7 @@ const KlaviyoEmailTemplatesPage = () => {
               </CardContent>
             </Card>
 
-            <Card className="border-2 border-orange-200 hover:border-orange-500 transition-colors">
+            <Card className="border-2 border-orange-600 hover:border-orange-700 transition-colors">
               <CardContent className="p-6">
                 <Badge className="bg-orange-100 text-orange-700 mb-4">Campaign Templates</Badge>
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">Promotional</h3>

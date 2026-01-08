@@ -313,7 +313,7 @@ const ROICalculator = () => {
 
             {/* Key Benefits Grid */}
             <div className="grid md:grid-cols-2 gap-4">
-              <div className="bg-green-50 rounded-lg p-4 border-2 border-green-200">
+              <div className="bg-green-50 rounded-lg p-4 border-2 border-green-600">
                 <div className="flex items-center gap-2 mb-2">
                   <DollarSign className="w-5 h-5 text-green-600" />
                   <span className="text-sm font-medium text-green-700">ROI</span>
@@ -346,7 +346,7 @@ const ROICalculator = () => {
                 <div className="text-xs text-purple-700 mt-1">Conversations automated</div>
               </div>
 
-              <div className="bg-orange-50 rounded-lg p-4 border-2 border-orange-200">
+              <div className="bg-orange-50 rounded-lg p-4 border-2 border-orange-600">
                 <div className="flex items-center gap-2 mb-2">
                   <Phone className="w-5 h-5 text-orange-600" />
                   <span className="text-sm font-medium text-orange-700">Leads Recovered</span>

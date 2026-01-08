@@ -315,7 +315,7 @@ const KlaviyoPredictedNextOrderPage = () => {
             </Card>
 
             {/* Step 3 */}
-            <Card className="border-2 border-green-200">
+            <Card className="border-2 border-green-600">
               <CardContent className="p-8">
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-xl">
@@ -344,7 +344,7 @@ const KlaviyoPredictedNextOrderPage = () => {
             </Card>
 
             {/* Step 4 */}
-            <Card className="border-2 border-orange-200">
+            <Card className="border-2 border-orange-600">
               <CardContent className="p-8">
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-12 h-12 bg-orange-600 text-white rounded-full flex items-center justify-center font-bold text-xl">
@@ -404,7 +404,7 @@ const KlaviyoPredictedNextOrderPage = () => {
               </p>
             </div>
 
-            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 border-2 border-green-200">
+            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 border-2 border-green-600">
               <Target className="text-green-600 mb-4" size={32} />
               <h3 className="text-xl font-bold text-gray-900 mb-2">Pet Food & Supplies</h3>
               <p className="text-gray-700 mb-3">Average cycle: 20-45 days</p>
@@ -413,7 +413,7 @@ const KlaviyoPredictedNextOrderPage = () => {
               </p>
             </div>
 
-            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-6 border-2 border-orange-200">
+            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-6 border-2 border-orange-600">
               <Zap className="text-orange-600 mb-4" size={32} />
               <h3 className="text-xl font-bold text-gray-900 mb-2">Coffee & Tea</h3>
               <p className="text-gray-700 mb-3">Average cycle: 14-30 days</p>

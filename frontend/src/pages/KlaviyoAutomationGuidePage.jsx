@@ -265,7 +265,7 @@ const KlaviyoAutomationGuidePage = () => {
 
           <div className="space-y-8">
             {/* Flow 1 */}
-            <Card className="border-2 border-green-200 hover:shadow-xl transition-shadow duration-300">
+            <Card className="border-2 border-green-600 hover:shadow-xl transition-shadow duration-300">
               <CardContent className="p-8">
                 <div className="flex items-start gap-6">
                   <div className="flex-shrink-0 w-16 h-16 bg-green-600 text-white rounded-xl flex items-center justify-center font-bold text-2xl">
@@ -309,7 +309,7 @@ const KlaviyoAutomationGuidePage = () => {
             </Card>
 
             {/* Flow 2 */}
-            <Card className="border-2 border-blue-200 hover:shadow-xl transition-shadow duration-300">
+            <Card className="border-2 border-blue-600 hover:shadow-xl transition-shadow duration-300">
               <CardContent className="p-8">
                 <div className="flex items-start gap-6">
                   <div className="flex-shrink-0 w-16 h-16 bg-blue-600 text-white rounded-xl flex items-center justify-center font-bold text-2xl">
@@ -353,7 +353,7 @@ const KlaviyoAutomationGuidePage = () => {
             </Card>
 
             {/* Flow 3 */}
-            <Card className="border-2 border-purple-200 hover:shadow-xl transition-shadow duration-300">
+            <Card className="border-2 border-purple-600 hover:shadow-xl transition-shadow duration-300">
               <CardContent className="p-8">
                 <div className="flex items-start gap-6">
                   <div className="flex-shrink-0 w-16 h-16 bg-purple-600 text-white rounded-xl flex items-center justify-center font-bold text-2xl">
@@ -397,7 +397,7 @@ const KlaviyoAutomationGuidePage = () => {
             </Card>
 
             {/* Flow 4 */}
-            <Card className="border-2 border-orange-200 hover:shadow-xl transition-shadow duration-300">
+            <Card className="border-2 border-orange-600 hover:shadow-xl transition-shadow duration-300">
               <CardContent className="p-8">
                 <div className="flex items-start gap-6">
                   <div className="flex-shrink-0 w-16 h-16 bg-orange-600 text-white rounded-xl flex items-center justify-center font-bold text-2xl">

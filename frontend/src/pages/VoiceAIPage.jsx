@@ -8,7 +8,7 @@ import Breadcrumb from '../components/Breadcrumb';
 import InternalLinkBlock from '../components/InternalLinkBlock';
 import { voiceAIData, companyData } from '../data/mock';
 import ROICalculator from '../components/ROICalculator';
-import robotLadyImage from '../assets/Devaland-robot-lady.jpeg';
+import robotLadyImage from '../public/images/optimized/Devaland-robot-lady.webp';
 
 const VoiceAIPage = () => {
   return (
@@ -573,7 +573,7 @@ const VoiceAIPage = () => {
                 </div>
                 <Button asChild variant="outline" className="w-full">
                   <a href={companyData.calendly} target="_blank" rel="noopener noreferrer">
-                    Learn More
+                    View Automation Services
                   </a>
                 </Button>
               </CardContent>
@@ -605,7 +605,7 @@ const VoiceAIPage = () => {
                 </div>
                 <Button asChild variant="outline" className="w-full">
                   <a href={companyData.calendly} target="_blank" rel="noopener noreferrer">
-                    Learn More
+                    View Automation Services
                   </a>
                 </Button>
               </CardContent>
@@ -639,7 +639,7 @@ const VoiceAIPage = () => {
                 </div>
                 <Button asChild variant="outline" className="w-full">
                   <a href={companyData.calendly} target="_blank" rel="noopener noreferrer">
-                    Learn More
+                    View Automation Services
                   </a>
                 </Button>
               </CardContent>
@@ -673,7 +673,7 @@ const VoiceAIPage = () => {
                 </div>
                 <Button asChild variant="outline" className="w-full">
                   <a href={companyData.calendly} target="_blank" rel="noopener noreferrer">
-                    Learn More
+                    View Automation Services
                   </a>
                 </Button>
               </CardContent>
@@ -707,7 +707,7 @@ const VoiceAIPage = () => {
                 </div>
                 <Button asChild variant="outline" className="w-full">
                   <a href={companyData.calendly} target="_blank" rel="noopener noreferrer">
-                    Learn More
+                    View Automation Services
                   </a>
                 </Button>
               </CardContent>
@@ -741,7 +741,7 @@ const VoiceAIPage = () => {
                 </div>
                 <Button asChild variant="outline" className="w-full">
                   <a href={companyData.calendly} target="_blank" rel="noopener noreferrer">
-                    Learn More
+                    View Automation Services
                   </a>
                 </Button>
               </CardContent>

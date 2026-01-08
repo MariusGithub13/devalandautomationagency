@@ -27,7 +27,7 @@ const TrustpilotWidget = ({ variant = 'compact' }) => {
             <div className="flex items-center space-x-3">
               <div className="flex items-center space-x-1">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={16} className="text-yellow-400 fill-current" />
+                  <Star key={i} size={16} className="text-yellow-600 fill-current" />
                 ))}
               </div>
               <span className="text-sm font-medium text-gray-900">Excellent</span>
@@ -59,7 +59,7 @@ const TrustpilotWidget = ({ variant = 'compact' }) => {
         
         <div className="flex items-center justify-center space-x-1 mb-2">
           {[...Array(5)].map((_, i) => (
-            <Star key={i} size={20} className="text-yellow-400 fill-current" />
+            <Star key={i} size={20} className="text-yellow-600 fill-current" />
           ))}
         </div>
         

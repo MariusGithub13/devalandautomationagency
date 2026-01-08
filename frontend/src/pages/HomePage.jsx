@@ -9,7 +9,7 @@ import FAQSection from '../components/FAQSection';
 import InternalLinkBlock from '../components/InternalLinkBlock';
 // TrustpilotWidget removed - using consistent footer-style widget
 import { companyData, heroImages, services, caseStudies, awards } from '../data/mock';
-import robotLadyImage from '../assets/Devaland-robot-lady.jpeg';
+import robotLadyImage from '../public/images/optimized/Devaland-robot-lady.webp';
 import HeroSection from '../components/home/HeroSection';
 import CaseStudySection from "../components/home/CaseStudySection";
 
@@ -113,14 +113,14 @@ const HomePage = () => {
             {awards.map((award, index) => (
               <Card key={index} className="glass border-white/20 group hover-lift">
                 <CardContent className="p-6 text-center">
-                  <Award size={48} className="text-yellow-400 mx-auto mb-4" />
+                  <Award size={48} className="text-yellow-600 mx-auto mb-4" />
                   <h3 className="text-xl font-bold text-white mb-2">{award.title}</h3>
                   <p className="text-white/80 mb-4">{award.description}</p>
                   <a 
                     href={award.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center space-x-2 text-yellow-400 hover:text-yellow-300 transition-colors duration-200"
+                    className="inline-flex items-center space-x-2 text-yellow-600 hover:text-yellow-700 transition-colors duration-200"
                   >
                     <span className="text-sm font-medium">View Recognition</span>
                     <ExternalLink size={14} />
@@ -286,7 +286,7 @@ const HomePage = () => {
                       to={`/services#${service.title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}`}
                       className="flex items-center justify-center text-blue-600 font-medium hover:text-blue-800 transition-colors duration-200 mt-auto"
                     >
-                      <span>Learn More</span>
+                      <span>View Automation Services</span>
                       <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform duration-200" />
                     </Link>
                   </CardContent>
@@ -397,7 +397,7 @@ const HomePage = () => {
 
             {/* Resource 4: Black Friday Strategy */}
             <Link to="/klaviyo-black-friday-strategy" className="group">
-              <Card className="border-2 border-orange-200 hover:border-orange-500 hover:shadow-2xl transition-all duration-300 h-full">
+              <Card className="border-2 border-orange-600 hover:border-orange-700 hover:shadow-2xl transition-all duration-300 h-full">
                 <CardContent className="p-6">
                   <div className="flex items-start justify-between mb-4">
                     <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center group-hover:bg-orange-600 transition-colors duration-300">
@@ -421,7 +421,7 @@ const HomePage = () => {
 
             {/* Resource 5: Predictive Analytics */}
             <Link to="/klaviyo-predicted-next-order" className="group">
-              <Card className="border-2 border-green-200 hover:border-green-500 hover:shadow-2xl transition-all duration-300 h-full">
+              <Card className="border-2 border-green-600 hover:border-green-700 hover:shadow-2xl transition-all duration-300 h-full">
                 <CardContent className="p-6">
                   <div className="flex items-start justify-between mb-4">
                     <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center group-hover:bg-green-600 transition-colors duration-300">
