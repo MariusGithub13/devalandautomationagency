@@ -117,6 +117,7 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
               checked={gdprConsent}
               onChange={(e) => setGdprConsent(e.target.checked)}
               disabled={isSubmitting}
+              aria-label="GDPR consent"
               className="mt-0.5 h-4 w-4"
             />
             <label className="text-xs text-gray-600">
@@ -176,6 +177,7 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
             checked={gdprConsent}
             onChange={(e) => setGdprConsent(e.target.checked)}
             disabled={isSubmitting}
+            aria-label="GDPR consent"
             className="mt-1 h-4 w-4"
           />
           <label className="text-sm text-white opacity-90">

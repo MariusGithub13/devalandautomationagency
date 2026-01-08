@@ -219,6 +219,7 @@ const CookieConsent = () => {
                   type="checkbox"
                   checked
                   disabled
+                  aria-label="Necessary cookies"
                   className="rounded cursor-not-allowed accent-blue-600"
                 />
               </div>
