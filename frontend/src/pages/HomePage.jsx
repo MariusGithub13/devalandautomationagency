@@ -122,7 +122,7 @@ const HomePage = () => {
                     rel="noopener noreferrer"
                     className="inline-flex items-center space-x-2 text-yellow-800 hover:text-yellow-900 transition-colors duration-200"
                   >
-                    <span className="text-sm font-medium">View Recognition</span>
+                    <span className="text-sm font-medium">View {award.title}</span>
                     <ExternalLink size={14} />
                   </a>
                 </CardContent>
