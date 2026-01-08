@@ -493,7 +493,7 @@ const KlaviyoPlacedOrderRatePage = () => {
             </div>
 
             <div className="flex items-start gap-4">
-              <div className="flex-shrink-0 w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center font-bold text-yellow-700">
+              <div className="flex-shrink-0 w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center font-bold text-yellow-800">
                 7
               </div>
               <div>
