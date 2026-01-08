@@ -451,7 +451,7 @@ const HomePage = () => {
                     <div className="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center group-hover:bg-pink-600 transition-colors duration-300">
                       <Target className="text-pink-600 group-hover:text-white transition-colors duration-300" size={24} />
                     </div>
-                    <Badge className="bg-yellow-100 text-yellow-700">Analytics</Badge>
+                    <Badge className="bg-orange-100 text-orange-700">Analytics</Badge>
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-pink-600 transition-colors duration-300">
                     Placed Order Rate Explained

@@ -223,7 +223,7 @@ const KlaviyoSegmentationPage = () => {
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-gray-600">31-90 days:</span>
-                    <Badge variant="outline" className="bg-yellow-50 text-yellow-700">Warm</Badge>
+                    <Badge variant="outline" className="bg-orange-50 text-orange-700">Warm</Badge>
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-gray-600">91-180 days:</span>
@@ -287,7 +287,7 @@ const KlaviyoSegmentationPage = () => {
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-gray-600">$500-$1,000:</span>
-                    <Badge variant="outline" className="bg-yellow-50 text-yellow-700">Gold</Badge>
+                    <Badge variant="outline" className="bg-orange-50 text-orange-700">Gold</Badge>
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-gray-600">$1,000+:</span>
