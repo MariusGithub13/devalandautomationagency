@@ -8,7 +8,7 @@ import Breadcrumb from '../components/Breadcrumb';
 import InternalLinkBlock from '../components/InternalLinkBlock';
 import { voiceAIData, companyData } from '../data/mock';
 import ROICalculator from '../components/ROICalculator';
-import robotLadyImage from '../public/images/optimized/Devaland-robot-lady.webp';
+import robotLadyImage from '../assets/Devaland-robot-lady.webp';
 
 const VoiceAIPage = () => {
   return (

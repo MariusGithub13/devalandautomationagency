@@ -9,7 +9,7 @@ import FAQSection from '../components/FAQSection';
 import InternalLinkBlock from '../components/InternalLinkBlock';
 // TrustpilotWidget removed - using consistent footer-style widget
 import { companyData, heroImages, services, caseStudies, awards } from '../data/mock';
-import robotLadyImage from '../public/images/optimized/Devaland-robot-lady.webp';
+import robotLadyImage from '../assets/Devaland-robot-lady.webp';
 import HeroSection from '../components/home/HeroSection';
 import CaseStudySection from "../components/home/CaseStudySection";
 
