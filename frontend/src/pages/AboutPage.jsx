@@ -278,17 +278,17 @@ const AboutPage = () => {
             {awards.map((award, index) => (
               <Card key={index} className="glass border-white/20 group hover-lift">
                 <CardContent className="p-6 text-center">
-                  <Award size={48} className="text-yellow-800 mx-auto mb-4" />
+                  <Award size={48} className="text-white mx-auto mb-4" />
                   <h3 className="text-xl font-bold text-white mb-2">{award.title}</h3>
                   <p className="text-white/80 mb-4">{award.description}</p>
                   <a 
                     href={award.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center space-x-2 text-yellow-800 hover:text-yellow-900 transition-colors duration-200"
+                    className="inline-flex items-center space-x-2 text-white hover:text-white transition-colors duration-200"
                   >
                     <span className="text-sm font-medium">View {award.title}</span>
-                    <ExternalLink size={14} />
+                    <ExternalLink size={14} className="text-white" />
                   </a>
                 </CardContent>
               </Card>
