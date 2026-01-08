@@ -52,101 +52,32 @@ User-agent: Applebot-Extended
 Allow: /
 
 # ============================================
-# Traditional Search Engines
-# ============================================
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: Slurp
-Allow: /
-
-User-agent: DuckDuckBot
-Allow: /
-
-User-agent: Baiduspider
-Allow: /
-
-User-agent: YandexBot
-Allow: /
-
-# ============================================
-# All Other Bots (Default Rules)
+# General Rules (Everyone Else)
 # ============================================
 User-agent: *
 Allow: /
+
+# Security & Admin Blocks
 Disallow: /admin/
 Disallow: /private/
 Disallow: /.env
 Disallow: /config/
 
-# Block old language paths (site is English-only)
-Disallow: /en/
-Disallow: /en_gb/
-Disallow: /en_au/
-Disallow: /en_ca/
-Disallow: /en_nz/
-User-agent: GPTBot
-Allow: /
-Disallow: /es/
-User-agent: ChatGPT-User
-Allow: /
-Disallow: /fr/
-User-agent: Google-Extended
-Allow: /
-Disallow: /pt/
-User-agent: anthropic-ai
-Allow: /
-Disallow: /ja/
-User-agent: Claude-Web
-Allow: /
-Disallow: /zh_hk/
-User-agent: FacebookBot
-Allow: /
-
-User-agent: PerplexityBot
-Allow: /
-# Static Assets (Explicitly Allowed)
-User-agent: CCBot
-Allow: /
-Allow: /static/
-User-agent: cohere-ai
-Allow: /
-Allow: /*.js
-User-agent: ai2-crawler
-Allow: /
-Allow: /*.jpg
-User-agent: Diffbot
-Allow: /
-Allow: /*.gif
-User-agent: Applebot-Extended
-Allow: /
-Allow: /*.webp
-Allow: /*.woff
-Allow: /*.woff2
-Allow: /*.ttf
-Allow: /*.ico
-
 # ============================================
-# Important Content for AI Understanding
-# ================================================================
-Allow: /llms.txt
-Allow: /sitemap.xml
-Allow: /sitemap.html
-Allow: /blog/
-Allow: /case-studies/
-Allow: /klaviyo
-Allow: /voice-ai
-Allow: /services
-Allow: /about
-Allow: /contact
+# Static Assets
+# ============================================
+Allow: /static/
+Allow: /*.css
+Allow: /*.js
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.gif
+Allow: /*.svg
+Allow: /*.webp
+Allow: /*.ico
 
 # ============================================
 # Sitemaps
 # ============================================
-# Note: Googlebot automatically manages crawl rate based on server performance.
-# Crawl-delay is not supported by Googlebot and has been removed to avoid warnings.
 Sitemap: https://devaland.com/sitemap.xml
-Sitemap: https://devaland.com/sitemap.html
