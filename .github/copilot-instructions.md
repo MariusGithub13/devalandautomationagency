@@ -1,36 +1,23 @@
-# Copilot / AI Agent Instructions
+<!--
+    Copilot / AI Agent Instructions
+    Last updated: January 9, 2026
+-->
 
-**Last updated**: December 12, 2025
+# Devaland Automation Agency — AI Agent Guide
 
-This mono-repo contains: FastAPI backend, React SPA frontend (CRA + craco), and Netlify serverless functions.
+This monorepo powers Devaland's automation agency platform. It is organized into three main parts:
 
-## 🚀 Quick Start (30 seconds)
+- **backend/** — FastAPI (Python) with optional MongoDB (Motor). All API routes are under `/api`. MongoDB is optional; if unavailable, email and core features still work (graceful degradation).
+- **frontend/** — React SPA (CRA + craco). Routing in `src/App.js` (React Router v6). UI components in `src/components/ui/` (Radix + CVA). All pages except HomePage are lazy-loaded. Static content (services, blog, company info) is in `src/data/mock.js`.
+- **netlify/functions/** — Node.js 18 serverless functions. **Contact form is handled here, not in FastAPI.**
 
-```bash
-# Frontend dev (http://localhost:3000)
-cd frontend && npm install && npm start
+## 🏗️ Architecture & Data Flow
 
-# Backend dev (http://localhost:8000) - optional, requires backend/.env
-cd backend && python -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt && uvicorn server:app --reload --port 8000
-
-# Test Netlify functions locally
-# Copilot / AI Agent Instructions
-
-**Last updated:** January 8, 2026
-
-This monorepo powers Devaland's automation agency platform. It consists of three tightly integrated parts:
-
-## 🏗️ Architecture Overview
-
-1. **backend/** — FastAPI (Python) with optional MongoDB (Motor). All API routes are under `/api`. Graceful degradation: if MongoDB is unavailable, email and core features still work.
-2. **frontend/** — React SPA (CRA + craco). Routing in `src/App.js` (React Router v6). UI components in `src/components/ui/` (Radix + CVA). All pages except HomePage are lazy-loaded. Static content (services, blog, company info) is in `src/data/mock.js`.
-3. **netlify/functions/** — Node.js 18 serverless functions. **Contact form is handled here, not in FastAPI.**
-
-**Key integration:**
-- Contact forms use `netlify/functions/contact.js` (SMTP, dual email: notification + confirmation). FastAPI endpoint is fallback only.
-- MongoDB is optional; all features degrade gracefully if unavailable.
-- Sitemap is generated at build via `frontend/scripts/generate-sitemap.mjs`.
+- **Contact forms:** Use `netlify/functions/contact.js` for SMTP (dual email: notification + confirmation). FastAPI endpoint is fallback only.
+- **Sitemap:** Generated at build via `frontend/scripts/generate-sitemap.mjs`.
+- **Static content:** All services, blog, and company info are in `frontend/src/data/mock.js`.
+- **UI:** Use Radix + CVA components from `src/components/ui/`. Use `cn()` from `@/lib/utils` for class merging. Never hardcode static content—import from `mock.js`.
+- **SEO:** Every page must use `<SEO />` and `<Breadcrumb />`. Add 3-5 `<InternalLinkBlock />`s for internal linking. See `INTERNAL_LINKING_STRATEGY.md` for details.
 
 ## ⚡ Developer Workflow
 
@@ -62,18 +49,6 @@ This monorepo powers Devaland's automation agency platform. It consists of three
 | Sitemap | frontend/scripts/generate-sitemap.mjs |
 | Path aliases | frontend/jsconfig.json, craco.config.js |
 
-**UI:** Always use Radix + CVA components from `src/components/ui/`. Use `cn()` from `@/lib/utils` for class merging. Never hardcode static content—import from `mock.js`.
-
-**SEO:** Every page must use `<SEO />` and `<Breadcrumb />`. Add 3-5 `<InternalLinkBlock />`s for internal linking. See `INTERNAL_LINKING_STRATEGY.md` for details.
-
-**Contact/email:** Use Netlify function (`contact.js`). SMTP config is required in both backend and Netlify env vars. MongoDB failure does not block email.
-
-## 🔑 Environment & Secrets
-
-- Backend: see `backend/.env.example` for required keys (MongoDB, SMTP, CORS)
-- Netlify: set SMTP keys in UI (see `CONTACT_FORM_SETUP.md`)
-- Never commit `.env` files
-
 ## 📝 Project-Specific Patterns
 
 - **Static content:** All in `frontend/src/data/mock.js` (services, blog, company info)
@@ -82,6 +57,12 @@ This monorepo powers Devaland's automation agency platform. It consists of three
 - **Image optimization:** All images must have `width`/`height` attributes; use WebP in `/frontend/public/images/optimized/`
 - **Performance:** See `PAGESPEED_PERFORMANCE_FIXES_DEC_2025.md` for required optimizations
 - **CSP/CORS:** Update `netlify.toml` for new third-party scripts; test with `Content-Security-Policy-Report-Only` first
+
+## 🔑 Environment & Secrets
+
+- Backend: see `backend/.env.example` for required keys (MongoDB, SMTP, CORS)
+- Netlify: set SMTP keys in UI (see `CONTACT_FORM_SETUP.md`)
+- Never commit `.env` files
 
 ## 🚩 Common Pitfalls
 
