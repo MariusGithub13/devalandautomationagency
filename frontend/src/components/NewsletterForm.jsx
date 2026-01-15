@@ -71,12 +71,12 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
 
       if (response.ok && data.success) {
         setSubmitMessage('✓ Successfully subscribed! Your roadmap download has started.');
-        triggerDownload(); // Triggers the PDF download immediately
+        triggerDownload(); 
         setEmail('');
         setGdprConsent(false);
         setBotField('');
       } else {
-        // Handle rate limiting (429) or other backend errors
+        // Handle rate limiting (429) or already subscribed status
         setSubmitMessage(data.message || 'Something went wrong. Please try again.');
       }
     } catch (error) {
@@ -108,7 +108,7 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
             onChange={(e) => setEmail(e.target.value)}
             disabled={isSubmitting}
             required
-            className="w-full bg-white text-gray-900 border-gray-300"
+            className="w-full bg-white !text-gray-900 border-gray-300"
           />
 
           <Button
@@ -134,10 +134,10 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
           </div>
 
           {submitMessage && (
-            <div className={`text-xs font-bold p-2 rounded ${
+            <div className={`text-xs font-bold p-2 rounded shadow-sm border ${
               submitMessage.includes('✓') 
-                ? 'bg-green-100 text-green-900' 
-                : 'bg-yellow-100 text-yellow-900'
+                ? '!bg-green-100 !text-green-900 !border-green-300' 
+                : '!bg-yellow-100 !text-yellow-900 !border-yellow-300'
             }`}>
               {submitMessage}
             </div>
@@ -169,7 +169,7 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
             onChange={(e) => setEmail(e.target.value)}
             disabled={isSubmitting}
             required
-            className="flex-1 bg-white text-gray-900 border-0 h-12 shadow-sm"
+            className="flex-1 bg-white !text-gray-900 border-0 h-12 shadow-sm"
           />
           <Button
             type="submit"
@@ -195,12 +195,12 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
           </label>
         </div>
 
-        {/* FIXED: Readable Status Messages */}
+        {/* Status Messages - Using !important to force contrast */}
         {submitMessage && (
-          <div className={`text-sm font-bold p-4 rounded-lg shadow-inner border-2 ${
+          <div className={`text-sm font-extrabold p-4 rounded-lg shadow-md border-2 animate-in fade-in zoom-in duration-300 ${
             submitMessage.includes('✓') 
-              ? 'bg-green-100 text-green-900 border-green-300' 
-              : 'bg-yellow-100 text-yellow-900 border-yellow-300'
+              ? '!bg-green-100 !text-green-900 !border-green-400' 
+              : '!bg-yellow-100 !text-yellow-900 !border-yellow-400'
           }`}>
             {submitMessage}
           </div>
