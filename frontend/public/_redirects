@@ -1,1 +1,42 @@
-/* /index.html 200
+# ============================================
+
+# 1. Critical SEO Fixes (Soft 404s)
+
+# ============================================
+
+/blog/10-klaviyo-automation-flows-every-e-commerce-store-needs /blog/best-10-klaviyo-automation-flows-every-ecommerce-store-needs 301!
+/blog/customer-loyalty-email-personalization /blog/building-customer-loyalty-through-email-personalization 301!
+/blog/advanced-klaviyo-analytics /blog/advanced-klaviyo-analytics-beyond-open-and-click-rates 301!
+/blog/black-friday-klaviyo-sales-maximization /blog/maximizing-black-friday-sales-with-klaviyo 301!
+/blog/sms-marketing-email-complement /blog/sms-marketing-the-perfect-complement-to-email 301!
+/blog/10-klaviyo-automation-flows-every-ecommerce-store-needs /blog/best-10-klaviyo-automation-flows-every-ecommerce-store-needs 301!
+
+# ============================================
+
+# 2. Canonicalization (Fix Redirect Errors)
+
+# ============================================
+
+http://devaland.com/_ https://devaland.com/:splat 301!
+https://www.devaland.com/_ https://devaland.com/:splat 301!
+
+# ============================================
+
+# 3. Clean up Junk & Old Subfolders (410 Gone)
+
+# ============================================
+
+/api/_ 410
+/shop/_ 410
+/app/_ 410
+/go/_ 410
+/marketing/_ 410
+/sheaterra/_ 410
+
+# ============================================
+
+# 4. SPA Fallback (MUST STAY AT THE BOTTOM)
+
+# ============================================
+
+/\* /index.html 200

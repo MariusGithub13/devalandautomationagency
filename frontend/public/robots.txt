@@ -1,61 +1,71 @@
 # robots.txt for https://devaland.com
-# Optimized for search engines and Large Language Models (LLMs)
+# Optimized for search engines and AI agents
 
 # ============================================
 # AI/LLM Crawlers - FULL ACCESS
 # ============================================
-# OpenAI (ChatGPT, GPT-4, SearchGPT)
 User-agent: GPTBot
 Allow: /
-
-# OpenAI Plugin Bot
 User-agent: ChatGPT-User
 Allow: /
-
-# Google AI (Gemini, Bard, PaLM)
 User-agent: Google-Extended
 Allow: /
-
-# Anthropic (Claude)
 User-agent: anthropic-ai
 Allow: /
-
 User-agent: Claude-Web
 Allow: /
-
-# Meta AI (Llama models)
 User-agent: FacebookBot
 Allow: /
-
-# Perplexity AI
 User-agent: PerplexityBot
 Allow: /
-
-# Common Crawl (used by many AI models)
 User-agent: CCBot
 Allow: /
-
-# Cohere AI
 User-agent: cohere-ai
 Allow: /
-
-# AI2 (Allen Institute - used for research datasets)
 User-agent: ai2-crawler
 Allow: /
-
-# Diffbot (knowledge graph for AI)
 User-agent: Diffbot
 Allow: /
-
-# Applebot-Extended (Apple Intelligence)
 User-agent: Applebot-Extended
 Allow: /
 
 # ============================================
-# General Rules (Everyone Else)
+# General Rules & Technical Cleanup
 # ============================================
 User-agent: *
 Allow: /
+
+# Block Technical Junk & Thin Content Patterns (Fixes "Crawled - Not Indexed")
+Disallow: /api/
+Disallow: /page/
+Disallow: /tag/
+Disallow: /comments/feed/
+Disallow: /*?ajax-request=
+Disallow: /*?wordfence_logHuman=
+Disallow: /*?o=price-desc
+Disallow: /*?wordfence_lh=
+
+# Block Regional/Language Folders you don't actively manage (Fixes Duplicates)
+Disallow: /de/
+Disallow: /fr/
+Disallow: /it/
+Disallow: /es/
+Disallow: /ar/
+Disallow: /pl/
+Disallow: /ja/
+Disallow: /zh/
+Disallow: /nl/
+Disallow: /fi/
+Disallow: /ko/
+Disallow: /ru/
+Disallow: /sv/
+Disallow: /da/
+Disallow: /tr/
+Disallow: /pt/
+Disallow: /en_gb/
+Disallow: /en_au/
+Disallow: /en_nz/
+Disallow: /en_ca/
 
 # Security & Admin Blocks
 Disallow: /admin/
@@ -72,10 +82,8 @@ Allow: /*.js
 Allow: /*.png
 Allow: /*.jpg
 Allow: /*.jpeg
-Allow: /*.gif
 Allow: /*.svg
 Allow: /*.webp
-Allow: /*.ico
 
 # ============================================
 # Sitemaps
