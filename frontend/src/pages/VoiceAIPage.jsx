@@ -1,9 +1,8 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Link } from 'react-router-dom';
-import { Phone, MessageSquare, CheckCircle, Zap, ArrowRight, Star, ExternalLink } from 'lucide-react';
+import { Phone, MessageSquare, CheckCircle, Zap, ExternalLink } from 'lucide-react';
 import { Button } from '../components/ui/button';
-import { Card, CardContent } from '../components/ui/card';
+import { Card } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import Breadcrumb from '../components/Breadcrumb';
 import NewsletterForm from '../components/NewsletterForm';
@@ -19,6 +18,11 @@ const VoiceAIPage = () => {
         <meta name="description" content="Deploy intelligent Voice AI agents for phone calls and website chatbots. 80% query resolution and 50% cost reduction. Book your free audit." />
         <link rel="canonical" href="https://devaland.com/voice-ai" />
       </Helmet>
+
+      {/* GLOBAL CSS OVERRIDE: Forced visibility for forced white-text themes */}
+      <style dangerouslySetInnerHTML={{ __html: `
+        .roadmap-card h3 { color: #111827 !important; }
+      `}} />
 
       <div className="pt-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <Breadcrumb items={[{ label: 'Services', href: '/services' }, { label: 'Voice AI', href: '/voice-ai' }]} />
@@ -52,15 +56,6 @@ const VoiceAIPage = () => {
           </div>
           <div className="relative animate-fade-in-up delay-300">
             <img src={robotLadyImage} alt="AI-Powered Voice Agent Assistant" width="600" height="800" className="rounded-2xl shadow-2xl transform scale-x-[-1]" loading="eager" fetchPriority="high" />
-            <div className="absolute -bottom-6 -left-6 bg-white rounded-xl shadow-xl p-4 flex items-center gap-3">
-              <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-                <CheckCircle className="w-6 h-6 text-green-600" />
-              </div>
-              <div>
-                <div className="font-bold text-gray-900 text-sm">Live Now</div>
-                <div className="text-xs text-gray-600">Handling 247 calls</div>
-              </div>
-            </div>
           </div>
         </div>
       </section>
@@ -88,7 +83,7 @@ const VoiceAIPage = () => {
         </div>
       </section>
 
-      {/* --- NEW LEAD MAGNET: CAPTURING TRENDING TRAFFIC --- */}
+      {/* LEAD MAGNET: ROADMAP DOWNLOAD */}
       <section className="py-12 px-4 bg-gray-50">
         <div className="max-w-5xl mx-auto bg-gradient-to-br from-blue-700 to-indigo-900 rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden">
           <div className="absolute top-0 right-0 -mt-12 -mr-12 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
@@ -98,7 +93,7 @@ const VoiceAIPage = () => {
               <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4 leading-tight">
                 The 2026 Voice AI Implementation Roadmap
               </h2>
-              <p className="text-blue-100 mb-6 text-lg font-medium">
+              <p className="text-blue-100 mb-6 text-lg font-medium opacity-100">
                 Don't guess your way into automation. Download our 15-point checklist to reduce support costs by 50%.
               </p>
               <ul className="space-y-3 mb-4">
@@ -109,17 +104,19 @@ const VoiceAIPage = () => {
                 ))}
               </ul>
             </div>
-            <div className="bg-white rounded-2xl p-8 shadow-2xl">
+
+            {/* WHITE CARD: Title visibility and Duplicate Footer fixed */}
+            <div className="bg-white rounded-2xl p-8 shadow-2xl roadmap-card">
               <h3 className="text-gray-900 font-bold text-xl mb-6 text-center">Get Instant Access</h3>
-              <NewsletterForm buttonText="Download Roadmap" />
-              <p className="text-center text-xs text-gray-500 mt-4 font-medium">Join 500+ leaders scaling their support with Devaland AI.</p>
+              <NewsletterForm />
+              {/* Manual paragraph removed: duplicated text solved */}
             </div>
           </div>
         </div>
       </section>
 
       {/* ROI Calculator */}
-      <section className="py-20 bg-white">
+      <section id="roi-calculator" className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-8">Calculate Your Potential Savings</h2>
           <ROICalculator />
