@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 // UI Components
 import { Button } from '../components/ui/button';
-import { Card, CardContent, CardHeader } from '../components/ui/card';
+import { Card, CardContent } from '../components/ui/card';
 import { Input } from '../components/ui/input';
 import { Badge } from '../components/ui/badge';
 import {
@@ -20,7 +20,9 @@ import SEO from '../components/SEO';
 import Breadcrumb from '../components/Breadcrumb';
 import NewsletterForm from '../components/NewsletterForm';
 import AuthorAvatar from '../components/AuthorAvatar';
-import { blogPosts } from '../data/mock';
+
+// DATA IMPORT - Fixed naming to match mock.js
+import { blogPosts } from '../data/mock'; 
 
 /**
  * Helper to generate URL-friendly slugs from titles
@@ -39,11 +41,11 @@ const BlogPage = () => {
     "@context": "https://schema.org",
     "@type": "Blog",
     "name": "Devaland Automation Blog",
-    "description": "Expert insights on email marketing automation, Klaviyo, RPA, and business process automation",
+    "description": "Expert insights on email marketing automation, Klaviyo, and Voice AI.",
     "url": "https://devaland.com/blog",
     "publisher": {
       "@type": "Organization",
-      "name": "Devaland Marketing S.R.L.",
+      "name": "Devaland",
       "url": "https://devaland.com"
     }
   };
@@ -62,10 +64,10 @@ const BlogPage = () => {
         const matchesCategory = selectedCategory === 'All' || post.category === selectedCategory;
         return matchesSearch && matchesCategory;
       })
-      .sort((a, b) => new Date(b.date) - new Date(a.date)); // Keep latest first
+      .sort((a, b) => new Date(b.date) - new Date(a.date));
   }, [searchTerm, selectedCategory]);
 
-  // Memoized Trending Articles (Top 6 latest regardless of filter)
+  // Memoized Trending Articles
   const trendingArticles = useMemo(() => {
     return [...blogPosts]
       .sort((a, b) => new Date(b.date) - new Date(a.date))
@@ -78,9 +80,8 @@ const BlogPage = () => {
     <>
       <SEO 
         title="Blog - Automation & Email Marketing Insights"
-        description="Expert insights on email marketing automation, Klaviyo best practices, RPA development, and business process automation."
+        description="Expert insights on email marketing automation, Klaviyo best practices, and Voice AI agents."
         canonical="https://devaland.com/blog"
-        keywords={["email marketing blog", "klaviyo tips", "automation blog", "RPA insights"]}
         schema={blogSchema}
       />
 
@@ -90,14 +91,14 @@ const BlogPage = () => {
           <Breadcrumb items={[{ label: 'Blog', href: '/blog' }]} />
         </nav>
         
-        {/* Hero Section */}
+        {/* Hero Section with Restored Blue Gradient */}
         <header className="py-12 md:py-20 bg-gradient-to-b from-blue-50/50 to-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 className="text-5xl md:text-7xl font-display text-gray-900 mb-6 tracking-tight">
               Automation <span className="text-blue-600">Insights</span>
             </h1>
             <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
-              Expert strategies on Klaviyo, RPA, and business process automation to help your business scale efficiently.
+              Expert strategies on Klaviyo and Voice AI to help your business scale efficiently.
             </p>
             
             {/* Search Bar */}
@@ -146,19 +147,18 @@ const BlogPage = () => {
               </div>
               <Card className="group overflow-hidden border-none shadow-2xl rounded-3xl">
                 <div className="grid lg:grid-cols-2">
-                  <Link to={`/blog/${slugify(featuredPost.title)}`} className="relative overflow-hidden aspect-video lg:aspect-auto">
+                  <Link to={`/blog/${featuredPost.slug}`} className="relative overflow-hidden aspect-video lg:aspect-auto">
                     <img 
                       src={featuredPost.image}
                       alt={featuredPost.title}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      loading="eager"
                     />
                   </Link>
                   <CardContent className="p-8 md:p-12 flex flex-col justify-center">
                     <Badge className="w-fit mb-6 bg-blue-100 text-blue-700 hover:bg-blue-100 border-none px-4 py-1">
                       {featuredPost.category}
                     </Badge>
-                    <Link to={`/blog/${slugify(featuredPost.title)}`}>
+                    <Link to={`/blog/${featuredPost.slug}`}>
                       <h2 className="text-3xl md:text-4xl font-display text-gray-900 mb-6 group-hover:text-blue-600 transition-colors">
                         {featuredPost.title}
                       </h2>
@@ -175,7 +175,7 @@ const BlogPage = () => {
                         </div>
                       </div>
                       <Button asChild className="rounded-full px-6 bg-gray-900 hover:bg-blue-600 text-white transition-all">
-                        <Link to={`/blog/${slugify(featuredPost.title)}`}>Read Full Story</Link>
+                        <Link to={`/blog/${featuredPost.slug}`}>Read Full Story</Link>
                       </Button>
                     </div>
                   </CardContent>
@@ -199,21 +199,20 @@ const BlogPage = () => {
             <Carousel opts={{ align: "start", loop: true }} className="w-full">
               <CarouselContent className="-ml-4">
                 {trendingArticles.map((post) => (
-                  <CarouselItem key={post.id} className="pl-4 md:basis-1/2 lg:basis-1/3">
+                  <CarouselItem key={post.slug} className="pl-4 md:basis-1/2 lg:basis-1/3">
                     <Card className="h-full border-none shadow-sm hover:shadow-xl transition-all rounded-2xl overflow-hidden flex flex-col">
-                      <Link to={`/blog/${slugify(post.title)}`} className="relative block aspect-video overflow-hidden">
+                      <Link to={`/blog/${post.slug}`} className="relative block aspect-video overflow-hidden">
                         <img 
                           src={post.image}
                           alt={post.title}
                           className="w-full h-full object-cover"
-                          loading="lazy"
                         />
                       </Link>
                       <CardContent className="p-6 flex flex-col flex-grow">
                         <Badge variant="secondary" className="w-fit mb-3 text-[10px] uppercase tracking-tighter">
                           {post.category}
                         </Badge>
-                        <Link to={`/blog/${slugify(post.title)}`} className="flex-grow">
+                        <Link to={`/blog/${post.slug}`} className="flex-grow">
                           <h3 className="text-xl font-bold text-gray-900 mb-3 hover:text-blue-600 transition-colors line-clamp-2">
                             {post.title}
                           </h3>
@@ -231,7 +230,7 @@ const BlogPage = () => {
           </div>
         </section>
 
-        {/* Main Feed */}
+        {/* Main Feed Grid */}
         <section className="py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <header className="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-4">
@@ -255,18 +254,16 @@ const BlogPage = () => {
             ) : (
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
                 {filteredPosts.map((post) => (
-                  <article key={post.id} className="group flex flex-col">
+                  <article key={post.slug} className="group flex flex-col">
                     <Link 
-                      to={`/blog/${slugify(post.title)}`}
+                      to={`/blog/${post.slug}`}
                       className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-6 shadow-md"
                     >
                       <img 
                         src={post.image}
                         alt={post.title}
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                        loading="lazy"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                     </Link>
                     <div className="flex items-center gap-3 mb-4">
                       <Badge className="bg-blue-50 text-blue-600 border-none hover:bg-blue-100 uppercase text-[10px]">
@@ -274,7 +271,7 @@ const BlogPage = () => {
                       </Badge>
                       <span className="text-xs text-gray-400 font-medium">{post.date}</span>
                     </div>
-                    <Link to={`/blog/${slugify(post.title)}`}>
+                    <Link to={`/blog/${post.slug}`}>
                       <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors leading-snug">
                         {post.title}
                       </h3>
@@ -287,7 +284,7 @@ const BlogPage = () => {
                         <AuthorAvatar author={post.author} size={32} />
                         <span className="text-sm font-semibold text-gray-700">{post.author}</span>
                       </div>
-                      <Link to={`/blog/${slugify(post.title)}`} className="text-blue-600 hover:text-blue-800 font-bold text-sm flex items-center">
+                      <Link to={`/blog/${post.slug}`} className="text-blue-600 hover:text-blue-800 font-bold text-sm flex items-center">
                         Read More <ArrowRight size={16} className="ml-1" />
                       </Link>
                     </div>
@@ -306,30 +303,9 @@ const BlogPage = () => {
               Master Automation
             </h2>
             <p className="text-xl mb-10 text-blue-100 opacity-90 max-w-2xl mx-auto">
-              Join 2,000+ business owners receiving monthly deep-dives on Klaviyo, RPA, and ROI-driven automation.
+              Join 2,000+ business owners receiving monthly deep-dives on Klaviyo and ROI-driven automation.
             </p>
             <NewsletterForm className="max-w-md mx-auto" />
-          </div>
-        </section>
-
-        {/* Strategy CTA */}
-        <section className="py-24 bg-gray-950 text-white">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-4xl md:text-6xl font-display mb-8">
-              Apply These Insights Today
-            </h2>
-            <p className="text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
-              Ready to stop reading and start scaling? Let's build your custom automation roadmap together.
-            </p>
-            <Button 
-              asChild
-              size="lg"
-              className="bg-blue-600 hover:bg-blue-500 text-white font-bold h-16 px-10 rounded-full shadow-2xl shadow-blue-500/20"
-            >
-              <Link to="/contact">
-                Schedule Strategy Session <ArrowRight className="ml-2" />
-              </Link>
-            </Button>
           </div>
         </section>
       </main>

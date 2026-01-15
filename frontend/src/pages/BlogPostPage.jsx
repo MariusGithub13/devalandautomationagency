@@ -21,7 +21,9 @@ import Breadcrumb from '../components/Breadcrumb';
 import NewsletterForm from '../components/NewsletterForm';
 import RelatedPosts from '../components/RelatedPosts';
 import AuthorAvatar from '../components/AuthorAvatar';
-import { BLOG_POSTS } from '../data/mock';
+
+// DATA IMPORT - Fixed naming to match mock.js
+import { blogPosts } from '../data/mock'; 
 
 // --- SUB-COMPONENT: READING PROGRESS BAR ---
 const ReadingProgressBar = () => {
@@ -56,7 +58,7 @@ const BlogPostPage = () => {
 
   // --- 1. DATA FINDING ---
   const post = useMemo(() => {
-    return BLOG_POSTS.find(p => 
+    return blogPosts.find(p => 
       p.slug === slug || 
       p.title.toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, '-') === slug
     );
@@ -79,7 +81,7 @@ const BlogPostPage = () => {
 
   if (!post) {
     return (
-      <div className="py-40 text-center">
+      <div className="py-40 text-center bg-slate-950 min-h-screen">
         <h1 className="text-2xl font-bold mb-4 text-white">Post not found</h1>
         <Link to="/blog" className="text-blue-400 font-bold underline">Back to Blog</Link>
       </div>
@@ -106,11 +108,11 @@ const BlogPostPage = () => {
       <ReadingProgressBar />
 
       <main className="bg-white min-h-screen">
-        {/* 🚀 Beautiful Blue Gradient Hero Section Restored */}
-        <header className="bg-gradient-to-br from-blue-700 via-indigo-800 to-purple-900 pt-32 pb-20">
+        {/* 🚀 Restored Blue/Purple Gradient Hero Section */}
+        <header className="bg-gradient-to-br from-blue-700 via-indigo-800 to-purple-900 pt-32 pb-24">
           <div className="max-w-5xl mx-auto px-4 sm:px-6">
             <div className="mb-8">
-              <Breadcrumb items={breadcrumbItems} isDark={true} />
+              <Breadcrumb items={breadcrumbItems} />
             </div>
             
             <Link to="/blog" className="inline-flex items-center text-blue-200 font-bold mb-8 group hover:text-white transition-colors">
@@ -127,8 +129,8 @@ const BlogPostPage = () => {
             </h1>
             
             <div className="flex flex-wrap items-center gap-6 text-blue-100/70 font-medium pt-8 border-t border-white/10">
-              <div className="flex items-center gap-2"><Calendar size={18} /> {post.date}</div>
-              <div className="flex items-center gap-2"><Clock size={18} /> {post.readTime}</div>
+              <div className="flex items-center gap-2 font-bold"><Calendar size={18} /> {post.date}</div>
+              <div className="flex items-center gap-2 font-bold"><Clock size={18} /> {post.readTime}</div>
               <div className="flex items-center gap-3">
                 <AuthorAvatar author={post.author} size={32} />
                 <span className="text-white font-bold">{post.author}</span>
@@ -138,7 +140,7 @@ const BlogPostPage = () => {
         </header>
 
         {/* Main Article Grid */}
-        <section className="max-w-5xl mx-auto px-4 pb-24 -mt-10">
+        <section className="max-w-5xl mx-auto px-4 pb-24 -mt-12">
           <div className="grid lg:grid-cols-12 gap-16">
             <div className="lg:col-span-8">
               
@@ -181,7 +183,7 @@ const BlogPostPage = () => {
                 </nav>
               )}
 
-              {/* Markdown Content Styling */}
+              {/* Markdown Content Styling with Blue Checkmarks */}
               <div className="prose prose-blue lg:prose-xl max-w-none text-gray-800 prose-headings:font-display prose-headings:tracking-tight prose-strong:text-gray-900">
                 <ReactMarkdown 
                   remarkPlugins={[remarkGfm]}
@@ -212,6 +214,7 @@ const BlogPostPage = () => {
             {/* Sticky Sidebar Elements */}
             <aside className="lg:col-span-4">
               <div className="sticky top-28 space-y-8">
+                {/* Social Share */}
                 <div className="bg-white border border-gray-100 rounded-3xl p-8 shadow-sm">
                    <h3 className="text-sm font-bold uppercase tracking-widest text-gray-400 mb-6 flex items-center gap-2">
                      <Share2 size={14} /> Share Knowledge
@@ -229,13 +232,18 @@ const BlogPostPage = () => {
                    </div>
                 </div>
 
-                <div className="bg-blue-600 rounded-[2rem] p-8 text-white shadow-xl">
-                  <h3 className="text-2xl font-display font-bold mb-4">Ready to Automate?</h3>
-                  <Button asChild className="w-full bg-white text-blue-600 font-bold py-7 rounded-2xl shadow-lg text-lg">
+                {/* Strategy CTA Card */}
+                <div className="bg-blue-600 rounded-[2rem] p-8 text-white shadow-xl shadow-blue-200">
+                  <h3 className="text-2xl font-display font-bold mb-4 leading-tight">Identify Your Voice AI ROI</h3>
+                  <p className="text-blue-100 mb-8 text-sm leading-relaxed font-medium">
+                    Scale your Shopify brand by identifying exactly where Voice AI saves you 50% on phone support.
+                  </p>
+                  <Button asChild className="w-full bg-white hover:bg-blue-50 text-blue-600 font-bold py-7 rounded-2xl shadow-lg transition-all text-lg">
                     <Link to="/contact">Free Strategy Call</Link>
                   </Button>
                 </div>
 
+                {/* Author Info */}
                 <div className="p-8 bg-gray-50 rounded-[2rem] border border-gray-100">
                   <AuthorAvatar author={post.author} size={64} />
                   <h4 className="text-lg font-bold text-gray-900 mt-4">{post.author}</h4>
