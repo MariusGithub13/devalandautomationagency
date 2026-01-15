@@ -4,7 +4,6 @@ import { Button } from '@/components/ui/button';
 
 const NewsletterForm = ({ compact = false, className = '' }) => {
   const [email, setEmail] = useState('');
-  const [botField, setBotField] = useState('');
   const [gdprConsent, setGdprConsent] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
@@ -20,7 +19,7 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (isSubmitting || botField) return;
+    if (isSubmitting) return;
     if (!gdprConsent) { setSubmitMessage('Please accept the privacy policy'); return; }
 
     setIsSubmitting(true);
@@ -35,12 +34,14 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
 
       const data = await response.json();
       setSubmitMessage(data.message);
+
       if (response.ok && data.success) {
         triggerDownload();
         setEmail('');
+        setGdprConsent(false);
       }
     } catch (error) {
-      setSubmitMessage('Failed to subscribe. Please check your connection.');
+      setSubmitMessage('Error connecting to subscription service.');
     } finally {
       setIsSubmitting(false);
     }
@@ -60,24 +61,28 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
             className="flex-1 bg-white !text-gray-900 h-12"
             required
           />
-          <Button type="submit" disabled={isSubmitting} className="bg-orange-500 hover:bg-orange-600 text-white px-8 h-12 font-bold shadow-md">
+          <Button type="submit" disabled={isSubmitting} className="bg-orange-500 hover:bg-orange-600 text-white px-8 h-12 font-extrabold shadow-md">
             {isSubmitting ? 'Processing...' : 'Download Now'}
           </Button>
         </div>
 
         <div className="flex items-start gap-2 text-left">
           <input type="checkbox" checked={gdprConsent} onChange={(e) => setGdprConsent(e.target.checked)} className="mt-1 h-4 w-4" />
-          <label className="text-sm text-white">I agree to receive the 2026 Roadmap. View <a href="/privacy" className="underline">Privacy Policy</a>.</label>
+          <label className="text-sm text-white opacity-90">
+            I agree to receive the 2026 Roadmap. View our <a href="/privacy" className="underline">Privacy Policy</a>.
+          </label>
         </div>
 
+        {/* NUCLEAR BLACKOUT BOX: High-contrast fix for forced white text */}
         {submitMessage && (
           <div 
-            className="text-sm font-black p-4 rounded-lg shadow-2xl border-2 border-white animate-in fade-in"
+            className="text-base font-black p-6 rounded-lg shadow-2xl border-4 border-white animate-in fade-in duration-300"
             style={{ 
-              backgroundColor: isSuccess ? '#064e3b' : '#7f1d1d', // Solid Deep Green or Deep Red
-              color: '#ffffff',
+              backgroundColor: isSuccess ? '#000000' : '#450a0a', // Pure Black or Deep Blood Red
+              color: '#ffffff !important',
               display: 'block',
-              textAlign: 'center'
+              textAlign: 'center',
+              zIndex: 100
             }}
           >
             {submitMessage}

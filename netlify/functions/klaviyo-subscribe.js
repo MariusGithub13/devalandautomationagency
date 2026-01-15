@@ -9,27 +9,72 @@ exports.handler = async (event) => {
     const { email, listId } = JSON.parse(event.body);
     const API_KEY = process.env.KLAVIYO_PRIVATE_API_KEY;
 
-    console.log(`Attempting to subscribe ${email} to list ${listId}...`);
+    if (!API_KEY) {
+      throw new Error('Missing KLAVIYO_PRIVATE_API_KEY in environment variables');
+    }
 
+    console.log(`Attempting v3 subscribe: ${email} to list ${listId}`);
+
+    // Klaviyo v3 API Call for Subscribing Profiles
     const response = await axios({
       method: 'post',
-      url: `https://a.klaviyo.com/api/v2/list/${listId}/subscribe`,
-      params: { api_key: API_KEY },
-      data: { profiles: [{ email }] },
-      headers: { 'Content-Type': 'application/json' }
+      url: 'https://a.klaviyo.com/api/profile-subscription-bulk-create-jobs/',
+      headers: {
+        'Authorization': `Klaviyo-API-Key ${API_KEY}`,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'revision': '2024-02-15'
+      },
+      data: {
+        data: {
+          type: 'profile-subscription-bulk-create-job',
+          attributes: {
+            custom_source: 'voice-ai-roadmap',
+            profiles: {
+              data: [
+                {
+                  type: 'profile',
+                  attributes: {
+                    email: email,
+                    subscriptions: {
+                      email: {
+                        marketing: {
+                          consent: 'SUBSCRIBED'
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          relationships: {
+            list: {
+              data: {
+                type: 'list',
+                id: listId
+              }
+            }
+          }
+        }
+      }
     });
 
-    console.log('Klaviyo Success:', response.data);
+    console.log('Klaviyo v3 Success:', JSON.stringify(response.data));
     return {
-      statusCode: 200,
+      statusCode: 202,
       body: JSON.stringify({ success: true, message: '✓ Successfully subscribed!' })
     };
 
   } catch (error) {
-    // THIS LOG WILL SHOW IN NETLIFY WHEN YOU CLICK THE LOG LINE
-    console.error('Klaviyo Error Details:', error.response ? error.response.data : error.message);
+    console.error('Klaviyo v3 Error Details:', error.response ? JSON.stringify(error.response.data) : error.message);
     
-    const errorMsg = error.response?.data?.detail || 'Failed to subscribe';
+    // Handle the retired API error specifically if it somehow persists
+    let errorMsg = 'Failed to subscribe';
+    if (error.response?.data?.errors?.[0]?.detail) {
+      errorMsg = error.response.data.errors[0].detail;
+    }
+
     return {
       statusCode: error.response?.status || 500,
       body: JSON.stringify({ success: false, message: errorMsg })
