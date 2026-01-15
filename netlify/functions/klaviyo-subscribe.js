@@ -1,8 +1,8 @@
 const https = require('https');
 
-// Rate limiting cache (extended for better protection)
+// Rate limiting cache
 const submissionCache = new Map();
-const RATE_LIMIT_WINDOW = 600000; // 10 minutes (5-10 min recommended)
+const RATE_LIMIT_WINDOW = 600000; // 10 minutes
 const MAX_SUBMISSIONS_PER_EMAIL = 1;
 
 // Spam detection patterns
@@ -20,81 +20,20 @@ function cleanupCache() {
   }
 }
 
-// Verify reCAPTCHA v3 token with Google
-async function verifyRecaptcha(token) {
-  const secretKey = process.env.RECAPTCHA_SECRET_KEY;
-  
-  // If no secret key configured, log warning and allow submission (graceful degradation)
-  if (!secretKey) {
-    console.warn('⚠️ RECAPTCHA_SECRET_KEY not configured - skipping verification');
-    return { success: true, score: 1.0, message: 'reCAPTCHA not configured' };
-  }
-
-  return new Promise((resolve) => {
-    const postData = `secret=${secretKey}&response=${token}`;
-    
-    const options = {
-      hostname: 'www.google.com',
-      path: '/recaptcha/api/siteverify',
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Content-Length': Buffer.byteLength(postData)
-      }
-    };
-
-    const req = https.request(options, (res) => {
-      let body = '';
-      res.on('data', (chunk) => { body += chunk; });
-      res.on('end', () => {
-        try {
-          const result = JSON.parse(body);
-          // reCAPTCHA v3 returns a score from 0.0 to 1.0
-          // 0.0 is very likely a bot, 1.0 is very likely a human
-          resolve(result);
-        } catch (error) {
-          console.error('❌ reCAPTCHA verification parse error:', error);
-          resolve({ success: false, score: 0.0, message: 'Verification failed' });
-        }
-      });
-    });
-
-    req.on('error', (error) => {
-      console.error('❌ reCAPTCHA verification request error:', error);
-      resolve({ success: false, score: 0.0, message: 'Network error' });
-    });
-
-    req.write(postData);
-    req.end();
-  });
-}
-
 // Validate email for spam patterns
 function detectSpamEmail(email) {
   if (SPAM_PATTERNS.suspiciousEmail.test(email)) {
     return { isSpam: true, reason: 'suspicious_email_pattern' };
   }
-  
   if (SPAM_PATTERNS.disposableEmailDomains.test(email)) {
     return { isSpam: true, reason: 'disposable_email_domain' };
   }
-  
   return { isSpam: false };
 }
 
 /**
- * Klaviyo Newsletter Subscription Handler
- * Subscribes email addresses to Klaviyo list via API v2024-10-15
- * 
- * Required Environment Variables:
- * - KLAVIYO_PRIVATE_API_KEY: Your Klaviyo Private API Key (starts with pk_)
- * 
- * Expected Request Body:
- * {
- *   "email": "user@example.com",
- *   "listId": "YOUR_KLAVIYO_LIST_ID",
- *   "timeTaken": 2500 (optional - milliseconds to fill form)
- * }
+ * Klaviyo Newsletter Subscription Handler (v2024-10-15)
+ * Bot protection: Honeypot + Timing Check + Rate Limiting
  */
 exports.handler = async (event) => {
   // Handle CORS preflight
@@ -119,173 +58,71 @@ exports.handler = async (event) => {
   }
 
   try {
-    const { email, listId, timeTaken, 'bot-field': botField, recaptchaToken } = JSON.parse(event.body);
+    const { email, listId, timeTaken, 'bot-field': botField } = JSON.parse(event.body);
 
-    // HONEYPOT CHECK: If bot-field is filled, silently accept and skip processing
+    // 1. HONEYPOT CHECK: If bot-field is filled, silently reject
     if (botField) {
-      console.log('🤖 Bot detected: honeypot field filled - silently rejecting');
-      // Return 200 OK to fool bots, but don't subscribe
+      console.log('🤖 Bot detected: honeypot field filled');
       return {
         statusCode: 200,
         headers: { 'Access-Control-Allow-Origin': '*' },
-        body: JSON.stringify({ 
-          success: true,
-          message: 'Thank you for subscribing'
-        })
+        body: JSON.stringify({ success: true, message: 'Thank you for subscribing' })
       };
     }
 
-    // reCAPTCHA VERIFICATION (v3 with score check)
-    if (recaptchaToken) {
-      const recaptchaResult = await verifyRecaptcha(recaptchaToken);
-      if (!recaptchaResult.success) {
-        console.log('🤖 Bot detected: reCAPTCHA verification failed', recaptchaResult);
-        return {
-          statusCode: 403,
-          headers: { 'Access-Control-Allow-Origin': '*' },
-          body: JSON.stringify({ 
-            success: false,
-            message: 'reCAPTCHA verification failed. Please try again.'
-          })
-        };
-      }
-      
-      // Check score threshold for v3 (configurable via env var, default 0.5)
-      const scoreThreshold = process.env.RECAPTCHA_SCORE_THRESHOLD !== undefined 
-        ? parseFloat(process.env.RECAPTCHA_SCORE_THRESHOLD) 
-        : 0.5;
-      
-      // Validate threshold is a number between 0 and 1
-      const validThreshold = (!isNaN(scoreThreshold) && scoreThreshold >= 0 && scoreThreshold <= 1) 
-        ? scoreThreshold 
-        : 0.5;
-        
-      if (recaptchaResult.score !== undefined && recaptchaResult.score < validThreshold) {
-        console.log('🤖 Bot detected: reCAPTCHA score too low', recaptchaResult.score, 'threshold:', validThreshold);
-        return {
-          statusCode: 403,
-          headers: { 'Access-Control-Allow-Origin': '*' },
-          body: JSON.stringify({ 
-            success: false,
-            message: 'Bot-like behavior detected. Please try again.',
-            score: recaptchaResult.score
-          })
-        };
-      }
-      
-      // Log score for monitoring (optional)
-      if (process.env.NODE_ENV === 'development' && recaptchaResult.score !== undefined) {
-        console.log('✅ reCAPTCHA v3 score:', recaptchaResult.score);
-      }
-    } else if (process.env.RECAPTCHA_SECRET_KEY) {
-      // If reCAPTCHA is configured but no token provided
-      console.log('⚠️ reCAPTCHA token missing');
-      return {
-        statusCode: 400,
-        headers: { 'Access-Control-Allow-Origin': '*' },
-        body: JSON.stringify({ 
-          success: false,
-          message: 'reCAPTCHA verification required'
-        })
-      };
-    }
-
-    // Bot protection: Timing check (newsletter forms should take at least 2 seconds)
+    // 2. TIMING CHECK: Form filled too quickly (under 2s)
     if (timeTaken && timeTaken < 2000) {
       console.log('🤖 Bot detected: Form filled too quickly', timeTaken);
       return {
         statusCode: 429,
         headers: { 'Access-Control-Allow-Origin': '*' },
         body: JSON.stringify({ 
-          success: false,
+          success: false, 
           message: 'Please take a moment to review before subscribing' 
         })
       };
     }
 
-    // Validation
+    // 3. VALIDATION
     if (!email || !email.includes('@')) {
       return {
         statusCode: 400,
         headers: { 'Access-Control-Allow-Origin': '*' },
-        body: JSON.stringify({ 
-          success: false,
-          message: 'Valid email address is required' 
-        })
+        body: JSON.stringify({ success: false, message: 'Valid email address is required' })
       };
     }
 
-    // SPAM DETECTION: Check for suspicious email patterns
+    // 4. SPAM DETECTION
     const spamCheck = detectSpamEmail(email);
     if (spamCheck.isSpam) {
-      console.log('🚫 Spam email detected:', email, 'reason:', spamCheck.reason);
       return {
         statusCode: 400,
         headers: { 'Access-Control-Allow-Origin': '*' },
-        body: JSON.stringify({ 
-          success: false,
-          message: 'Please use a valid email address'
-        })
+        body: JSON.stringify({ success: false, message: 'Please use a valid email address' })
       };
     }
 
-    if (!listId) {
-      return {
-        statusCode: 400,
-        headers: { 'Access-Control-Allow-Origin': '*' },
-        body: JSON.stringify({ 
-          success: false,
-          message: 'List ID is required' 
-        })
-      };
-    }
-
-    // Rate limiting check
+    // 5. RATE LIMITING
     cleanupCache();
     const emailKey = email.toLowerCase();
     const lastSubmission = submissionCache.get(emailKey);
-    
-    if (lastSubmission) {
-      const timeSinceLastSubmission = Date.now() - lastSubmission;
-      if (timeSinceLastSubmission < RATE_LIMIT_WINDOW) {
-        console.log('⏱️ Rate limit exceeded:', email, 'minutes since last:', Math.round(timeSinceLastSubmission / 60000));
-        return {
-          statusCode: 429,
-          headers: { 'Access-Control-Allow-Origin': '*' },
-          body: JSON.stringify({ 
-            success: false,
-            message: 'You have recently subscribed. Please check your email.',
-            retryAfter: Math.ceil((RATE_LIMIT_WINDOW - timeSinceLastSubmission) / 60000)
-          })
-        };
-      }
+    if (lastSubmission && (Date.now() - lastSubmission < RATE_LIMIT_WINDOW)) {
+      return {
+        statusCode: 429,
+        headers: { 'Access-Control-Allow-Origin': '*' },
+        body: JSON.stringify({ success: false, message: 'Recently subscribed. Please check your email.' })
+      };
     }
-
-    // Record this submission
     submissionCache.set(emailKey, Date.now());
 
     const KLAVIYO_API_KEY = process.env.KLAVIYO_PRIVATE_API_KEY;
-
     if (!KLAVIYO_API_KEY) {
-      console.error('KLAVIYO_PRIVATE_API_KEY environment variable not set');
-      return {
-        statusCode: 500,
-        headers: { 'Access-Control-Allow-Origin': '*' },
-        body: JSON.stringify({ 
-          success: false,
-          message: 'Server configuration error' 
-        })
-      };
+      return { statusCode: 500, body: JSON.stringify({ error: 'Server configuration error' }) };
     }
 
-    // Step 1: Create/Update Profile first
+    // Step 1: Create/Update Profile (Klaviyo API v2024-10-15)
     const profileData = JSON.stringify({
-      data: {
-        type: 'profile',
-        attributes: {
-          email: email
-        }
-      }
+      data: { type: 'profile', attributes: { email: email } }
     });
 
     const profileOptions = {
@@ -299,7 +136,6 @@ exports.handler = async (event) => {
       }
     };
 
-    // Create profile
     const profileResult = await new Promise((resolve, reject) => {
       const req = https.request(profileOptions, (res) => {
         let body = '';
@@ -310,12 +146,9 @@ exports.handler = async (event) => {
             if (res.statusCode === 201 || res.statusCode === 200) {
               resolve(data.data.id);
             } else {
-              console.error('Profile creation error:', res.statusCode, body);
-              reject(new Error(`Profile creation failed: ${res.statusCode}`));
+              reject(new Error(`Profile failed: ${res.statusCode}`));
             }
-          } catch (e) {
-            reject(e);
-          }
+          } catch (e) { reject(e); }
         });
       });
       req.on('error', reject);
@@ -325,40 +158,23 @@ exports.handler = async (event) => {
 
     // Step 2: Subscribe profile to list
     const subscriptionData = JSON.stringify({
-      data: [
-        {
-          type: 'profile-subscription-bulk-create-job',
-          attributes: {
-            custom_source: 'Website Newsletter Form',
-            profiles: {
-              data: [
-                {
-                  type: 'profile',
-                  id: profileResult,
-                  attributes: {
-                    email: email,
-                    subscriptions: {
-                      email: {
-                        marketing: {
-                          consent: 'SUBSCRIBED'
-                        }
-                      }
-                    }
-                  }
-                }
-              ]
-            }
-          },
-          relationships: {
-            list: {
-              data: {
-                type: 'list',
-                id: listId
+      data: [{
+        type: 'profile-subscription-bulk-create-job',
+        attributes: {
+          custom_source: 'Website Newsletter Form',
+          profiles: {
+            data: [{
+              type: 'profile',
+              id: profileResult,
+              attributes: {
+                email: email,
+                subscriptions: { email: { marketing: { consent: 'SUBSCRIBED' } } }
               }
-            }
+            }]
           }
-        }
-      ]
+        },
+        relationships: { list: { data: { type: 'list', id: listId || 'RCLE38' } } }
+      }]
     });
 
     const subscriptionOptions = {
@@ -372,62 +188,28 @@ exports.handler = async (event) => {
       }
     };
 
-    // Subscribe to list
     return new Promise((resolve) => {
       const req = https.request(subscriptionOptions, (res) => {
         let body = '';
-        
-        res.on('data', (chunk) => {
-          body += chunk;
-        });
-
+        res.on('data', (chunk) => { body += chunk; });
         res.on('end', () => {
           const success = res.statusCode === 202 || res.statusCode === 201 || res.statusCode === 200;
-          
-          if (!success) {
-            console.error('Klaviyo Subscription Error:', res.statusCode, body);
-          } else {
-            console.log('Klaviyo Subscription Success:', res.statusCode);
-          }
-
           resolve({
             statusCode: success ? 200 : 500,
             headers: { 'Access-Control-Allow-Origin': '*' },
             body: JSON.stringify({
-              success: success,
-              message: success 
-                ? 'Successfully subscribed to newsletter' 
-                : 'Failed to subscribe. Please try again.'
+              success,
+              message: success ? 'Successfully subscribed' : 'Failed to subscribe'
             })
           });
         });
       });
-
-      req.on('error', (error) => {
-        console.error('Request error:', error);
-        resolve({
-          statusCode: 500,
-          headers: { 'Access-Control-Allow-Origin': '*' },
-          body: JSON.stringify({
-            success: false,
-            message: 'Network error. Please try again.'
-          })
-        });
-      });
-
+      req.on('error', () => resolve({ statusCode: 500, body: JSON.stringify({ success: false }) }));
       req.write(subscriptionData);
       req.end();
     });
 
   } catch (error) {
-    console.error('Handler error:', error);
-    return {
-      statusCode: 500,
-      headers: { 'Access-Control-Allow-Origin': '*' },
-      body: JSON.stringify({
-        success: false,
-        error: 'Internal server error'
-      })
-    };
+    return { statusCode: 500, body: JSON.stringify({ success: false, error: 'Internal server error' }) };
   }
 };

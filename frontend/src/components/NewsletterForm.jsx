@@ -2,13 +2,6 @@ import React, { useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 
-/**
- * Newsletter Subscription Form
- * - NO reCAPTCHA (performance-first)
- * - Bot protection via honeypot + timing
- * - Klaviyo via Netlify function
- * - AUTOMATIC PDF DOWNLOAD ON SUCCESS
- */
 const NewsletterForm = ({ compact = false, className = '' }) => {
   const [email, setEmail] = useState('');
   const [botField, setBotField] = useState('');
@@ -17,7 +10,6 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
   const [submitMessage, setSubmitMessage] = useState('');
   const [submissionTime] = useState(Date.now());
 
-  // Helper to trigger the PDF download from your public/resources folder
   const triggerDownload = () => {
     const link = document.createElement('a');
     link.href = '/resources/voice-ai-checklist-2026.pdf';
@@ -30,9 +22,7 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (isSubmitting) return;
-
-    // Honeypot (silent fail)
-    if (botField) return;
+    if (botField) return; // Honeypot protection
 
     if (!email || !email.includes('@')) {
       setSubmitMessage('Please enter a valid email address');
@@ -40,14 +30,13 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
     }
 
     if (!gdprConsent) {
-      setSubmitMessage('Please accept the privacy policy to subscribe');
+      setSubmitMessage('Please accept the privacy policy');
       return;
     }
 
-    // Timing anti-bot (2s minimum)
     const timeTaken = Date.now() - submissionTime;
     if (timeTaken < 2000) {
-      setSubmitMessage('Please take a moment before subscribing');
+      setSubmitMessage('Processing...'); // Anti-bot delay
       return;
     }
 
@@ -60,23 +49,22 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           email,
-          'bot-field': botField,
+          botField, // Using honeypot instead of reCAPTCHA
           timeTaken,
           listId: 'RCLE38',
-          source: 'voice-ai-roadmap', // Updated source for tracking
+          source: 'voice-ai-roadmap',
         }),
       });
 
       const data = await response.json();
 
       if (response.ok && data.success) {
-        setSubmitMessage('✓ Successfully subscribed! Your roadmap download has started.');
-        triggerDownload(); // <--- Automatic download triggered here
+        setSubmitMessage('✓ Success! Your download has started.');
+        triggerDownload();
         setEmail('');
         setGdprConsent(false);
-        setBotField('');
       } else {
-        setSubmitMessage(data.message || 'Something went wrong. Please try again.');
+        setSubmitMessage(data.message || 'Something went wrong.');
       }
     } catch (error) {
       setSubmitMessage('Unable to subscribe. Please try again later.');
@@ -85,81 +73,14 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
     }
   };
 
-  // ---------- COMPACT (footer / sidebar) ----------
-  if (compact) {
-    return (
-      <div className={className}>
-        <form onSubmit={handleSubmit} className="space-y-3">
-          {/* Honeypot */}
-          <div className="hidden" aria-hidden="true">
-            <Input
-              name="bot-field"
-              value={botField}
-              onChange={(e) => setBotField(e.target.value)}
-              tabIndex="-1"
-              autoComplete="off"
-            />
-          </div>
-
-          <Input
-            type="email"
-            placeholder="Your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            disabled={isSubmitting}
-            required
-            className="w-full bg-white text-gray-900 border-gray-300"
-          />
-
-          <Button
-            type="submit"
-            disabled={isSubmitting}
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white disabled:opacity-50"
-          >
-            {isSubmitting ? 'Subscribing...' : 'Subscribe'}
-          </Button>
-
-          <div className="flex items-start gap-2">
-            <input
-              type="checkbox"
-              checked={gdprConsent}
-              onChange={(e) => setGdprConsent(e.target.checked)}
-              disabled={isSubmitting}
-              aria-label="GDPR consent"
-              className="mt-0.5 h-4 w-4"
-            />
-            <label className="text-xs text-gray-600">
-              I agree to receive email updates and accept the{' '}
-              <a href="/privacy" className="underline">Privacy Policy</a>
-            </label>
-          </div>
-
-          {submitMessage && (
-            <p className={`text-xs font-semibold ${
-              submitMessage.includes('✓') ? 'text-green-600' : 'text-red-600'
-            }`}>
-              {submitMessage}
-            </p>
-          )}
-        </form>
-      </div>
-    );
-  }
-
-  // ---------- FULL LAYOUT (Lead Magnet Section) ----------
   return (
     <div className={className}>
-      <div className="hidden" aria-hidden="true">
-        <Input
-          name="bot-field"
-          value={botField}
-          onChange={(e) => setBotField(e.target.value)}
-          tabIndex="-1"
-          autoComplete="off"
-        />
-      </div>
-
       <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-md mx-auto">
+        {/* Honeypot Field */}
+        <div className="hidden" aria-hidden="true">
+          <input name="bot-field" value={botField} onChange={(e) => setBotField(e.target.value)} tabIndex="-1" />
+        </div>
+
         <div className="flex flex-col sm:flex-row gap-4">
           <Input
             type="email"
@@ -167,14 +88,9 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             disabled={isSubmitting}
-            required
             className="flex-1 bg-white text-gray-900 border-0 h-12"
           />
-          <Button
-            type="submit"
-            disabled={isSubmitting}
-            className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 h-12 font-bold disabled:opacity-50 transition-all"
-          >
+          <Button type="submit" disabled={isSubmitting} className="bg-orange-500 hover:bg-orange-600 text-white px-8 h-12 font-bold">
             {isSubmitting ? 'Processing...' : 'Download Now'}
           </Button>
         </div>
@@ -182,16 +98,12 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
         <div className="flex items-start gap-2 text-left">
           <input
             type="checkbox"
-            id="gdpr-full"
             checked={gdprConsent}
             onChange={(e) => setGdprConsent(e.target.checked)}
-            disabled={isSubmitting}
-            aria-label="GDPR consent"
             className="mt-1 h-4 w-4 accent-orange-500"
           />
-          <label htmlFor="gdpr-full" className="text-sm text-white opacity-90 cursor-pointer">
-            I agree to receive the 2026 Roadmap and automation updates. View our{' '}
-            <a href="/privacy" className="underline">Privacy Policy</a>.
+          <label className="text-sm text-white opacity-90">
+            I agree to receive the 2026 Roadmap and updates. View our <a href="/privacy" className="underline">Privacy Policy</a>.
           </label>
         </div>
 
@@ -202,10 +114,6 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
             {submitMessage}
           </p>
         )}
-
-        <p className="text-sm opacity-75 mt-2 text-white">
-          Join 500+ leaders scaling their support with Devaland AI.
-        </p>
       </form>
     </div>
   );
