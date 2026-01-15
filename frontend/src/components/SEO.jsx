@@ -2,42 +2,38 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
 /**
- * SEO Component - Manages meta tags for search engines and social media
- * 
- * @param {Object} props
- * @param {string} props.title - Page title (will append " | Devaland" automatically)
- * @param {string} props.description - Meta description for search engines
- * @param {string} props.canonical - Canonical URL for the page
- * @param {string} props.ogImage - Open Graph image URL
- * @param {string} props.ogType - Open Graph type (default: "website")
- * @param {Object} props.schema - JSON-LD structured data object
- * @param {Array<string>} props.keywords - Array of keywords for meta keywords tag
+ * SEO Component - Manages meta tags and multiple JSON-LD schemas
+ * * @param {Array<Object>} props.breadcrumbItems - Array of { label: string, href: string }
  */
 const SEO = ({
   title = "Devaland Automation Agency",
-  description = "Leading automation agency specializing in RPA, workflow automation, and Klaviyo email marketing for Shopify brands. Transform your operations with intelligent automation solutions.",
+  description = "Leading automation agency specializing in RPA, workflow automation, and Klaviyo email marketing for Shopify brands.",
   canonical = "https://devaland.com",
   ogImage = "https://customer-assets.emergentagent.com/job_process-genius-5/artifacts/kau0y3tw_Devaland-Logo.jpg",
   ogType = "website",
   schema = null,
-  keywords = []
+  keywords = [],
+  breadcrumbItems = [] // 👈 New prop for breadcrumb automation
 }) => {
-  // Construct full title
-  const fullTitle = title === "Devaland Automation Agency" 
-    ? title 
-    : `${title} | Devaland`;
-
-  // Default keywords if none provided
-  const defaultKeywords = [
-    "automation agency",
-    "RPA development",
-    "Klaviyo email marketing",
-    "Shopify email automation",
-    "workflow automation",
-    "business process automation"
-  ];
+  const fullTitle = title === "Devaland Automation Agency" ? title : `${title} | Devaland`;
   
+  const defaultKeywords = [
+    "automation agency", "RPA development", "Klaviyo email marketing",
+    "Shopify email automation", "workflow automation", "business process automation"
+  ];
   const metaKeywords = keywords.length > 0 ? keywords.join(", ") : defaultKeywords.join(", ");
+
+  // --- BREADCRUMB SCHEMA GENERATOR ---
+  const breadcrumbSchema = breadcrumbItems.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": breadcrumbItems.map((item, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "name": item.label,
+      "item": `https://devaland.com${item.href || ''}`
+    }))
+  } : null;
 
   return (
     <Helmet>
@@ -62,10 +58,17 @@ const SEO = ({
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImage} />
       
-      {/* Structured Data (JSON-LD) */}
+      {/* 1. Page-Specific Structured Data (e.g., BlogPosting) */}
       {schema && (
         <script type="application/ld+json">
           {JSON.stringify(schema)}
+        </script>
+      )}
+
+      {/* 2. Automated Breadcrumb Structured Data */}
+      {breadcrumbSchema && (
+        <script type="application/ld+json">
+          {JSON.stringify(breadcrumbSchema)}
         </script>
       )}
     </Helmet>

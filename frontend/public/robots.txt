@@ -89,3 +89,4 @@ Allow: /*.webp
 # Sitemaps
 # ============================================
 Sitemap: https://devaland.com/sitemap.xml
+Sitemap: https://devaland.com/sitemap.html
