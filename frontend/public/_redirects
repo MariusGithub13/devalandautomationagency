@@ -13,22 +13,30 @@
 
 # ============================================
 
-# 2. Canonicalization (Fix Redirect Errors)
+# 2. Static Asset Fix (SOLVES WHITE PAGE ERROR)
 
 # ============================================
 
-# Use asterisk (\*) for wildcards, not underscore (\_)
+# This forces Netlify to serve the PDF file directly from the folder
+
+/resources/\* /resources/:splat 200!
+
+# ============================================
+
+# 3. Canonicalization (Domain Redirects)
+
+# ============================================
+
+# Fixed: Corrected wildcard syntax from "\_" to "\*"
 
 http://devaland.com/_ https://devaland.com/:splat 301!
 https://www.devaland.com/_ https://devaland.com/:splat 301!
 
 # ============================================
 
-# 3. Clean up Junk & Old Subfolders (410 Gone)
+# 4. Clean up Junk & Old Subfolders (410 Gone)
 
 # ============================================
-
-# Added "/" as a placeholder "to" path to satisfy the Netlify parser
 
 /api/_ / 410
 /shop/_ / 410
@@ -39,7 +47,7 @@ https://www.devaland.com/_ https://devaland.com/:splat 301!
 
 # ============================================
 
-# 4. SPA Fallback (MUST STAY AT THE BOTTOM)
+# 5. SPA Fallback (MUST STAY AT THE BOTTOM)
 
 # ============================================
 
