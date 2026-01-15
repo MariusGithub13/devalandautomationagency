@@ -56,8 +56,7 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
           email,
           'bot-field': botField,
           timeTaken,
-          // !!! REPLACE 'YOUR_LIST_ID_HERE' WITH YOUR 6-CHAR CODE !!!
-          listId: 'YOUR_LIST_ID_HERE', 
+          listId: 'RCLE38', // Verified from your Klaviyo screenshot
           source: 'voice-ai-roadmap',
         }),
       });
@@ -111,14 +110,14 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
           </label>
         </div>
 
-        {/* NUCLEAR UI FIX: Dark backgrounds so white text is readable */}
+        {/* NUCLEAR UI FIX: Dark backgrounds so white text is high-contrast */}
         {submitMessage && (
           <div 
             className="text-sm font-black p-4 rounded-lg shadow-2xl border-2 animate-in fade-in zoom-in duration-300"
             style={{ 
               backgroundColor: isSuccess ? '#064e3b' : (isWarning ? '#7c2d12' : '#7f1d1d'),
               borderColor: '#ffffff',
-              color: '#ffffff !important', // Forces white text on dark background
+              color: '#ffffff !important',
               display: 'block',
               textAlign: 'center'
             }}
