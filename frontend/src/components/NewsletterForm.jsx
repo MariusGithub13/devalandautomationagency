@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 
 /**
  * Newsletter Subscription Form
- * - High-contrast status messages using inline styles to prevent inheritance issues.
+ * - ULTRA-SPECIFIC styling for status messages to fix "white-on-white" issue.
  * - Automatic PDF download on successful Klaviyo subscription.
  */
 const NewsletterForm = ({ compact = false, className = '' }) => {
@@ -69,6 +69,7 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
         setEmail('');
         setGdprConsent(false);
       } else {
+        // This handles "Recently subscribed" or "Something went wrong" messages
         setSubmitMessage(data.message || 'Something went wrong. Please try again.');
       }
     } catch (error) {
@@ -120,22 +121,22 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
           </label>
         </div>
 
-        {/* FORCED READABILITY FIX: 
-            Using inline 'style' to override any inherited white-text colors.
+        {/* FORCED VISIBILITY FIX: 
+            Color is applied to a <span> inside the div to prevent color inheritance.
         */}
         {submitMessage && (
           <div 
-            className="text-sm font-black p-4 rounded-lg shadow-xl border-2 animate-in fade-in zoom-in duration-300"
+            className="text-sm font-bold p-4 rounded-lg shadow-xl border-2 animate-in fade-in zoom-in duration-300"
             style={{ 
-              color: isSuccess ? '#064e3b' : '#713f12', 
               backgroundColor: isSuccess ? '#dcfce7' : '#fef9c3',
               borderColor: isSuccess ? '#059669' : '#ca8a04',
               display: 'block',
-              visibility: 'visible',
-              zIndex: 50
+              visibility: 'visible'
             }}
           >
-            {submitMessage}
+            <span style={{ color: isSuccess ? '#064e3b' : '#713f12', fontWeight: '900' }}>
+              {submitMessage}
+            </span>
           </div>
         )}
 
