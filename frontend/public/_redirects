@@ -17,6 +17,8 @@
 
 # ============================================
 
+# Use asterisk (\*) for wildcards, not underscore (\_)
+
 http://devaland.com/_ https://devaland.com/:splat 301!
 https://www.devaland.com/_ https://devaland.com/:splat 301!
 
@@ -26,12 +28,14 @@ https://www.devaland.com/_ https://devaland.com/:splat 301!
 
 # ============================================
 
-/api/_ 410
-/shop/_ 410
-/app/_ 410
-/go/_ 410
-/marketing/_ 410
-/sheaterra/_ 410
+# Added "/" as a placeholder "to" path to satisfy the Netlify parser
+
+/api/_ / 410
+/shop/_ / 410
+/app/_ / 410
+/go/_ / 410
+/marketing/_ / 410
+/sheaterra/_ / 410
 
 # ============================================
 
