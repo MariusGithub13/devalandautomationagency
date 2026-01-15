@@ -8,7 +8,6 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
   const [gdprConsent, setGdprConsent] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
-  const [submissionTime] = useState(Date.now());
 
   const triggerDownload = () => {
     const link = document.createElement('a');
@@ -21,24 +20,8 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (isSubmitting) return;
-    if (botField) return;
-
-    if (!email || !email.includes('@')) {
-      setSubmitMessage('Please enter a valid email address');
-      return;
-    }
-
-    if (!gdprConsent) {
-      setSubmitMessage('Please accept the privacy policy');
-      return;
-    }
-
-    const timeTaken = Date.now() - submissionTime;
-    if (timeTaken < 2000) {
-      setSubmitMessage('Recently subscribed. Please check your email.');
-      return;
-    }
+    if (isSubmitting || botField) return;
+    if (!gdprConsent) { setSubmitMessage('Please accept the privacy policy'); return; }
 
     setIsSubmitting(true);
     setSubmitMessage('');
@@ -47,48 +30,35 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
       const response = await fetch('/.netlify/functions/klaviyo-subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          email,
-          'bot-field': botField,
-          timeTaken,
-          listId: 'RCLE38',
-          source: 'voice-ai-roadmap',
-        }),
+        body: JSON.stringify({ email, listId: 'RCLE38' }),
       });
 
       const data = await response.json();
-
+      setSubmitMessage(data.message);
       if (response.ok && data.success) {
-        setSubmitMessage('✓ Success! Roadmap download started.');
-        triggerDownload(); 
+        triggerDownload();
         setEmail('');
-        setGdprConsent(false);
-      } else {
-        setSubmitMessage(data.message || 'Failed to subscribe');
       }
     } catch (error) {
-      setSubmitMessage('Failed to subscribe. Try again.');
+      setSubmitMessage('Failed to subscribe. Please check your connection.');
     } finally {
       setIsSubmitting(false);
     }
   };
 
+  const isSuccess = submitMessage.includes('✓');
+
   return (
     <div className={className}>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-md mx-auto">
-        <div className="hidden" aria-hidden="true">
-          <input name="bot-field" value={botField} onChange={(e) => setBotField(e.target.value)} tabIndex="-1" />
-        </div>
-
         <div className="flex flex-col sm:flex-row gap-4">
           <Input
             type="email"
             placeholder="Enter your work email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            disabled={isSubmitting}
+            className="flex-1 bg-white !text-gray-900 h-12"
             required
-            className="flex-1 bg-white !text-gray-900 border-0 h-12"
           />
           <Button type="submit" disabled={isSubmitting} className="bg-orange-500 hover:bg-orange-600 text-white px-8 h-12 font-bold shadow-md">
             {isSubmitting ? 'Processing...' : 'Download Now'}
@@ -97,18 +67,15 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
 
         <div className="flex items-start gap-2 text-left">
           <input type="checkbox" checked={gdprConsent} onChange={(e) => setGdprConsent(e.target.checked)} className="mt-1 h-4 w-4" />
-          <label className="text-sm text-white opacity-90">
-            I agree to receive the 2026 Roadmap and updates. View our <a href="/privacy" className="underline">Privacy Policy</a>.
-          </label>
+          <label className="text-sm text-white">I agree to receive the 2026 Roadmap. View <a href="/privacy" className="underline">Privacy Policy</a>.</label>
         </div>
 
-        {/* BLACKOUT UI FIX: Solid black background for white text */}
         {submitMessage && (
           <div 
-            className="text-sm font-extrabold p-4 rounded-lg shadow-2xl border-2 border-white animate-in fade-in zoom-in duration-300"
+            className="text-sm font-black p-4 rounded-lg shadow-2xl border-2 border-white animate-in fade-in"
             style={{ 
-              backgroundColor: '#000000',
-              color: '#ffffff !important',
+              backgroundColor: isSuccess ? '#064e3b' : '#7f1d1d', // Solid Deep Green or Deep Red
+              color: '#ffffff',
               display: 'block',
               textAlign: 'center'
             }}
