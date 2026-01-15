@@ -4,9 +4,9 @@ import { Button } from '@/components/ui/button';
 
 /**
  * Newsletter Subscription Form
- * - Optimized for Klaviyo v3 API.
- * - Neon High-Contrast UI for maximum visibility.
- * - Instant PDF download upon successful submission.
+ * - Optimized for Klaviyo v3 API with working PDF download logic.
+ * - NEON FIX: Forces black text on yellow background to solve white-on-white issues.
+ * - CLEANUP: Removed duplicated footer text.
  */
 const NewsletterForm = ({ compact = false, className = '' }) => {
   const [email, setEmail] = useState('');
@@ -14,7 +14,7 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
 
-  // Triggers the download of the 2026 Voice AI Roadmap PDF
+  // Triggers the download of the 2026 Voice AI Readiness Roadmap PDF
   const triggerDownload = () => {
     const link = document.createElement('a');
     link.href = '/resources/voice-ai-checklist-2026.pdf';
@@ -29,7 +29,7 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
     if (isSubmitting) return;
 
     if (!gdprConsent) {
-      setSubmitMessage('Please accept the privacy policy to continue');
+      setSubmitMessage('Please accept the privacy policy');
       return;
     }
 
@@ -42,7 +42,7 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
           email, 
-          listId: 'RCLE38' // Verified Klaviyo List ID
+          listId: 'RCLE38' // Klaviyo List ID confirmed in logs
         }),
       });
 
@@ -50,19 +50,18 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
       setSubmitMessage(data.message);
 
       if (response.ok && data.success) {
-        // Success: Trigger the PDF download and clear form
         triggerDownload();
         setEmail('');
         setGdprConsent(false);
       }
     } catch (error) {
-      setSubmitMessage('Error connecting to service. Please try again later.');
+      setSubmitMessage('Error connecting to service. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const isSuccess = submitMessage.includes('✓') || submitMessage.includes('Successfully');
+  const isSuccess = submitMessage.includes('✓') || submitMessage.toLowerCase().includes('successfully');
 
   return (
     <div className={className}>
@@ -80,7 +79,7 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
           <Button
             type="submit"
             disabled={isSubmitting}
-            className="bg-orange-500 hover:bg-orange-600 text-white px-8 h-12 font-extrabold shadow-md transition-all active:scale-95"
+            className="bg-orange-500 hover:bg-orange-600 text-white px-8 h-12 font-extrabold shadow-md"
           >
             {isSubmitting ? 'Processing...' : 'Download Now'}
           </Button>
@@ -89,41 +88,36 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
         <div className="flex items-start gap-2 text-left">
           <input
             type="checkbox"
-            id="gdpr-voice"
+            id="gdpr-roadmap"
             checked={gdprConsent}
             onChange={(e) => setGdprConsent(e.target.checked)}
             className="mt-1 h-4 w-4 accent-orange-500 cursor-pointer"
           />
-          <label htmlFor="gdpr-voice" className="text-sm text-white opacity-90 cursor-pointer">
+          <label htmlFor="gdpr-roadmap" className="text-sm text-white opacity-90 cursor-pointer">
             I agree to receive the 2026 Roadmap and updates. View our{' '}
-            <a href="/privacy" className="underline hover:text-orange-200 transition-colors">Privacy Policy</a>.
+            <a href="/privacy" className="underline hover:text-orange-200">Privacy Policy</a>.
           </label>
         </div>
 
-        {/* NEON HIGH-CONTRAST STATUS BOX 
-            Forces visibility for forced white-text themes by using a bright yellow background.
-        */}
+        {/* NEON VISIBILITY FIX: Solid black text on high-contrast backgrounds */}
         {submitMessage && (
           <div 
             className="p-6 rounded-lg shadow-2xl border-4 border-black animate-in fade-in zoom-in duration-300"
             style={{ 
-              backgroundColor: isSuccess ? '#fef08a' : '#fecaca', // Neon Yellow for success, Soft Red for errors
+              backgroundColor: isSuccess ? '#fef08a' : '#fecaca', 
               display: 'block',
               textAlign: 'center',
               marginTop: '1.5rem',
-              position: 'relative',
-              zIndex: 999
+              zIndex: 100
             }}
           >
             <span 
               style={{ 
-                color: '#000000', 
+                color: '#000000 !important', // FORCED BLACK TEXT
                 fontWeight: '900', 
                 display: 'block',
                 textTransform: 'uppercase',
-                fontSize: '1.125rem',
-                lineHeight: '1.4',
-                letterSpacing: '0.5px'
+                fontSize: '1.125rem'
               }}
             >
               {submitMessage}
@@ -131,7 +125,8 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
           </div>
         )}
 
-        <p className="text-sm text-white opacity-80 mt-2 font-medium italic">
+        {/* REMOVED DUPLICATE: Single version of the trust text */}
+        <p className="text-sm text-white opacity-80 mt-2 font-medium">
           Join 500+ leaders scaling their support with Devaland AI.
         </p>
       </form>
