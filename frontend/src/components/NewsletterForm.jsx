@@ -1,18 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 
-/**
- * Newsletter Subscription Form - FINAL VERSION
- * - Klaviyo v3 API + Instant PDF Download
- * - SCOPED STYLE FIX: Injects a high-priority CSS rule to force black text.
- * - CLEANUP: Removed duplicated trust footer.
- */
-const NewsletterForm = ({ compact = false, className = '' }) => {
+const NewsletterForm = ({ className = '' }) => {
   const [email, setEmail] = useState('');
   const [gdprConsent, setGdprConsent] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
+  const messageRef = useRef(null);
+
+  // NUCLEAR FIX: Injects !important color directly into the DOM node to kill white text
+  useEffect(() => {
+    if (submitMessage && messageRef.current) {
+      messageRef.current.style.setProperty('color', '#000000', 'important');
+      messageRef.current.style.setProperty('font-weight', '900', 'important');
+    }
+  }, [submitMessage]);
 
   const triggerDownload = () => {
     const link = document.createElement('a');
@@ -47,7 +50,7 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
         setGdprConsent(false);
       }
     } catch (error) {
-      setSubmitMessage('Connection error. Please try again.');
+      setSubmitMessage('Connection error. Try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -57,17 +60,6 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
 
   return (
     <div className={className}>
-      {/* SCOPED STYLE INJECTION: This overrides the theme's white-text rule */}
-      <style>
-        {`
-          .force-black-text { 
-            color: #000000 !important; 
-            font-weight: 900 !important;
-            text-shadow: none !important;
-          }
-        `}
-      </style>
-
       <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-md mx-auto">
         <div className="flex flex-col sm:flex-row gap-4">
           <Input
@@ -79,26 +71,15 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
             required
             className="flex-1 bg-white !text-gray-900 border-0 h-12 shadow-sm"
           />
-          <Button
-            type="submit"
-            disabled={isSubmitting}
-            className="bg-orange-500 hover:bg-orange-600 text-white px-8 h-12 font-extrabold shadow-md"
-          >
+          <Button type="submit" disabled={isSubmitting} className="bg-orange-500 hover:bg-orange-600 text-white px-8 h-12 font-extrabold shadow-md">
             {isSubmitting ? 'Processing...' : 'Download Now'}
           </Button>
         </div>
 
         <div className="flex items-start gap-2 text-left">
-          <input
-            type="checkbox"
-            id="gdpr-voice-roadmap"
-            checked={gdprConsent}
-            onChange={(e) => setGdprConsent(e.target.checked)}
-            className="mt-1 h-4 w-4 accent-orange-500 cursor-pointer"
-          />
-          <label htmlFor="gdpr-voice-roadmap" className="text-sm text-white opacity-90 cursor-pointer">
-            I agree to receive the 2026 Roadmap. View our{' '}
-            <a href="/privacy" className="underline hover:text-orange-200">Privacy Policy</a>.
+          <input type="checkbox" id="gdpr-box" checked={gdprConsent} onChange={(e) => setGdprConsent(e.target.checked)} className="mt-1 h-4 w-4 accent-orange-500" />
+          <label htmlFor="gdpr-box" className="text-sm text-white opacity-90">
+            I agree to receive the Roadmap. View <a href="/privacy" className="underline">Privacy Policy</a>.
           </label>
         </div>
 
@@ -112,13 +93,14 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
               marginTop: '1.5rem'
             }}
           >
-            <span className="force-black-text block uppercase text-lg leading-tight">
+            {/* The ref here forces the color to black via the useEffect above */}
+            <span ref={messageRef} className="block uppercase text-lg leading-tight">
               {submitMessage}
             </span>
           </div>
         )}
 
-        {/* SINGLE FOOTER - Duplication issue resolved */}
+        {/* This is the ONLY instance of this text in this file */}
         <p className="text-sm text-white opacity-80 mt-2 font-medium">
           Join 500+ leaders scaling their support with Devaland AI.
         </p>
