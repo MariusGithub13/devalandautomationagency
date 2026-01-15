@@ -16,6 +16,7 @@ import { blogPosts } from '../data/mock';
 const BlogPostPage = () => {
   const { slug } = useParams();
   const [isTocOpen, setIsTocOpen] = useState(false);
+  const [imgLoaded, setImgLoaded] = useState(false); // New state for branded placeholder
   
   // Find the blog post by slug
   const post = blogPosts.find(p => 
@@ -39,11 +40,10 @@ const BlogPostPage = () => {
     );
   }
 
-  // --- IMAGE OPTIMIZATION HELPER ---
+  // --- PERFORMANCE: UNPLASH API IMAGE RESIZING ---
   const getOptimizedImage = (url) => {
     if (!url || !url.includes('unsplash.com')) return { src: url, srcSet: null };
     const baseUrl = url.split('?')[0];
-    // Force WebP and specific widths for Mobile (800) and Desktop (1600)
     const mobile = `${baseUrl}?q=80&w=800&auto=format&fm=webp`;
     const desktop = `${baseUrl}?q=80&w=1600&auto=format&fm=webp`;
     return {
@@ -55,22 +55,7 @@ const BlogPostPage = () => {
 
   const canonicalUrl = `https://devaland.com/blog/${slug}`;
   
-  // Generate FAQ schema for specific high-traffic posts
-  const getFAQSchema = (postId) => {
-    const faqSchemas = {
-      1: { 
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-          { "@type": "Question", "name": "What are Klaviyo automation flows?", "acceptedAnswer": { "@type": "Answer", "text": "Klaviyo automation flows are pre-built email sequences that trigger automatically based on customer behavior." }},
-          { "@type": "Question", "name": "How much do Klaviyo automation flows increase revenue?", "acceptedAnswer": { "@type": "Answer", "text": "Typically by 200-320% compared to broadcast emails." }}
-        ]
-      },
-      // ... (Rest of your FAQ schemas remain the same)
-    };
-    return faqSchemas[postId] || null;
-  };
-
+  // --- SEO SCHEMA GENERATION ---
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -79,15 +64,13 @@ const BlogPostPage = () => {
     "image": post.image,
     "datePublished": post.date,
     "author": { "@type": "Person", "name": post.author },
-    "publisher": { "@type": "Organization", "name": "Devaland Marketing S.R.L." },
+    "publisher": { 
+      "@type": "Organization", 
+      "name": "Devaland Marketing S.R.L.",
+      "logo": "https://devaland.com/static/media/Devaland-Logo.25926834f5263204e8e6.webp"
+    },
     "mainEntityOfPage": { "@type": "WebPage", "@id": canonicalUrl }
   };
-
-  const faqSchema = getFAQSchema(post.id);
-  const schemas = faqSchema ? [articleSchema, faqSchema] : articleSchema;
-
-  const shareUrl = window.location.href;
-  const shareTitle = encodeURIComponent(post.title);
 
   return (
     <>
@@ -98,7 +81,7 @@ const BlogPostPage = () => {
         ogImage={post.image}
         ogType="article"
         keywords={post.tags || [post.category, "email marketing", "automation", "klaviyo"]}
-        schema={schemas}
+        schema={articleSchema}
       />
       
       <div className="pt-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -122,8 +105,8 @@ const BlogPostPage = () => {
           <div className="mb-6">
             <Badge className="bg-white/20 text-white border-white/30 mb-4">{post.category}</Badge>
             <h1 className="text-4xl md:text-5xl font-display leading-tight mb-6">{post.title}</h1>
-            {/* ACCESSIBILITY FIX: Changed text-blue-100 to text-white for contrast */}
-            <p className="text-xl text-white mb-6 leading-relaxed opacity-100 font-medium">
+            {/* ACCESSIBILITY: Increased contrast by using text-white instead of blue-100 */}
+            <p className="text-xl text-white mb-6 leading-relaxed font-medium opacity-100">
               {post.excerpt}
             </p>
             <div className="flex flex-wrap items-center gap-6 text-white/90">
@@ -141,8 +124,20 @@ const BlogPostPage = () => {
           <div className="grid lg:grid-cols-4 gap-12">
             <div className="lg:col-span-3">
               
-              {/* --- OPTIMIZED IMAGE RENDER --- */}
-              <div className="relative overflow-hidden rounded-xl mb-8 shadow-md">
+              {/* --- BRANDED LOADING PLACEHOLDER --- */}
+              <div className="relative overflow-hidden rounded-xl mb-8 shadow-md h-[400px] bg-gradient-to-br from-blue-600 to-indigo-700">
+                {!imgLoaded && (
+                  <div className="absolute inset-0 flex flex-col items-center justify-center z-10 animate-pulse">
+                    <img 
+                      src="/static/media/Devaland-Logo.25926834f5263204e8e6.webp" 
+                      alt="Devaland Loading..." 
+                      className="w-24 h-24 rounded-full border-4 border-white/20 shadow-2xl mb-4 bg-white"
+                    />
+                    <span className="text-white/60 text-xs font-bold tracking-widest uppercase">
+                      Loading Automation Insights...
+                    </span>
+                  </div>
+                )}
                 <img 
                   src={optimizedImg.src}
                   srcSet={optimizedImg.srcSet}
@@ -152,7 +147,8 @@ const BlogPostPage = () => {
                   height="400"
                   loading="eager"
                   fetchPriority="high"
-                  className="w-full h-[400px] object-cover"
+                  onLoad={() => setImgLoaded(true)}
+                  className={`w-full h-full object-cover transition-opacity duration-700 ${imgLoaded ? 'opacity-100' : 'opacity-0'}`}
                 />
               </div>
 
@@ -164,22 +160,16 @@ const BlogPostPage = () => {
                 >
                   <div className="flex items-center gap-3">
                     <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg px-3 py-1.5 text-sm font-bold shadow-md">TOC</div>
-                    {/* ACCESSIBILITY FIX: Changed h3 to h2 for heading order */}
                     <h2 className="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors">Table of Contents</h2>
                   </div>
                   <ChevronDown className={`text-blue-600 transition-transform ${isTocOpen ? 'rotate-180' : ''}`} size={20} />
                 </button>
-                
-                {isTocOpen && (
-                  <nav className="space-y-1 mt-4 animate-in slide-in-from-top duration-300">
-                    {/* (Your dynamic TOC mapping logic here) */}
-                  </nav>
-                )}
+                {/* TOC Content mapping logic here... */}
               </div>
 
-              {/* Article Body */}
               <div className="prose prose-lg max-w-none">
-                {/* ... (Your markdownToHtml and renderContent functions) ... */}
+                {/* Article Body Content... */}
+                <div dangerouslySetInnerHTML={{ __html: post.content }} />
               </div>
 
               {/* --- ACCESSIBILITY FIX: Newsletter Signup --- */}
@@ -209,12 +199,12 @@ const BlogPostPage = () => {
               </div>
             </div>
 
-            {/* Sidebar */}
+            {/* Sidebar CTA */}
             <div className="lg:col-span-1">
               <div className="sticky top-8">
                 <div className="bg-gradient-to-br from-blue-600 to-purple-700 text-white rounded-xl p-6 shadow-lg">
-                  <h3 className="font-semibold text-lg mb-2">Need Help?</h3>
-                  <p className="text-sm text-blue-50 mb-4">Get expert assistance with your automation setup.</p>
+                  <h3 className="font-semibold text-lg mb-2">Need Expert Help?</h3>
+                  <p className="text-sm text-blue-50 mb-4">Scale your Shopify brand with intelligent automation.</p>
                   <a href="https://calendly.com/devaland/30min" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center w-full px-6 py-3 text-base font-semibold text-blue-600 bg-white rounded-lg hover:bg-blue-50 transition-all">
                     Free Consultation
                   </a>
