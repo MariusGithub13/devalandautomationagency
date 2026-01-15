@@ -4,10 +4,14 @@
   "private": true,
   "homepage": "https://devaland.com",
   "engines": {
-    "node": "18.x",
-    "npm": "10.x"
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
   },
   "dependencies": {
+    "@tailwindcss/typography": "^0.5.19",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1",
+    "sitemap": "^9.0.0",
     "@craco/craco": "^7.1.0",
     "@hookform/resolvers": "^5.0.1",
     "@radix-ui/react-accordion": "^1.2.8",
@@ -81,15 +85,12 @@
     "build": "npx craco build",
     "start": "npx craco start",
     "test": "npx craco test",
-
     "test:links": "node scripts/test-broken-links.js",
     "test:links:external": "node scripts/test-broken-links.js --external",
     "test:links:report": "node scripts/test-broken-links.js --output broken-links-report.json",
     "test:links:full": "node scripts/test-broken-links.js --external --output broken-links-full-report.json",
-
     "postinstall": "npm run fix-missing-files",
     "fix-missing-files": "cp node_modules/react-router-dom/dist/index.js node_modules/react-router-dom/dist/index.mjs 2>/dev/null || true",
-
     "build:backup": "react-scripts build"
   },
   "browserslist": {
