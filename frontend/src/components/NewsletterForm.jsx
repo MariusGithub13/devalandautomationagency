@@ -7,10 +7,7 @@ import { Button } from '@/components/ui/button';
  * - NO reCAPTCHA (performance-first)
  * - Bot protection via honeypot + timing
  * - Klaviyo via Netlify function
- *
- * Props:
- * - compact: boolean
- * - className: string
+ * - AUTOMATIC PDF DOWNLOAD ON SUCCESS
  */
 const NewsletterForm = ({ compact = false, className = '' }) => {
   const [email, setEmail] = useState('');
@@ -19,6 +16,16 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
   const [submissionTime] = useState(Date.now());
+
+  // Helper to trigger the PDF download from your public/resources folder
+  const triggerDownload = () => {
+    const link = document.createElement('a');
+    link.href = '/resources/voice-ai-checklist-2026.pdf';
+    link.setAttribute('download', 'Devaland-Voice-AI-Readiness-Roadmap.pdf');
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -56,14 +63,15 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
           'bot-field': botField,
           timeTaken,
           listId: 'RCLE38',
-          source: 'newsletter',
+          source: 'voice-ai-roadmap', // Updated source for tracking
         }),
       });
 
       const data = await response.json();
 
       if (response.ok && data.success) {
-        setSubmitMessage('✓ Successfully subscribed! Check your email.');
+        setSubmitMessage('✓ Successfully subscribed! Your roadmap download has started.');
+        triggerDownload(); // <--- Automatic download triggered here
         setEmail('');
         setGdprConsent(false);
         setBotField('');
@@ -138,7 +146,7 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
     );
   }
 
-  // ---------- FULL LAYOUT ----------
+  // ---------- FULL LAYOUT (Lead Magnet Section) ----------
   return (
     <div className={className}>
       <div className="hidden" aria-hidden="true">
@@ -155,47 +163,48 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
         <div className="flex flex-col sm:flex-row gap-4">
           <Input
             type="email"
-            placeholder="Enter your email"
+            placeholder="Enter your work email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             disabled={isSubmitting}
             required
-            className="flex-1 bg-white text-gray-900 border-0"
+            className="flex-1 bg-white text-gray-900 border-0 h-12"
           />
           <Button
             type="submit"
             disabled={isSubmitting}
-            className="btn-accent text-white px-6 py-3 disabled:opacity-50"
+            className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 h-12 font-bold disabled:opacity-50 transition-all"
           >
-            {isSubmitting ? 'Subscribing...' : 'Subscribe'}
+            {isSubmitting ? 'Processing...' : 'Download Now'}
           </Button>
         </div>
 
         <div className="flex items-start gap-2 text-left">
           <input
             type="checkbox"
+            id="gdpr-full"
             checked={gdprConsent}
             onChange={(e) => setGdprConsent(e.target.checked)}
             disabled={isSubmitting}
             aria-label="GDPR consent"
-            className="mt-1 h-4 w-4"
+            className="mt-1 h-4 w-4 accent-orange-500"
           />
-          <label className="text-sm text-white opacity-90">
-            I agree to receive email updates and accept the{' '}
+          <label htmlFor="gdpr-full" className="text-sm text-white opacity-90 cursor-pointer">
+            I agree to receive the 2026 Roadmap and automation updates. View our{' '}
             <a href="/privacy" className="underline">Privacy Policy</a>.
           </label>
         </div>
 
         {submitMessage && (
-          <p className={`text-sm font-semibold ${
-            submitMessage.includes('✓') ? 'text-green-200' : 'text-yellow-200'
+          <p className={`text-sm font-semibold p-3 rounded-lg ${
+            submitMessage.includes('✓') ? 'bg-green-500/20 text-green-100' : 'bg-yellow-500/20 text-yellow-100'
           }`}>
             {submitMessage}
           </p>
         )}
 
-        <p className="text-sm opacity-75 mt-2">
-          No spam. Unsubscribe anytime.
+        <p className="text-sm opacity-75 mt-2 text-white">
+          Join 500+ leaders scaling their support with Devaland AI.
         </p>
       </form>
     </div>
