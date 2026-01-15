@@ -1,4 +1,8 @@
-// Writes frontend/public/sitemap.xml at build time
+/**
+ * Devaland Marketing - Automated Sitemap Generator (2026)
+ * Generates frontend/public/sitemap.xml at build time.
+ * Extension: .mjs (ES Module)
+ */
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -7,10 +11,10 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
 const PUBLIC = path.join(ROOT, "public");
 
-// canonical base
+// Canonical base URL
 const BASE = "https://devaland.com";
 
-// Known routes (React SPA) — unified short slugs
+// 1. Known Static Routes (React SPA)
 const ROUTES = [
   "/",
   "/klaviyo",
@@ -37,8 +41,7 @@ const ROUTES = [
   "/gdpr",
 ];
 
-// Blog post slugs from mock.js
-// Generated using: title.toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, '-')
+// 2. Blog Post Slugs from your data/mock.js
 const BLOG_POSTS = [
   "/blog/best-10-klaviyo-automation-flows-every-ecommerce-store-needs",
   "/blog/email-segmentation-strategies-that-actually-work",
@@ -57,7 +60,9 @@ const BLOG_POSTS = [
   "/blog/voice-ai-shopify-brands-customer-service-guide",
 ];
 
-// Optionally find static HTML blog posts under public/blog/*.html
+/**
+ * Scans for any static HTML blog posts under public/blog/*.html
+ */
 function discoverBlogUrls() {
   const blogDir = path.join(PUBLIC, "blog");
   if (!fs.existsSync(blogDir)) return [];
@@ -67,21 +72,38 @@ function discoverBlogUrls() {
     .map((d) => `/blog/${d.name.replace(/\.html$/, "")}`);
 }
 
+/**
+ * Generates XML body based on route priority and crawl frequency
+ */
 function toXml(routes) {
   const now = new Date().toISOString();
 
-  const changefreq = (loc) => (loc.startsWith("/blog/") ? "monthly" : loc === "/" ? "weekly" : "weekly");
-  const priority = (loc) => (loc === "/" ? "1.0" : loc === "/blog" ? "0.6" : "0.8");
+  // Daily for index and blog home; monthly for articles
+  const getChangefreq = (loc) => {
+    if (loc === "/" || loc === "/blog") return "daily";
+    if (loc.startsWith("/blog/")) return "monthly";
+    return "weekly";
+  };
+
+  // Higher priority for core service pages (Voice AI/Klaviyo)
+  const getPriority = (loc) => {
+    if (loc === "/") return "1.0";
+    if (loc === "/voice-ai" || loc === "/klaviyo") return "0.9";
+    if (loc === "/blog") return "0.8";
+    if (loc.startsWith("/blog/")) return "0.7";
+    return "0.5"; // Utilities/Legal
+  };
 
   const body = routes
     .map((loc) => {
-      const href = `${BASE}${loc}`;
+      // Clean up the root URL slash to avoid double slashes
+      const href = `${BASE}${loc === "/" ? "" : loc}`;
       return `
 <url>
   <loc>${href}</loc>
   <lastmod>${now}</lastmod>
-  <changefreq>${changefreq(loc)}</changefreq>
-  <priority>${priority(loc)}</priority>
+  <changefreq>${getChangefreq(loc)}</changefreq>
+  <priority>${getPriority(loc)}</priority>
 </url>`.trim();
     })
     .join("\n");
@@ -94,12 +116,21 @@ ${body}
 }
 
 function main() {
-  const blog = discoverBlogUrls();
-  const unique = Array.from(new Set([...ROUTES, ...BLOG_POSTS, ...blog]));
-  const xml = toXml(unique);
-  const out = path.join(PUBLIC, "sitemap.xml");
-  fs.writeFileSync(out, xml, "utf8");
-  console.log(`[sitemap] wrote ${unique.length} urls to public/sitemap.xml`);
+  const blogHtml = discoverBlogUrls();
+  const allUrls = Array.from(new Set([...ROUTES, ...BLOG_POSTS, ...blogHtml]));
+  
+  // Sorting urls alphabetically
+  allUrls.sort();
+
+  const xml = toXml(allUrls);
+  const outPath = path.join(PUBLIC, "sitemap.xml");
+
+  try {
+    fs.writeFileSync(outPath, xml, "utf8");
+    console.log(`[sitemap] Successfully wrote ${allUrls.length} URLs to public/sitemap.xml`);
+  } catch (error) {
+    console.error(`[sitemap] Error writing sitemap: ${error.message}`);
+  }
 }
 
 main();
