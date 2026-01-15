@@ -51,7 +51,7 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
           email,
           'bot-field': botField,
           timeTaken,
-          listId: 'RCLE38', // Verified from your screenshot
+          listId: 'RCLE38',
           source: 'voice-ai-roadmap',
         }),
       });
@@ -59,7 +59,7 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
       const data = await response.json();
 
       if (response.ok && data.success) {
-        setSubmitMessage('✓ Success! Your Roadmap is downloading.');
+        setSubmitMessage('✓ Success! Roadmap download started.');
         triggerDownload(); 
         setEmail('');
         setGdprConsent(false);
@@ -72,9 +72,6 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
       setIsSubmitting(false);
     }
   };
-
-  const isSuccess = submitMessage.includes('✓');
-  const isWarning = submitMessage.includes('Recently');
 
   return (
     <div className={className}>
@@ -105,14 +102,13 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
           </label>
         </div>
 
-        {/* NUCLEAR UI FIX: High-contrast dark backgrounds for white text */}
+        {/* BLACKOUT UI FIX: Solid black background for white text */}
         {submitMessage && (
           <div 
-            className="text-sm font-black p-4 rounded-lg shadow-2xl border-2 animate-in fade-in zoom-in duration-300"
+            className="text-sm font-extrabold p-4 rounded-lg shadow-2xl border-2 border-white animate-in fade-in zoom-in duration-300"
             style={{ 
-              backgroundColor: isSuccess ? '#064e3b' : (isWarning ? '#78350f' : '#7f1d1d'),
-              borderColor: '#ffffff',
-              color: '#ffffff !important', // Forces white text on dark background
+              backgroundColor: '#000000',
+              color: '#ffffff !important',
               display: 'block',
               textAlign: 'center'
             }}
