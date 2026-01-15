@@ -2,6 +2,11 @@ import React, { useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 
+/**
+ * Newsletter Subscription Form
+ * - NUCLEAR UI FIX: Uses dark backgrounds so white text is readable.
+ * - Automatic PDF download on successful signup.
+ */
 const NewsletterForm = ({ compact = false, className = '' }) => {
   const [email, setEmail] = useState('');
   const [botField, setBotField] = useState('');
@@ -36,7 +41,7 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
 
     const timeTaken = Date.now() - submissionTime;
     if (timeTaken < 2000) {
-      setSubmitMessage('Processing...');
+      setSubmitMessage('Recently subscribed. Please check your email.');
       return;
     }
 
@@ -51,7 +56,8 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
           email,
           'bot-field': botField,
           timeTaken,
-          listId: 'RCLE38',
+          // !!! REPLACE 'YOUR_LIST_ID_HERE' WITH YOUR 6-CHAR CODE !!!
+          listId: 'YOUR_LIST_ID_HERE', 
           source: 'voice-ai-roadmap',
         }),
       });
@@ -59,7 +65,7 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
       const data = await response.json();
 
       if (response.ok && data.success) {
-        setSubmitMessage('✓ Success! Roadmap download started.');
+        setSubmitMessage('✓ Success! Your Roadmap is downloading.');
         triggerDownload(); 
         setEmail('');
         setGdprConsent(false);
@@ -67,7 +73,7 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
         setSubmitMessage(data.message || 'Failed to subscribe');
       }
     } catch (error) {
-      setSubmitMessage('Connection error. Please try again.');
+      setSubmitMessage('Connection error. Try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -105,15 +111,16 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
           </label>
         </div>
 
-        {/* ULTRA-VISIBLE STATUS BOX */}
+        {/* NUCLEAR UI FIX: Dark backgrounds so white text is readable */}
         {submitMessage && (
           <div 
-            className="text-sm font-bold p-4 rounded-lg shadow-2xl border-2"
+            className="text-sm font-black p-4 rounded-lg shadow-2xl border-2 animate-in fade-in zoom-in duration-300"
             style={{ 
-              backgroundColor: isSuccess ? '#166534' : (isWarning ? '#854d0e' : '#991b1b'),
+              backgroundColor: isSuccess ? '#064e3b' : (isWarning ? '#7c2d12' : '#7f1d1d'),
               borderColor: '#ffffff',
-              color: '#ffffff',
-              display: 'block'
+              color: '#ffffff !important', // Forces white text on dark background
+              display: 'block',
+              textAlign: 'center'
             }}
           >
             {submitMessage}
