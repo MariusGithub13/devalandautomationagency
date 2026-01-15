@@ -2,11 +2,6 @@ import React, { useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 
-/**
- * Newsletter Subscription Form
- * - NUCLEAR UI FIX: Uses dark backgrounds so white text is readable.
- * - Automatic PDF download on successful signup.
- */
 const NewsletterForm = ({ compact = false, className = '' }) => {
   const [email, setEmail] = useState('');
   const [botField, setBotField] = useState('');
@@ -56,7 +51,7 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
           email,
           'bot-field': botField,
           timeTaken,
-          listId: 'RCLE38', // Verified from your Klaviyo screenshot
+          listId: 'RCLE38', // Verified from your screenshot
           source: 'voice-ai-roadmap',
         }),
       });
@@ -72,7 +67,7 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
         setSubmitMessage(data.message || 'Failed to subscribe');
       }
     } catch (error) {
-      setSubmitMessage('Connection error. Try again.');
+      setSubmitMessage('Failed to subscribe. Try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -110,14 +105,14 @@ const NewsletterForm = ({ compact = false, className = '' }) => {
           </label>
         </div>
 
-        {/* NUCLEAR UI FIX: Dark backgrounds so white text is high-contrast */}
+        {/* NUCLEAR UI FIX: High-contrast dark backgrounds for white text */}
         {submitMessage && (
           <div 
             className="text-sm font-black p-4 rounded-lg shadow-2xl border-2 animate-in fade-in zoom-in duration-300"
             style={{ 
-              backgroundColor: isSuccess ? '#064e3b' : (isWarning ? '#7c2d12' : '#7f1d1d'),
+              backgroundColor: isSuccess ? '#064e3b' : (isWarning ? '#78350f' : '#7f1d1d'),
               borderColor: '#ffffff',
-              color: '#ffffff !important',
+              color: '#ffffff !important', // Forces white text on dark background
               display: 'block',
               textAlign: 'center'
             }}
