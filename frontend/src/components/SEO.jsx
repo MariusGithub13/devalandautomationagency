@@ -35,25 +35,24 @@ const SEO = ({
     }))
   } : null;
 
-  // --- 2. GLOBAL SERVICE & RETURN POLICY SCHEMA (OPTIMIZED) ---
-  // Resolves non-critical issues for ProfessionalService
+  // --- 2. GLOBAL SERVICE & RETURN POLICY SCHEMA (CLEANED) ---
   const globalServiceSchema = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "name": "Devaland Automation Agency",
     "url": "https://devaland.com",
     "image": ogImage,
-    "telephone": "+40-721-269-312", // ✅ Fixed: Clears GSC warning
-    "priceRange": "$$$",            // ✅ Fixed: Clears GSC warning
+    "telephone": "+40-721-269-312",
+    "priceRange": "$$$",
     "address": {
       "@type": "PostalAddress",
-      "addressCountry": "RO",       // ✅ Fixed: Uses ISO code string
+      "addressCountry": "RO",
       "addressLocality": "Simeria",
       "streetAddress": "Sântandrei 13",
-      "postalCode": "335903"        // ✅ Fixed: Clears GSC warning
+      "postalCode": "335903"
     },
     "areaServed": [
-      { "@type": "Country", "name": "RO" }, 
+      { "@type": "Country", "name": "RO" },
       { "@type": "Country", "name": "US" },
       { "@type": "Country", "name": "Global" }
     ],
@@ -62,12 +61,12 @@ const SEO = ({
       "applicableCountry": "RO",
       "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted",
       "merchantReturnLink": "https://devaland.com/terms",
-      "description": "Devaland provides digital automation services; physical returns are not permitted."
+      "description": "Devaland provides digital services; physical returns are not permitted."
     }
   };
 
-  // --- 3. ORGANIZATION SCHEMA (FIXED FOR GSC) ---
-  // Resolves "Invalid country code" and missing fields
+  // --- 3. ORGANIZATION SCHEMA (FINAL REFINEMENT) ---
+  // Fixes "Invalid country code" by using simple ISO string "RO"
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -87,7 +86,7 @@ const SEO = ({
       "addressLocality": "Simeria",
       "postalCode": "335903",
       "addressRegion": "Hunedoara County",
-      "addressCountry": "RO" // ✅ Corrected to simple 2-letter ISO code string
+      "addressCountry": "RO" 
     },
     "sameAs": [
       "https://www.linkedin.com/company/devaland/",
@@ -123,12 +122,12 @@ const SEO = ({
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImage} />
       
-      {/* 1. Optimized Organization Schema */}
+      {/* 1. Verified Organization Schema */}
       <script type="application/ld+json">
         {JSON.stringify(organizationSchema)}
       </script>
 
-      {/* 2. Optimized Global Service & Return Policy Schema */}
+      {/* 2. Verified Global Service & Return Policy Schema */}
       <script type="application/ld+json">
         {JSON.stringify(globalServiceSchema)}
       </script>
