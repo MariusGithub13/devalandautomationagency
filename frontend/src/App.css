@@ -269,3 +269,18 @@ main {
     padding: 1.5rem 0;
   }
 }
+
+/* --- ✅ NEW: READING PROGRESS BAR FIX (NO-RISK CSS) --- */
+/* This positions the progress bar exactly below the white header 
+   so it no longer overlaps your logo or menu tabs. */
+.reading-progress-container {
+  top: 64px !important; /* Shifts below standard 64px header height */
+  z-index: 40 !important; /* Layers it above content but below navigation menus */
+  height: 4px !important; /* Subtle but visible thickness */
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.reading-progress-bar {
+  background: #3b82f6 !important; /* Bright blue for visibility */
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.6) !important;
+}
