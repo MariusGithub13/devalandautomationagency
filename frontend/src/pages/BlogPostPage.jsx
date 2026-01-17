@@ -1,9 +1,9 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, Navigate } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { 
-  ArrowLeft, Calendar, Clock, ChevronDown, Linkedin, Twitter, Facebook, Share2 
+  ArrowLeft, Calendar, Clock, ChevronDown, ChevronRight 
 } from 'lucide-react';
 
 // UI and Custom Components
@@ -12,10 +12,10 @@ import { Button } from '../components/ui/button';
 import SEO from '../components/SEO';
 import Breadcrumb from '../components/Breadcrumb';
 import NewsletterForm from '../components/NewsletterForm';
-import RelatedPosts from '../components/RelatedPosts';
 import AuthorAvatar from '../components/AuthorAvatar';
+import InternalLinkAutomator from '../components/InternalLinkAutomator'; // ✅ Added back for SEO
 
-// 🚀 CRITICAL: Using lowercase 'blogPosts' to match your mock.js exactly
+// Data
 import { blogPosts } from '../data/mock';
 
 // --- SUB-COMPONENT: READING PROGRESS BAR ---
@@ -33,9 +33,10 @@ const ReadingProgressBar = () => {
     return () => window.removeEventListener('scroll', updateScroll);
   }, []);
   return (
-    <div className="fixed top-16 left-0 w-full h-1.5 z-[60] bg-transparent pointer-events-none">
+    /* top-16 ensures it stays exactly at the bottom of your 64px header */
+    <div className="fixed top-16 left-0 w-full h-1.5 z-40 bg-transparent pointer-events-none">
       <div 
-        className="h-full bg-blue-400 transition-all duration-150 ease-out shadow-[0_0_15px_rgba(96,165,250,0.8)]"
+        className="h-full bg-blue-500 transition-all duration-150 ease-out shadow-[0_0_15px_rgba(59,130,246,0.8)]"
         style={{ width: `${completion}%` }}
       />
     </div>
@@ -59,7 +60,7 @@ const BlogPostPage = () => {
     const lines = post.content.split('\n');
     lines.forEach(line => {
       if (line.startsWith('## ')) {
-        const title = line.replace('## ', '');
+        const title = line.replace('## ', '').trim();
         const id = title.toLowerCase().replace(/[^\w ]+/g, '').replace(/ +/g, '-');
         headings.push({ id, title });
       }
@@ -67,29 +68,28 @@ const BlogPostPage = () => {
     return headings;
   }, [post]);
 
-  if (!post) {
-    return (
-      <div className="py-40 text-center bg-white min-h-screen">
-        <h1 className="text-2xl font-bold mb-4">Post not found</h1>
-        <Link to="/blog" className="text-blue-600 font-bold underline">Back to Blog</Link>
-      </div>
-    );
-  }
+  if (!post) return <Navigate to="/blog" replace />;
 
-  const shareUrl = `https://devaland.com/blog/${slug}`;
   const breadcrumbItems = [
     { label: 'Home', href: '/' },
     { label: 'Blog', href: '/blog' },
-    { label: post.title, href: `/blog/${slug}` }
+    { label: post.title }
   ];
 
   return (
     <>
-      <SEO title={post.title} description={post.excerpt} ogImage={post.image} />
+      <SEO 
+        title={post.title} 
+        description={post.excerpt} 
+        ogImage={post.image} 
+        ogType="article"
+        canonical={`https://devaland.com/blog/${slug}`}
+        breadcrumbItems={breadcrumbItems}
+      />
       <ReadingProgressBar />
 
       <main className="bg-white min-h-screen">
-        {/* 🚀 RESTORED: Premium Blue/Purple Gradient Header */}
+        {/* Premium Gradient Header */}
         <header className="bg-gradient-to-br from-blue-700 via-indigo-800 to-purple-900 pt-32 pb-24 text-white">
           <div className="max-w-5xl mx-auto px-4 sm:px-6">
             <div className="mb-8"><Breadcrumb items={breadcrumbItems} /></div>
@@ -148,7 +148,7 @@ const BlogPostPage = () => {
                 </nav>
               )}
 
-              {/* Markdown Content */}
+              {/* Markdown Content with Integrated Internal Linking */}
               <div className="prose prose-blue lg:prose-xl max-w-none text-gray-800">
                 <ReactMarkdown 
                   remarkPlugins={[remarkGfm]}
@@ -157,7 +157,14 @@ const BlogPostPage = () => {
                       const id = props.children.toString().toLowerCase().replace(/[^\w ]+/g, '').replace(/ +/g, '-');
                       return <h2 id={id} className="text-3xl md:text-4xl font-bold mt-20 mb-8 border-l-4 border-blue-600 pl-6" {...props} />
                     },
-                    li: ({node, ...props}) => <li className="flex gap-3 items-start before:content-['✓'] before:text-blue-600 before:font-black" {...props} />
+                    // ✅ Apply Automator to every paragraph rendered from Markdown
+                    p: ({node, children}) => {
+                      if (typeof children === 'string') {
+                        return <p className="mb-6 leading-relaxed font-body"><InternalLinkAutomator text={children} /></p>;
+                      }
+                      return <p className="mb-6 leading-relaxed font-body">{children}</p>;
+                    },
+                    li: ({node, ...props}) => <li className="flex gap-3 items-start before:content-['✓'] before:text-blue-600 before:font-black mb-2" {...props} />
                   }}
                 >
                   {post.content}
@@ -170,11 +177,12 @@ const BlogPostPage = () => {
               </div>
             </div>
 
+            {/* Sidebar */}
             <aside className="lg:col-span-4">
               <div className="sticky top-28 space-y-8">
                 <div className="bg-blue-600 rounded-[2rem] p-8 text-white shadow-xl">
                   <h3 className="text-2xl font-display font-bold mb-4">Ready to Automate?</h3>
-                  <Button asChild className="w-full bg-white text-blue-600 font-bold py-7 rounded-2xl shadow-lg text-lg">
+                  <Button asChild className="w-full bg-white text-blue-600 font-bold py-7 rounded-2xl shadow-lg text-lg hover:bg-gray-100 transition-colors">
                     <Link to="/contact">Free Strategy Call</Link>
                   </Button>
                 </div>
