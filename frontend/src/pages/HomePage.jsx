@@ -765,16 +765,18 @@ const HomePage = () => {
                 <Link to="/case-studies">View All Case Studies</Link>
               </Button>
             </div>
-            <div className="relative">
-              <img 
-                src={heroImages.transformation} 
-                alt="Automation Success"
-                width="800"
-                height="533"
-                loading="lazy"
-                decoding="async"
-                className="w-full rounded-2xl shadow-2xl hover-scale"
-              />
+              <div className="relative">
+                <img
+                  src={heroImages.transformation}
+                  alt="Automation Success"
+                  width="800"
+                  height="533"
+                  loading="lazy"
+                  decoding="async"
+                  srcSet={`${heroImages.transformation} 800w, /images/optimized/services/rpa.webp 1200w`}
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  className="w-full rounded-2xl shadow-2xl hover-scale"
+                />
               <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-lg">
                 <div className="flex items-center space-x-3">
                   <TrendingUp size={24} className="text-green-600" />
