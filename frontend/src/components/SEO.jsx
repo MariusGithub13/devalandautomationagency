@@ -1,10 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
-/**
- * SEO Component - Manages meta tags and multiple JSON-LD schemas
- * @param {Array<Object>} props.breadcrumbItems - Array of { label: string, href: string }
- */
 const SEO = ({
   title = "Devaland Automation Agency",
   description = "Leading automation agency specializing in RPA, workflow automation, and Klaviyo email marketing for Shopify brands.",
@@ -23,7 +19,56 @@ const SEO = ({
   ];
   const metaKeywords = keywords.length > 0 ? keywords.join(", ") : defaultKeywords.join(", ");
 
-  // --- 1. BREADCRUMB SCHEMA ---
+  // --- 1. UNIFIED BUSINESS SCHEMA ---
+  // Combines Organization & ProfessionalService into ONE block to prevent duplicates
+  const unifiedBusinessSchema = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Devaland Automation Agency",
+    "legalName": "Devaland Marketing S.R.L.",
+    "alternateName": "Devaland",
+    "url": "https://devaland.com",
+    "logo": "https://customer-assets.emergentagent.com/job_process-genius-5/artifacts/kau0y3tw_Devaland-Logo.jpg",
+    "image": ogImage,
+    "telephone": "+40-721-269-312",
+    "priceRange": "$$$",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Sântandrei 13",
+      "addressLocality": "Simeria",
+      "postalCode": "335903",
+      "addressRegion": "Hunedoara County",
+      "addressCountry": "RO" // ✅ Correct ISO string format
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+40-721-269-312",
+      "contactType": "customer service",
+      "availableLanguage": ["English", "Romanian"]
+    },
+    "sameAs": [
+      "https://www.linkedin.com/company/devaland/",
+      "https://www.linkedin.com/in/marius-andronie/",
+      "https://www.facebook.com/marius.andronie/",
+      "https://www.instagram.com/mariusandronie/",
+      "https://www.youtube.com/@devaland13",
+      "https://www.trustpilot.com/review/devaland.com"
+    ],
+    "areaServed": [
+      { "@type": "Country", "name": "RO" },
+      { "@type": "Country", "name": "US" },
+      { "@type": "Country", "name": "Global" }
+    ],
+    "hasMerchantReturnPolicy": {
+      "@type": "MerchantReturnPolicy",
+      "applicableCountry": "RO",
+      "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted",
+      "merchantReturnLink": "https://devaland.com/terms",
+      "description": "Devaland provides digital automation services; physical returns are not permitted."
+    }
+  };
+
+  // --- 2. BREADCRUMB SCHEMA ---
   const breadcrumbSchema = breadcrumbItems.length > 0 ? {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -35,111 +80,37 @@ const SEO = ({
     }))
   } : null;
 
-  // --- 2. GLOBAL SERVICE & RETURN POLICY SCHEMA (CLEANED) ---
-  const globalServiceSchema = {
-    "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "Devaland Automation Agency",
-    "url": "https://devaland.com",
-    "image": ogImage,
-    "telephone": "+40-721-269-312",
-    "priceRange": "$$$",
-    "address": {
-      "@type": "PostalAddress",
-      "addressCountry": "RO",
-      "addressLocality": "Simeria",
-      "streetAddress": "Sântandrei 13",
-      "postalCode": "335903"
-    },
-    "areaServed": [
-      { "@type": "Country", "name": "RO" },
-      { "@type": "Country", "name": "US" },
-      { "@type": "Country", "name": "Global" }
-    ],
-    "hasMerchantReturnPolicy": {
-      "@type": "MerchantReturnPolicy",
-      "applicableCountry": "RO",
-      "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted",
-      "merchantReturnLink": "https://devaland.com/terms",
-      "description": "Devaland provides digital services; physical returns are not permitted."
-    }
-  };
-
-  // --- 3. ORGANIZATION SCHEMA (FINAL REFINEMENT) ---
-  // Fixes "Invalid country code" by using simple ISO string "RO"
-  const organizationSchema = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Devaland Marketing S.R.L.",
-    "alternateName": "Devaland",
-    "url": "https://devaland.com",
-    "logo": ogImage,
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "telephone": "+40-721-269-312",
-      "contactType": "customer service",
-      "availableLanguage": ["English", "Romanian"]
-    },
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Sântandrei 13",
-      "addressLocality": "Simeria",
-      "postalCode": "335903",
-      "addressRegion": "Hunedoara County",
-      "addressCountry": "RO" 
-    },
-    "sameAs": [
-      "https://www.linkedin.com/company/devaland/",
-      "https://www.linkedin.com/in/marius-andronie/",
-      "https://www.facebook.com/marius.andronie/",
-      "https://www.instagram.com/mariusandronie/",
-      "https://www.youtube.com/@devaland13",
-      "https://www.trustpilot.com/review/devaland.com"
-    ],
-    "description": description
-  };
-
   return (
     <Helmet>
-      {/* Basic Meta Tags */}
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
       <meta name="keywords" content={metaKeywords} />
       <link rel="canonical" href={canonical} />
-      
-      {/* Open Graph / Facebook */}
       <meta property="og:type" content={ogType} />
       <meta property="og:url" content={canonical} />
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={ogImage} />
       <meta property="og:site_name" content="Devaland" />
-      
-      {/* Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:url" content={canonical} />
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImage} />
       
-      {/* 1. Verified Organization Schema */}
+      {/* 1. Unified Business Data Script */}
       <script type="application/ld+json">
-        {JSON.stringify(organizationSchema)}
+        {JSON.stringify(unifiedBusinessSchema)}
       </script>
 
-      {/* 2. Verified Global Service & Return Policy Schema */}
-      <script type="application/ld+json">
-        {JSON.stringify(globalServiceSchema)}
-      </script>
-
-      {/* 3. Page-Specific Schema (e.g., BlogPosting) */}
+      {/* 2. Page-Specific Schema (e.g., BlogPosting) */}
       {schema && (
         <script type="application/ld+json">
           {JSON.stringify(schema)}
         </script>
       )}
 
-      {/* 4. Automated Breadcrumb Schema */}
+      {/* 3. Automated Breadcrumb Schema */}
       {breadcrumbSchema && (
         <script type="application/ld+json">
           {JSON.stringify(breadcrumbSchema)}
