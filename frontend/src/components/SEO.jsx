@@ -36,37 +36,38 @@ const SEO = ({
   } : null;
 
   // --- 2. GLOBAL SERVICE & RETURN POLICY SCHEMA (OPTIMIZED) ---
-  // Clears all non-critical issues from GSC Rich Results Test
+  // Resolves non-critical issues for ProfessionalService
   const globalServiceSchema = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "name": "Devaland Automation Agency",
     "url": "https://devaland.com",
     "image": ogImage,
-    "telephone": "+40-721-269-312", // ✅ Fixed: Missing field
-    "priceRange": "$$$",            // ✅ Fixed: Missing field
+    "telephone": "+40-721-269-312", // ✅ Fixed: Clears GSC warning
+    "priceRange": "$$$",            // ✅ Fixed: Clears GSC warning
     "address": {
       "@type": "PostalAddress",
-      "addressCountry": "RO",       // ✅ Fixed: Uses ISO code
+      "addressCountry": "RO",       // ✅ Fixed: Uses ISO code string
       "addressLocality": "Simeria",
       "streetAddress": "Sântandrei 13",
-      "postalCode": "335903"        // ✅ Fixed: Missing field
+      "postalCode": "335903"        // ✅ Fixed: Clears GSC warning
     },
     "areaServed": [
-      { "@type": "Country", "name": "RO" },
+      { "@type": "Country", "name": "RO" }, 
       { "@type": "Country", "name": "US" },
       { "@type": "Country", "name": "Global" }
     ],
     "hasMerchantReturnPolicy": {
       "@type": "MerchantReturnPolicy",
       "applicableCountry": "RO",
-      "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted", // ✅ Fixed: Clear digital policy
+      "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted",
       "merchantReturnLink": "https://devaland.com/terms",
       "description": "Devaland provides digital automation services; physical returns are not permitted."
     }
   };
 
-  // --- 3. ORGANIZATION SCHEMA ---
+  // --- 3. ORGANIZATION SCHEMA (FIXED FOR GSC) ---
+  // Resolves "Invalid country code" and missing fields
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -86,7 +87,7 @@ const SEO = ({
       "addressLocality": "Simeria",
       "postalCode": "335903",
       "addressRegion": "Hunedoara County",
-      "addressCountry": "RO" // ✅ Fixed: Correct ISO code
+      "addressCountry": "RO" // ✅ Corrected to simple 2-letter ISO code string
     },
     "sameAs": [
       "https://www.linkedin.com/company/devaland/",
@@ -127,7 +128,7 @@ const SEO = ({
         {JSON.stringify(organizationSchema)}
       </script>
 
-      {/* 2. Global Service & Return Policy Schema */}
+      {/* 2. Optimized Global Service & Return Policy Schema */}
       <script type="application/ld+json">
         {JSON.stringify(globalServiceSchema)}
       </script>
