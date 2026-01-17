@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 
 /**
  * SEO Component - Manages meta tags and multiple JSON-LD schemas
- * * @param {Array<Object>} props.breadcrumbItems - Array of { label: string, href: string }
+ * @param {Array<Object>} props.breadcrumbItems - Array of { label: string, href: string }
  */
 const SEO = ({
   title = "Devaland Automation Agency",
@@ -13,7 +13,7 @@ const SEO = ({
   ogType = "website",
   schema = null,
   keywords = [],
-  breadcrumbItems = [] // 👈 New prop for breadcrumb automation
+  breadcrumbItems = []
 }) => {
   const fullTitle = title === "Devaland Automation Agency" ? title : `${title} | Devaland`;
   
@@ -23,7 +23,7 @@ const SEO = ({
   ];
   const metaKeywords = keywords.length > 0 ? keywords.join(", ") : defaultKeywords.join(", ");
 
-  // --- BREADCRUMB SCHEMA GENERATOR ---
+  // --- 1. BREADCRUMB SCHEMA ---
   const breadcrumbSchema = breadcrumbItems.length > 0 ? {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -34,6 +34,36 @@ const SEO = ({
       "item": `https://devaland.com${item.href || ''}`
     }))
   } : null;
+
+  // --- 2. GLOBAL SERVICE & RETURN POLICY SCHEMA ---
+  // Fixes GSC warnings for "Return Policy" and "Delivery Details"
+  const globalServiceSchema = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Devaland Automation Agency",
+    "url": "https://devaland.com",
+    "image": ogImage,
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "RO",
+      "addressLocality": "Simeria",
+      "streetAddress": "Sântandrei 13"
+    },
+    // Fixes "Missing delivery details" by defining your service area
+    "areaServed": [
+      { "@type": "Country", "name": "Romania" },
+      { "@type": "Country", "name": "United States" },
+      { "@type": "Country", "name": "Global" }
+    ],
+    // Fixes "Missing return policy"
+    "hasMerchantReturnPolicy": {
+      "@type": "MerchantReturnPolicy",
+      "applicableCountry": "RO",
+      "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted",
+      "merchantReturnLink": "https://devaland.com/terms",
+      "description": "Devaland provides digital services; physical returns are not permitted. See Terms for satisfaction guarantees."
+    }
+  };
 
   return (
     <Helmet>
@@ -58,14 +88,19 @@ const SEO = ({
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImage} />
       
-      {/* 1. Page-Specific Structured Data (e.g., BlogPosting) */}
+      {/* 1. Global Service Schema (Return Policy & Service Area) */}
+      <script type="application/ld+json">
+        {JSON.stringify(globalServiceSchema)}
+      </script>
+
+      {/* 2. Page-Specific Schema (e.g., BlogPosting) */}
       {schema && (
         <script type="application/ld+json">
           {JSON.stringify(schema)}
         </script>
       )}
 
-      {/* 2. Automated Breadcrumb Structured Data */}
+      {/* 3. Automated Breadcrumb Schema */}
       {breadcrumbSchema && (
         <script type="application/ld+json">
           {JSON.stringify(breadcrumbSchema)}
