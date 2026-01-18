@@ -185,7 +185,7 @@ const Footer = memo(() => {
               <FooterLogo />
               <div>
                 <div className="font-semibold text-gray-900">{brand.name}</div>
-                <div className="text-base text-gray-600">{brand.tagline}</div>
+                <div className="text-base text-gray-700">{brand.tagline}</div>
               </div>
             </div>
             {/* Trustpilot Review Collector widget (TrustBox) - visually prominent */}
@@ -210,7 +210,7 @@ const Footer = memo(() => {
             <div className="mt-6 flex flex-col items-center justify-center">
               <div className="w-full max-w-md px-4 py-5 rounded-lg border border-gray-200 bg-white shadow-md flex flex-col items-center">
                 <div className="mb-3 text-lg font-semibold text-gray-900 text-center">Devaland is a Certified Klaviyo Partner</div>
-                <p className="mb-4 text-sm text-gray-600 text-center leading-relaxed">
+                <p className="mb-4 text-sm text-gray-700 text-center leading-relaxed">
                   As a certified Klaviyo partner agency, we empower businesses across diverse industries to accelerate revenue and build meaningful customer relationships through advanced email marketing strategies.
                 </p>
                 <a
@@ -231,7 +231,7 @@ const Footer = memo(() => {
             <div className="text-base font-semibold text-gray-900 mb-3">Explore</div>
             <nav className="grid grid-cols-1 gap-2 text-base">
               {links.explore.map((l) => (
-                <a key={l.to} href={l.to} className="text-gray-600 hover:text-blue-700 underline-offset-4 hover:underline">
+                <a key={l.to} href={l.to} className="text-gray-700 hover:text-blue-700 underline-offset-4 hover:underline">
                   {l.label}
                 </a>
               ))}
@@ -242,20 +242,20 @@ const Footer = memo(() => {
           <div>
             <div className="text-base font-semibold text-gray-900 mb-3">Legal</div>
             <nav className="grid grid-cols-1 gap-2 text-base">
-              <a href="/privacy" className="text-gray-600 hover:text-blue-700 underline-offset-4 hover:underline">Privacy Policy</a>
-              <a href="/terms" className="text-gray-600 hover:text-blue-700 underline-offset-4 hover:underline">Terms & Conditions</a>
-              <a href="/cookies" className="text-gray-600 hover:text-blue-700 underline-offset-4 hover:underline">Cookie Policy</a>
-              <a href="/gdpr" className="text-gray-600 hover:text-blue-700 underline-offset-4 hover:underline">GDPR</a>
-              <a href="http://www.anpc.gov.ro/" className="text-gray-600 hover:text-blue-700 underline-offset-4 hover:underline" target="_blank" rel="noopener noreferrer">ANPC</a>
-              <a href="https://ec.europa.eu/consumers/odr/main/index.cfm?event=main.home2.show&lng=RO" className="text-gray-600 hover:text-blue-700 underline-offset-4 hover:underline" target="_blank" rel="noopener noreferrer">ANPC SOL</a>
-              <a href="https://reclamatiisal.anpc.ro/" className="text-gray-600 hover:text-blue-700 underline-offset-4 hover:underline" target="_blank" rel="noopener noreferrer">ANPC SAL</a>
+              <a href="/privacy" className="text-gray-700 hover:text-blue-700 underline-offset-4 hover:underline">Privacy Policy</a>
+              <a href="/terms" className="text-gray-700 hover:text-blue-700 underline-offset-4 hover:underline">Terms & Conditions</a>
+              <a href="/cookies" className="text-gray-700 hover:text-blue-700 underline-offset-4 hover:underline">Cookie Policy</a>
+              <a href="/gdpr" className="text-gray-700 hover:text-blue-700 underline-offset-4 hover:underline">GDPR</a>
+              <a href="http://www.anpc.gov.ro/" className="text-gray-700 hover:text-blue-700 underline-offset-4 hover:underline" target="_blank" rel="noopener noreferrer">ANPC</a>
+              <a href="https://ec.europa.eu/consumers/odr/main/index.cfm?event=main.home2.show&lng=RO" className="text-gray-700 hover:text-blue-700 underline-offset-4 hover:underline" target="_blank" rel="noopener noreferrer">ANPC SOL</a>
+              <a href="https://reclamatiisal.anpc.ro/" className="text-gray-700 hover:text-blue-700 underline-offset-4 hover:underline" target="_blank" rel="noopener noreferrer">ANPC SAL</a>
             </nav>
           </div>
 
           {/* Newsletter Signup */}
           <div>
             <div className="text-base font-semibold text-gray-900 mb-3">Newsletter</div>
-            <p className="text-sm text-gray-600 mb-4">
+            <p className="text-sm text-gray-700 mb-4">
               Get automation insights, case studies, and Klaviyo tips delivered monthly.
             </p>
             <NewsletterForm compact={true} />
@@ -295,8 +295,8 @@ const Footer = memo(() => {
               </li>
 
               {/* Company Registration Details */}
-              <li className="flex items-start gap-2 mt-3">
-                <span className="text-gray-600">
+              <li className="flex items-start gap-2">
+                <span className="text-gray-700">
                   VAT Code: {LEGAL.vat}
                 </span>
               </li>
@@ -315,22 +315,22 @@ const Footer = memo(() => {
                 </div>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-gray-600">
+                <span className="text-gray-700">
                   VAT Registered: February 01, 2025
                 </span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-gray-600 text-base">
+                <span className="text-gray-700 text-base">
                   Romanian Commercial Trade Registry ID Code: J2024039063003
                 </span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-gray-600 text-base">
+                <span className="text-gray-700 text-base">
                   European Union Trade Registry Unique ID Code (EUID): ROONRC.J2024039063003
                 </span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-gray-600 text-base">
+                <span className="text-gray-700 text-base">
                   NACE Code: 7311 – Advertising Agencies
                 </span>
               </li>
@@ -341,11 +341,11 @@ const Footer = memo(() => {
               <div className="flex items-start gap-2 mb-2">
                 <MapPin size={18} className="text-blue-600 flex-shrink-0 mt-0.5" />
                 <div className="text-sm">
-                  <div className="font-semibold text-gray-900 mb-1">Company Headquarters</div>
-                  <div className="text-gray-700">
-                    Transylvania, Romania 🏰 | Serving Clients Worldwide 🌍
+                  <div className="text-gray-700 uppercase tracking-wider text-[10px] font-bold mb-1">Company Headquarters</div>
+                  <div className="text-gray-800 font-medium">
+                    Transylvania, Romania 🏰 | Worldwide 🌍
                   </div>
-                  <div className="text-gray-600 mt-1 text-xs">
+                  <div className="text-gray-700 mt-1 text-xs">
                     Sântandrei 13, Simeria 335903, Hunedoara County
                   </div>
                 </div>
@@ -515,7 +515,7 @@ const Footer = memo(() => {
         </details>
 
         {/* Copyright - at the very bottom, centered */}
-        <div className="mt-12 text-center text-sm text-gray-600 w-full">
+        <div className="mt-12 text-center text-sm text-gray-700 w-full font-medium">
           Copyright © {new Date().getFullYear()} {LEGAL.company}. &nbsp;VAT Code: {LEGAL.vat}. Trade Registry: {LEGAL.trade}.
         </div>
 

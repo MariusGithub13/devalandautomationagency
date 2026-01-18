@@ -43,9 +43,8 @@ const Header = memo(() => {
   const isActive = useCallback((path) => location.pathname === path, [location.pathname]);
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-white shadow-lg border-b border-gray-200/20' : 'bg-white'
-    }`}>
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-lg border-b border-gray-200/20' : 'bg-white'
+      }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20 sm:h-24 lg:h-28">
           {/* Logo */}
@@ -61,11 +60,10 @@ const Header = memo(() => {
               <Link
                 key={item.name}
                 to={item.href}
-                className={`relative px-2 xl:px-3 py-2 text-sm xl:text-base font-medium whitespace-nowrap transition-colors duration-200 ${
-                  isActive(item.href)
+                className={`relative px-2 xl:px-3 py-2 text-sm xl:text-base font-medium whitespace-nowrap transition-colors duration-200 ${isActive(item.href)
                     ? 'text-blue-600'
-                    : 'text-gray-600 hover:text-gray-900'
-                }`}
+                    : 'text-gray-700 hover:text-gray-900'
+                  }`}
               >
                 {item.name}
                 {isActive(item.href) && (
@@ -78,7 +76,7 @@ const Header = memo(() => {
           {/* Mobile menu button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden p-2 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors duration-200"
+            className="lg:hidden p-2 rounded-lg text-gray-700 hover:text-gray-900 hover:bg-gray-100 transition-colors duration-200"
             aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
             aria-expanded={isMenuOpen}
           >
@@ -95,17 +93,16 @@ const Header = memo(() => {
                   key={item.name}
                   to={item.href}
                   onClick={() => setIsMenuOpen(false)}
-                  className={`block px-3 py-2 text-base font-medium transition-colors duration-200 ${
-                    isActive(item.href)
+                  className={`block px-3 py-2 text-base font-medium transition-colors duration-200 ${isActive(item.href)
                       ? 'text-blue-600 bg-blue-50 rounded-lg'
-                      : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg'
-                  }`}
+                      : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-lg'
+                    }`}
                 >
                   {item.name}
                 </Link>
               ))}
               <div className="pt-4 border-t border-gray-200">
-                <Button 
+                <Button
                   asChild
                   className="w-full btn-primary text-white font-medium py-3 rounded-lg"
                 >
@@ -134,7 +131,7 @@ function HeaderLogo() {
       <svg width="48" height="48" viewBox="0 0 24 24" className="text-blue-600">
         <circle cx="12" cy="12" r="10" fill="currentColor" opacity="0.12" />
         <circle cx="12" cy="12" r="3.5" stroke="currentColor" strokeWidth="2" fill="none" />
-        <path d="M3 12c3-4 6-6 9-6s6 2 9 6c-3 4-6 6-9 6s-6-2-9-6z" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+        <path d="M3 12c3-4 6-6 9-6s6 2 9 6c-3 4-6 6-9 6s-6-2-9-6z" stroke="currentColor" strokeWidth="1.5" fill="none" />
       </svg>
     );
   }
@@ -148,6 +145,8 @@ function HeaderLogo() {
       height="350"
       className="h-12 sm:h-16 lg:h-20 w-auto object-contain"
       onError={() => setFailed(true)}
+      loading="eager"
+      fetchpriority="high"
     />
   );
 }
