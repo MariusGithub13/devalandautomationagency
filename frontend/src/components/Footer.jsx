@@ -119,7 +119,7 @@ function InlineLogo() {
     <svg width="28" height="28" viewBox="0 0 24 24" className="text-blue-600">
       <circle cx="12" cy="12" r="10" fill="currentColor" opacity="0.12" />
       <circle cx="12" cy="12" r="3.5" stroke="currentColor" strokeWidth="2" fill="none" />
-      <path d="M3 12c3-4 6-6 9-6s6 2 9 6c-3 4-6 6-9 6s-6-2-9-6z" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+      <path d="M3 12c3-4 6-6 9-6s6 2 9 6c-3 4-6 6-9 6s-6-2-9-6z" stroke="currentColor" strokeWidth="1.5" fill="none" />
     </svg>
   );
 }
@@ -178,7 +178,7 @@ const Footer = memo(() => {
     <footer className="mt-16 border-t border-gray-200/70 bg-white">
       <div className="mx-auto w-full max-w-7xl px-4 py-10 md:px-6">
         {/* Top: brand + explore + legal + newsletter + contact */}
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1.2fr_2fr] md:gap-12 lg:gap-16">
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-[1.5fr_0.8fr_0.8fr_1fr_1.8fr] lg:gap-12">
           {/* Brand */}
           <div>
             <div className="flex flex-col items-center gap-3 text-center">
@@ -191,17 +191,17 @@ const Footer = memo(() => {
             {/* Trustpilot Review Collector widget (TrustBox) - visually prominent */}
             <div className="mt-6 flex flex-col items-center justify-center">
               <div className="w-full max-w-md px-4 py-5 rounded-lg border border-gray-200 bg-white shadow-md flex flex-col items-center">
-                <div className="mb-3 text-lg font-semibold text-gray-900 text-center">See what our customers say</div>
+                <div className="mb-3 text-lg font-bold text-gray-900 text-center">Excellent Customer Reviews</div>
                 <div
                   className="trustpilot-widget"
                   data-locale="en-US"
                   data-template-id="56278e9abfbbba0bdcd568bc"
                   data-businessunit-id="68d4dd4d6b90a6eb23a0d4f2"
-                  data-style-height="80px"
+                  data-style-height="120px"
                   data-style-width="100%"
                   data-token="a130c89b-6620-42ad-99b5-9162b70c1229"
                 >
-                  <a href="https://www.trustpilot.com/review/devaland.com" target="_blank" rel="noopener noreferrer" className="block text-center text-base font-bold text-gray-900">Trustpilot</a>
+                  <a href="https://www.trustpilot.com/review/devaland.com" target="_blank" rel="noopener noreferrer" className="block text-center text-lg font-black text-gray-900">Trustpilot</a>
                 </div>
               </div>
             </div>
@@ -270,7 +270,7 @@ const Footer = memo(() => {
                   {LEGAL.company}
                 </div>
               </li>
-              
+
               {/* Headquarters */}
               <li className="flex items-start gap-2 mt-3">
                 <MapPin size={16} className="text-blue-600 flex-shrink-0 mt-0.5" />
@@ -303,12 +303,12 @@ const Footer = memo(() => {
               <li className="flex items-start gap-2">
                 <Link size={16} className="text-blue-600 flex-shrink-0 mt-0.5" />
                 <div>
-                  <div className="text-base font-bold text-gray-700 mb-1">VIES VAT number validation:</div>
-                  <a 
-                    href="https://ec.europa.eu/taxation_customs/vies/#/vat-validation" 
-                    target="_blank" 
+                  <div className="text-sm font-bold text-gray-900 mb-1">VIES VAT Validation:</div>
+                  <a
+                    href="https://ec.europa.eu/taxation_customs/vies/#/vat-validation"
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-600 hover:text-blue-700 underline text-base break-all"
+                    className="text-blue-600 hover:text-blue-700 underline text-sm font-medium whitespace-nowrap"
                   >
                     ec.europa.eu/taxation_customs/vies
                   </a>
@@ -352,113 +352,113 @@ const Footer = memo(() => {
               </div>
             </div>
 
-              {/* ANPC/SOL/SAL logos - stack SAL below SOL for clearer visual order */}
-              <div className="mt-6 flex flex-col items-start space-y-3">
+            {/* ANPC/SOL/SAL logos - stack SAL below SOL for clearer visual order */}
+            <div className="mt-6 flex flex-col items-start space-y-3">
+              <a
+                href="https://ec.europa.eu/consumers/odr/main/index.cfm?event=main.home2.show&lng=RO"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Open ODR (SOL) in new tab"
+                className="inline-block"
+              >
+                <img src="/images/sol.webp" alt="SOL" width="250" height="50" className="h-24 w-auto object-contain rounded-sm shadow border border-gray-200 bg-white p-1" />
+                <span className="sr-only">European Online Dispute Resolution (ODR) — opens in a new tab</span>
+              </a>
+              <a
+                href="https://reclamatiisal.anpc.ro/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Open ANPC reclamations (SAL) in new tab"
+                className="inline-block"
+              >
+                <img src="/images/sal.webp" alt="SAL" width="250" height="50" className="h-24 w-auto object-contain rounded-sm shadow border border-gray-200 bg-white p-1" />
+                <span className="sr-only">ANPC reclamations portal — opens in a new tab</span>
+              </a>
+              <div className="flex flex-col items-start space-y-2">
                 <a
-                  href="https://ec.europa.eu/consumers/odr/main/index.cfm?event=main.home2.show&lng=RO"
+                  href="https://consumer-redress.ec.europa.eu/index_en"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Open ODR (SOL) in new tab"
-                  className="inline-block"
+                  className="text-sm font-bold text-gray-700 hover:text-blue-700 underline-offset-2 hover:underline"
                 >
-                  <img src="/images/sol.webp" alt="SOL" width="250" height="50" className="h-24 w-auto object-contain rounded-sm shadow border border-gray-200 bg-white p-1" />
-                  <span className="sr-only">European Online Dispute Resolution (ODR) — opens in a new tab</span>
+                  Consumer Redress in the European Union
                 </a>
                 <a
-                  href="https://reclamatiisal.anpc.ro/"
+                  href="https://consumer-redress.ec.europa.eu/index_en"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Open ANPC reclamations (SAL) in new tab"
+                  aria-label="Open EU Consumer Redress in new tab"
                   className="inline-block"
                 >
-                  <img src="/images/sal.webp" alt="SAL" width="250" height="50" className="h-24 w-auto object-contain rounded-sm shadow border border-gray-200 bg-white p-1" />
-                  <span className="sr-only">ANPC reclamations portal — opens in a new tab</span>
+                  <img src="/images/EU Consumer Redress.svg" alt="Consumer Redress in the EU" width="96" height="96" className="h-24 w-auto object-contain rounded-sm shadow border border-gray-200 bg-white p-1" />
+                  <span className="sr-only">EU Consumer Redress — opens in a new tab</span>
                 </a>
-                <div className="flex flex-col items-start space-y-2">
-                  <a
-                    href="https://consumer-redress.ec.europa.eu/index_en"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm font-bold text-gray-700 hover:text-blue-700 underline-offset-2 hover:underline"
-                  >
-                    Consumer Redress in the European Union
-                  </a>
-                  <a
-                    href="https://consumer-redress.ec.europa.eu/index_en"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Open EU Consumer Redress in new tab"
-                    className="inline-block"
-                  >
-                    <img src="/images/EU Consumer Redress.svg" alt="Consumer Redress in the EU" width="96" height="96" className="h-24 w-auto object-contain rounded-sm shadow border border-gray-200 bg-white p-1" />
-                    <span className="sr-only">EU Consumer Redress — opens in a new tab</span>
-                  </a>
-                </div>
-                <div className="flex flex-col items-start space-y-2">
-                  <a
-                    href="https://ec.europa.eu/taxation_customs/vies/#/vat-validation"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm font-bold text-gray-700 hover:text-blue-700 underline-offset-2 hover:underline"
-                  >
-                    VIES VAT Number Validation - European Commission
-                  </a>
-                  <a
-                    href="https://ec.europa.eu/taxation_customs/vies/#/vat-validation"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="EU VIES VAT Validation"
-                    className="inline-block"
-                  >
-                    <img src="/images/EU Consumer Redress.svg" alt="VIES VAT number validation - European Commission" width="96" height="96" className="h-24 w-auto object-contain rounded-sm shadow border border-gray-200 bg-white p-1" />
-                  </a>
-                </div>
               </div>
+              <div className="flex flex-col items-start space-y-2">
+                <a
+                  href="https://ec.europa.eu/taxation_customs/vies/#/vat-validation"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm font-bold text-gray-700 hover:text-blue-700 underline-offset-2 hover:underline"
+                >
+                  VIES VAT Number Validation - European Commission
+                </a>
+                <a
+                  href="https://ec.europa.eu/taxation_customs/vies/#/vat-validation"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="EU VIES VAT Validation"
+                  className="inline-block"
+                >
+                  <img src="/images/EU Consumer Redress.svg" alt="VIES VAT number validation - European Commission" width="96" height="96" className="h-24 w-auto object-contain rounded-sm shadow border border-gray-200 bg-white p-1" />
+                </a>
+              </div>
+            </div>
 
-              {/* Google Client Reviews Widget - Replaces duplicate Trustpilot
+            {/* Google Client Reviews Widget - Replaces duplicate Trustpilot
                   Google Reviews for SEO and credibility
                   Business Profile: Devaland Marketing S.R.L.
               */}
-              <div className="mt-6 flex flex-col items-start">
-                <div className="w-full max-w-md px-4 py-5 rounded-lg border border-gray-200 bg-white shadow-md flex flex-col items-center">
-                  <div className="mb-3 text-lg font-semibold text-gray-900 text-center">Client Reviews</div>
-                  {/* Google Business Profile Link */}
-                  <div className="w-full space-y-3">
-                    <a 
-                      href="https://www.google.com/search?q=DEVALAND+MARKETING+SRL&stick=H4sIAAAAAAAA_-NgU1I1qDAxM7RMNTRKNjJLSTJNTUuzMqgwMk9KMkpKTUs1S0lNSjU1XsQq5uIa5ujj6Oei4OsY5O0a4unnrhAc5AMAFBctkEIAAAA&hl=en-GB" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-3 px-4 py-3 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:border-blue-500 transition-all group"
-                    >
-                      <svg className="w-6 h-6" viewBox="0 0 24 24">
-                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-                      </svg>
-                      <div className="text-left">
-                        <div className="text-sm font-semibold text-gray-900 group-hover:text-blue-600">Google Business Profile</div>
-                        <div className="text-sm text-gray-600">View our complete profile</div>
-                      </div>
-                    </a>
-                    {/* Write a Review Link */}
-                    <a 
-                      href="https://g.page/r/CfSNoCv66NgaEBM/review" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-3 px-4 py-3 bg-blue-50 border border-blue-300 rounded-lg hover:bg-blue-100 hover:border-blue-500 transition-all group"
-                    >
-                      <svg className="w-6 h-6" viewBox="0 0 24 24">
-                        <path fill="#FBBC05" d="M12 2l2.4 7.4h7.6l-6 4.6 2.3 7-6.3-4.6-6.3 4.6 2.3-7-6-4.6h7.6z"/>
-                      </svg>
-                      <div className="text-left">
-                        <div className="text-sm font-semibold text-blue-700 group-hover:text-blue-900">Write a Review</div>
-                        <div className="text-sm text-blue-600">Share your experience</div>
-                      </div>
-                    </a>
-                  </div>
+            <div className="mt-6 flex flex-col items-start">
+              <div className="w-full max-w-md px-4 py-5 rounded-lg border border-gray-200 bg-white shadow-md flex flex-col items-center">
+                <div className="mb-3 text-lg font-semibold text-gray-900 text-center">Client Reviews</div>
+                {/* Google Business Profile Link */}
+                <div className="w-full space-y-3">
+                  <a
+                    href="https://www.google.com/search?q=DEVALAND+MARKETING+SRL&stick=H4sIAAAAAAAA_-NgU1I1qDAxM7RMNTRKNjJLSTJNTUuzMqgwMk9KMkpKTUs1S0lNSjU1XsQq5uIa5ujj6Oei4OsY5O0a4unnrhAc5AMAFBctkEIAAAA&hl=en-GB"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-3 px-4 py-3 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:border-blue-500 transition-all group"
+                  >
+                    <svg className="w-6 h-6" viewBox="0 0 24 24">
+                      <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
+                      <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+                      <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
+                      <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
+                    </svg>
+                    <div className="text-left">
+                      <div className="text-sm font-semibold text-gray-900 group-hover:text-blue-600">Google Business Profile</div>
+                      <div className="text-sm text-gray-600">View our complete profile</div>
+                    </div>
+                  </a>
+                  {/* Write a Review Link */}
+                  <a
+                    href="https://g.page/r/CfSNoCv66NgaEBM/review"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-3 px-4 py-3 bg-blue-50 border border-blue-300 rounded-lg hover:bg-blue-100 hover:border-blue-500 transition-all group"
+                  >
+                    <svg className="w-6 h-6" viewBox="0 0 24 24">
+                      <path fill="#FBBC05" d="M12 2l2.4 7.4h7.6l-6 4.6 2.3 7-6.3-4.6-6.3 4.6 2.3-7-6-4.6h7.6z" />
+                    </svg>
+                    <div className="text-left">
+                      <div className="text-sm font-semibold text-blue-700 group-hover:text-blue-900">Write a Review</div>
+                      <div className="text-sm text-blue-600">Share your experience</div>
+                    </div>
+                  </a>
                 </div>
               </div>
+            </div>
           </div>
         </div>
 
@@ -468,12 +468,12 @@ const Footer = memo(() => {
           <div className="flex flex-wrap items-center justify-center gap-3">
             {links.primarySocialIcons.map(({ href, Icon, label, color }) => (
               <a key={href} href={href} aria-label={label} target="_blank" rel="noopener noreferrer nofollow"
-                 className={`rounded-full border-2 p-2.5 transition-all duration-300 ${color || 'bg-gray-100 text-gray-700 border-gray-200 hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:scale-110'}`}>
+                className={`rounded-full border-2 p-2.5 transition-all duration-300 ${color || 'bg-gray-100 text-gray-700 border-gray-200 hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:scale-110'}`}>
                 <Icon size={20} />
               </a>
             ))}
           </div>
-          
+
           {/* Collapsible Secondary Profiles */}
           <details className="mt-6 mx-auto max-w-2xl">
             <summary className="cursor-pointer text-sm text-blue-600 hover:text-blue-700 font-medium inline-flex items-center gap-2 mx-auto">
@@ -485,7 +485,7 @@ const Footer = memo(() => {
             <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
               {links.secondarySocialIcons.map(({ href, Icon, label, color }) => (
                 <a key={href} href={href} aria-label={label} target="_blank" rel="noopener noreferrer nofollow"
-                   className={`rounded-full border-2 p-2.5 transition-all duration-300 ${color || 'bg-gray-100 text-gray-700 border-gray-200 hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:scale-110'}`}>
+                  className={`rounded-full border-2 p-2.5 transition-all duration-300 ${color || 'bg-gray-100 text-gray-700 border-gray-200 hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:scale-110'}`}>
                   <Icon size={20} />
                 </a>
               ))}
@@ -506,7 +506,7 @@ const Footer = memo(() => {
             <div className="flex flex-wrap justify-center gap-x-3 gap-y-1 text-gray-600">
               {links.seoTextLinks.map(([label, href]) => (
                 <a key={href} href={href} target="_blank" rel="noopener noreferrer nofollow"
-                   className="underline underline-offset-4 hover:text-blue-700">
+                  className="underline underline-offset-4 hover:text-blue-700">
                   {label}
                 </a>
               ))}
@@ -535,7 +535,7 @@ function FooterLogo() {
       <svg width="56" height="56" viewBox="0 0 24 24" className="text-blue-600">
         <circle cx="12" cy="12" r="10" fill="currentColor" opacity="0.12" />
         <circle cx="12" cy="12" r="3.5" stroke="currentColor" strokeWidth="2" fill="none" />
-        <path d="M3 12c3-4 6-6 9-6s6 2 9 6c-3 4-6 6-9 6s-6-2-9-6z" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+        <path d="M3 12c3-4 6-6 9-6s6 2 9 6c-3 4-6 6-9 6s-6-2-9-6z" stroke="currentColor" strokeWidth="1.5" fill="none" />
       </svg>
     );
   }

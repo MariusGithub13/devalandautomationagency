@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 
-const NewsletterForm = ({ className = '' }) => {
+const NewsletterForm = ({ className = '', compact = false }) => {
   const [email, setEmail] = useState('');
   const [gdprConsent, setGdprConsent] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -43,16 +43,48 @@ const NewsletterForm = ({ className = '' }) => {
 
   const isSuccess = submitMessage.includes('✓') || submitMessage.toLowerCase().includes('successfully');
 
+  if (compact) {
+    return (
+      <div className={className}>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+          <Input
+            type="email"
+            placeholder="Enter email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            disabled={isSubmitting}
+            required
+            className="w-full bg-white text-gray-900 border-gray-300 h-11 shadow-sm focus:ring-blue-500"
+          />
+          <Button type="submit" disabled={isSubmitting} className="w-full bg-orange-500 hover:bg-orange-600 text-white h-11 font-bold shadow-md transition-all active:scale-95">
+            {isSubmitting ? '...' : 'Download Now'}
+          </Button>
+          <div className="flex items-start gap-2 text-left mt-1">
+            <input
+              type="checkbox"
+              id="gdpr-compact"
+              checked={gdprConsent}
+              onChange={(e) => setGdprConsent(e.target.checked)}
+              className="mt-0.5 h-3.5 w-3.5 accent-orange-500 cursor-pointer"
+            />
+            <label htmlFor="gdpr-compact" className="text-[11px] leading-tight text-gray-500 cursor-pointer hover:text-gray-700 transition-colors">
+              I agree to receive the Roadmap. <a href="/privacy" className="underline hover:text-blue-600 transition-colors">Privacy Policy</a>
+            </label>
+          </div>
+          {submitMessage && (
+            <div className={`mt-2 p-2 rounded border text-xs text-center font-bold ${isSuccess ? 'bg-green-50 border-green-200 text-green-700' : 'bg-red-50 border-red-200 text-red-700'}`}>
+              {submitMessage}
+            </div>
+          )}
+        </form>
+      </div>
+    );
+  }
+
   return (
     <div className={className}>
-      {/* GLOBAL OVERRIDE: Forces all text inside the card to be visible */}
-      <style dangerouslySetInnerHTML={{ __html: `
-        .form-status-text { color: #000000 !important; font-weight: 900 !important; }
-        .roadmap-card-title { color: #111827 !important; font-weight: 800 !important; margin-bottom: 1rem; display: block; font-size: 1.5rem; }
-      `}} />
-
       <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-md mx-auto">
-        <div className="flex flex-col sm:flex-row gap-4">
+        <div className="flex flex-col sm:flex-row gap-3">
           <Input
             type="email"
             placeholder="Enter your work email"
@@ -60,31 +92,35 @@ const NewsletterForm = ({ className = '' }) => {
             onChange={(e) => setEmail(e.target.value)}
             disabled={isSubmitting}
             required
-            className="flex-1 bg-white !text-gray-900 border-gray-300 h-12 shadow-sm"
+            className="flex-1 min-w-[200px] bg-white text-gray-900 border-gray-300 h-14 shadow-sm text-lg focus:ring-2 focus:ring-blue-500/20"
           />
-          <Button type="submit" disabled={isSubmitting} className="bg-orange-500 hover:bg-orange-600 text-white px-8 h-12 font-extrabold shadow-md">
-            {isSubmitting ? 'Processing...' : 'Download Now'}
+          <Button type="submit" disabled={isSubmitting} className="bg-orange-500 hover:bg-orange-600 text-white px-10 h-14 font-black shadow-lg text-lg transition-all hover:shadow-orange-500/20 active:scale-95">
+            {isSubmitting ? 'Sending...' : 'Download Now'}
           </Button>
         </div>
 
-        <div className="flex items-start gap-2 text-left">
-          <input type="checkbox" id="gdpr-final" checked={gdprConsent} onChange={(e) => setGdprConsent(e.target.checked)} className="mt-1 h-4 w-4 accent-orange-500" />
-          <label htmlFor="gdpr-final" className="text-sm text-gray-600">
-            I agree to receive the Roadmap. View <a href="/privacy" className="underline text-blue-600">Privacy Policy</a>.
+        <div className="flex items-start gap-3 text-left">
+          <div className="relative flex items-center h-5">
+            <input
+              type="checkbox"
+              id="gdpr-full"
+              checked={gdprConsent}
+              onChange={(e) => setGdprConsent(e.target.checked)}
+              className="h-5 w-5 rounded border-gray-300 text-orange-500 focus:ring-orange-500 cursor-pointer accent-orange-500"
+            />
+          </div>
+          <label htmlFor="gdpr-full" className="text-sm font-medium text-gray-600 cursor-pointer select-none">
+            I agree to receive the Roadmap. View our <a href="/privacy" className="underline text-blue-600 hover:text-blue-800 transition-colors">Privacy Policy</a>.
           </label>
         </div>
 
         {submitMessage && (
-          <div 
-            className="p-6 rounded-lg shadow-2xl border-4 border-black animate-in fade-in"
-            style={{ backgroundColor: isSuccess ? '#fef08a' : '#fecaca', textAlign: 'center' }}
-          >
-            <span className="form-status-text block uppercase text-lg">
+          <div className={`p-4 rounded-xl shadow-xl border-2 transition-all duration-300 animate-in fade-in zoom-in-95 ${isSuccess ? 'bg-green-50 border-green-200 text-green-800' : 'bg-red-50 border-red-200 text-red-800'}`}>
+            <p className="text-center font-bold uppercase tracking-wide">
               {submitMessage}
-            </span>
+            </p>
           </div>
         )}
-        {/* FOOTER REMOVED FROM HERE TO STOP DUPLICATION */}
       </form>
     </div>
   );
