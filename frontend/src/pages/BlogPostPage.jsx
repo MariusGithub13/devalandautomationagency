@@ -14,6 +14,7 @@ import Breadcrumb from '../components/Breadcrumb';
 import NewsletterForm from '../components/NewsletterForm';
 import AuthorAvatar from '../components/AuthorAvatar';
 import InternalLinkAutomator from '../components/InternalLinkAutomator'; // ✅ Added back for SEO
+import NotFoundPage from './NotFoundPage';
 
 // Data
 import { blogPosts } from '../data/mock';
@@ -68,7 +69,7 @@ const BlogPostPage = () => {
     return headings;
   }, [post]);
 
-  if (!post) return <Navigate to="/blog" replace />;
+  if (!post) return <NotFoundPage />;
 
   const breadcrumbItems = [
     { label: 'Home', href: '/' },

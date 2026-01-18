@@ -39,12 +39,12 @@ https://www.devaland.com/_ https://devaland.com/:splat 301!
 
 # ============================================
 
-/api/_ / 410
-/shop/_ / 410
-/app/_ / 410
-/go/_ / 410
-/marketing/_ / 410
-/sheaterra/_ / 410
+/api/* / 410
+/shop/* / 410
+/app/* / 410
+/go/* / 410
+/marketing/* / 410
+/sheaterra/* / 410
 
 # ============================================
 

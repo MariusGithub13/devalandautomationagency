@@ -4,7 +4,7 @@ import { Toaster } from "./components/ui/sonner";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import CookieConsent from "./components/CookieConsent";
-import HomePage from "./pages/HomePage"; 
+import HomePage from "./pages/HomePage";
 
 // Lazy load pages for better code splitting and performance
 const KlaviyoPage = lazy(() => import("./pages/KlaviyoPage"));
@@ -24,6 +24,7 @@ const AboutPage = lazy(() => import("./pages/AboutPage"));
 const BlogPage = lazy(() => import("./pages/BlogPage"));
 const BlogPostPage = lazy(() => import("./pages/BlogPostPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
+const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 const PrivacyPage = lazy(() => import("./pages/PrivacyPage"));
 const TermsPage = lazy(() => import("./pages/TermsPage"));
 const CookiesPage = lazy(() => import("./pages/CookiesPage"));
@@ -69,6 +70,7 @@ function App() {
               <Route path="/cookies" element={<CookiesPage />} />
               <Route path="/gdpr" element={<GDPRPage />} />
               <Route path="/klaviyo-case-studies" element={<KlaviyoCaseStudies />} />
+              <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </Suspense>
         </main>

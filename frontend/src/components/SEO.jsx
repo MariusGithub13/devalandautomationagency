@@ -9,10 +9,11 @@ const SEO = ({
   ogType = "website",
   schema = null,
   keywords = [],
-  breadcrumbItems = []
+  breadcrumbItems = [],
+  noindex = false
 }) => {
   const fullTitle = title === "Devaland Automation Agency" ? title : `${title} | Devaland`;
-  
+
   const defaultKeywords = [
     "automation agency", "RPA development", "Klaviyo email marketing",
     "Shopify email automation", "workflow automation", "business process automation"
@@ -85,6 +86,7 @@ const SEO = ({
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
       <meta name="keywords" content={metaKeywords} />
+      {noindex && <meta name="robots" content="noindex, nofollow" />}
       <link rel="canonical" href={canonical} />
       <meta property="og:type" content={ogType} />
       <meta property="og:url" content={canonical} />
@@ -97,7 +99,7 @@ const SEO = ({
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImage} />
-      
+
       {/* 1. Unified Business Data Script */}
       <script type="application/ld+json">
         {JSON.stringify(unifiedBusinessSchema)}
