@@ -1,4 +1,5 @@
 import React from 'react';
+import InternalLinkAutomator from '../components/InternalLinkAutomator';
 import { Link } from 'react-router-dom';
 import { Mail, Layout, Smartphone, Palette, Zap, Code, ArrowRight, CheckCircle, Eye, MousePointer } from 'lucide-react';
 import { Button } from '../components/ui/button';
@@ -93,7 +94,7 @@ const KlaviyoEmailTemplatesPage = () => {
 
   return (
     <>
-      <SEO 
+      <SEO
         title="Klaviyo Email Templates: Design Best Practices & Examples | Devaland"
         description="Master Klaviyo email template design with proven best practices, mobile-responsive layouts, and professional templates that increase click rates by 40%. Complete guide to creating high-converting email designs."
         canonical="https://devaland.com/klaviyo-email-templates"
@@ -110,7 +111,7 @@ const KlaviyoEmailTemplatesPage = () => {
         schema={[pageSchema, faqSchema]}
       />
 
-      <Breadcrumb 
+      <Breadcrumb
         items={[
           { label: 'Services', href: '/services' },
           { label: 'Klaviyo Email Marketing', href: '/klaviyo' },
@@ -132,10 +133,10 @@ const KlaviyoEmailTemplatesPage = () => {
                 High-Converting Klaviyo Email Templates
               </h1>
               <p className="text-xl text-blue-100 mb-8 leading-relaxed">
-                Professional email template designs that increase click rates by 40% and conversions by 25%. Mobile-responsive, brand-customized, and optimized for every email client.
+                <InternalLinkAutomator text="Professional email template designs that increase click rates by 40% and conversions by 25%. Mobile-responsive, brand-customized, and optimized for every email client." />
               </p>
               <div className="flex flex-wrap gap-4">
-                <Button 
+                <Button
                   asChild
                   size="lg"
                   className="bg-white text-blue-600 hover:bg-blue-50"
@@ -145,7 +146,7 @@ const KlaviyoEmailTemplatesPage = () => {
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </a>
                 </Button>
-                <Button 
+                <Button
                   asChild
                   variant="outline"
                   size="lg"
@@ -202,7 +203,7 @@ const KlaviyoEmailTemplatesPage = () => {
               Email Template Best Practices
             </h2>
             <p className="text-xl text-gray-600">
-              10 proven design principles for high-converting Klaviyo email templates
+              <InternalLinkAutomator text="10 proven design principles for high-converting Klaviyo email templates" />
             </p>
           </div>
 
@@ -591,7 +592,7 @@ const KlaviyoEmailTemplatesPage = () => {
               <Card className="bg-gradient-to-br from-blue-50 to-purple-50 border-2 border-blue-200 mb-6">
                 <CardContent className="p-8">
                   <h3 className="text-2xl font-bold text-gray-900 mb-6">Which Should You Choose?</h3>
-                  
+
                   <div className="space-y-6">
                     <div>
                       <h4 className="font-semibold text-gray-900 mb-3">Choose Drag-and-Drop If:</h4>
@@ -699,7 +700,7 @@ const KlaviyoEmailTemplatesPage = () => {
                     {faq.name}
                   </h3>
                   <p className="text-gray-600 leading-relaxed">
-                    {faq.acceptedAnswer.text}
+                    <InternalLinkAutomator text={faq.acceptedAnswer.text} />
                   </p>
                 </CardContent>
               </Card>
@@ -719,7 +720,7 @@ const KlaviyoEmailTemplatesPage = () => {
             Custom-designed, mobile-responsive email templates that increase click rates by 40% and conversions by 25%. Complete template library + ongoing design support.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Button 
+            <Button
               asChild
               size="lg"
               className="bg-white text-blue-600 hover:bg-blue-50"
@@ -729,7 +730,7 @@ const KlaviyoEmailTemplatesPage = () => {
                 <ArrowRight className="ml-2 h-5 w-5" />
               </a>
             </Button>
-            <Button 
+            <Button
               asChild
               variant="outline"
               size="lg"

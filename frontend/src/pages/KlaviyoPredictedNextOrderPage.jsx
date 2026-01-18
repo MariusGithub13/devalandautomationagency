@@ -7,6 +7,7 @@ import { Badge } from '../components/ui/badge';
 import SEO from '../components/SEO';
 import Breadcrumb from '../components/Breadcrumb';
 import { companyData } from '../data/mock';
+import InternalLinkAutomator from '../components/InternalLinkAutomator';
 
 const KlaviyoPredictedNextOrderPage = () => {
   const faqSchema = {
@@ -88,7 +89,7 @@ const KlaviyoPredictedNextOrderPage = () => {
 
   return (
     <>
-      <SEO 
+      <SEO
         title="Klaviyo Predicted Date of Next Order: Complete Setup Guide | Devaland"
         description="Master Klaviyo's predicted next order date feature to automate replenishment reminders and increase repeat purchase rates by 30-40%. Expert implementation guide with flows, segmentation, and optimization strategies."
         canonical="https://devaland.com/klaviyo-predicted-next-order"
@@ -107,7 +108,7 @@ const KlaviyoPredictedNextOrderPage = () => {
 
       {/* Breadcrumb */}
       <div className="pt-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Breadcrumb 
+        <Breadcrumb
           items={[
             { label: 'Services', href: '/services' },
             { label: 'Klaviyo Marketing', href: '/klaviyo' },
@@ -131,7 +132,7 @@ const KlaviyoPredictedNextOrderPage = () => {
               Automate replenishment reminders with AI-powered predictions. Increase repeat purchase rates by 30-40% with perfectly timed reorder campaigns for consumable products.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button 
+              <Button
                 asChild
                 size="lg"
                 className="bg-white text-blue-600 hover:bg-blue-50 font-semibold"
@@ -141,7 +142,7 @@ const KlaviyoPredictedNextOrderPage = () => {
                   <ArrowRight className="ml-2" size={20} />
                 </a>
               </Button>
-              <Button 
+              <Button
                 asChild
                 variant="outline"
                 size="lg"
@@ -518,7 +519,7 @@ const KlaviyoPredictedNextOrderPage = () => {
             Our Klaviyo experts will set up your predicted next order flows, optimize timing, and create conversion-focused email sequences that drive repeat purchases on autopilot.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
+            <Button
               asChild
               size="lg"
               className="bg-white text-blue-600 hover:bg-blue-50 font-semibold px-8"
@@ -528,7 +529,7 @@ const KlaviyoPredictedNextOrderPage = () => {
                 <ArrowRight className="ml-2" size={20} />
               </a>
             </Button>
-            <Button 
+            <Button
               asChild
               variant="outline"
               size="lg"

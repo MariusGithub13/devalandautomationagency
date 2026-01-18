@@ -88,7 +88,7 @@ const KlaviyoAutomationGuidePage = () => {
 
   return (
     <>
-      <SEO 
+      <SEO
         title="Complete Klaviyo Automation Guide: Flows, Setup & Best Practices | Devaland"
         description="Master Klaviyo automation with our complete guide. Learn to set up essential flows, optimize performance, and generate 25-40% more revenue on autopilot. Expert strategies for e-commerce success."
         canonical="https://devaland.com/klaviyo-automation-guide"
@@ -107,7 +107,7 @@ const KlaviyoAutomationGuidePage = () => {
 
       {/* Breadcrumb */}
       <div className="pt-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Breadcrumb 
+        <Breadcrumb
           items={[
             { label: 'Services', href: '/services' },
             { label: 'Klaviyo Marketing', href: '/klaviyo' },
@@ -128,10 +128,10 @@ const KlaviyoAutomationGuidePage = () => {
               Klaviyo Automation: Complete Guide to Revenue-Generating Flows
             </h1>
             <p className="text-xl text-blue-100 mb-8 leading-relaxed">
-              Build automated email workflows that convert 24/7. Master essential Klaviyo flows, advanced segmentation, and optimization strategies to generate 25-40% more revenue without increasing ad spend.
+              <InternalLinkAutomator text="Build automated email workflows that convert 24/7. Master essential Klaviyo flows, advanced segmentation, and optimization strategies to generate 25-40% more revenue without increasing ad spend." />
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button 
+              <Button
                 asChild
                 size="lg"
                 className="bg-white text-purple-600 hover:bg-blue-50 font-semibold"
@@ -141,7 +141,7 @@ const KlaviyoAutomationGuidePage = () => {
                   <ArrowRight className="ml-2" size={20} />
                 </a>
               </Button>
-              <Button 
+              <Button
                 asChild
                 variant="outline"
                 size="lg"
@@ -690,7 +690,7 @@ const KlaviyoAutomationGuidePage = () => {
             Our Klaviyo experts will design, implement, and optimize complete automation systems tailored to your business. Start generating 25-40% more revenue on autopilot within 30 days.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
+            <Button
               asChild
               size="lg"
               className="bg-white text-purple-600 hover:bg-blue-50 font-semibold px-8"
@@ -700,7 +700,7 @@ const KlaviyoAutomationGuidePage = () => {
                 <ArrowRight className="ml-2" size={20} />
               </a>
             </Button>
-            <Button 
+            <Button
               asChild
               variant="outline"
               size="lg"

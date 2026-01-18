@@ -93,7 +93,7 @@ const KlaviyoGDPRCompliancePage = () => {
 
   return (
     <>
-      <SEO 
+      <SEO
         title="Klaviyo GDPR Compliance: Complete Guide for E-commerce | Devaland"
         description="Master GDPR compliance in Klaviyo email marketing. Learn consent management, double opt-in setup, data protection, privacy policies, and avoid €20M fines. Expert guide for EU e-commerce businesses."
         canonical="https://devaland.com/klaviyo-gdpr-compliance"
@@ -110,7 +110,7 @@ const KlaviyoGDPRCompliancePage = () => {
         schema={[pageSchema, faqSchema]}
       />
 
-      <Breadcrumb 
+      <Breadcrumb
         items={[
           { label: 'Services', href: '/services' },
           { label: 'Klaviyo Email Marketing', href: '/klaviyo' },
@@ -132,10 +132,10 @@ const KlaviyoGDPRCompliancePage = () => {
                 Complete Klaviyo GDPR Compliance Guide
               </h1>
               <p className="text-xl text-blue-100 mb-8 leading-relaxed">
-                Navigate GDPR regulations confidently with our comprehensive guide to consent management, data protection, and privacy policies for Klaviyo email marketing.
+                <InternalLinkAutomator text="Navigate GDPR regulations confidently with our comprehensive guide to consent management, data protection, and privacy policies for Klaviyo email marketing." />
               </p>
               <div className="flex flex-wrap gap-4">
-                <Button 
+                <Button
                   asChild
                   size="lg"
                   className="bg-white text-blue-600 hover:bg-blue-50"
@@ -145,7 +145,7 @@ const KlaviyoGDPRCompliancePage = () => {
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </a>
                 </Button>
-                <Button 
+                <Button
                   asChild
                   variant="outline"
                   size="lg"
@@ -460,7 +460,7 @@ const KlaviyoGDPRCompliancePage = () => {
               <Card className="bg-gradient-to-br from-blue-50 to-purple-50 border-2 border-blue-200">
                 <CardContent className="p-8">
                   <h3 className="text-2xl font-bold text-gray-900 mb-6">Double Opt-In vs Single Opt-In</h3>
-                  
+
                   <div className="space-y-4">
                     <div>
                       <div className="flex items-center gap-2 mb-2">
@@ -571,7 +571,7 @@ const KlaviyoGDPRCompliancePage = () => {
             Ensure your Klaviyo account is fully GDPR compliant with our comprehensive audit. We'll review consent management, data handling, and provide actionable recommendations.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Button 
+            <Button
               asChild
               size="lg"
               className="bg-white text-purple-600 hover:bg-blue-50"
@@ -581,7 +581,7 @@ const KlaviyoGDPRCompliancePage = () => {
                 <ArrowRight className="ml-2 h-5 w-5" />
               </a>
             </Button>
-            <Button 
+            <Button
               as={Link}
               to="/klaviyo-case-studies"
               variant="outline"

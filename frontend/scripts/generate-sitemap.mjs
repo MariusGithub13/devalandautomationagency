@@ -42,23 +42,9 @@ const ROUTES = [
 ];
 
 // 2. Blog Post Slugs from your data/mock.js
-const BLOG_POSTS = [
-  "/blog/best-10-klaviyo-automation-flows-every-ecommerce-store-needs",
-  "/blog/email-segmentation-strategies-that-actually-work",
-  "/blog/maximizing-black-friday-sales-with-klaviyo",
-  "/blog/sms-marketing-the-perfect-complement-to-email",
-  "/blog/advanced-klaviyo-analytics-beyond-open-and-click-rates",
-  "/blog/building-customer-loyalty-through-email-personalization",
-  "/blog/all-in-one-chat-widget-complete-guide",
-  "/blog/voice-ai-agents-the-future-of-business-communication",
-  "/blog/voice-ai-implementation-real-business-results-roi-analysis-technical-guide",
-  "/blog/voice-ai-pricing-comparison-2025",
-  "/blog/ai-voice-assistants-small-business-guide-2025",
-  "/blog/voice-ai-vs-call-centers-cost-benefit-analysis",
-  "/blog/voice-ai-restaurants-phone-orders-reservations-guide",
-  "/blog/voice-ai-healthcare-hipaa-patient-scheduling-guide",
-  "/blog/voice-ai-shopify-brands-customer-service-guide",
-];
+import { blogPosts } from "../src/data/mock.js";
+
+const BLOG_POSTS = blogPosts.map(post => `/blog/${post.slug}`);
 
 /**
  * Scans for any static HTML blog posts under public/blog/*.html
@@ -122,15 +108,58 @@ function main() {
   // Sorting urls alphabetically
   allUrls.sort();
 
+  // Write XML
   const xml = toXml(allUrls);
   const outPath = path.join(PUBLIC, "sitemap.xml");
+
+  // Write HTML
+  const html = toHtml(allUrls);
+  const htmlPath = path.join(PUBLIC, "sitemap.html");
 
   try {
     fs.writeFileSync(outPath, xml, "utf8");
     console.log(`[sitemap] Successfully wrote ${allUrls.length} URLs to public/sitemap.xml`);
+
+    fs.writeFileSync(htmlPath, html, "utf8");
+    console.log(`[sitemap] Successfully wrote public/sitemap.html`);
   } catch (error) {
     console.error(`[sitemap] Error writing sitemap: ${error.message}`);
   }
+}
+
+/**
+ * Generates simple HTML sitemap for humans
+ */
+function toHtml(routes) {
+  const links = routes.map(route => {
+    // Derive a readable title from the slug
+    const title = route === "/" ? "Home" :
+      route.split("/").pop().replace(/-/g, " ").replace(/\b\w/g, l => l.toUpperCase());
+    return `<li><a href="${route}">${title}</a></li>`;
+  }).join("\n    ");
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Devaland - Sitemap</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 800px; margin: 0 auto; padding: 2rem; line-height: 1.6; }
+    h1 { color: #1e40af; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem; }
+    ul { list-style-type: none; padding: 0; }
+    li { margin-bottom: 0.5rem; }
+    a { text-decoration: none; color: #334155; font-weight: 500; }
+    a:hover { color: #2563eb; text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <h1>Sitemap</h1>
+  <ul>
+    ${links}
+  </ul>
+</body>
+</html>`;
 }
 
 main();

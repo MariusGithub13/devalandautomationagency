@@ -391,7 +391,7 @@ const KlaviyoFlowsExamplesPage = () => {
 
   return (
     <>
-      <SEO 
+      <SEO
         title="Best Klaviyo Flows Examples 2025 | Automation Templates & Implementation Guide"
         description="10+ proven Klaviyo automation flow examples with visual diagrams, email templates, timing strategies, and step-by-step implementation guides. Includes welcome series, abandoned cart, browse abandonment, post-purchase, win-back, and VIP flows."
         canonical="https://devaland.com/klaviyo-flows-examples"
@@ -409,11 +409,11 @@ const KlaviyoFlowsExamplesPage = () => {
         ]}
         schema={flowsSchema}
       />
-      
+
       <div className="pt-16">
         {/* Breadcrumb */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Breadcrumb 
+          <Breadcrumb
             items={[
               { label: 'Resources', href: '/blog' },
               { label: 'Klaviyo Flows Examples', href: '/klaviyo-flows-examples' }
@@ -429,12 +429,12 @@ const KlaviyoFlowsExamplesPage = () => {
               Best Klaviyo Automation Flows Examples
             </h1>
             <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-              10+ proven automation flow examples with email breakdowns, timing strategies, and implementation guides. 
+              10+ proven automation flow examples with email breakdowns, timing strategies, and implementation guides.
               These flows generate 30-40% of total email revenue on autopilot.
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-              <Button 
+              <Button
                 asChild
                 size="lg"
                 className="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-8 py-4 text-lg rounded-lg"
@@ -444,7 +444,7 @@ const KlaviyoFlowsExamplesPage = () => {
                   <ArrowRight size={20} />
                 </a>
               </Button>
-              <Button 
+              <Button
                 asChild
                 variant="outline"
                 size="lg"
@@ -602,7 +602,7 @@ const KlaviyoFlowsExamplesPage = () => {
                       </div>
                       <div className="flex-1">
                         <h3 className="text-xl font-semibold text-gray-900 mb-2">{step.title}</h3>
-                        <p className="text-gray-700">{step.description}</p>
+                        <p className="text-gray-700"><InternalLinkAutomator text={step.description} /></p>
                       </div>
                     </div>
                   </CardContent>
@@ -619,11 +619,11 @@ const KlaviyoFlowsExamplesPage = () => {
               Want These Flows Built & Optimized for Your Store?
             </h2>
             <p className="text-xl mb-8 opacity-90">
-              Our Klaviyo experts will design, build, and optimize all automation flows for your e-commerce store. 
+              Our Klaviyo experts will design, build, and optimize all automation flows for your e-commerce store.
               Get professional templates, A/B testing, and ongoing optimization—revenue guaranteed.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
+              <Button
                 asChild
                 size="lg"
                 className="bg-white text-purple-600 hover:bg-gray-100 font-semibold px-8 py-4 text-lg rounded-lg"
@@ -633,7 +633,7 @@ const KlaviyoFlowsExamplesPage = () => {
                   <ArrowRight size={20} />
                 </a>
               </Button>
-              <Button 
+              <Button
                 asChild
                 variant="outline"
                 size="lg"

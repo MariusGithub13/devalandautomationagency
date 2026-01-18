@@ -283,7 +283,7 @@ const KlaviyoBlackFridayPage = () => {
 
   return (
     <>
-      <SEO 
+      <SEO
         title="Klaviyo Black Friday Strategy 2025 | BFCM Campaign Templates & Timeline"
         description="Complete Klaviyo Black Friday & Cyber Monday (BFCM) strategy guide. Get campaign templates, automation flows, 8-week timeline, segmentation tactics, and proven subject lines to maximize your 2025 holiday revenue."
         canonical="https://devaland.com/klaviyo-black-friday-strategy"
@@ -301,11 +301,11 @@ const KlaviyoBlackFridayPage = () => {
         ]}
         schema={bfcmSchema}
       />
-      
+
       <div className="pt-16">
         {/* Breadcrumb */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Breadcrumb 
+          <Breadcrumb
             items={[
               { label: 'Resources', href: '/blog' },
               { label: 'Klaviyo Black Friday Strategy', href: '/klaviyo-black-friday-strategy' }
@@ -321,12 +321,11 @@ const KlaviyoBlackFridayPage = () => {
               Klaviyo Black Friday & BFCM Strategy Guide
             </h1>
             <p className="text-xl mb-8 leading-relaxed opacity-90">
-              Complete 8-week timeline, automation flows, campaign templates, and proven tactics to maximize 
-              your Black Friday Cyber Monday revenue. Used by brands generating $500K+ in BFCM weekend sales.
+              <InternalLinkAutomator text="Complete 8-week timeline, automation flows, campaign templates, and proven tactics to maximize your Black Friday Cyber Monday revenue. Used by brands generating $500K+ in BFCM weekend sales." />
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-              <Button 
+              <Button
                 asChild
                 size="lg"
                 className="bg-red-600 hover:bg-red-700 text-white font-semibold px-8 py-4 text-lg rounded-lg"
@@ -336,7 +335,7 @@ const KlaviyoBlackFridayPage = () => {
                   <ArrowRight size={20} />
                 </a>
               </Button>
-              <Button 
+              <Button
                 asChild
                 variant="outline"
                 size="lg"
@@ -372,7 +371,7 @@ const KlaviyoBlackFridayPage = () => {
             <p className="text-center text-gray-600 mb-12 text-lg">
               Start planning in early September for a successful Black Friday launch
             </p>
-            
+
             <div className="space-y-8">
               {timeline.map((phase, index) => (
                 <Card key={index} className="hover:shadow-xl transition-shadow">
@@ -552,11 +551,11 @@ const KlaviyoBlackFridayPage = () => {
               Ready to Maximize Your 2025 Black Friday Revenue?
             </h2>
             <p className="text-xl mb-8 opacity-90">
-              Our Klaviyo experts will build your entire BFCM strategy, design all email templates, 
+              Our Klaviyo experts will build your entire BFCM strategy, design all email templates,
               set up automation flows, and manage your campaigns throughout the holiday weekend.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-              <Button 
+              <Button
                 asChild
                 size="lg"
                 className="bg-white text-red-600 hover:bg-gray-100 font-semibold px-8 py-4 text-lg rounded-lg"

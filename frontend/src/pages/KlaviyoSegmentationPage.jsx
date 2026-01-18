@@ -1,4 +1,5 @@
 import React from 'react';
+import InternalLinkAutomator from '../components/InternalLinkAutomator';
 import { Link } from 'react-router-dom';
 import { Users, Target, TrendingUp, Filter, Brain, Zap, ArrowRight, CheckCircle, BarChart3, Clock } from 'lucide-react';
 import { Button } from '../components/ui/button';
@@ -93,7 +94,7 @@ const KlaviyoSegmentationPage = () => {
 
   return (
     <>
-      <SEO 
+      <SEO
         title="Klaviyo Segmentation Strategies: RFM, Behavioral & AI Targeting | Devaland"
         description="Master Klaviyo segmentation with proven strategies that increase open rates by 14.31% and revenue by 760%. Learn RFM analysis, behavioral targeting, lifecycle segments, and AI-powered predictive segmentation."
         canonical="https://devaland.com/klaviyo-segmentation-strategies"
@@ -110,7 +111,7 @@ const KlaviyoSegmentationPage = () => {
         schema={[pageSchema, faqSchema]}
       />
 
-      <Breadcrumb 
+      <Breadcrumb
         items={[
           { label: 'Services', href: '/services' },
           { label: 'Klaviyo Email Marketing', href: '/klaviyo' },
@@ -132,10 +133,10 @@ const KlaviyoSegmentationPage = () => {
                 Master Klaviyo Segmentation for 760% More Revenue
               </h1>
               <p className="text-xl text-blue-100 mb-8 leading-relaxed">
-                Transform generic broadcasts into laser-targeted campaigns with advanced segmentation strategies that increase open rates by 14.31% and click rates by 100.95%.
+                <InternalLinkAutomator text="Transform generic broadcasts into laser-targeted campaigns with advanced segmentation strategies that increase open rates by 14.31% and click rates by 100.95%." />
               </p>
               <div className="flex flex-wrap gap-4">
-                <Button 
+                <Button
                   asChild
                   size="lg"
                   className="bg-white text-blue-600 hover:bg-blue-50"
@@ -145,7 +146,7 @@ const KlaviyoSegmentationPage = () => {
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </a>
                 </Button>
-                <Button 
+                <Button
                   asChild
                   variant="outline"
                   size="lg"
@@ -202,7 +203,7 @@ const KlaviyoSegmentationPage = () => {
               RFM Segmentation: The Foundation
             </h2>
             <p className="text-xl text-gray-600">
-              Recency, Frequency, Monetary analysis identifies your most valuable customers and those at risk of churning
+              <InternalLinkAutomator text="Recency, Frequency, Monetary analysis identifies your most valuable customers and those at risk of churning" />
             </p>
           </div>
 
@@ -414,7 +415,7 @@ const KlaviyoSegmentationPage = () => {
               Behavioral Segmentation Strategies
             </h2>
             <p className="text-xl text-gray-600">
-              Target customers based on actions they take (or don't take) on your website and in emails
+              <InternalLinkAutomator text="Target customers based on actions they take (or don't take) on your website and in emails" />
             </p>
           </div>
 
@@ -589,7 +590,7 @@ const KlaviyoSegmentationPage = () => {
                     {faq.name}
                   </h3>
                   <p className="text-gray-600 leading-relaxed">
-                    {faq.acceptedAnswer.text}
+                    <InternalLinkAutomator text={faq.acceptedAnswer.text} />
                   </p>
                 </CardContent>
               </Card>
@@ -609,7 +610,7 @@ const KlaviyoSegmentationPage = () => {
             Discover untapped segments and optimization opportunities. Our experts will analyze your list and provide a custom segmentation roadmap for 760% revenue growth.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Button 
+            <Button
               asChild
               size="lg"
               className="bg-white text-purple-600 hover:bg-blue-50"
@@ -619,7 +620,7 @@ const KlaviyoSegmentationPage = () => {
                 <ArrowRight className="ml-2 h-5 w-5" />
               </a>
             </Button>
-            <Button 
+            <Button
               asChild
               variant="outline"
               size="lg"
