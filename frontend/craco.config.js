@@ -14,15 +14,15 @@ module.exports = {
     configure: (webpackConfig, { env }) => {
       // Completely disable source maps
       webpackConfig.devtool = false;
-      
+
       // More aggressive approach - completely rebuild module rules without source-map-loader
       const newRules = [];
-      
+
       webpackConfig.module.rules.forEach(rule => {
         // Skip any rule that mentions source-map-loader
         if (rule.use) {
           if (Array.isArray(rule.use)) {
-            const hasSourceMapLoader = rule.use.some(use => 
+            const hasSourceMapLoader = rule.use.some(use =>
               (typeof use === 'string' && use.includes('source-map-loader')) ||
               (typeof use === 'object' && use.loader && use.loader.includes('source-map-loader'))
             );
@@ -44,7 +44,7 @@ module.exports = {
           newRules.push(rule);
         }
       });
-      
+
       webpackConfig.module.rules = newRules;
 
       // Ignore all warnings
@@ -65,7 +65,7 @@ module.exports = {
             // Force minify to false - not undefined, not {}, but explicitly false
             plugin.options = plugin.options || {};
             plugin.options.minify = false;
-            
+
             // Also try userOptions for different webpack versions
             if (plugin.userOptions) {
               plugin.userOptions.minify = false;
@@ -73,7 +73,7 @@ module.exports = {
           }
           return plugin;
         });
-        
+
         // Remove console.* calls in production
         webpackConfig.optimization = {
           ...webpackConfig.optimization,
@@ -95,7 +95,10 @@ module.exports = {
                     /[\\/]node_modules[\\/](.*?)([\\/]|$)/
                   )?.[1];
                   // npm package names are URL-safe, but some servers don't like @ symbols
-                  return `vendor.${packageName?.replace('@', '')}`;
+                  // Add fallback for undefined package names
+                  return packageName
+                    ? `vendor.${packageName.replace('@', '')}`
+                    : 'vendor.unknown';
                 },
               },
               // Common chunk for shared code
@@ -142,14 +145,14 @@ module.exports = {
           }),
         ];
       }
-      
+
       // Disable hot reload completely if environment variable is set
       if (config.disableHotReload) {
         // Remove hot reload related plugins
         webpackConfig.plugins = webpackConfig.plugins.filter(plugin => {
           return !(plugin.constructor.name === 'HotModuleReplacementPlugin');
         });
-        
+
         // Disable watch mode
         webpackConfig.watch = false;
         webpackConfig.watchOptions = {
@@ -169,7 +172,7 @@ module.exports = {
           ],
         };
       }
-      
+
       return webpackConfig;
     },
   },

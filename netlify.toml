@@ -22,7 +22,7 @@
 
 [build.environment]
   # lock Node so Netlify doesn't upgrade and break ajv / webpack
-  NODE_VERSION = "18.20.4"
+  NODE_VERSION = "20.18.1"
   
   # Force cache clear - increment this number to invalidate Netlify build cache
   CACHE_VERSION = "3"

@@ -1,4 +1,4 @@
-from fastapi import FastAPI, APIRouter, HTTPException
+from fastapi import FastAPI, APIRouter, HTTPException, BackgroundTasks, Request
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -12,30 +12,57 @@ from datetime import datetime
 import aiosmtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from contextlib import asynccontextmanager
+from slowapi import Limiter, _rate_limit_exceeded_handler
+from slowapi.util import get_remote_address
+from slowapi.errors import RateLimitExceeded
 
+# Configure logging first
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger(__name__)
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
 # MongoDB connection (optional - will work without it)
+MONGO_TIMEOUT_MS = 2000
 mongo_url = os.environ.get('MONGO_URL', 'mongodb://localhost:27017')
+mongo_client = None
+db = None
+mongodb_available = False
+
 try:
-    client = AsyncIOMotorClient(mongo_url, serverSelectionTimeoutMS=2000)
-    db = client[os.environ.get('DB_NAME', 'devaland_db')]
+    mongo_client = AsyncIOMotorClient(mongo_url, serverSelectionTimeoutMS=MONGO_TIMEOUT_MS)
+    db = mongo_client[os.environ.get('DB_NAME', 'devaland_db')]
     mongodb_available = True
-    logger = logging.getLogger(__name__)
     logger.info("MongoDB connection established")
 except Exception as e:
-    db = None
-    mongodb_available = False
-    logger = logging.getLogger(__name__)
     logger.warning(f"MongoDB not available: {e}. Emails will still be sent.")
 
-# Create the main app without a prefix
-app = FastAPI()
+# Lifespan context manager for startup/shutdown
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Startup
+    logger.info("Application starting up")
+    yield
+    # Shutdown
+    if mongodb_available and mongo_client:
+        mongo_client.close()
+        logger.info("MongoDB connection closed")
 
-# Create a router with the /api prefix
-api_router = APIRouter(prefix="/api")
+# Create the main app with lifespan
+app = FastAPI(lifespan=lifespan)
+
+# Initialize rate limiter
+limiter = Limiter(key_func=get_remote_address)
+app.state.limiter = limiter
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+
+# Create a router with the /api/v1 prefix
+api_router = APIRouter(prefix="/api/v1")
 
 
 # Define Models
@@ -155,39 +182,43 @@ async def root():
 
 @api_router.post("/status", response_model=StatusCheck)
 async def create_status_check(input: StatusCheckCreate):
-    status_dict = input.dict()
+    if not mongodb_available or db is None:
+        raise HTTPException(status_code=503, detail="MongoDB not available")
+    status_dict = input.model_dump()
     status_obj = StatusCheck(**status_dict)
-    _ = await db.status_checks.insert_one(status_obj.dict())
+    _ = await db.status_checks.insert_one(status_obj.model_dump())
     return status_obj
 
 @api_router.get("/status", response_model=List[StatusCheck])
-async def get_status_checks():
-    status_checks = await db.status_checks.find().to_list(1000)
+async def get_status_checks(skip: int = 0, limit: int = 100):
+    if not mongodb_available or db is None:
+        raise HTTPException(status_code=503, detail="MongoDB not available")
+    if limit > 1000:
+        limit = 1000
+    status_checks = await db.status_checks.find().skip(skip).limit(limit).to_list(limit)
     return [StatusCheck(**status_check) for status_check in status_checks]
 
 @api_router.post("/contact", response_model=ContactFormSubmission)
-async def submit_contact_form(form_data: ContactFormCreate):
+@limiter.limit("5/minute")
+async def submit_contact_form(request: Request, form_data: ContactFormCreate, background_tasks: BackgroundTasks):
     """Handle contact form submission"""
     try:
         # Create submission object with timestamp
-        submission = ContactFormSubmission(**form_data.dict())
+        submission = ContactFormSubmission(**form_data.model_dump())
         
-        # Send email notification (priority)
-        email_sent = await send_email_notification(submission)
-        if email_sent:
-            logger.info(f"✅ Email notification sent for submission: {submission.id}")
-        else:
-            logger.warning(f"⚠️ Email notification failed for submission: {submission.id}")
+        # Send email notification in background (non-blocking)
+        background_tasks.add_task(send_email_notification, submission)
+        logger.info(f"📧 Email notification queued for submission: {submission.id}")
         
         # Store in MongoDB if available
         if mongodb_available and db is not None:
             try:
-                await db.contact_submissions.insert_one(submission.dict())
+                await db.contact_submissions.insert_one(submission.model_dump())
                 logger.info(f"📝 Contact form submission stored: {submission.id}")
             except Exception as mongo_error:
-                logger.warning(f"MongoDB storage failed (email was still sent): {mongo_error}")
+                logger.warning(f"MongoDB storage failed (email will still be sent): {mongo_error}")
         else:
-            logger.info(f"ℹ️ MongoDB not available, but email was sent: {submission.id}")
+            logger.info(f"ℹ️ MongoDB not available, but email will be sent: {submission.id}")
         
         return submission
         
@@ -210,21 +241,21 @@ async def get_contact_submissions(limit: int = 100):
 # Include the router in the main app
 app.include_router(api_router)
 
+# CORS configuration - secure default
 app.add_middleware(
     CORSMiddleware,
     allow_credentials=True,
-    allow_origins=os.environ.get('CORS_ORIGINS', '*').split(','),
+    allow_origins=os.environ.get('CORS_ORIGINS', 'https://devaland.com').split(','),
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Configure logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
-logger = logging.getLogger(__name__)
-
-@app.on_event("shutdown")
-async def shutdown_db_client():
-    client.close()
+# Health check endpoint
+@api_router.get("/health")
+async def health_check():
+    """Health check endpoint for monitoring"""
+    return {
+        "status": "healthy",
+        "mongodb": mongodb_available,
+        "timestamp": datetime.utcnow().isoformat()
+    }
