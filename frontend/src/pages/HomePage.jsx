@@ -43,7 +43,7 @@ const HomePage = () => {
     "name": "Devaland Marketing S.R.L.",
     "alternateName": "Devaland",
     "url": "https://devaland.com",
-    "logo": "https://customer-assets.emergentagent.com/job_process-genius-5/artifacts/kau0y3tw_Devaland-Logo.jpg",
+    "logo": "https://devaland.com/Devaland-Logo.webp",
     "contactPoint": {
       "@type": "ContactPoint",
       "telephone": "+40-721-269-312",
@@ -104,7 +104,7 @@ const HomePage = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-4xl font-display mb-6">Industry Recognition</h2>
-              <p className="text-xl opacity-90 max-w-2xl mx-auto">
+              <p className="text-xl text-white max-w-2xl mx-auto">
                 Our commitment to excellence has been recognized by leading industry organizations and publications.
               </p>
             </div>
@@ -115,7 +115,7 @@ const HomePage = () => {
                   <CardContent className="p-6 text-center">
                     <Award size={48} className="text-white mx-auto mb-4" />
                     <h3 className="text-xl font-bold text-white mb-2">{award.title}</h3>
-                    <p className="text-white/80 mb-4">{award.description}</p>
+                    <p className="text-white mb-4">{award.description}</p>
                     <a
                       href={award.url}
                       target="_blank"
@@ -156,7 +156,7 @@ const HomePage = () => {
                   </span>
                 </h2>
 
-                <p className="text-xl text-gray-200 mb-8 leading-relaxed">
+                <p className="text-xl text-gray-100 mb-8 leading-relaxed">
                   We combine cutting-edge artificial intelligence with proven automation frameworks to deliver
                   intelligent solutions that learn, adapt, and scale with your business.
                 </p>
@@ -168,7 +168,7 @@ const HomePage = () => {
                     </div>
                     <div>
                       <h3 className="text-lg font-semibold mb-1">Intelligent Decision Making</h3>
-                      <p className="text-gray-300">AI-powered systems that understand context and make smart choices</p>
+                      <p className="text-blue-50">AI-powered systems that understand context and make smart choices</p>
                     </div>
                   </div>
 
@@ -178,7 +178,7 @@ const HomePage = () => {
                     </div>
                     <div>
                       <h3 className="text-lg font-semibold mb-1">Lightning-Fast Processing</h3>
-                      <p className="text-gray-300">Handle thousands of tasks simultaneously with zero errors</p>
+                      <p className="text-blue-50">Handle thousands of tasks simultaneously with zero errors</p>
                     </div>
                   </div>
 
@@ -188,7 +188,7 @@ const HomePage = () => {
                     </div>
                     <div>
                       <h3 className="text-lg font-semibold mb-1">Continuous Improvement</h3>
-                      <p className="text-gray-300">Systems that learn from data and get better over time</p>
+                      <p className="text-blue-50">Systems that learn from data and get better over time</p>
                     </div>
                   </div>
                 </div>
@@ -234,7 +234,7 @@ const HomePage = () => {
                       </div>
                       <div>
                         <div className="font-bold text-gray-900">AI-Powered</div>
-                        <div className="text-sm text-gray-600">24/7 Automation</div>
+                        <div className="text-sm text-gray-700">24/7 Automation</div>
                       </div>
                     </div>
                   </div>
@@ -251,7 +251,7 @@ const HomePage = () => {
               <h2 className="text-4xl md:text-5xl font-display text-gray-900 mb-6">
                 Comprehensive Automation Solutions
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl text-gray-700 max-w-3xl mx-auto">
                 From strategic planning to technical implementation, we deliver end-to-end automation
                 solutions that drive measurable business outcomes.
               </p>
@@ -277,7 +277,7 @@ const HomePage = () => {
                         <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-200 text-center">
                           {service.title}
                         </h3>
-                        <p className="text-gray-600 mb-4 line-clamp-3 text-center">
+                        <p className="text-gray-700 mb-4 line-clamp-3 text-center">
                           {service.description}
                         </p>
                       </Link>
@@ -317,7 +317,7 @@ const HomePage = () => {
               <h2 className="text-4xl md:text-5xl font-display text-gray-900 mb-6">
                 Klaviyo Automation Resources
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl text-gray-700 max-w-3xl mx-auto">
                 Explore our comprehensive guides and proven strategies to maximize your Klaviyo email marketing performance and drive 30-45% revenue growth.
               </p>
             </div>
@@ -336,7 +336,7 @@ const HomePage = () => {
                     <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">
                       10 Best Klaviyo Flows & Examples (2025)
                     </h3>
-                    <p className="text-gray-600 mb-4">
+                    <p className="text-gray-700 mb-4">
                       30+ proven flow templates for e-commerce. Abandoned cart, welcome series, post-purchase, and advanced automation examples.
                     </p>
                     <div className="flex items-center text-blue-600 font-medium group-hover:translate-x-2 transition-transform duration-300">
@@ -591,7 +591,7 @@ const HomePage = () => {
                     <h3 className="text-xl font-bold mb-3 text-white group-hover:text-blue-300 transition-colors duration-200">
                       Voice AI Pricing Comparison 2025
                     </h3>
-                    <p className="text-blue-100 mb-4 line-clamp-3">
+                    <p className="text-white mb-4 line-clamp-3">
                       Compare pricing models across platforms ($0.05-$0.60/minute). Calculate ROI and find the best plan for your call volume.
                     </p>
                     <div className="flex items-center text-blue-300 font-medium group-hover:text-blue-200">
@@ -615,7 +615,7 @@ const HomePage = () => {
                     <h3 className="text-xl font-bold mb-3 text-white group-hover:text-blue-300 transition-colors duration-200">
                       Small Business Voice AI
                     </h3>
-                    <p className="text-blue-100 mb-4 line-clamp-3">
+                    <p className="text-white mb-4 line-clamp-3">
                       Budget-friendly guide with 60-point vendor scorecard, 4-week roadmap, and common mistakes to avoid.
                     </p>
                     <div className="flex items-center text-blue-300 font-medium group-hover:text-blue-200">

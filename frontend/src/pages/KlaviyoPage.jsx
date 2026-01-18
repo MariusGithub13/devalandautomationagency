@@ -34,16 +34,16 @@ const KlaviyoPage = () => {
 
   return (
     <>
-      <SEO 
+      <SEO
         title="Best Klaviyo Flows & Automation Agency | 45% Revenue Increase Guaranteed"
         description="Get the best Klaviyo flows: abandoned cart, welcome series, win-back & Black Friday campaigns. Expert Klaviyo automation agency with proven results. Book free audit."
         canonical="https://devaland.com/klaviyo"
         schema={klaviyoSchema}
       />
-      
+
       <div className="pt-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Breadcrumb 
+          <Breadcrumb
             items={[
               { label: 'Services', href: '/services' },
               { label: 'Klaviyo Email Marketing', href: '/klaviyo' }
@@ -60,10 +60,10 @@ const KlaviyoPage = () => {
                 <h1 className="text-5xl md:text-6xl font-display text-gray-900 mb-6">
                   Best Klaviyo Flows & Automation for Shopify & E-commerce
                 </h1>
-                <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                  Get proven Klaviyo automation flows: abandoned cart recovery, welcome series, Black Friday campaigns & GDPR-compliant email marketing. 
+                <p className="text-xl text-gray-700 mb-8 leading-relaxed">
+                  Get proven Klaviyo automation flows: abandoned cart recovery, welcome series, Black Friday campaigns & GDPR-compliant email marketing.
                 </p>
-                
+
                 <div className="grid grid-cols-2 gap-6 mb-8">
                   <div className="text-center p-4 bg-white rounded-lg shadow-sm">
                     <div className="text-3xl font-bold text-purple-600 mb-2">45%</div>
@@ -71,7 +71,7 @@ const KlaviyoPage = () => {
                   </div>
                   <div className="text-center p-4 bg-white rounded-lg shadow-sm">
                     <div className="text-3xl font-bold text-green-600 mb-2">180%</div>
-                    <div className="text-sm text-gray-600">Email ROI Improvement</div>
+                    <div className="text-sm text-gray-700">Email ROI Improvement</div>
                   </div>
                 </div>
 
@@ -86,7 +86,7 @@ const KlaviyoPage = () => {
               </div>
 
               <div className="animate-fade-in-up delay-300">
-                <img 
+                <img
                   src={serviceImages.klaviyo}
                   alt="Klaviyo Email Marketing Dashboard"
                   width="600"
@@ -113,7 +113,7 @@ const KlaviyoPage = () => {
                         <Zap size={32} className="text-purple-600" />
                       </div>
                       <h3 className="font-semibold text-gray-900 mb-2">{award.title}</h3>
-                      <p className="text-gray-600 text-sm">{award.description}</p>
+                      <p className="text-gray-700 text-sm">{award.description}</p>
                     </CardContent>
                   </Card>
                 ))}
@@ -145,7 +145,7 @@ const KlaviyoPage = () => {
                     <h3 className="font-semibold text-gray-900 mb-3">What's Included:</h3>
                     <ul className="space-y-2">
                       {service.features.map((feature, i) => (
-                        <li key={i} className="flex items-center text-gray-600">
+                        <li key={i} className="flex items-center text-gray-700">
                           <CheckCircle size={16} className="text-purple-600 mr-3" /> {feature}
                         </li>
                       ))}
@@ -191,7 +191,7 @@ const KlaviyoPage = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-4xl md:text-5xl font-display text-gray-900 mb-16 text-center">Choose Your Klaviyo Growth Plan</h2>
             <div className="grid md:grid-cols-4 gap-6">
-              
+
               {/* DIY Setup */}
               <Card className="border-2 hover:border-purple-300 transition-all flex flex-col">
                 <CardContent className="p-6 flex-grow">

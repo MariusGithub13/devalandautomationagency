@@ -3,7 +3,7 @@ export const companyData = {
   name: "Devaland",
   tagline: "Automate Your Operations. Accelerate Your Growth.",
   description: "We don't just build bots; we architect intelligent automation systems that unlock exponential growth, eliminate operational friction, and provide a competitive edge.",
-  logo: "https://customer-assets.emergentagent.com/job_process-genius-5/artifacts/kau0y3tw_Devaland-Logo.jpg",
+  logo: "/Devaland-Logo.webp",
   contact: {
     email: "office@devaland.com",
     phone: "+40 (721) 269 312",
