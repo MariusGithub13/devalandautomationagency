@@ -26,9 +26,9 @@ const BlogPage = () => {
   const allPosts = useMemo(() => Array.isArray(blogPosts) ? blogPosts : [], []);
 
   // Generate unique categories list
-  const categories = useMemo(() => 
-    ['All', ...new Set(allPosts.map(post => post.category).filter(Boolean))], 
-  [allPosts]);
+  const categories = useMemo(() =>
+    ['All', ...new Set(allPosts.map(post => post.category).filter(Boolean))],
+    [allPosts]);
 
   // --- 2. FILTER & SEARCH LOGIC ---
   const filteredPosts = useMemo(() => {
@@ -37,10 +37,10 @@ const BlogPage = () => {
         const title = post.title?.toLowerCase() || '';
         const excerpt = post.excerpt?.toLowerCase() || '';
         const search = searchTerm.toLowerCase();
-        
+
         const matchesSearch = title.includes(search) || excerpt.includes(search);
         const matchesCategory = selectedCategory === 'All' || post.category === selectedCategory;
-        
+
         return matchesSearch && matchesCategory;
       })
       .sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -50,7 +50,7 @@ const BlogPage = () => {
 
   return (
     <>
-      <SEO 
+      <SEO
         title="Blog - Automation & Email Marketing Insights"
         description="Expert insights on Klaviyo, Voice AI, and business automation."
         canonical="https://devaland.com/blog"
@@ -61,7 +61,7 @@ const BlogPage = () => {
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <Breadcrumb items={[{ label: 'Blog', href: '/blog' }]} />
         </nav>
-        
+
         {/* Header / Hero */}
         <header className="py-12 md:py-20 bg-gradient-to-b from-blue-50/50 to-white border-b border-gray-100">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -71,16 +71,16 @@ const BlogPage = () => {
             <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
               Expert strategies on Klaviyo and Voice AI to help your business scale efficiently.
             </p>
-            
-            {/* Search Bar */}
-            <div className="relative max-w-2xl mx-auto shadow-2xl rounded-2xl overflow-hidden mt-10">
-              <Search size={22} className="absolute left-5 top-1/2 transform -translate-y-1/2 text-gray-400" />
+
+            {/* Premium Search Bar */}
+            <div className="relative max-w-2xl mx-auto shadow-[0_20px_50px_rgba(0,0,0,0.1)] rounded-3xl overflow-hidden mt-12 group transition-all duration-300 focus-within:shadow-[0_20px_50px_rgba(59,130,246,0.2)] focus-within:-translate-y-1">
+              <Search size={22} className="absolute left-6 top-1/2 transform -translate-y-1/2 text-gray-400 group-focus-within:text-blue-500 transition-colors" />
               <Input
                 type="text"
                 placeholder="Search articles by topic or keyword..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-14 py-8 text-lg border-none focus-visible:ring-blue-500 shadow-inner bg-white"
+                className="pl-16 py-10 text-xl border-none focus-visible:ring-0 shadow-inner bg-white font-medium placeholder:text-gray-300"
               />
             </div>
           </div>
@@ -94,11 +94,10 @@ const BlogPage = () => {
                 key={category}
                 variant={selectedCategory === category ? "default" : "ghost"}
                 onClick={() => setSelectedCategory(category)}
-                className={`rounded-full px-6 transition-all ${
-                  selectedCategory === category 
-                    ? 'bg-blue-600 text-white shadow-md' 
+                className={`rounded-full px-6 transition-all ${selectedCategory === category
+                    ? 'bg-blue-600 text-white shadow-md'
                     : 'text-gray-600 hover:text-blue-600 hover:bg-blue-50'
-                }`}
+                  }`}
               >
                 {category}
               </Button>
@@ -118,15 +117,16 @@ const BlogPage = () => {
             ) : (
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
                 {filteredPosts.map((post) => (
-                  <article key={post.slug || post.id} className="group flex flex-col bg-white">
-                    <Link 
+                  <article key={post.slug || post.id} className="group flex flex-col bg-white transition-all duration-500 hover:-translate-y-4">
+                    <Link
                       to={`/blog/${post.slug}`}
-                      className="relative aspect-[4/3] rounded-[2rem] overflow-hidden mb-6 shadow-lg border border-gray-100 block"
+                      className="relative aspect-[4/3] rounded-[2.5rem] overflow-hidden mb-8 shadow-xl border border-gray-100 block"
                     >
-                      <img 
-                        src={post.image} 
+                      <div className="absolute inset-0 bg-blue-600/0 group-hover:bg-blue-600/10 transition-colors duration-500 z-10" />
+                      <img
+                        src={post.image}
                         alt={post.title}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                         loading="lazy"
                       />
                     </Link>
@@ -168,7 +168,7 @@ const BlogPage = () => {
               Join 2,000+ business owners receiving monthly deep-dives on Klaviyo and Voice AI.
             </p>
             <div className="max-w-md mx-auto">
-                <NewsletterForm />
+              <NewsletterForm />
             </div>
           </div>
         </section>

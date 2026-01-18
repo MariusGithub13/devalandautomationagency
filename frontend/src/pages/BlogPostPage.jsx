@@ -2,8 +2,8 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { 
-  ArrowLeft, Calendar, Clock, ChevronDown, ChevronRight 
+import {
+  ArrowLeft, Calendar, Clock, ChevronDown, ChevronRight
 } from 'lucide-react';
 
 // UI and Custom Components
@@ -35,7 +35,7 @@ const ReadingProgressBar = () => {
   return (
     /* top-16 ensures it stays exactly at the bottom of your 64px header */
     <div className="fixed top-16 left-0 w-full h-1.5 z-40 bg-transparent pointer-events-none">
-      <div 
+      <div
         className="h-full bg-blue-500 transition-all duration-150 ease-out shadow-[0_0_15px_rgba(59,130,246,0.8)]"
         style={{ width: `${completion}%` }}
       />
@@ -78,35 +78,59 @@ const BlogPostPage = () => {
 
   return (
     <>
-      <SEO 
-        title={post.title} 
-        description={post.excerpt} 
-        ogImage={post.image} 
+      <SEO
+        title={post.title}
+        description={post.excerpt}
+        ogImage={post.image}
         ogType="article"
         canonical={`https://devaland.com/blog/${slug}`}
         breadcrumbItems={breadcrumbItems}
       />
       <ReadingProgressBar />
 
-      <main className="bg-white min-h-screen">
-        {/* Premium Gradient Header */}
-        <header className="bg-gradient-to-br from-blue-700 via-indigo-800 to-purple-900 pt-32 pb-24 text-white">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6">
-            <div className="mb-8"><Breadcrumb items={breadcrumbItems} /></div>
-            <Link to="/blog" className="inline-flex items-center text-blue-200 font-bold mb-8 group hover:text-white transition-colors">
+      <main className="bg-white min-h-screen animate-in fade-in duration-700">
+        {/* Premium Gradient Header with enhanced depth */}
+        <header className="bg-gradient-to-br from-[#1e40af] via-[#312e81] to-[#1e1b4b] pt-32 pb-24 text-white overflow-hidden relative">
+          {/* Subtle background glow/blob for depth */}
+          <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[120px] pointer-events-none" />
+
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10">
+            <div className="mb-8">
+              <Breadcrumb items={breadcrumbItems} variant="dark" />
+            </div>
+
+            <Link to="/blog" className="inline-flex items-center text-blue-200/80 font-bold mb-8 group hover:text-white transition-all bg-white/5 hover:bg-white/10 px-4 py-2 rounded-xl backdrop-blur-sm border border-white/5 hover:border-white/20">
               <ArrowLeft size={18} className="mr-2 group-hover:-translate-x-1 transition-transform" />
               Back to Articles
             </Link>
-            <Badge className="bg-blue-400/20 text-blue-100 mb-6 px-4 py-1.5 rounded-full border border-blue-400/30 uppercase tracking-widest text-[10px] font-bold">
-              {post.category}
-            </Badge>
-            <h1 className="text-4xl md:text-5xl lg:text-7xl font-display mb-8 leading-[1.1] tracking-tight">{post.title}</h1>
-            <div className="flex flex-wrap items-center gap-6 text-blue-100/70 font-medium pt-8 border-t border-white/10">
-              <div className="flex items-center gap-2">📅 {post.date}</div>
-              <div className="flex items-center gap-2">⏱️ {post.readTime}</div>
-              <div className="flex items-center gap-3">
-                <AuthorAvatar author={post.author} size={32} />
-                <span className="font-bold text-white">{post.author}</span>
+
+            <div className="flex flex-col items-start gap-4 mb-8">
+              <Badge className="bg-blue-400/20 text-blue-100 px-4 py-1.5 rounded-full border border-blue-400/30 uppercase tracking-[0.2em] text-[10px] font-black">
+                {post.category}
+              </Badge>
+            </div>
+
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-display mb-10 leading-[1.05] tracking-tight font-black">
+              {post.title}
+            </h1>
+
+            <div className="flex flex-wrap items-center gap-8 text-blue-100/60 font-medium pt-10 border-t border-white/5">
+              <div className="flex items-center gap-2.5">
+                <span className="text-blue-400">📅</span>
+                {post.date}
+              </div>
+              <div className="flex items-center gap-2.5">
+                <span className="text-blue-400">⏱️</span>
+                {post.readTime} read
+              </div>
+              <div className="flex items-center gap-4">
+                <div className="p-0.5 bg-gradient-to-tr from-blue-400 to-purple-400 rounded-full shadow-lg">
+                  <AuthorAvatar author={post.author} size={36} className="border-0" />
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-xs uppercase tracking-widest text-blue-100/40 font-black">Author</span>
+                  <span className="font-bold text-white text-base">{post.author}</span>
+                </div>
               </div>
             </div>
           </div>
@@ -117,7 +141,7 @@ const BlogPostPage = () => {
           <div className="grid lg:grid-cols-12 gap-16">
             <div className="lg:col-span-8">
               <div className="relative aspect-[16/9] rounded-[2rem] overflow-hidden mb-12 shadow-2xl bg-gray-50 border border-gray-100">
-                <img 
+                <img
                   src={post.image} alt={post.title}
                   onLoad={() => setImgLoaded(true)}
                   className={`w-full h-full object-cover transition-opacity duration-700 ${imgLoaded ? 'opacity-100' : 'opacity-0'}`}
@@ -150,21 +174,21 @@ const BlogPostPage = () => {
 
               {/* Markdown Content with Integrated Internal Linking */}
               <div className="prose prose-blue lg:prose-xl max-w-none text-gray-800">
-                <ReactMarkdown 
+                <ReactMarkdown
                   remarkPlugins={[remarkGfm]}
                   components={{
-                    h2: ({node, ...props}) => {
+                    h2: ({ node, ...props }) => {
                       const id = props.children.toString().toLowerCase().replace(/[^\w ]+/g, '').replace(/ +/g, '-');
                       return <h2 id={id} className="text-3xl md:text-4xl font-bold mt-20 mb-8 border-l-4 border-blue-600 pl-6" {...props} />
                     },
                     // ✅ Apply Automator to every paragraph rendered from Markdown
-                    p: ({node, children}) => {
+                    p: ({ node, children }) => {
                       if (typeof children === 'string') {
                         return <p className="mb-6 leading-relaxed font-body"><InternalLinkAutomator text={children} /></p>;
                       }
                       return <p className="mb-6 leading-relaxed font-body">{children}</p>;
                     },
-                    li: ({node, ...props}) => <li className="flex gap-3 items-start before:content-['✓'] before:text-blue-600 before:font-black mb-2" {...props} />
+                    li: ({ node, ...props }) => <li className="flex gap-3 items-start before:content-['✓'] before:text-blue-600 before:font-black mb-2" {...props} />
                   }}
                 >
                   {post.content}
