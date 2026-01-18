@@ -65,7 +65,7 @@ export const services = [
   {
     id: 1,
     category: "Process-Specific Automation",
-    title: "Sales & Marketing Automation", 
+    title: "Sales & Marketing Automation",
     description: "Lead nurturing, CRM hygiene, campaign setup, and customer journey optimization.",
     image: serviceImages.workflow,
     tools: ["HubSpot", "Salesforce", "Marketo", "Klaviyo"],
@@ -82,7 +82,7 @@ export const services = [
   },
   {
     id: 3,
-    category: "Technical Implementation", 
+    category: "Technical Implementation",
     title: "Robotic Process Automation (RPA) Development",
     description: "Robotic Process Automation using enterprise-grade platforms for complex business processes.",
     image: serviceImages.rpa,
@@ -92,7 +92,7 @@ export const services = [
   {
     id: 4,
     category: "Technical Implementation",
-    title: "Voice AI Agents & Chatbot Solutions", 
+    title: "Voice AI Agents & Chatbot Solutions",
     description: "Custom AI implementations, intelligent chatbots, and machine learning automation.",
     image: serviceImages.ai,
     tools: ["OpenAI GPT", "Microsoft Bot Framework", "Dialogflow", "Azure AI"],
@@ -140,7 +140,7 @@ export const caseStudies = [
     solution: "Implemented end-to-end RPA solution using UiPath for invoice capture, validation, and processing with ERP integration.",
     results: {
       timeReduction: "85%",
-      hoursSaved: "120 hours/month", 
+      hoursSaved: "120 hours/month",
       costSavings: "$180,000/year",
       accuracy: "99.7%"
     },
@@ -151,13 +151,13 @@ export const caseStudies = [
   {
     id: 2,
     client: "Fashion Forward Co.",
-    industry: "E-commerce", 
+    industry: "E-commerce",
     challenge: "Customer onboarding and order processing workflows were creating bottlenecks during peak seasons.",
     solution: "Designed intelligent workflow automation connecting Shopify, CRM, and fulfillment systems with custom API integrations.",
     results: {
       timeReduction: "70%",
       hoursSaved: "200 hours/month",
-      costSavings: "$250,000/year", 
+      costSavings: "$250,000/year",
       accuracy: "98.5%"
     },
     testimonial: "Devaland transformed our email marketing strategy. The results speak for themselves - 45% revenue increase in just 6 months!",
@@ -171,13 +171,13 @@ export const caseStudies = [
     challenge: "Patient data entry and appointment scheduling required extensive manual coordination across multiple systems.",
     solution: "Built comprehensive automation platform integrating patient management, scheduling, and billing systems with smart notifications.",
     results: {
-      timeReduction: "90%", 
+      timeReduction: "90%",
       hoursSaved: "150 hours/month",
       costSavings: "$200,000/year",
       accuracy: "99.2%"
     },
     testimonial: "Professional, knowledgeable, and results-driven. Devaland delivered beyond our expectations.",
-    clientName: "Emma Rodriguez", 
+    clientName: "Emma Rodriguez",
     clientTitle: "Practice Manager"
   }
 ];
@@ -186,7 +186,7 @@ export const team = [
   {
     id: 1,
     name: "Marius Andronie",
-    role: "Founder & CEO", 
+    role: "Founder & CEO",
     bio: "Automation strategist with 8+ years experience in enterprise process optimization and RPA implementation.",
     image: "https://customer-assets.emergentagent.com/job_process-genius-5/artifacts/oe2wb7ir_Marius%20picture%20high-quality.jpeg",
     expertise: ["Strategic Planning", "RPA Architecture", "Business Process Analysis"],
@@ -196,7 +196,7 @@ export const team = [
     id: 2,
     name: "Sera Andronie",
     role: "Co-Founder & CEO",
-    bio: "Business development expert specializing in strategic partnerships and enterprise client relationships.", 
+    bio: "Business development expert specializing in strategic partnerships and enterprise client relationships.",
     image: "https://customer-assets.emergentagent.com/job_process-genius-5/artifacts/swtrsx9w_Sera.jpeg",
     expertise: ["Business Development", "Strategic Partnerships", "Client Relations"],
     linkedin: "https://www.linkedin.com/in/andronie-serafim-184186211/"
@@ -205,7 +205,7 @@ export const team = [
     id: 3,
     name: "Sarah Mitchell",
     role: "Head of Technical Implementation",
-    bio: "Senior automation engineer specializing in UiPath, Python, and enterprise system integrations.", 
+    bio: "Senior automation engineer specializing in UiPath, Python, and enterprise system integrations.",
     image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop&q=80",
     expertise: ["UiPath Development", "Python Automation", "API Integration"]
   }
@@ -217,7 +217,7 @@ export const blogPosts = [
     slug: "best-10-klaviyo-automation-flows-every-ecommerce-store-needs",
     title: "10 Best Klaviyo Flows That Increase Revenue 320% (2025)",
     excerpt: "Copy-paste templates for the 10 best Klaviyo automation flows: abandoned cart recovery (30% recovery), welcome series setup (50-60% open rates), Klaviyo sales funnel strategies, win-back campaigns. Complete implementation guide with benchmarks, triggers, and timing sequences that increased revenue 320% for 500+ e-commerce stores.",
-    category: "Klaviyo Tips", 
+    category: "Klaviyo Tips",
     readTime: "25 min read",
     date: "2024-07-24",
     author: "Marius Andronie",
@@ -1395,7 +1395,7 @@ Book a consultation to see live demo customized for your industry, calculate you
   {
     id: 8,
     title: "Voice AI Agents: The Future of Business Communication",
-    slug: "voice-ai-agents-future-business-communication",
+    slug: "voice-ai-agents-the-future-of-business-communication",
     excerpt: "Discover the Voice AI Assistant that actually sounds human—not like a robot reading a script. Powered by RAG and ElevenLabs technology, it listens, remembers context, and takes real action.",
     category: "Voice AI",
     readTime: "12 min read",
@@ -1646,7 +1646,7 @@ Book Voice AI Assessment to review your current call patterns and volumes, calcu
     internalLinks: [
       { text: "Voice AI Services & Solutions", href: "/voice-ai" },
       { text: "Voice AI Pricing Comparison 2025", href: "/blog/voice-ai-pricing-comparison-2025" },
-      { text: "Voice AI Agents for Business", href: "/blog/voice-ai-agents-future-business-communication" },
+      { text: "Voice AI Agents for Business", href: "/blog/voice-ai-agents-the-future-of-business-communication" },
       { text: "Small Business Voice AI Guide", href: "/blog/ai-voice-assistants-small-business-guide-2025" },
       { text: "Restaurant Voice AI Solutions", href: "/blog/voice-ai-restaurants-phone-orders-reservations-guide" },
       { text: "ROI Calculator", href: "/voice-ai#roi-calculator" },
@@ -2518,7 +2518,7 @@ Typical medical practice results show 73-85% automation rate within 6-8 weeks, 8
 
 export const klaviyoStats = {
   averageRevenueIncrease: "65%",
-  averageOpenRate: "36%", 
+  averageOpenRate: "36%",
   averageClickRate: "9.2%",
   clientsServed: "50+"
 };
@@ -2604,7 +2604,7 @@ export const klaviyoSuccessStories = [
     id: 3,
     client: "TechFlow Solutions",
     industry: "B2B Technology",
-    initials: "TS", 
+    initials: "TS",
     overview: "Multi-channel marketing automation implementation for a B2B software company",
     timeline: "8 months",
     challenges: [
@@ -2635,7 +2635,7 @@ export const klaviyoSuccessStories = [
     industry: "Handmade Crafts",
     initials: "AC",
     overview: "Seasonal campaign optimization and customer retention strategy for artisan marketplace",
-    timeline: "5 months", 
+    timeline: "5 months",
     challenges: [
       "Highly seasonal business with revenue fluctuations",
       "Low repeat purchase rates",
@@ -2679,7 +2679,7 @@ export const klaviyoSuccessStories = [
     ],
     results: {
       revenueIncrease: "+70%",
-      openRate: "38%", 
+      openRate: "38%",
       clickRate: "9.4%",
       conversionRate: "6.1%"
     },

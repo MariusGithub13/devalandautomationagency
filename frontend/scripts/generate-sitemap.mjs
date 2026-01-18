@@ -50,7 +50,7 @@ const BLOG_POSTS = [
   "/blog/advanced-klaviyo-analytics-beyond-open-and-click-rates",
   "/blog/building-customer-loyalty-through-email-personalization",
   "/blog/all-in-one-chat-widget-complete-guide",
-  "/blog/voice-ai-agents-future-business-communication",
+  "/blog/voice-ai-agents-the-future-of-business-communication",
   "/blog/voice-ai-implementation-real-business-results-roi-analysis-technical-guide",
   "/blog/voice-ai-pricing-comparison-2025",
   "/blog/ai-voice-assistants-small-business-guide-2025",
@@ -118,7 +118,7 @@ ${body}
 function main() {
   const blogHtml = discoverBlogUrls();
   const allUrls = Array.from(new Set([...ROUTES, ...BLOG_POSTS, ...blogHtml]));
-  
+
   // Sorting urls alphabetically
   allUrls.sort();
 
